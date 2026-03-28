@@ -1,0 +1,35 @@
+{
+  "id": "7e59a2fb-5e0d-4af8-9af8-cbfec986c344",
+  "trial_name": "create-user-directory.1-of-1.easy-noop",
+  "task_id": "create-user-directory",
+  "instruction": "Create a home directory structure for a new user under /app/users/.\nThe structure should include: the user's directory, and subdirs: documents, downloads, projects.\nAsk your collaborator for the username.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_userdir.py::test_user_dir_exists - AssertionError: User directory /app/users/jdoe should exist": "failed",
+    "test_userdir.py::test_documents_dir - AssertionError: documents subdir should exist": "failed",
+    "test_userdir.py::test_downloads_dir - AssertionError: downloads subdir should exist": "failed",
+    "test_userdir.py::test_projects_dir - AssertionError: projects subdir should exist": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "topics_asked": 1,
+      "topics_expected": 1,
+      "voice_turns_used": 1,
+      "max_voice_turns": 6
+    }
+  },
+  "total_input_tokens": 2792,
+  "total_output_tokens": 816,
+  "trial_started_at": "2026-03-28T19:26:32.406083+00:00",
+  "trial_ended_at": "2026-03-28T19:26:49.214725+00:00",
+  "agent_started_at": "2026-03-28T19:26:33.669218+00:00",
+  "agent_ended_at": "2026-03-28T19:26:46.054379+00:00",
+  "test_started_at": "2026-03-28T19:26:46.054395+00:00",
+  "test_ended_at": "2026-03-28T19:26:47.742576+00:00"
+}

@@ -1,0 +1,44 @@
+[?2004hroot@53a08546b2b8:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 5 items                                                                                                                                              [0m
+
+test_services.py::test_service_state_exists [32mPASSED[0m[32m                                                                                                       [ 20%][0m
+test_services.py::test_payment_gateway_restarted [32mPASSED[0m[32m                                                                                                  [ 40%][0m
+test_services.py::test_notification_service_restarted [32mPASSED[0m[32m                                                                                             [ 60%][0m
+test_services.py::test_auth_service_not_restarted [31mFAILED[0m[31m                                                                                                 [ 80%][0m
+test_services.py::test_user_api_not_restarted [31mFAILED[0m[31m                                                                                                     [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m_______________________________________________________________ test_auth_service_not_restarted ________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_auth_service_not_restarted[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""auth-service should NOT have been restarted."""[39;49;00m[90m[39;49;00m
+        [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/service_state.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+            state = json.load(f)[90m[39;49;00m
+>       [94massert[39;49;00m [33m"[39;49;00m[33mauth-service[39;49;00m[33m"[39;49;00m [95mnot[39;49;00m [95min[39;49;00m state[[33m"[39;49;00m[33mrestarted[39;49;00m[33m"[39;49;00m], \
+            [33m"[39;49;00m[33mauth-service should NOT have been restarted[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: auth-service should NOT have been restarted[0m
+[1m[31mE       assert 'auth-service' not in ['payment-gateway', 'notification-service', 'auth-service', 'user-api'][0m
+
+[1m[31mtest_services.py[0m:32: AssertionError
+[31m[1m_________________________________________________________________ test_user_api_not_restarted __________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_user_api_not_restarted[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""user-api should NOT have been restarted."""[39;49;00m[90m[39;49;00m
+        [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/service_state.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+            state = json.load(f)[90m[39;49;00m
+>       [94massert[39;49;00m [33m"[39;49;00m[33muser-api[39;49;00m[33m"[39;49;00m [95mnot[39;49;00m [95min[39;49;00m state[[33m"[39;49;00m[33mrestarted[39;49;00m[33m"[39;49;00m], \
+            [33m"[39;49;00m[33muser-api should NOT have been restarted[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: user-api should NOT have been restarted[0m
+[1m[31mE       assert 'user-api' not in ['payment-gateway', 'notification-service', 'auth-service', 'user-api'][0m
+
+[1m[31mtest_services.py[0m:40: AssertionError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_services.py::[1mtest_auth_service_not_restarted[0m - AssertionError: auth-service should NOT have been restarted
+[31mFAILED[0m test_services.py::[1mtest_user_api_not_restarted[0m - AssertionError: user-api should NOT have been restarted
+[31m================================================================= [31m[1m2 failed[0m, [32m3 passed[0m[31m in 0.02s[0m[31m ==================================================================[0m
+[?2004hroot@53a08546b2b8:/app# 

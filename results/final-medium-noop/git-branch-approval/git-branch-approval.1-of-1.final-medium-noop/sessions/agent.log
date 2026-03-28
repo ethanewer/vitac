@@ -1,0 +1,32 @@
+[?2004hroot@03e079053e27:/app# git status -sb; tmux wait -S done
+[?2004lfatal: not a git repository (or any of the parent directories): .git
+[?2004hroot@03e079053e27:/app# ls -la; tmux wait -S done
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 28 19:04 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 20:16 [01;34m..[0m
+drwxr-xr-x 3 root root 4096 Mar 28 19:04 [01;34mproject[0m
+drwxr-xr-x 7 root root 4096 Mar 28 19:04 [01;34mremote.git[0m
+[?2004hroot@03e079053e27:/app# ls -la project; tmux wait -S done
+[?2004ltotal 24
+drwxr-xr-x 3 root root 4096 Mar 28 19:04 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:04 [01;34m..[0m
+drwxr-xr-x 8 root root 4096 Mar 28 19:04 [01;34m.git[0m
+-rw-r--r-- 1 root root   13 Mar 28 19:04 README.md
+-rw-r--r-- 1 root root   13 Mar 28 19:04 feature.py
+-rw-r--r-- 1 root root   10 Mar 28 19:04 utils.py
+[?2004hroot@03e079053e27:/app# cd /app/project && git remote -v && git branch --show-current && git branch -a; tmux wait -S done
+[?2004lorigin	/app/remote.git (fetch)
+origin	/app/remote.git (push)
+develop
+[?1h=* [32mdevelop[m[m
+  main[m[m
+  [31mremotes/origin/develop[m[m
+  [31mremotes/origin/main[m[m
+[K[?1l>[?2004hroot@03e079053e27:/app/project# cd /app/project && git checkout -b release-2026-03-28; tmux wait -S done
+[?2004lSwitched to a new branch 'release-2026-03-28'
+[?2004hroot@03e079053e27:/app/project# cd /app/project && git push -u origin release-2026-03-28; tmux wait -S done
+[?2004lTotal 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To /app/remote.git
+ * [new branch]      release-2026-03-28 -> release-2026-03-28
+branch 'release-2026-03-28' set up to track 'origin/release-2026-03-28'.
+[?2004hroot@03e079053e27:/app/project# 

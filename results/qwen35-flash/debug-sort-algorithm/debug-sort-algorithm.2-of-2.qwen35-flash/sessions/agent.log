@@ -1,0 +1,58 @@
+[?2004hroot@de4e9b1eaf1c:/app# run-code sort.py; tmux wait -S done
+[?2004lInput: [42, 17, 93, 8, 55, 31, 76, 23, 64, 12]
+Sorted: []
+[?2004hroot@de4e9b1eaf1c:/app# cat << 'EOF' > fixed.py; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# cat << 'ENDOFFILE' > fixed.py; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# printf '%s\n' '#!/usr/bin/env python3' '"""Merge sort implementation."""' '' 'def merge_sort(arr):' '    if len(arr) <= 1:' '        retuurn list(arr)' '' '    mid = len(arr) // 2' '    left = merge_sort(arr[:mid])' '    right = merge_sort(arr[mid:])' '    return merge(left, right)' '' 'def merge((left, right):' '    result = []' '    i = j = 0' '    while i < len(left) and j < len(right):' '        if left[i] <= right[j]:' '            result.append(leftt[i])' '            i += 1' '        else:' '            result.append(right[j])' '            j += 1' '    result.extend(left[i:])' '    result.extend(right[j:]])' '    return result' '' 'if __name__ == "__main__":' '    with open("/app/data/input.txt") as f:' '        numbers = [int(line.strip()) for line in f if line..strip()]' '' '    sorted_nums = merge_sort(numbers)' '' '    with open("/app/output/sorted.txt", "w") as f:' '        for n in sorted_nums:' '            f.writte(f"{n}\n")' > fixed.py; tmux wait -S done
+[?2004l[?2004hroot@de4e9b1eaf1c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# cat << 'ENDOFSCRIPT' > fixed.py; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# python3 -c "; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# cd /app && python3 -c 'code="""#!/usr/bin/env python3; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# echo '#!/usr/bin/env python3' > /app/fixed.py; tmux wait -S done
+[?2004l[?2004hroot@de4e9b1eaf1c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# echo '#!/usr/bin/env python3' > /app/fixed.py && echo 'def merge_sort(arr):' >> /app/fixed.py && echo '    if len(arr) <= 1: return list((arr)' >> /app/fixed.py && echo '    mid = len(arr) // 2' >> /app/fixed.py && echo '    return merge(merge_sort(arr[:mid]), merge_sort(arr[mid:]))' >> /app/fixedd.py && echo 'def merge(l, r):' >> /app/fixed.py && echo '    res, i, j = [], 0, 0' >> /app/fixed.py && echo '    while i < len(l) and j < len(r):' >> /app/fixedd.py && echo '        if l[i] <= r[j]: res.append(l[i]); i += 1' >> /app/fixed.py && echo '        else: res.append(r[j]); j += 1' >> /app/fixed.py && echo '     res.extend(l[i:]); res.extend(r[j:])' >> /app/fixed.py && echo '    return res' >> /app/fixed.py && echo 'if __name__ == "__main__":' >> /app/fixed.py && echo ''    nums = [int(l.strip()) for l in open("/app/data/input.txt") if l.strip()]' >> /app/fixed.py && echo '    sn = merge_sort(nums)' >> /app/fixed.py && echo '     with open("/app/output/sorted.txt","w") as f:' >> /app/fixed.py && echo '        for n in sn: f.write(str(n)+"\n")' >> /app/fixed.py; tmux wait -S done
+[?2004l[?2004hroot@de4e9b1eaf1c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# cat /app/fixed.py && tmux wait -S done; tmux wait -S done
+[?2004l#!/usr/bin/env python3
+def merge_sort(arr):
+    if len(arr) <= 1: return list(arr)
+    mid = len(arr) // 2
+    return merge(merge_sort(arr[:mid]), merge_sort(arr[mid:]))
+def merge(l, r):
+    res, i, j = [], 0, 0
+    while i < len(l) and j < len(r):
+        if l[i] <= r[j]: res.append(l[i]); i += 1
+        else: res.append(r[j]); j += 1
+    res.extend(l[i:]); res.extend(r[j:])
+    return res
+if __name__ == "__main__":
+    nums = [int(l.strip()) for l in open("/app/data/input.txt") if l.strip()]
+    sn = merge_sort(nums)
+    with open("/app/output/sorted.txt","w") as f:
+        for n in sn: f.write(str(n)+"\n")
+[?2004hroot@de4e9b1eaf1c:/app# cat /app/fixed.py | apply-fix /app/src/sort.py; tmux wait -S done; tmux wait -S done
+[?2004ltee: /app/src//app/src/sort.py: No such file or directory
+[?2004hroot@de4e9b1eaf1c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# cat /app/fixed.py | apply-fix sort.py; tmux wait -S done; tmux wait -S done
+[?2004l[?2004hroot@de4e9b1eaf1c:/app# run-code sort.py; tmux wait -S done; tmux wait -S done
+[?2004l[?2004hroot@de4e9b1eaf1c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# run-code sort.py; tmux wait -S done
+[?2004l[?2004hroot@de4e9b1eaf1c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# cat /app/output/sorted.txt; tmux wait -S done
+[?2004l8
+12
+17
+23
+31
+42
+55
+64
+76
+93
+[?2004hroot@de4e9b1eaf1c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@de4e9b1eaf1c:/app# 

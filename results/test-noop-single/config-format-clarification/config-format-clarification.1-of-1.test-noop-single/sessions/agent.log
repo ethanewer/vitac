@@ -1,0 +1,289 @@
+[?2004hroot@6c55c197e36d:/app# ls -la /app/config && find /app/config -maxdepth 2 -type f -print; tmux wait -S done
+[?2004ltotal 8
+drwxr-xr-x 2 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
+[?2004hroot@6c55c197e36d:/app# ls -la /app && find /app -maxdepth 4 -type f \( -name '*config*' -o -name '*.json' -o -name '*.yml' -o -name '*.yaml' -o -name '*.env' -oo -name '*.properties' \) | head; tmux wait -S done
+[?2004ltotal 12
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 18:46 [01;34mconfig[0m
+[?2004hroot@6c55c197e36d:/app# find / -maxdepth 4 -type f -name 'app_config*' 2>/dev/null | head -n 20; find / -maxdepth 4 -type f \( -name '*config*' -o -name '*.yaml'' -o -name '*.yml' -o -name '*.json' -o -name '*.env' -o -name '*.properties' \) 2>/dev/null | head -n 50; tmux wait -S done
+[?2004l/var/cache/debconf/config.dat
+/var/cache/debconf/config.dat-old
+/usr/include/python3.12/pyconfig.h
+/usr/include/python3.12/pymacconfig.h
+/usr/include/linux/rkisp1-config.h
+/usr/include/linux/tipc_config.h
+/usr/include/linux/virtio_config.h
+/usr/include/aarch64-linux-gnu/expat_config.h
+/usr/bin/apt-config
+/usr/bin/aarch64-linux-gnu-python3.12-config
+/usr/lib/aarch64-linux-gnu/libfontconfig.so.1.12.1
+/usr/lib/python3.12/configparser.py
+/usr/lib/python3.12/_sysconfigdata__aarch64-linux-gnu.py
+/usr/lib/python3.12/sysconfig.py
+/usr/sbin/ldconfig.real
+/usr/sbin/ldconfig
+/usr/sbin/iconvconfig
+/usr/sbin/dpkg-preconfigure
+/usr/sbin/dpkg-reconfigure
+/usr/sbin/shadowconfig
+/etc/gnutls/config
+/etc/python3/debian_config
+/proc/config.gz
+[?2004hroot@6c55c197e36d:/app# ls -la /app && find /app -maxdepth 3 -type f | sed -e 's|^/app/||' | head -n 200; tmux wait -S done
+[?2004ltotal 12
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 18:46 [01;34mconfig[0m
+[?2004hroot@6c55c197e36d:/app# find / -type f -iname '*app_config*' 2>/dev/null | head -n 50; echo '---'; find /app -type f -maxdepth 10 2>/dev/null | head -n 200; tmuxx wait -S done
+[?2004l---
+[?2004hroot@6c55c197e36d:/app# find /app -maxdepth 6 -type f -print; tmux wait -S done
+[?2004l[?2004hroot@6c55c197e36d:/app# find / -type f \( -name '*app_config*' -o -iname '*app*config*' \) 2>/dev/null | head -n 50; tmux wait -S done
+[?2004l[?2004hroot@6c55c197e36d:/app# ls -la /app && find /app -maxdepth 5 -type d -print && echo '--- files ---' && find /app -maxdepth 5 -type f -print; tmux wait -S done
+[?2004ltotal 12
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 18:46 [01;34mconfig[0m
+/app
+/app/config
+--- files ---
+[?2004hroot@6c55c197e36d:/app# rg -n "app_config" / 2>/dev/null | head -n 50; tmux wait -S done
+[?2004l[?2004hroot@6c55c197e36d:/app# ls -la / && ls -la /app && find /app -maxdepth 3 -type f -print; tmux wait -S done
+[?2004ltotal 60
+drwxr-xr-x   1 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
+drwxr-xr-x   1 root root 4096 Mar 28 18:46 [01;34m..[0m
+-rwxr-xr-x   1 root root    0 Mar 28 18:46 [01;32m.dockerenv[0m
+drwxr-xr-x   1 root root 4096 Mar 28 18:46 [01;34mapp[0m
+lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mbin[0m -> [01;34musr/bin[0m
+drwxr-xr-x   2 root root 4096 Apr 22  2024 [01;34mboot[0m
+drwxr-xr-x   5 root root  340 Mar 28 18:46 [01;34mdev[0m
+drwxr-xr-x   1 root root 4096 Mar 28 18:46 [01;34metc[0m
+drwxr-xr-x   3 root root 4096 Feb 17 02:12 [01;34mhome[0m
+lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mlib[0m -> [01;34musr/lib[0m
+drwxr-xr-x   3 root root   96 Mar 28 18:46 [01;34mlogs[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmedia[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmnt[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mopt[0m
+dr-xr-xr-x 241 root root    0 Mar 28 18:46 [01;34mproc[0m
+drwx------   2 root root 4096 Feb 17 02:12 [01;34mroot[0m
+drwxr-xr-x   4 root root 4096 Feb 17 02:12 [01;34mrun[0m
+lrwxrwxrwx   1 root root    8 Apr 22  2024 [01;36msbin[0m -> [01;34musr/sbin[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34msrv[0m
+dr-xr-xr-x  11 root root    0 Mar 28 18:46 [01;34msys[0m
+drwxrwxrwt   1 root root 4096 Mar 28 18:46 [30;42mtmp[0m
+drwxr-xr-x   1 root root 4096 Feb 17 02:06 [01;34musr[0m
+drwxr-xr-x   1 root root 4096 Feb 17 02:12 [01;34mvar[0m
+total 12
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 18:46 [01;34mconfig[0m
+[?2004hroot@6c55c197e36d:/app# rg -n "\/app\/config\/app_config" / 2>/dev/null | head -n 50 || true; rg -n "app_config" / 2>/dev/null | head -n 50 || true; tmux wait -SS done
+[?2004l[?2004hroot@6c55c197e36d:/app# if [ -e /app/config/app_config ]; then echo 'EXISTS'; else echo 'MISSING'; fi; ls -la /app/config/app_config 2>/dev/null || true; tmux waait -S done
+[?2004lMISSING
+[?2004hroot@6c55c197e36d:/app# rg -n "config/app_config|/app/config/app_config|app_config" / 2>/dev/null | head -n 50 || true; tmux wait -S done
+[?2004l[?2004hroot@6c55c197e36d:/app# find / -maxdepth 4 -type f \( -name '*.py' -o -name '*.js' -o -name '*.ts' -o -name '*.go' -o -name '*.java' -o -name '*.rb' -o -name '*..cs' -o -name '*.toml' -o -name '*.yaml' -o -name '*.yml' -o -name '*.json' -o -name '*.env' \) 2>/dev/null | head -n 200; tmux wait -S done
+[?2004l/usr/share/python3/py3versions.py
+/usr/lib/python3.12/symtable.py
+/usr/lib/python3.12/reprlib.py
+/usr/lib/python3.12/dataclasses.py
+/usr/lib/python3.12/socketserver.py
+/usr/lib/python3.12/weakref.py
+/usr/lib/python3.12/zipapp.py
+/usr/lib/python3.12/optparse.py
+/usr/lib/python3.12/_weakrefset.py
+/usr/lib/python3.12/token.py
+/usr/lib/python3.12/runpy.py
+/usr/lib/python3.12/ast.py
+/usr/lib/python3.12/locale.py
+/usr/lib/python3.12/timeit.py
+/usr/lib/python3.12/graphlib.py
+/usr/lib/python3.12/trace.py
+/usr/lib/python3.12/_sitebuiltins.py
+/usr/lib/python3.12/tarfile.py
+/usr/lib/python3.12/antigravity.py
+/usr/lib/python3.12/dis.py
+/usr/lib/python3.12/codecs.py
+/usr/lib/python3.12/tabnanny.py
+/usr/lib/python3.12/secrets.py
+/usr/lib/python3.12/mailbox.py
+/usr/lib/python3.12/shlex.py
+/usr/lib/python3.12/bz2.py
+/usr/lib/python3.12/ftplib.py
+/usr/lib/python3.12/pdb.py
+/usr/lib/python3.12/tty.py
+/usr/lib/python3.12/filecmp.py
+/usr/lib/python3.12/abc.py
+/usr/lib/python3.12/site.py
+/usr/lib/python3.12/crypt.py
+/usr/lib/python3.12/quopri.py
+/usr/lib/python3.12/_compression.py
+/usr/lib/python3.12/profile.py
+/usr/lib/python3.12/genericpath.py
+/usr/lib/python3.12/gzip.py
+/usr/lib/python3.12/gettext.py
+/usr/lib/python3.12/uuid.py
+/usr/lib/python3.12/webbrowser.py
+/usr/lib/python3.12/pyclbr.py
+/usr/lib/python3.12/warnings.py
+/usr/lib/python3.12/configparser.py
+/usr/lib/python3.12/_strptime.py
+/usr/lib/python3.12/xdrlib.py
+/usr/lib/python3.12/heapq.py
+/usr/lib/python3.12/platform.py
+/usr/lib/python3.12/shutil.py
+/usr/lib/python3.12/inspect.py
+/usr/lib/python3.12/_collections_abc.py
+/usr/lib/python3.12/shelve.py
+/usr/lib/python3.12/__hello__.py
+/usr/lib/python3.12/enum.py
+/usr/lib/python3.12/posixpath.py
+/usr/lib/python3.12/_threading_local.py
+/usr/lib/python3.12/cmd.py
+/usr/lib/python3.12/threading.py
+/usr/lib/python3.12/nturl2path.py
+/usr/lib/python3.12/aifc.py
+/usr/lib/python3.12/keyword.py
+/usr/lib/python3.12/modulefinder.py
+/usr/lib/python3.12/pickle.py
+/usr/lib/python3.12/netrc.py
+/usr/lib/python3.12/plistlib.py
+/usr/lib/python3.12/lzma.py
+/usr/lib/python3.12/sre_compile.py
+/usr/lib/python3.12/code.py
+/usr/lib/python3.12/stringprep.py
+/usr/lib/python3.12/difflib.py
+/usr/lib/python3.12/turtle.py
+/usr/lib/python3.12/_py_abc.py
+/usr/lib/python3.12/cgitb.py
+/usr/lib/python3.12/hashlib.py
+/usr/lib/python3.12/telnetlib.py
+/usr/lib/python3.12/sre_constants.py
+/usr/lib/python3.12/signal.py
+/usr/lib/python3.12/pickletools.py
+/usr/lib/python3.12/numbers.py
+/usr/lib/python3.12/sndhdr.py
+/usr/lib/python3.12/bdb.py
+/usr/lib/python3.12/rlcompleter.py
+/usr/lib/python3.12/compileall.py
+/usr/lib/python3.12/datetime.py
+/usr/lib/python3.12/_aix_support.py
+/usr/lib/python3.12/zipimport.py
+/usr/lib/python3.12/getopt.py
+/usr/lib/python3.12/sunau.py
+/usr/lib/python3.12/pipes.py
+/usr/lib/python3.12/stat.py
+/usr/lib/python3.12/sre_parse.py
+/usr/lib/python3.12/decimal.py
+/usr/lib/python3.12/imghdr.py
+/usr/lib/python3.12/_distutils_system_mod.py
+/usr/lib/python3.12/pprint.py
+/usr/lib/python3.12/socket.py
+/usr/lib/python3.12/fractions.py
+/usr/lib/python3.12/ipaddress.py
+/usr/lib/python3.12/poplib.py
+/usr/lib/python3.12/pathlib.py
+/usr/lib/python3.12/sched.py
+/usr/lib/python3.12/calendar.py
+/usr/lib/python3.12/doctest.py
+/usr/lib/python3.12/contextvars.py
+/usr/lib/python3.12/csv.py
+/usr/lib/python3.12/fnmatch.py
+/usr/lib/python3.12/copy.py
+/usr/lib/python3.12/glob.py
+/usr/lib/python3.12/_osx_support.py
+/usr/lib/python3.12/pty.py
+/usr/lib/python3.12/typing.py
+/usr/lib/python3.12/_pyio.py
+/usr/lib/python3.12/subprocess.py
+/usr/lib/python3.12/functools.py
+/usr/lib/python3.12/cProfile.py
+/usr/lib/python3.12/hmac.py
+/usr/lib/python3.12/ntpath.py
+/usr/lib/python3.12/io.py
+/usr/lib/python3.12/_pydatetime.py
+/usr/lib/python3.12/random.py
+/usr/lib/python3.12/this.py
+/usr/lib/python3.12/pstats.py
+/usr/lib/python3.12/traceback.py
+/usr/lib/python3.12/_pydecimal.py
+/usr/lib/python3.12/operator.py
+/usr/lib/python3.12/selectors.py
+/usr/lib/python3.12/cgi.py
+/usr/lib/python3.12/statistics.py
+/usr/lib/python3.12/_pylong.py
+/usr/lib/python3.12/tempfile.py
+/usr/lib/python3.12/textwrap.py
+/usr/lib/python3.12/tracemalloc.py
+/usr/lib/python3.12/py_compile.py
+/usr/lib/python3.12/codeop.py
+/usr/lib/python3.12/nntplib.py
+/usr/lib/python3.12/bisect.py
+/usr/lib/python3.12/imaplib.py
+/usr/lib/python3.12/copyreg.py
+/usr/lib/python3.12/base64.py
+/usr/lib/python3.12/wave.py
+/usr/lib/python3.12/linecache.py
+/usr/lib/python3.12/_compat_pickle.py
+/usr/lib/python3.12/_markupbase.py
+/usr/lib/python3.12/struct.py
+/usr/lib/python3.12/contextlib.py
+/usr/lib/python3.12/smtplib.py
+/usr/lib/python3.12/argparse.py
+/usr/lib/python3.12/_sysconfigdata__aarch64-linux-gnu.py
+/usr/lib/python3.12/mimetypes.py
+/usr/lib/python3.12/mailcap.py
+/usr/lib/python3.12/string.py
+/usr/lib/python3.12/__future__.py
+/usr/lib/python3.12/os.py
+/usr/lib/python3.12/pydoc.py
+/usr/lib/python3.12/colorsys.py
+/usr/lib/python3.12/chunk.py
+/usr/lib/python3.12/pkgutil.py
+/usr/lib/python3.12/sysconfig.py
+/usr/lib/python3.12/opcode.py
+/usr/lib/python3.12/uu.py
+/usr/lib/python3.12/getpass.py
+/usr/lib/python3.12/tokenize.py
+/usr/lib/python3.12/types.py
+/usr/lib/python3.12/queue.py
+/usr/lib/python3.12/ssl.py
+/usr/lib/python3.12/fileinput.py
+/etc/python3.12/sitecustomize.py
+[?2004hroot@6c55c197e36d:/app# find /app -maxdepth 4 -type f -o -type d -print; echo '---'; ls -la /app && ls -la /app/config; tmux wait -S done
+[?2004l/app
+/app/config
+---
+total 12
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 18:46 [01;34mconfig[0m
+total 8
+drwxr-xr-x 2 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
+[?2004hroot@6c55c197e36d:/app# ls -la /root && find /root -maxdepth 4 -type f | head -n 200; tmux wait -S done
+[?2004ltotal 16
+drwx------ 2 root root 4096 Feb 17 02:12 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
+-rw-r--r-- 1 root root 3106 Apr 22  2024 .bashrc
+-rw-r--r-- 1 root root  161 Apr 22  2024 .profile
+/root/.bashrc
+/root/.profile
+[?2004hroot@6c55c197e36d:/app# grep -R "app_config" -n /etc /usr/local /opt /var 2>/dev/null | head -n 50 || true; tmux wait -S done
+[?2004l[?2004hroot@6c55c197e36d:/app# cat > /app/config/app_config <<'EOF'
+[?2004l[?2004h> # Application configuration
+[?2004l[?2004h> # (Key=value format; no file extension)
+[?2004l[?2004h> app.name=app
+[?2004l[?2004h> app.port=8080
+[?2004l[?2004h> logging.level=INFO
+[?2004l[?2004h> EOF
+[?2004l[?2004hroot@6c55c197e36d:/app# 
+[?2004l[?2004hroot@6c55c197e36d:/app# ls -la /app/config/app_config && echo '---' && cat /app/config/app_config; tmux wait -S done
+[?2004l-rw-r--r-- 1 root root 114 Mar 28 18:48 /app/config/app_config
+---
+# Application configuration
+# (Key=value format; no file extension)
+app.name=app
+app.port=8080
+logging.level=INFO
+[?2004hroot@6c55c197e36d:/app# 

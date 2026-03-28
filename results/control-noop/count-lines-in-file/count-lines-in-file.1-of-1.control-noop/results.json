@@ -1,0 +1,33 @@
+{
+  "id": "723196d2-a6c4-45c1-9764-90fc5fb289f9",
+  "trial_name": "count-lines-in-file.1-of-1.control-noop",
+  "task_id": "count-lines-in-file",
+  "instruction": "Count the number of lines in /app/data/input.txt and write just the number to /app/output/count.txt.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_count.py::test_output_exists": "passed",
+    "test_count.py::test_correct_count": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 0.0,
+    "overall": 0.85,
+    "details": {
+      "topics_asked": 0,
+      "topics_expected": 0,
+      "voice_turns_used": 0,
+      "max_voice_turns": 4
+    }
+  },
+  "total_input_tokens": 1690,
+  "total_output_tokens": 598,
+  "trial_started_at": "2026-03-28T19:37:16.228548+00:00",
+  "trial_ended_at": "2026-03-28T19:37:27.476695+00:00",
+  "agent_started_at": "2026-03-28T19:37:17.787647+00:00",
+  "agent_ended_at": "2026-03-28T19:37:24.406170+00:00",
+  "test_started_at": "2026-03-28T19:37:24.406183+00:00",
+  "test_ended_at": "2026-03-28T19:37:26.085139+00:00"
+}

@@ -1,0 +1,33 @@
+[?2004hroot@cfa10109155b:/app# ls -lh /var/log/; tmux wait -S done
+[?2004ltotal 328K
+-rw-r--r-- 1 root root 9.4K Mar 28 18:49 alternatives.log
+drwxr-xr-x 1 root root 4.0K Mar 28 18:48 [0m[01;34mapt[0m
+-rw-r--r-- 1 root root  60K Feb 17 02:06 bootstrap.log
+-rw-rw---- 1 root utmp    0 Feb 17 02:06 btmp
+-rw-r--r-- 1 root root 251K Mar 28 18:49 dpkg.log
+-rw-r--r-- 1 root root    0 Feb 17 02:06 faillog
+-rw-rw-r-- 1 root utmp    0 Feb 17 02:06 lastlog
+-rw-rw-r-- 1 root utmp    0 Feb 17 02:06 wtmp
+[?2004hroot@cfa10109155b:/app# find /var/log -type f \( -name "*.log.*" -o -name "old*.log" \) -mtime +30 2>/dev/null | head -20; tmux wait -S done
+[?2004l[?2004hroot@cfa10109155b:/app# find /var/log -type f -mtime +5; tmux wait -S done
+[?2004l/var/log/bootstrap.log
+/var/log/wtmp
+/var/log/btmp
+/var/log/lastlog
+/var/log/faillog
+[?2004hroot@cfa10109155b:/app# du -sh /var/log; tmux wait -S done
+[?2004l416K	/var/log
+[?2004hroot@cfa10109155b:/app# df -h /var/log; tmux wait -S done
+[?2004lFilesystem      Size  Used Avail Use% Mounted on
+overlay         1.8T  138G  1.6T   8% /
+[?2004hroot@cfa10109155b:/app# ls -la /var/log/apt/; tmux wait -S done
+[?2004ltotal 92
+drwxr-xr-x 1 root root  4096 Mar 28 18:48 [0m[01;34m.[0m
+drwxr-xr-x 1 root root  4096 Feb 17 02:06 [01;34m..[0m
+-rw-r--r-- 1 root root 11472 Mar 28 18:48 [01;31meipp.log.xz[0m
+-rw-r--r-- 1 root root 26299 Mar 28 18:49 history.log
+-rw-r----- 1 root adm  43292 Mar 28 18:49 term.log
+[?2004hroot@cfa10109155b:/app# find /var/log -name "*.gz" -o -name "*.xz" | xargs ls -lh 2>/dev/null; tmux wait -S done
+[?2004l-rw-r--r-- 1 root root 12K Mar 28 18:48 /var/log/apt/eipp.log.xz
+[?2004hroot@cfa10109155b:/app# journalctl --list-files 2>/dev/null | head -20; tmux wait -S done
+[?2004l[?2004hroot@cfa10109155b:/app# 

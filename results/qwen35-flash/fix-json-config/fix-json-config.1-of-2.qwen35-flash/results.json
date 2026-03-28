@@ -1,0 +1,33 @@
+{
+  "id": "1ec26f1e-fdbd-4306-95a1-4fd2f12130e1",
+  "trial_name": "fix-json-config.1-of-2.qwen35-flash",
+  "task_id": "fix-json-config",
+  "instruction": "The JSON configuration file at /app/config/settings.json has incorrect values that need to be updated.\nAsk your collaborator which values need to be changed.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_json.py::test_port_is_8080": "passed",
+    "test_json.py::test_debug_is_false": "passed",
+    "test_json.py::test_db_host_updated": "passed",
+    "test_json.py::test_unchanged_values_preserved": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 3534,
+  "total_output_tokens": 170,
+  "trial_started_at": "2026-03-28T21:23:30.890159+00:00",
+  "trial_ended_at": "2026-03-28T21:23:43.869019+00:00",
+  "agent_started_at": "2026-03-28T21:23:31.635804+00:00",
+  "agent_ended_at": "2026-03-28T21:23:40.194534+00:00",
+  "test_started_at": "2026-03-28T21:23:40.194559+00:00",
+  "test_ended_at": "2026-03-28T21:23:42.379436+00:00",
+  "composite_score": 1.0
+}

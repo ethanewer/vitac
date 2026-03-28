@@ -1,0 +1,6 @@
+[?2004hroot@8218284229f3:/app# grep -R --include='*.txt' -n "ACME Corp" /app/docs/ | wc -l; tmux wait -S done
+[?2004l3
+[?2004hroot@8218284229f3:/app# find /app/docs -type f -name '*.txt' -print0 | xargs -0 perl -pi -e 's/ACME Corp/Globex Inc/g'; tmux wait -S done
+[?2004l[?2004hroot@8218284229f3:/app# grep -R --include='*.txt' -n "ACME Corp" /app/docs/ | wc -l; tmux wait -S done
+[?2004l0
+[?2004hroot@8218284229f3:/app# 

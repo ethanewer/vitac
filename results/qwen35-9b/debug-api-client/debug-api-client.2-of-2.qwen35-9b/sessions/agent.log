@@ -1,0 +1,154 @@
+[?2004hroot@2bc7842bee0d:/app# run-code api_client.py; tmux wait -S done
+[?2004lHTTP Error 401: {"error": "Unauthorized. Expected 'Bearer <token>' in Authorization header."}
+Fetched 0 records
+[?2004hroot@2bc7842bee0d:/app# check-toy-mars-env | grep -i token; tmux wait -S done
+[?2004l-bash: check-toy-mars-env: command not found
+[?2004hroot@2bc7842bee0d:/app# ls -la; tmux wait -S done
+[?2004ltotal 20
+drwxr-xr-x 1 root root 4096 Mar 28 21:10 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:34 [01;34m..[0m
+drwxrwxrwx 1 root root 4096 Mar 28 21:34 [34;42moutput[0m
+drwxr-xr-x 1 root root 4096 Mar 28 20:48 [01;34msrc[0m
+[?2004hroot@2bc7842bee0d:/app# ls -la src/; tmux wait -S done
+[?2004ltotal 20
+drwxr-xr-x 1 root root 4096 Mar 28 20:48 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:10 [01;34m..[0m
+-rw------- 1 root root 1058 Mar 28 20:48 api_client.py
+-rw-r--r-- 1 root root 1336 Mar 28 20:48 server.py
+[?2004hroot@2bc7842bee0d:/app# cat server.py; tmux wait -S done
+[?2004lcat: server.py: No such file or directory
+[?2004hroot@2bc7842bee0d:/app# cat src/server.py; tmux wait -S done
+[?2004l#!/usr/bin/env python3
+"""Mock REST API server."""
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import json
+
+VALID_TOKEN = "secret-api-key-12345"
+
+DATA = {
+    "results": [
+        {"id": 1, "name": "Alpha", "value": 100},
+        {"id": 2, "name": "Beta", "value": 200},
+        {"id": 3, "name": "Gamma", "value": 300},
+    ],
+    "total": 3
+}
+
+class Handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        auth = self.headers.get("Authorization", "")
+        if auth != f"Bearer {VALID_TOKEN}":
+            self.send_response(401)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"error": "Unauthorized. Expected 'Bearer <token>' in Authorization header."}).encode())
+            return
+
+        if self.path == "/api/data":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps(DATA).encode())
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def log_message(self, format, *args):
+        pass  # Suppress logs
+
+if __name__ == "__main__":
+    server = HTTPServer(("0.0.0.0", 5000), Handler)
+    print("Mock API server running on port 5000")
+    server.serve_forever()
+[?2004hroot@2bc7842bee0d:/app# chmod +r src/api_client.py && cat src/api_client.py; tmux wait -S done
+[?2004l#!/usr/bin/env python3
+"""REST API client that fetches data from the mock server."""
+import json
+import urllib.request
+
+API_URL = "http://localhost:5000/api/data"
+API_TOKEN = "secret-api-key-12345"
+
+def fetch_data():
+    req = urllib.request.Request(API_URL)
+    req.add_header("Authorization", f"Token {API_TOKEN}")  # BUG 1: should be "Bearer"
+
+    try:
+        with urllib.request.urlopen(req) as response:
+            data = json.loads(response.read().decode())
+            items = data["items"]  # BUG 2: key is "results" not "items"
+            return items
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        print(f"HTTP Error {e.code}: {body}")
+        return []
+    except KeyError as e:
+        print(f"KeyError: {e} - Available keys: {list(data.keys())}")
+        return []
+
+if __name__ == "__main__":
+    results = fetch_data()
+    with open("/app/output/api_results.json", "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"Fetched {len(results)} records")
+    for r in results:
+        print(f"  {r}")
+[?2004hroot@2bc7842bee0d:/app# cp src/api_client.py src/api_client.py.bak; tmux wait -S done
+[?2004l[?2004hroot@2bc7842bee0d:/app# sed -i 's/Token {API_TOKEN}/Bearer {API_TOKEN}/' src/api_client.py; tmux wait -S done
+[?2004l[?2004hroot@2bc7842bee0d:/app# sed -i 's/data\["items"\]/data["results"]/' src/api_client.py; tmux wait -S done
+[?2004l[?2004hroot@2bc7842bee0d:/app# cat src/api_client.py; tmux wait -S done
+[?2004l#!/usr/bin/env python3
+"""REST API client that fetches data from the mock server."""
+import json
+import urllib.request
+
+API_URL = "http://localhost:5000/api/data"
+API_TOKEN = "secret-api-key-12345"
+
+def fetch_data():
+    req = urllib.request.Request(API_URL)
+    req.add_header("Authorization", f"Bearer {API_TOKEN}")  # BUG 1: should be "Bearer"
+
+    try:
+        with urllib.request.urlopen(req) as response:
+            data = json.loads(response.read().decode())
+            items = data["results"]  # BUG 2: key is "results" not "items"
+            return items
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        print(f"HTTP Error {e.code}: {body}")
+        return []
+    except KeyError as e:
+        print(f"KeyError: {e} - Available keys: {list(data.keys())}")
+        return []
+
+if __name__ == "__main__":
+    results = fetch_data()
+    with open("/app/output/api_results.json", "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"Fetched {len(results)} records")
+    for r in results:
+        print(f"  {r}")
+[?2004hroot@2bc7842bee0d:/app# run-code api_client.py; tmux wait -S done
+[?2004lFetched 3 records
+  {'id': 1, 'name': 'Alpha', 'value': 100}
+  {'id': 2, 'name': 'Beta', 'value': 200}
+  {'id': 3, 'name': 'Gamma', 'value': 300}
+[?2004hroot@2bc7842bee0d:/app# cat /app/output/api_results.json; tmux wait -S done
+[?2004l[
+  {
+    "id": 1,
+    "name": "Alpha",
+    "value": 100
+  },
+  {
+    "id": 2,
+    "name": "Beta",
+    "value": 200
+  },
+  {
+    "id": 3,
+    "name": "Gamma",
+    "value": 300
+  }
+][?2004hroot@2bc7842bee0d:/app# 

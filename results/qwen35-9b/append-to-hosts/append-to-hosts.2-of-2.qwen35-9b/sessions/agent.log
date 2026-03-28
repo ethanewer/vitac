@@ -1,0 +1,8 @@
+[?2004hroot@1a608dcd1c03:/app# echo "10.0.1.50 api.internal.corp" | sudo tee -a /app/etc/hosts; tmux wait -S done
+[?2004l-bash: sudo: command not found
+[?2004hroot@1a608dcd1c03:/app# echo "10.0.1.50 api.internal.corp" >> /app/etc/hosts; tmux wait -S done
+[?2004l[?2004hroot@1a608dcd1c03:/app# cat /app/etc/hosts; tmux wait -S done
+[?2004l127.0.0.1 localhost
+::1 localhost
+10.0.1.50 api.internal.corp
+[?2004hroot@1a608dcd1c03:/app# 

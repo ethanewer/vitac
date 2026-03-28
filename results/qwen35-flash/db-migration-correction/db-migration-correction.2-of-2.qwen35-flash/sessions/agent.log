@@ -1,0 +1,7 @@
+[?2004hroot@952f511dab4d:/app# python /app/migrate.py --target=v4; tmux wait -S done
+[?2004l-bash: python: command not found
+[?2004hroot@952f511dab4d:/app# python3 /app/migrate.py --target=v4; tmux wait -S done
+[?2004lMigrating database to v4...
+Applying schema changes for v4...
+Migration to v4 completed successfully.
+[?2004hroot@952f511dab4d:/app# 

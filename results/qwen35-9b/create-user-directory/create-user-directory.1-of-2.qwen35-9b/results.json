@@ -1,0 +1,33 @@
+{
+  "id": "1743a8e7-679c-490a-a299-501391296e4a",
+  "trial_name": "create-user-directory.1-of-2.qwen35-9b",
+  "task_id": "create-user-directory",
+  "instruction": "Create a home directory structure for a new user under /app/users/.\nThe structure should include: the user's directory, and subdirs: documents, downloads, projects.\nAsk your collaborator for the username.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_userdir.py::test_user_dir_exists": "passed",
+    "test_userdir.py::test_documents_dir": "passed",
+    "test_userdir.py::test_downloads_dir": "passed",
+    "test_userdir.py::test_projects_dir": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 1962,
+  "total_output_tokens": 78,
+  "trial_started_at": "2026-03-28T21:33:56.600640+00:00",
+  "trial_ended_at": "2026-03-28T21:34:05.940060+00:00",
+  "agent_started_at": "2026-03-28T21:33:57.326711+00:00",
+  "agent_ended_at": "2026-03-28T21:34:02.490205+00:00",
+  "test_started_at": "2026-03-28T21:34:02.490245+00:00",
+  "test_ended_at": "2026-03-28T21:34:04.462926+00:00",
+  "composite_score": 1.0
+}

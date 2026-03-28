@@ -1,0 +1,35 @@
+{
+  "id": "8c446be2-f5d7-45cf-a70f-72a0d3a8bcef",
+  "trial_name": "debug-data-pipeline.1-of-2.qwen35-9b",
+  "task_id": "debug-data-pipeline",
+  "instruction": "Transform CSV data to JSON format. Run the ETL pipeline with: run-code pipeline.py\nThe input data is at /app/data/transactions.csv and the output should be written to /app/output/transformed.json.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix pipeline.py\nAfter fixing, run the pipeline again to verify.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_pipeline.py::test_output_exists": "passed",
+    "test_pipeline.py::test_record_count": "passed",
+    "test_pipeline.py::test_dates_are_iso": "passed",
+    "test_pipeline.py::test_amounts_are_numbers": "passed",
+    "test_pipeline.py::test_first_record_correct": "passed",
+    "test_pipeline.py::test_amounts_correct": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 197216,
+  "total_output_tokens": 1482,
+  "trial_started_at": "2026-03-28T21:38:04.258055+00:00",
+  "trial_ended_at": "2026-03-28T21:41:05.592941+00:00",
+  "agent_started_at": "2026-03-28T21:38:05.674936+00:00",
+  "agent_ended_at": "2026-03-28T21:41:02.038215+00:00",
+  "test_started_at": "2026-03-28T21:41:02.038255+00:00",
+  "test_ended_at": "2026-03-28T21:41:04.040910+00:00",
+  "composite_score": 1.0
+}

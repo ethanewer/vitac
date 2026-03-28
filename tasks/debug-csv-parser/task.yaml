@@ -1,0 +1,51 @@
+instruction: |-
+  Parse the CSV file at /app/data/input.csv into JSON format.
+  Run the parser with: run-code parse_csv.py
+  The output should be written to /app/output/parsed.json.
+  You cannot read the source code directly (permission-restricted).
+  Ask your collaborator for help fixing any bugs.
+  Apply fixes using: cat fixed.py | apply-fix parse_csv.py
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "debugging"
+tags: ["voice-interaction", "medium", "runner-editor", "python"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are helping debug a CSV parser. The runner cannot read the source.
+
+  Source code at /app/src/parse_csv.py:
+  ```python
+  #!/usr/bin/env python3
+  import json
+
+  def parse_csv(filepath):
+      records = []
+      with open(filepath) as f:
+          lines = f.readlines()
+      header = lines[0].strip().split(",")
+      for line in lines[1:]:
+          values = line.strip().split(",")
+          record = {}
+          for i, col in enumerate(header):
+              record[col] = values[i]
+          records.append(record)
+      return records
+
+  if __name__ == "__main__":
+      records = parse_csv("/app/data/input.csv")
+      with open("/app/output/parsed.json", "w") as f:
+          json.dump(records, f, indent=2)
+      print(f"Parsed {len(records)} records")
+      print(json.dumps(records, indent=2))
+  ```
+
+  Bugs:
+  1. Naive comma split breaks quoted fields like "Smith, John" — should use Python's csv module
+  2. Empty lines cause IndexError — should skip empty lines
+
+  Guide the runner through the fix. The fixed version should use `import csv` with proper quoting support and skip blank lines.
+transcript_mode: "text_only"
+max_voice_turns: 20

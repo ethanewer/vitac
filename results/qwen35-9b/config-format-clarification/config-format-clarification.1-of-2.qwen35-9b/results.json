@@ -1,0 +1,33 @@
+{
+  "id": "3591c6d5-e2c9-4741-821a-498a3b398ff3",
+  "trial_name": "config-format-clarification.1-of-2.qwen35-9b",
+  "task_id": "config-format-clarification",
+  "instruction": "Generate the application configuration file and save it to /app/config/app_config.\nThe file extension should match the format used.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_config.py::test_app_name - AssertionError: assert None == 'widget-service'": "failed",
+    "test_config.py::test_port - AssertionError: assert None == 8080": "failed",
+    "test_config.py::test_database_config - AssertionError: assert 'localhost' == 'db.internal.example.com'": "failed",
+    "test_config.py::test_log_level - AssertionError: assert None == 'info'": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 7167,
+  "total_output_tokens": 453,
+  "trial_started_at": "2026-03-28T21:33:39.289976+00:00",
+  "trial_ended_at": "2026-03-28T21:35:30.461568+00:00",
+  "agent_started_at": "2026-03-28T21:33:41.734534+00:00",
+  "agent_ended_at": "2026-03-28T21:35:16.717965+00:00",
+  "test_started_at": "2026-03-28T21:35:16.717990+00:00",
+  "test_ended_at": "2026-03-28T21:35:28.961115+00:00",
+  "composite_score": 0.0
+}

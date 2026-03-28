@@ -1,0 +1,114 @@
+[?2004hroot@90a125c516aa:/app# df -h /var /var/log 2>/dev/null || df -h; tmux wait -S done
+[?2004lFilesystem      Size  Used Avail Use% Mounted on
+overlay         1.8T  135G  1.6T   8% /
+overlay         1.8T  135G  1.6T   8% /
+[?2004hroot@90a125c516aa:/app# sudo du -sh /var/log/* 2>/dev/null | sort -h | tail -n 20; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# sudo ls -lah /var/log 2>/dev/null | head; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# ls -la /var; ls -la /var/log 2>&1 | head -n 50; tmux wait -S done
+[?2004ltotal 44
+drwxr-xr-x 1 root root  4096 Feb 17 02:12 [0m[01;34m.[0m
+drwxr-xr-x 1 root root  4096 Mar 28 20:16 [01;34m..[0m
+drwxr-xr-x 2 root root  4096 Apr 22  2024 [01;34mbackups[0m
+drwxr-xr-x 1 root root  4096 Mar 28 18:48 [01;34mcache[0m
+drwxr-xr-x 1 root root  4096 Mar 28 18:49 [01;34mlib[0m
+drwxrwsr-x 2 root staff 4096 Apr 22  2024 [01;34mlocal[0m
+lrwxrwxrwx 1 root root     9 Feb 17 02:06 [01;36mlock[0m -> [30;42m/run/lock[0m
+drwxr-xr-x 1 root root  4096 Feb 17 02:06 [01;34mlog[0m
+drwxrwsr-x 2 root mail  4096 Feb 17 02:06 [01;34mmail[0m
+drwxr-xr-x 2 root root  4096 Feb 17 02:06 [01;34mopt[0m
+lrwxrwxrwx 1 root root     4 Feb 17 02:06 [01;36mrun[0m -> [01;34m/run[0m
+drwxr-xr-x 2 root root  4096 Feb 17 02:06 [01;34mspool[0m
+drwxrwxrwt 2 root root  4096 Feb 17 02:12 [30;42mtmp[0m
+total 336
+drwxr-xr-x 1 root root   4096 Feb 17 02:06 .
+drwxr-xr-x 1 root root   4096 Feb 17 02:12 ..
+-rw-r--r-- 1 root root   9576 Mar 28 18:49 alternatives.log
+drwxr-xr-x 1 root root   4096 Mar 28 18:48 apt
+-rw-r--r-- 1 root root  61237 Feb 17 02:06 bootstrap.log
+-rw-rw---- 1 root utmp      0 Feb 17 02:06 btmp
+-rw-r--r-- 1 root root 256234 Mar 28 18:49 dpkg.log
+-rw-r--r-- 1 root root      0 Feb 17 02:06 faillog
+-rw-rw-r-- 1 root utmp      0 Feb 17 02:06 lastlog
+-rw-rw-r-- 1 root utmp      0 Feb 17 02:06 wtmp
+[?2004hroot@90a125c516aa:/app# sudo du -sh /var/* 2>/dev/null | sort -h | tail -n 20; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# sudo journalctl --disk-usage 2>/dev/null || echo 'no journalctl or no systemd journal'; tmux wait -S done
+[?2004lno journalctl or no systemd journal
+[?2004hroot@90a125c516aa:/app# sudo find / -maxdepth 6 -type f \( -name '*.log' -o -name '*.out' -o -name '*.log.*' \) -size +50M 2>/dev/null | head -n 30; tmux wait -SS done
+[?2004l[?2004hroot@90a125c516aa:/app# sudo du -sh /app /var /tmp /root 2>/dev/null || true; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# sudo find / -xdev -type f \( -iname '*log*' -o -iname '*.log*' \) -size +50M -printf '%s\t%p\n' 2>/dev/null | sort -nr | head -n 20; tmuxx wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# sudo du -ah /var/log 2>/dev/null | sort -hr | head -n 30; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# ls -lah /app && du -sh /app /var/log /tmp /root 2>&1; tmux wait -S done
+[?2004ltotal 12K
+drwxr-xr-x 1 root root 4.0K Mar 28 18:49 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4.0K Mar 28 20:16 [01;34m..[0m
+drwxr-xr-x 1 root root 4.0K Mar 28 18:49 [01;34mvar[0m
+24K	/app
+416K	/var/log
+8.0K	/tmp
+12K	/root
+[?2004hroot@90a125c516aa:/app# sudo du -sh /* 2>/dev/null | sort -h | tail -n 20; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# sudo du -h --max-depth=2 / 2>/dev/null | sort -h | tail -n 30; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# sudo ls -lah /var/log/apt 2>/dev/null || echo 'no /var/log/apt'; tmux wait -S done
+[?2004lno /var/log/apt
+[?2004hroot@90a125c516aa:/app# sudo du -h --max-depth=1 / 2>/dev/null | sort -h | tail -n 20; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# sudo find /var/lib -maxdepth 6 -type f \( -iname '*log*' -o -iname '*.log*' \) -size +10M 2>/dev/null | head -n 20; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# sudo du -h --max-depth=4 /app 2>/dev/null | sort -hr | head -n 30; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# sudo find / -xdev -type f \( -iname '*.log' -o -iname '*.log.*' -o -iname '*.out' \) -size +50M 2>/dev/null | head -n 50; tmux wait -S doone
+[?2004l[?2004hroot@90a125c516aa:/app# sudo ls -lah /var/lib | head; tmux wait -S done
+[?2004l-bash: sudo: command not found
+[?2004hroot@90a125c516aa:/app# whoami; ls -lah /var/lib | head -n 50; tmux wait -S done
+[?2004lroot
+total 36K
+drwxr-xr-x 1 root root 4.0K Mar 28 18:49 .
+drwxr-xr-x 1 root root 4.0K Feb 17 02:12 ..
+drwxr-xr-x 1 root root 4.0K Mar 28 18:48 apt
+drwxr-xr-x 1 root root 4.0K Mar 28 18:49 dpkg
+drwxr-xr-x 2 root root 4.0K Apr 22  2024 misc
+drwxr-xr-x 2 root root 4.0K Feb 17 02:12 pam
+drwxr-xr-x 2 root root 4.0K Mar 28 18:48 python
+-rw-r--r-- 1 root root   98 Mar 28 18:49 shells.state
+drwxr-xr-x 1 root root 4.0K Mar 28 18:49 systemd
+[?2004hroot@90a125c516aa:/app# du -h --max-depth=1 / 2>/dev/null | sort -hr | head -n 20; tmux wait -S done
+[?2004l522M	/
+509M	/usr
+11M	/var
+1.7M	/etc
+24K	/app
+20K	/home
+16K	/run
+12K	/root
+8.0K	/tmp
+8.0K	/logs
+4.0K	/srv
+4.0K	/opt
+4.0K	/mnt
+4.0K	/media
+4.0K	/boot
+0	/sys
+0	/proc
+0	/dev
+[?2004hroot@90a125c516aa:/app# find / -xdev -type f \( -iname '*log*' -o -iname '*.log' -o -iname '*.log.*' \) -size +10M -printf '%s\t%p\n' 2>/dev/null | sort -nr | heead -n 20; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# find / -xdev -type f \( -iname '*log*' -o -iname '*.log' -o -iname '*.log.*' \) -size +1M -printf '%s\t%p\n' 2>/dev/null | sort -nr | heaad -n 30; tmux wait -S done
+[?2004l[?2004hroot@90a125c516aa:/app# du -h --max-depth=3 /var/lib 2>/dev/null | sort -hr | head -n 30; tmux wait -S done
+[?2004l8.9M	/var/lib
+8.7M	/var/lib/dpkg
+8.0M	/var/lib/dpkg/info
+76K	/var/lib/systemd
+52K	/var/lib/dpkg/alternatives
+40K	/var/lib/systemd/deb-systemd-helper-enabled
+36K	/var/lib/dpkg/triggers
+32K	/var/lib/systemd/deb-systemd-user-helper-enabled
+32K	/var/lib/apt
+28K	/var/lib/pam
+8.0K	/var/lib/apt/mirrors
+4.0K	/var/lib/systemd/deb-systemd-user-helper-enabled/sockets.target.wants
+4.0K	/var/lib/systemd/deb-systemd-helper-enabled/timers.target.wants
+4.0K	/var/lib/systemd/deb-systemd-helper-enabled/multi-user.target.wants
+4.0K	/var/lib/python
+4.0K	/var/lib/misc
+4.0K	/var/lib/dpkg/updates
+4.0K	/var/lib/dpkg/parts
+4.0K	/var/lib/apt/periodic
+4.0K	/var/lib/apt/mirrors/partial
+4.0K	/var/lib/apt/lists
+[?2004hroot@90a125c516aa:/app# 

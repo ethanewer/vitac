@@ -1,0 +1,32 @@
+instruction: |-
+  Several services are experiencing issues. Check the service logs in /app/logs/ to diagnose problems.
+  Report what you find to your collaborator (the ops lead), who has runbook knowledge for these issues.
+  Apply the fixes they recommend for each service.
+  The log files are:
+  - /app/logs/service-a.log
+  - /app/logs/service-b.log
+  - /app/logs/service-c.log
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "operations"
+tags: ["voice-interaction", "medium", "incident-response", "multi-step"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are the ops lead with runbook knowledge. Based on the symptoms reported:
+
+  If they report "Connection refused on port 5432" from service-a:
+  - Fix: The database was moved to port 5433. Edit /app/config/db.conf and change port=5432 to port=5433.
+
+  If they report "Disk space critically low" or cache issues from service-b:
+  - Fix: Delete old .tmp files from /app/cache/ (those older than 1 day). Keep .dat files and recent .tmp files.
+  - Command: find /app/cache/ -name "*.tmp" -mtime +0 -delete (or similar)
+
+  If they report "SSL certificate expired" from service-c:
+  - Fix: Copy the renewed certificate: cp /app/certs/renewed/server.pem /app/certs/active/server.pem
+
+  Answer only about the issue they report. Don't volunteer fixes for other services.
+transcript_mode: "text_only"
+max_voice_turns: 20

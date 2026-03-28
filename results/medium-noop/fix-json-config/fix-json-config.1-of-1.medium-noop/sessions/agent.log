@@ -1,0 +1,1011 @@
+[?2004hroot@595ced9a7266:/app# ls -R /app/config && echo '---' && cat /app/config/settings.json; tmux wait -S done
+[?2004l/app/config:
+settings.json
+---
+{
+  "app_name": "myservice",
+  "port": 3000,
+  "debug": true,
+  "log_level": "info",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "mydb"
+  }
+}
+[?2004hroot@595ced9a7266:/app# ls -R /app | head; tmux wait -S done
+[?2004l/app:
+config
+
+/app/config:
+settings.json
+[?2004hroot@595ced9a7266:/app# find /app -maxdepth 3 -type f \( -name '*.json' -o -name '*.md' -o -name 'Dockerfile' -o -name 'README*' -o -name '*.env*' \) -print; tmuux wait -S done
+[?2004l/app/config/settings.json
+[?2004hroot@595ced9a7266:/app# grep -R "settings.json" -n /app 2>/dev/null || true; grep -R "app_name\|log_level\|database\|debug\|port" -n /app 2>/dev/null | head; tmuux wait -S done
+[?2004l/app/config/settings.json:2:  "app_name": "myservice",
+/app/config/settings.json:3:  "port": 3000,
+/app/config/settings.json:4:  "debug": true,
+/app/config/settings.json:5:  "log_level": "info",
+/app/config/settings.json:6:  "database": {
+/app/config/settings.json:8:    "port": 5432,
+[?2004hroot@595ced9a7266:/app# env | sort | head -n 200; tmux wait -S done
+[?2004lHOME=/root
+HOSTNAME=595ced9a7266
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/app
+SHELL=/bin/bash
+SHLVL=1
+TERM=tmux-256color
+TERM_PROGRAM=tmux
+TERM_PROGRAM_VERSION=3.4
+TEST_DIR=/tests
+TMUX=/tmp/tmux-0/default,21,0
+TMUX_PANE=%0
+_=/usr/bin/env
+[?2004hroot@595ced9a7266:/app# ls -R /tests && echo '---' && find /tests -type f -maxdepth 3 -print; tmux wait -S done
+[?2004lls: cannot access '/tests': No such file or directory
+[?2004hroot@595ced9a7266:/app# find /app -maxdepth 3 -type f -print; tmux wait -S done
+[?2004l/app/config/settings.json
+[?2004hroot@595ced9a7266:/app# find / -maxdepth 4 -type f \( -name '*.py' -o -name '*.js' -o -name '*.ts' -o -name '*.go' -o -name '*.java' -o -name '*.rb' -o -name '*..cs' \) 2>/dev/null | head -n 200; tmux wait -S done
+[?2004l/usr/share/python3/py3versions.py
+/usr/lib/python3.12/symtable.py
+/usr/lib/python3.12/reprlib.py
+/usr/lib/python3.12/dataclasses.py
+/usr/lib/python3.12/socketserver.py
+/usr/lib/python3.12/weakref.py
+/usr/lib/python3.12/zipapp.py
+/usr/lib/python3.12/optparse.py
+/usr/lib/python3.12/_weakrefset.py
+/usr/lib/python3.12/token.py
+/usr/lib/python3.12/runpy.py
+/usr/lib/python3.12/ast.py
+/usr/lib/python3.12/locale.py
+/usr/lib/python3.12/timeit.py
+/usr/lib/python3.12/graphlib.py
+/usr/lib/python3.12/trace.py
+/usr/lib/python3.12/_sitebuiltins.py
+/usr/lib/python3.12/tarfile.py
+/usr/lib/python3.12/antigravity.py
+/usr/lib/python3.12/dis.py
+/usr/lib/python3.12/codecs.py
+/usr/lib/python3.12/tabnanny.py
+/usr/lib/python3.12/secrets.py
+/usr/lib/python3.12/mailbox.py
+/usr/lib/python3.12/shlex.py
+/usr/lib/python3.12/bz2.py
+/usr/lib/python3.12/ftplib.py
+/usr/lib/python3.12/pdb.py
+/usr/lib/python3.12/tty.py
+/usr/lib/python3.12/filecmp.py
+/usr/lib/python3.12/abc.py
+/usr/lib/python3.12/site.py
+/usr/lib/python3.12/crypt.py
+/usr/lib/python3.12/quopri.py
+/usr/lib/python3.12/_compression.py
+/usr/lib/python3.12/profile.py
+/usr/lib/python3.12/genericpath.py
+/usr/lib/python3.12/gzip.py
+/usr/lib/python3.12/gettext.py
+/usr/lib/python3.12/uuid.py
+/usr/lib/python3.12/webbrowser.py
+/usr/lib/python3.12/pyclbr.py
+/usr/lib/python3.12/warnings.py
+/usr/lib/python3.12/configparser.py
+/usr/lib/python3.12/_strptime.py
+/usr/lib/python3.12/xdrlib.py
+/usr/lib/python3.12/heapq.py
+/usr/lib/python3.12/platform.py
+/usr/lib/python3.12/shutil.py
+/usr/lib/python3.12/inspect.py
+/usr/lib/python3.12/_collections_abc.py
+/usr/lib/python3.12/shelve.py
+/usr/lib/python3.12/__hello__.py
+/usr/lib/python3.12/enum.py
+/usr/lib/python3.12/posixpath.py
+/usr/lib/python3.12/_threading_local.py
+/usr/lib/python3.12/cmd.py
+/usr/lib/python3.12/threading.py
+/usr/lib/python3.12/nturl2path.py
+/usr/lib/python3.12/aifc.py
+/usr/lib/python3.12/keyword.py
+/usr/lib/python3.12/modulefinder.py
+/usr/lib/python3.12/pickle.py
+/usr/lib/python3.12/netrc.py
+/usr/lib/python3.12/plistlib.py
+/usr/lib/python3.12/lzma.py
+/usr/lib/python3.12/sre_compile.py
+/usr/lib/python3.12/code.py
+/usr/lib/python3.12/stringprep.py
+/usr/lib/python3.12/difflib.py
+/usr/lib/python3.12/turtle.py
+/usr/lib/python3.12/_py_abc.py
+/usr/lib/python3.12/cgitb.py
+/usr/lib/python3.12/hashlib.py
+/usr/lib/python3.12/telnetlib.py
+/usr/lib/python3.12/sre_constants.py
+/usr/lib/python3.12/signal.py
+/usr/lib/python3.12/pickletools.py
+/usr/lib/python3.12/numbers.py
+/usr/lib/python3.12/sndhdr.py
+/usr/lib/python3.12/bdb.py
+/usr/lib/python3.12/rlcompleter.py
+/usr/lib/python3.12/compileall.py
+/usr/lib/python3.12/datetime.py
+/usr/lib/python3.12/_aix_support.py
+/usr/lib/python3.12/zipimport.py
+/usr/lib/python3.12/getopt.py
+/usr/lib/python3.12/sunau.py
+/usr/lib/python3.12/pipes.py
+/usr/lib/python3.12/stat.py
+/usr/lib/python3.12/sre_parse.py
+/usr/lib/python3.12/decimal.py
+/usr/lib/python3.12/imghdr.py
+/usr/lib/python3.12/_distutils_system_mod.py
+/usr/lib/python3.12/pprint.py
+/usr/lib/python3.12/socket.py
+/usr/lib/python3.12/fractions.py
+/usr/lib/python3.12/ipaddress.py
+/usr/lib/python3.12/poplib.py
+/usr/lib/python3.12/pathlib.py
+/usr/lib/python3.12/sched.py
+/usr/lib/python3.12/calendar.py
+/usr/lib/python3.12/doctest.py
+/usr/lib/python3.12/contextvars.py
+/usr/lib/python3.12/csv.py
+/usr/lib/python3.12/fnmatch.py
+/usr/lib/python3.12/copy.py
+/usr/lib/python3.12/glob.py
+/usr/lib/python3.12/_osx_support.py
+/usr/lib/python3.12/pty.py
+/usr/lib/python3.12/typing.py
+/usr/lib/python3.12/_pyio.py
+/usr/lib/python3.12/subprocess.py
+/usr/lib/python3.12/functools.py
+/usr/lib/python3.12/cProfile.py
+/usr/lib/python3.12/hmac.py
+/usr/lib/python3.12/ntpath.py
+/usr/lib/python3.12/io.py
+/usr/lib/python3.12/_pydatetime.py
+/usr/lib/python3.12/random.py
+/usr/lib/python3.12/this.py
+/usr/lib/python3.12/pstats.py
+/usr/lib/python3.12/traceback.py
+/usr/lib/python3.12/_pydecimal.py
+/usr/lib/python3.12/operator.py
+/usr/lib/python3.12/selectors.py
+/usr/lib/python3.12/cgi.py
+/usr/lib/python3.12/statistics.py
+/usr/lib/python3.12/_pylong.py
+/usr/lib/python3.12/tempfile.py
+/usr/lib/python3.12/textwrap.py
+/usr/lib/python3.12/tracemalloc.py
+/usr/lib/python3.12/py_compile.py
+/usr/lib/python3.12/codeop.py
+/usr/lib/python3.12/nntplib.py
+/usr/lib/python3.12/bisect.py
+/usr/lib/python3.12/imaplib.py
+/usr/lib/python3.12/copyreg.py
+/usr/lib/python3.12/base64.py
+/usr/lib/python3.12/wave.py
+/usr/lib/python3.12/linecache.py
+/usr/lib/python3.12/_compat_pickle.py
+/usr/lib/python3.12/_markupbase.py
+/usr/lib/python3.12/struct.py
+/usr/lib/python3.12/contextlib.py
+/usr/lib/python3.12/smtplib.py
+/usr/lib/python3.12/argparse.py
+/usr/lib/python3.12/_sysconfigdata__aarch64-linux-gnu.py
+/usr/lib/python3.12/mimetypes.py
+/usr/lib/python3.12/mailcap.py
+/usr/lib/python3.12/string.py
+/usr/lib/python3.12/__future__.py
+/usr/lib/python3.12/os.py
+/usr/lib/python3.12/pydoc.py
+/usr/lib/python3.12/colorsys.py
+/usr/lib/python3.12/chunk.py
+/usr/lib/python3.12/pkgutil.py
+/usr/lib/python3.12/sysconfig.py
+/usr/lib/python3.12/opcode.py
+/usr/lib/python3.12/uu.py
+/usr/lib/python3.12/getpass.py
+/usr/lib/python3.12/tokenize.py
+/usr/lib/python3.12/types.py
+/usr/lib/python3.12/queue.py
+/usr/lib/python3.12/ssl.py
+/usr/lib/python3.12/fileinput.py
+/etc/python3.12/sitecustomize.py
+[?2004hroot@595ced9a7266:/app# grep -R "\"app_name\"" -n / 2>/dev/null | head; tmux wait -S done
+[?2004l^C
+[?2004hroot@595ced9a7266:/app# ls -la / && ls -la /app && find / -maxdepth 3 -type f -name 'main*' -o -name 'app*' 2>/dev/null | head -n 50; tmux wait -S done
+[?2004ltotal 60
+drwxr-xr-x   1 root root 4096 Mar 28 19:39 [0m[01;34m.[0m
+drwxr-xr-x   1 root root 4096 Mar 28 19:39 [01;34m..[0m
+-rwxr-xr-x   1 root root    0 Mar 28 19:39 [01;32m.dockerenv[0m
+drwxr-xr-x   1 root root 4096 Mar 28 19:30 [01;34mapp[0m
+lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mbin[0m -> [01;34musr/bin[0m
+drwxr-xr-x   2 root root 4096 Apr 22  2024 [01;34mboot[0m
+drwxr-xr-x   5 root root  340 Mar 28 19:39 [01;34mdev[0m
+drwxr-xr-x   1 root root 4096 Mar 28 19:39 [01;34metc[0m
+drwxr-xr-x   3 root root 4096 Feb 17 02:12 [01;34mhome[0m
+lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mlib[0m -> [01;34musr/lib[0m
+drwxr-xr-x   3 root root   96 Mar 28 19:39 [01;34mlogs[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmedia[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmnt[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mopt[0m
+dr-xr-xr-x 253 root root    0 Mar 28 19:39 [01;34mproc[0m
+drwx------   2 root root 4096 Feb 17 02:12 [01;34mroot[0m
+drwxr-xr-x   4 root root 4096 Feb 17 02:12 [01;34mrun[0m
+lrwxrwxrwx   1 root root    8 Apr 22  2024 [01;36msbin[0m -> [01;34musr/sbin[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34msrv[0m
+dr-xr-xr-x  11 root root    0 Mar 28 19:19 [01;34msys[0m
+drwxrwxrwt   1 root root 4096 Mar 28 19:39 [30;42mtmp[0m
+drwxr-xr-x   1 root root 4096 Feb 17 02:06 [01;34musr[0m
+drwxr-xr-x   1 root root 4096 Feb 17 02:12 [01;34mvar[0m
+total 12
+drwxr-xr-x 1 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:39 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 19:30 [01;34mconfig[0m
+/usr/share/apport
+/usr/share/applications
+/usr/sbin/applygnupgdefaults
+/app
+[?2004hroot@595ced9a7266:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@595ced9a7266:/app# grep -R "log_level\|app_name\|\"database\"\|debug\"\s*:" -n /app /etc /var /root 2>/dev/null | head -n 200; tmux wait -S done
+[?2004l/app/config/settings.json:2:  "app_name": "myservice",
+/app/config/settings.json:4:  "debug": true,
+/app/config/settings.json:5:  "log_level": "info",
+/app/config/settings.json:6:  "database": {
+/var/lib/dpkg/info/libsepol2:arm64.symbols:20: cil_set_log_level@LIBSEPOL_1.0 2.5
+/var/lib/dpkg/info/libgnutls30t64:arm64.symbols:61: _gnutls_log_level@GNUTLS_PRIVATE_3_4 3.8.1-0+private+1
+/var/lib/dpkg/info/libgnutls30t64:arm64.symbols:346: gnutls_global_set_log_level@GNUTLS_3_4 3.7.0
+[?2004hroot@595ced9a7266:/app# find /app -maxdepth 5 -type f \( -name '*.py' -o -name '*.js' -o -name '*.ts' -o -name '*.java' -o -name '*.go' -o -name '*.rb' -o -name  '*.cs' -o -name 'package.json' -o -name '*.json' -o -name 'Dockerfile' -o -name 'README*' \) -print; tmux wait -S done
+[?2004l/app/config/settings.json
+[?2004hroot@595ced9a7266:/app# ps -ef; tmux wait -S done
+[?2004lUID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 19:39 ?        00:00:00 sh -c sleep infinity
+root         7     1  0 19:39 ?        00:00:00 sleep infinity
+root        21     1  0 19:39 ?        00:00:00 tmux new-session -x 160 -y 40 -d -s agent ; set-option -t agent history-limit 50000 ; pipe-pane -t agent cat > /
+root        22    21  0 19:39 pts/0    00:00:00 -bash
+root        24    21  0 19:39 ?        00:00:00 sh -c cat > /logs/agent.log
+root        26    24  0 19:39 ?        00:00:00 cat
+root       310    22  0 19:40 pts/0    00:00:00 ps -ef
+[?2004hroot@595ced9a7266:/app# grep -R "3000\|5432\|localhost\|mydb\|myservice\|log_level\|debug" -n / 2>/dev/null | head -n 200; tmux wait -S done
+[?2004l/var/lib/dpkg/status:4912:Provides: libansicolor-perl (= 5.01), libarchive-tar-perl (= 2.40), libattribute-handlers-perl (= 1.03), libautodie-perl (= 2.36), libcompress-raw-bzip2-perl (= 2.204.001), libcompress-raw-zlib-perl (= 2.204.001), libcompress-zlib-perl (= 2.204), libcpan-meta-perl (= 2.150010), libcpan-meta-requirements-perl (= 2.140), libcpan-meta-yaml-perl (= 0.018), libdigest-md5-perl (= 2.58.01), libdigest-perl (= 1.20), libdigest-sha-perl (= 6.04), libencode-perl (= 3.19), libexperimental-perl (= 0.031), libextutils-cbuilder-perl (= 0.280238), libextutils-command-perl (= 7.70), libextutils-install-perl (= 2.22), libextutils-parsexs-perl (= 3.510000), libfile-spec-perl (= 3.8800), libhttp-tiny-perl (= 0.086), libi18n-langtags-perl (= 0.45), libio-compress-base-perl (= 2.204), libio-compress-bzip2-perl (= 2.204), libio-compress-perl (= 2.204), libio-compress-zlib-perl (= 2.204), libio-zlib-perl (= 1.14), libjson-pp-perl (= 4.16000), liblocale-maketext-perl (= 1.33), liblocale-maketext-simple-perl (= 0.21.01), libmath-bigint-perl (= 1.999837), libmath-complex-perl (= 1.6200), libmime-base64-perl (= 3.16.01), libmodule-corelist-perl (= 5.20231129), libmodule-load-conditional-perl (= 0.74), libmodule-load-perl (= 0.36), libmodule-metadata-perl (= 1.000037), libnet-perl (= 1:3.15), libnet-ping-perl (= 2.76), libparams-check-perl (= 0.38), libparent-perl (= 0.241), libparse-cpan-meta-perl (= 2.150010), libperl-ostype-perl (= 1.010), libpod-escapes-perl (= 1.07), libpod-simple-perl (= 3.43), libstorable-perl (= 3.32), libsys-syslog-perl (= 0.36), libtest-harness-perl (= 3.44), libtest-simple-perl (= 1.302194), libtest-tester-perl (= 1.302194), libtest-use-ok-perl (= 1.302194), libtext-balanced-perl (= 2.06), libthread-queue-perl (= 3.14), libthreads-perl (= 2.36), libthreads-shared-perl (= 1.68), libtime-hires-perl (= 1.9775), libtime-local-perl (= 1.3000), libtime-piece-perl (= 1.3401.01), libunicode-collate-perl (= 1.31), libversion-perl (= 1:0.9929), libversion-requirements-perl, podlators-perl (= 5.01)
+/var/lib/dpkg/status:4972:Replaces: libansicolor-perl (<< 5.01), libarchive-tar-perl (<< 2.40), libattribute-handlers-perl (<< 1.03), libautodie-perl (<< 2.36), libcpan-meta-perl (<< 2.150010), libcpan-meta-requirements-perl (<< 2.140), libcpan-meta-yaml-perl (<< 0.018), libdigest-perl (<< 1.20), libexperimental-perl (<< 0.031), libextutils-cbuilder-perl (<< 0.280238), libextutils-command-perl (<< 7.70), libextutils-install-perl (<< 2.22), libextutils-parsexs-perl (<< 3.510000), libfile-spec-perl (<< 3.8800), libhttp-tiny-perl (<< 0.086), libi18n-langtags-perl (<< 0.45), libio-zlib-perl (<< 1.14), libjson-pp-perl (<< 4.16000), liblocale-maketext-perl (<< 1.33), liblocale-maketext-simple-perl (<< 0.21.01), libmath-bigint-perl (<< 1.999837), libmath-complex-perl (<< 1.6200), libmodule-corelist-perl (<< 5.20231129), libmodule-load-conditional-perl (<< 0.74), libmodule-load-perl (<< 0.36), libmodule-metadata-perl (<< 1.000037), libnet-perl (<< 1:3.15), libnet-ping-perl (<< 2.76), libparams-check-perl (<< 0.38), libparent-perl (<< 0.241), libparse-cpan-meta-perl (<< 2.150010), libperl-ostype-perl (<< 1.010), libpod-escapes-perl (<< 1.07), libpod-simple-perl (<< 3.43), libtest-harness-perl (<< 3.44), libtest-simple-perl (<< 1.302194), libtest-tester-perl (<< 1.302194), libtest-use-ok-perl (<< 1.302194), libtext-balanced-perl (<< 2.06), libthread-queue-perl (<< 3.14), libtime-local-perl (<< 1.3000), libunicode-collate-perl (<< 1.31), libversion-perl (<< 1:0.9929), perl-base (<< 5.22.0~), perl-modules, podlators-perl (<< 5.01)
+/var/lib/dpkg/status:4977:Breaks: libansicolor-perl (<< 5.01), libarchive-tar-perl (<< 2.40), libattribute-handlers-perl (<< 1.03), libautodie-perl (<< 2.36), libcpan-meta-perl (<< 2.150010), libcpan-meta-requirements-perl (<< 2.140), libcpan-meta-yaml-perl (<< 0.018), libdigest-perl (<< 1.20), libexperimental-perl (<< 0.031), libextutils-cbuilder-perl (<< 0.280238), libextutils-command-perl (<< 7.70), libextutils-install-perl (<< 2.22), libextutils-parsexs-perl (<< 3.510000), libfile-spec-perl (<< 3.8800), libhttp-tiny-perl (<< 0.086), libi18n-langtags-perl (<< 0.45), libio-zlib-perl (<< 1.14), libjson-pp-perl (<< 4.16000), liblocale-maketext-perl (<< 1.33), liblocale-maketext-simple-perl (<< 0.21.01), libmath-bigint-perl (<< 1.999837), libmath-complex-perl (<< 1.6200), libmodule-corelist-perl (<< 5.20231129), libmodule-load-conditional-perl (<< 0.74), libmodule-load-perl (<< 0.36), libmodule-metadata-perl (<< 1.000037), libnet-perl (<< 1:3.15), libnet-ping-perl (<< 2.76), libparams-check-perl (<< 0.38), libparent-perl (<< 0.241), libparse-cpan-meta-perl (<< 2.150010), libperl-ostype-perl (<< 1.010), libpod-escapes-perl (<< 1.07), libpod-simple-perl (<< 3.43), libtest-harness-perl (<< 3.44), libtest-simple-perl (<< 1.302194), libtest-tester-perl (<< 1.302194), libtest-use-ok-perl (<< 1.302194), libtext-balanced-perl (<< 2.06), libthread-queue-perl (<< 3.14), libtime-local-perl (<< 1.3000), libunicode-collate-perl (<< 1.31), libversion-perl (<< 1:0.9929), maildirsync (<< 1.2-2.1), perl (<< 5.38.2~), podlators-perl (<< 5.01)
+/var/lib/dpkg/info/libsepol2:arm64.symbols:20: cil_set_log_level@LIBSEPOL_1.0 2.5
+/var/lib/dpkg/info/libsepol2:arm64.symbols:72: sepol_debug@LIBSEPOL_1.0 2.5
+/var/lib/dpkg/info/base-files.md5sums:25:3000208d539ec061b899bce1d9ce9404  usr/share/common-licenses/LGPL-3
+/var/lib/dpkg/info/libgpg-error0:arm64.symbols:98: gpgrt_log_debug@GPG_ERROR_1.0 1.28
+/var/lib/dpkg/info/libgpg-error0:arm64.symbols:99: gpgrt_log_debug_string@GPG_ERROR_1.0 1.28
+/var/lib/dpkg/info/libssl3t64:arm64.symbols:351: BIO_debug_callback@OPENSSL_3.0.0 3.0.0
+/var/lib/dpkg/info/libssl3t64:arm64.symbols:352: BIO_debug_callback_ex@OPENSSL_3.0.0 3.0.0
+/var/lib/dpkg/info/libssl3t64:arm64.symbols:1582: ERR_set_debug@OPENSSL_3.0.0 3.0.0
+/var/lib/dpkg/info/libssl3t64:arm64.symbols:5802: SSL_set_debug@OPENSSL_3.0.0 3.0.0
+/var/lib/dpkg/info/libmount1:arm64.symbols:179: mnt_fs_print_debug@MOUNT_2.19 2.19.1
+/var/lib/dpkg/info/libmount1:arm64.symbols:208: mnt_init_debug@MOUNT_2.19 2.19.1
+/var/lib/dpkg/info/procps.md5sums:97:72016be93cf5a89e5432a1cbe511ded0  usr/share/man/ro/man1/pgrep.1.gz
+/var/lib/dpkg/info/libsmartcols1:arm64.symbols:59: scols_init_debug@SMARTCOLS_2.25 2.25
+/var/lib/dpkg/info/perl-base.md5sums:416:94d1af2aed806980ecaa5ca551c97887  usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/3000.pl
+/var/lib/dpkg/info/perl-base.md5sums:417:cfd674a8c73709d8af01ada1641b29e6  usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/30000.pl
+/var/lib/dpkg/info/libblkid1:arm64.symbols:40: blkid_init_debug@BLKID_2.23 2.24.2
+/var/lib/dpkg/info/util-linux.list:183:/usr/share/doc/util-linux/howto-debug.txt
+/var/lib/dpkg/info/libc6:arm64.shlibs:5:libc_malloc_debug 0 libc6 (>= 2.39)
+/var/lib/dpkg/info/libpam-modules:arm64.md5sums:2:91aba5efc41c0ccbf268e6a6f6a518e1  usr/lib/aarch64-linux-gnu/security/pam_debug.so
+/var/lib/dpkg/info/libpam-modules:arm64.md5sums:59:39bd560243cda5ab06969d6bf7b8cc4e  usr/share/man/man8/pam_debug.8.gz
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:43: gcry_log_debug@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:44: gcry_log_debughex@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:45: gcry_log_debugmpi@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:46: gcry_log_debugpnt@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:47: gcry_log_debugsxp@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:69: gcry_md_debug@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/perl-base.list:508:/usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/3000.pl
+/var/lib/dpkg/info/perl-base.list:509:/usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/30000.pl
+/var/lib/dpkg/info/e2fsprogs.md5sums:12:935d4153cb30e96aa25cdc75f2fe8baf  usr/sbin/debugfs
+/var/lib/dpkg/info/e2fsprogs.md5sums:37:14ba09019349dc8de8f14c8f02353fdb  usr/share/man/man8/debugfs.8.gz
+/var/lib/dpkg/info/libc6:arm64.list:270:/usr/lib/aarch64-linux-gnu/libc_malloc_debug.so.0
+/var/lib/dpkg/info/e2fsprogs.list:28:/usr/sbin/debugfs
+/var/lib/dpkg/info/e2fsprogs.list:62:/usr/share/man/man8/debugfs.8.gz
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:197: _ZN11__gnu_debug19_Safe_iterator_base12_M_get_mutexEv@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:198: _ZN11__gnu_debug19_Safe_iterator_base16_M_attach_singleEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:199: _ZN11__gnu_debug19_Safe_iterator_base16_M_detach_singleEv@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:200: _ZN11__gnu_debug19_Safe_iterator_base9_M_attachEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:201: _ZN11__gnu_debug19_Safe_iterator_base9_M_detachEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:202: _ZN11__gnu_debug19_Safe_sequence_base12_M_get_mutexEv@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:203: _ZN11__gnu_debug19_Safe_sequence_base13_M_detach_allEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:204: _ZN11__gnu_debug19_Safe_sequence_base18_M_detach_singularEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:205: _ZN11__gnu_debug19_Safe_sequence_base22_M_revalidate_singularEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:206: _ZN11__gnu_debug19_Safe_sequence_base7_M_swapERS0_@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:207: _ZN11__gnu_debug25_Safe_local_iterator_base16_M_attach_singleEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4.26 9
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:208: _ZN11__gnu_debug25_Safe_local_iterator_base9_M_attachEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:209: _ZN11__gnu_debug25_Safe_local_iterator_base9_M_detachEv@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:210: _ZN11__gnu_debug30_Safe_unordered_container_base13_M_detach_allEv@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:211: _ZN11__gnu_debug30_Safe_unordered_container_base7_M_swapERS0_@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:285: _ZNK11__gnu_debug16_Error_formatter10_M_messageENS_13_Debug_msg_idE@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:286: _ZNK11__gnu_debug16_Error_formatter10_Parameter14_M_print_fieldEPKS0_PKc@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:287: _ZNK11__gnu_debug16_Error_formatter10_Parameter20_M_print_descriptionEPKS0_@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:288: _ZNK11__gnu_debug16_Error_formatter13_M_print_wordEPKc@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:289: _ZNK11__gnu_debug16_Error_formatter15_M_print_stringEPKc@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:290: _ZNK11__gnu_debug16_Error_formatter17_M_get_max_lengthEv@GLIBCXX_3.4.10 4.3
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:291: _ZNK11__gnu_debug16_Error_formatter8_M_errorEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:292: _ZNK11__gnu_debug19_Safe_iterator_base11_M_singularEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:293: _ZNK11__gnu_debug19_Safe_iterator_base14_M_can_compareERKS0_@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libc6:arm64.symbols:27: _dl_debug_state@GLIBC_PRIVATE 0 1
+/var/lib/dpkg/info/libc6:arm64.symbols:38: _r_debug@GLIBC_2.17 2.17
+/var/lib/dpkg/info/libc6:arm64.symbols:3099:libc_malloc_debug.so.0 libc6 #MINVER#
+/var/lib/dpkg/info/libgnutls30t64:arm64.symbols:61: _gnutls_log_level@GNUTLS_PRIVATE_3_4 3.8.1-0+private+1
+/var/lib/dpkg/info/libgnutls30t64:arm64.symbols:346: gnutls_global_set_log_level@GNUTLS_3_4 3.7.0
+/var/lib/dpkg/info/libpam-modules:arm64.list:21:/usr/lib/aarch64-linux-gnu/security/pam_debug.so
+/var/lib/dpkg/info/libpam-modules:arm64.list:87:/usr/share/man/man8/pam_debug.8.gz
+/var/lib/dpkg/info/libc6:arm64.md5sums:261:75da9827214ddb7e507d63f549688745  usr/lib/aarch64-linux-gnu/libc_malloc_debug.so.0
+/var/lib/dpkg/info/util-linux.md5sums:162:9ef9dc1aa0c4c2813f5221ff4bb4aa26  usr/share/doc/util-linux/howto-debug.txt
+/var/lib/dpkg/info/libtsan2:arm64.symbols:651: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/openssl.md5sums:105:2f5432e68b007c62273e18a6f37b004f  usr/share/man/man7/EVP_KDF-X942-ASN1.7ssl.gz
+/var/lib/dpkg/info/python3-pip.md5sums:32:982999a2c214205026fc87277dd2495f  usr/lib/python3/dist-packages/pip/_internal/commands/debug.py
+/var/lib/dpkg/info/python3-pip.md5sums:267:80df840e0ac823fa34bcfa543296ba35  usr/lib/python3/dist-packages/pip/_vendor/packaging/_manylinux.py
+/var/lib/dpkg/info/python3-pip.md5sums:516:e1bb36f103aa974c4cf5bfc030beb3a6  usr/share/doc/python3-pip/html/cli/pip_debug.rst
+/var/lib/dpkg/info/python3-pip.md5sums:560:05bc35ae735d3ca8d78fa9959b636fb3  usr/share/doc/python3-pip/html/reference/pip_debug.rst
+/var/lib/dpkg/info/python3-pip.md5sums:591:196c0c85299104a7c9034d980b684725  usr/share/doc/python3-pip/man/commands/debug.rst
+/var/lib/dpkg/info/libubsan1:arm64.symbols:18: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:593:fc0e4fd303d93abf2672162c9635cfb2  usr/include/linux/nfsd/debug.h
+/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:720:fb7bb9da32ced3d728cabc31bb3611c8  usr/include/linux/sunrpc/debug.h
+/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:806:88c638ffac1963f516cb5432d7c779dc  usr/include/linux/usbip.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:46:a43f927113a96dbed973dda64b9acc79  usr/include/python3.12/cpython/pydebug.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:119:646f4ca12723000289316c8913f83772  usr/include/python3.12/internal/pycore_instruments.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:177:49390352789420b5390ed32c1a15432b  usr/include/python3.12/objimpl.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:188:240c1328387d78ebb3000471f0f64c25  usr/include/python3.12/pyexpat.h
+/var/lib/dpkg/info/libgprofng0:arm64.symbols:1673: _ZN8ElfReloc19dump_rela_debug_secEi@Base 2.41
+/var/lib/dpkg/info/libgprofng0:arm64.symbols:1913: _ZN9Coll_Ctrl14set_debug_modeEi@Base 2.41
+/var/lib/dpkg/info/libgprofng0:arm64.symbols:2557: mpmt_debug_opt@Base 2.41
+/var/lib/dpkg/info/libc6-dev:arm64.list:541:/usr/lib/aarch64-linux-gnu/libc_malloc_debug.so
+/var/lib/dpkg/info/libldap2:arm64.symbols:120: ber_sockbuf_io_debug@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libldap2:arm64.symbols:138: lutil_debug@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libldap2:arm64.symbols:139: lutil_debug_file@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libldap2:arm64.symbols:695: ldif_debug@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libperl5.38t64:arm64.md5sums:394:1dbbdef37d64126df521c64deee4ec7d  usr/lib/aarch64-linux-gnu/perl/debian-config-data-5.38.2/config.sh.debug.gz
+/var/lib/dpkg/info/libx11-6:arm64.symbols:944: _Xdebug@Base 0
+/var/lib/dpkg/info/python3-setuptools.md5sums:45:bc1e4c71305dfbeeba03cd8e4e56e931  usr/lib/python3/dist-packages/setuptools/_distutils/debug.py
+/var/lib/dpkg/info/manpages.md5sums:19:633000e0b45f71e9c529b47c35f9fd49  usr/share/man/man2/intro.2.gz
+/var/lib/dpkg/info/manpages.md5sums:161:ccdb01236d80bf96a65b85c93d0433cc  usr/share/man/man5/proc_sys_debug.5.gz
+/var/lib/dpkg/info/perl-modules-5.38.list:1188:/usr/share/perl/5.38.2/unicore/lib/Nv/3000.pl
+/var/lib/dpkg/info/perl-modules-5.38.list:1189:/usr/share/perl/5.38.2/unicore/lib/Nv/30000.pl
+/var/lib/dpkg/info/libc6-dev:arm64.md5sums:62:c0f77390630002c7e240b9f215a17a15  usr/include/aarch64-linux-gnu/bits/mman_ext.h
+/var/lib/dpkg/info/libc6-dev:arm64.md5sums:455:be97a4e9c6717819543245e5cc1a3770  usr/include/thread_db.h
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:243: event_debug_created_threadable_ctx_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:244: event_debug_logging_mask_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:245: event_debug_map_HT_CLEAR@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:246: event_debug_map_HT_GROW@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:247: event_debug_map_HT_REP_IS_BAD_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:248: event_debug_mode_on_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:249: event_debug_unassign@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:250: event_debugx_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:259: event_disable_debug_mode@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:261: event_enable_debug_logging@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:262: event_enable_debug_mode@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:335: evthread_debug_get_real_lock_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:336: evthread_enable_lock_debugging@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:337: evthread_enable_lock_debuging@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:341: evthread_is_debug_lock_held_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:342: evthread_lock_debugging_enabled_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:349: evthreadimpl_disable_lock_debugging_@Base 2.1.8-stable
+/var/lib/dpkg/info/netbase.postinst:7:	127.0.0.1	localhost
+/var/lib/dpkg/info/netbase.postinst:8:	::1		localhost ip6-localhost ip6-loopback
+/var/lib/dpkg/info/libgomp1:arm64.symbols:36: GOMP_PLUGIN_debug@GOMP_PLUGIN_1.0 5
+/var/lib/dpkg/info/libctf0:arm64.symbols:75: ctf_getdebug@LIBCTF_1.0 2.34
+/var/lib/dpkg/info/libctf0:arm64.symbols:113: ctf_setdebug@LIBCTF_1.0 2.34
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:242:/usr/include/c++/13/debug
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:243:/usr/include/c++/13/debug/assertions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:244:/usr/include/c++/13/debug/bitset
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:245:/usr/include/c++/13/debug/debug.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:246:/usr/include/c++/13/debug/deque
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:247:/usr/include/c++/13/debug/formatter.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:248:/usr/include/c++/13/debug/forward_list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:249:/usr/include/c++/13/debug/functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:250:/usr/include/c++/13/debug/helper_functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:251:/usr/include/c++/13/debug/list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:252:/usr/include/c++/13/debug/macros.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:253:/usr/include/c++/13/debug/map
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:254:/usr/include/c++/13/debug/map.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:255:/usr/include/c++/13/debug/multimap.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:256:/usr/include/c++/13/debug/multiset.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:257:/usr/include/c++/13/debug/safe_base.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:258:/usr/include/c++/13/debug/safe_container.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:259:/usr/include/c++/13/debug/safe_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:260:/usr/include/c++/13/debug/safe_iterator.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:261:/usr/include/c++/13/debug/safe_local_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:262:/usr/include/c++/13/debug/safe_local_iterator.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:263:/usr/include/c++/13/debug/safe_sequence.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:264:/usr/include/c++/13/debug/safe_sequence.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:265:/usr/include/c++/13/debug/safe_unordered_base.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:266:/usr/include/c++/13/debug/safe_unordered_container.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:267:/usr/include/c++/13/debug/safe_unordered_container.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:268:/usr/include/c++/13/debug/set
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:269:/usr/include/c++/13/debug/set.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:270:/usr/include/c++/13/debug/stl_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:271:/usr/include/c++/13/debug/string
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:272:/usr/include/c++/13/debug/unordered_map
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:273:/usr/include/c++/13/debug/unordered_set
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:274:/usr/include/c++/13/debug/vector
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:356:/usr/include/c++/13/ext/debug_allocator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:375:/usr/include/c++/13/ext/pb_ds/detail/bin_search_tree_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:392:/usr/include/c++/13/ext/pb_ds/detail/binary_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:408:/usr/include/c++/13/ext/pb_ds/detail/binomial_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:412:/usr/include/c++/13/ext/pb_ds/detail/binomial_heap_base_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:428:/usr/include/c++/13/ext/pb_ds/detail/cc_hash_table_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:429:/usr/include/c++/13/ext/pb_ds/detail/cc_hash_table_map_/debug_no_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:430:/usr/include/c++/13/ext/pb_ds/detail/cc_hash_table_map_/debug_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:450:/usr/include/c++/13/ext/pb_ds/detail/debug_map_base.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:458:/usr/include/c++/13/ext/pb_ds/detail/gp_hash_table_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:459:/usr/include/c++/13/ext/pb_ds/detail/gp_hash_table_map_/debug_no_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:460:/usr/include/c++/13/ext/pb_ds/detail/gp_hash_table_map_/debug_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:495:/usr/include/c++/13/ext/pb_ds/detail/left_child_next_sibling_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:507:/usr/include/c++/13/ext/pb_ds/detail/list_update_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:521:/usr/include/c++/13/ext/pb_ds/detail/ov_tree_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:533:/usr/include/c++/13/ext/pb_ds/detail/pairing_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:541:/usr/include/c++/13/ext/pb_ds/detail/pat_trie_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:560:/usr/include/c++/13/ext/pb_ds/detail/rb_tree_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:571:/usr/include/c++/13/ext/pb_ds/detail/rc_binomial_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:590:/usr/include/c++/13/ext/pb_ds/detail/splay_tree_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:603:/usr/include/c++/13/ext/pb_ds/detail/thin_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libheif1:arm64.symbols:32: heif_context_debug_dump_boxes_to_file@Base 1.0.0
+/var/lib/dpkg/info/liblsan0:arm64.symbols:65: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/python3-setuptools.list:50:/usr/lib/python3/dist-packages/setuptools/_distutils/debug.py
+/var/lib/dpkg/info/tzdata.md5sums:172:e9d30004e7af0a429178282f82cb32e1  usr/share/zoneinfo/America/Punta_Arenas
+/var/lib/dpkg/info/libasan8:arm64.symbols:546: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:230:09280bd73a4d727d1d29eabb39c7fee1  usr/include/c++/13/debug/assertions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:231:ce79efddea89cd0400284453b6c47c08  usr/include/c++/13/debug/bitset
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:232:752210a319f5f5d356cc29cd1ce3cdc7  usr/include/c++/13/debug/debug.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:233:d723cddadad626e4147ae555a795d3ac  usr/include/c++/13/debug/deque
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:234:92c5ac3f7e20f86e3d86f1342849f7dd  usr/include/c++/13/debug/formatter.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:235:eb3ad55c903b7d6432e96f2f61e61420  usr/include/c++/13/debug/forward_list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:236:8fcdb38b4006678d506e0e223988824a  usr/include/c++/13/debug/functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:237:dce642be87943b1f37b2680d758c8e3c  usr/include/c++/13/debug/helper_functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:238:3e1868550108da7987015b77b3629fad  usr/include/c++/13/debug/list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:239:c845fd12d717810528aaf5733a4658e4  usr/include/c++/13/debug/macros.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:240:72ee22202e97490f4d8c37281e830aa4  usr/include/c++/13/debug/map
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:241:d5844aa5092f35f6cdf39396dce97604  usr/include/c++/13/debug/map.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:242:8d4679fa6a8e970942dbe3b756ae5bc2  usr/include/c++/13/debug/multimap.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:243:d443675b9794922fdb6c461970f46f25  usr/include/c++/13/debug/multiset.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:244:575884fb576324c807e0a94cca2eff7c  usr/include/c++/13/debug/safe_base.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:245:44f2fc7d6d27fe3a96e1738e5c822061  usr/include/c++/13/debug/safe_container.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:246:3ad930cc0c68c1430017b76ccd9c0d6b  usr/include/c++/13/debug/safe_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:247:00ddfda7c8638d6207e74ded47f3e868  usr/include/c++/13/debug/safe_iterator.tcc
+[?2004hroot@595ced9a7266:/app# ls -la /logs && (ls -la /logs/* 2>/dev/null || true) && echo '---' && (tail -n 200 /logs/agent.log 2>/dev/null || true); tmux wait -S donne
+[?2004ltotal 44
+drwxr-xr-x 3 root root    96 Mar 28 19:39 [0m[01;34m.[0m
+drwxr-xr-x 1 root root  4096 Mar 28 19:39 [01;34m..[0m
+-rw-r--r-- 1 root root 39705 Mar 28 19:40 agent.log
+-rw-r--r-- 1 root root 39887 Mar 28 19:40 /logs/agent.log
+---
+/var/lib/dpkg/info/libgpg-error0:arm64.symbols:99: gpgrt_log_debug_string@GPG_ERROR_1.0 1.28
+/var/lib/dpkg/info/libssl3t64:arm64.symbols:351: BIO_debug_callback@OPENSSL_3.0.0 3.0.0
+/var/lib/dpkg/info/libssl3t64:arm64.symbols:352: BIO_debug_callback_ex@OPENSSL_3.0.0 3.0.0
+/var/lib/dpkg/info/libssl3t64:arm64.symbols:1582: ERR_set_debug@OPENSSL_3.0.0 3.0.0
+/var/lib/dpkg/info/libssl3t64:arm64.symbols:5802: SSL_set_debug@OPENSSL_3.0.0 3.0.0
+/var/lib/dpkg/info/libmount1:arm64.symbols:179: mnt_fs_print_debug@MOUNT_2.19 2.19.1
+/var/lib/dpkg/info/libmount1:arm64.symbols:208: mnt_init_debug@MOUNT_2.19 2.19.1
+/var/lib/dpkg/info/procps.md5sums:97:72016be93cf5a89e5432a1cbe511ded0  usr/share/man/ro/man1/pgrep.1.gz
+/var/lib/dpkg/info/libsmartcols1:arm64.symbols:59: scols_init_debug@SMARTCOLS_2.25 2.25
+/var/lib/dpkg/info/perl-base.md5sums:416:94d1af2aed806980ecaa5ca551c97887  usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/3000.pl
+/var/lib/dpkg/info/perl-base.md5sums:417:cfd674a8c73709d8af01ada1641b29e6  usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/30000.pl
+/var/lib/dpkg/info/libblkid1:arm64.symbols:40: blkid_init_debug@BLKID_2.23 2.24.2
+/var/lib/dpkg/info/util-linux.list:183:/usr/share/doc/util-linux/howto-debug.txt
+/var/lib/dpkg/info/libc6:arm64.shlibs:5:libc_malloc_debug 0 libc6 (>= 2.39)
+/var/lib/dpkg/info/libpam-modules:arm64.md5sums:2:91aba5efc41c0ccbf268e6a6f6a518e1  usr/lib/aarch64-linux-gnu/security/pam_debug.so
+/var/lib/dpkg/info/libpam-modules:arm64.md5sums:59:39bd560243cda5ab06969d6bf7b8cc4e  usr/share/man/man8/pam_debug.8.gz
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:43: gcry_log_debug@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:44: gcry_log_debughex@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:45: gcry_log_debugmpi@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:46: gcry_log_debugpnt@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:47: gcry_log_debugsxp@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:69: gcry_md_debug@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/perl-base.list:508:/usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/3000.pl
+/var/lib/dpkg/info/perl-base.list:509:/usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/30000.pl
+/var/lib/dpkg/info/e2fsprogs.md5sums:12:935d4153cb30e96aa25cdc75f2fe8baf  usr/sbin/debugfs
+/var/lib/dpkg/info/e2fsprogs.md5sums:37:14ba09019349dc8de8f14c8f02353fdb  usr/share/man/man8/debugfs.8.gz
+/var/lib/dpkg/info/libc6:arm64.list:270:/usr/lib/aarch64-linux-gnu/libc_malloc_debug.so.0
+/var/lib/dpkg/info/e2fsprogs.list:28:/usr/sbin/debugfs
+/var/lib/dpkg/info/e2fsprogs.list:62:/usr/share/man/man8/debugfs.8.gz
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:197: _ZN11__gnu_debug19_Safe_iterator_base12_M_get_mutexEv@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:198: _ZN11__gnu_debug19_Safe_iterator_base16_M_attach_singleEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:199: _ZN11__gnu_debug19_Safe_iterator_base16_M_detach_singleEv@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:200: _ZN11__gnu_debug19_Safe_iterator_base9_M_attachEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:201: _ZN11__gnu_debug19_Safe_iterator_base9_M_detachEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:202: _ZN11__gnu_debug19_Safe_sequence_base12_M_get_mutexEv@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:203: _ZN11__gnu_debug19_Safe_sequence_base13_M_detach_allEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:204: _ZN11__gnu_debug19_Safe_sequence_base18_M_detach_singularEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:205: _ZN11__gnu_debug19_Safe_sequence_base22_M_revalidate_singularEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:206: _ZN11__gnu_debug19_Safe_sequence_base7_M_swapERS0_@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:207: _ZN11__gnu_debug25_Safe_local_iterator_base16_M_attach_singleEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4.26 9
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:208: _ZN11__gnu_debug25_Safe_local_iterator_base9_M_attachEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:209: _ZN11__gnu_debug25_Safe_local_iterator_base9_M_detachEv@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:210: _ZN11__gnu_debug30_Safe_unordered_container_base13_M_detach_allEv@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:211: _ZN11__gnu_debug30_Safe_unordered_container_base7_M_swapERS0_@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:285: _ZNK11__gnu_debug16_Error_formatter10_M_messageENS_13_Debug_msg_idE@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:286: _ZNK11__gnu_debug16_Error_formatter10_Parameter14_M_print_fieldEPKS0_PKc@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:287: _ZNK11__gnu_debug16_Error_formatter10_Parameter20_M_print_descriptionEPKS0_@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:288: _ZNK11__gnu_debug16_Error_formatter13_M_print_wordEPKc@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:289: _ZNK11__gnu_debug16_Error_formatter15_M_print_stringEPKc@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:290: _ZNK11__gnu_debug16_Error_formatter17_M_get_max_lengthEv@GLIBCXX_3.4.10 4.3
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:291: _ZNK11__gnu_debug16_Error_formatter8_M_errorEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:292: _ZNK11__gnu_debug19_Safe_iterator_base11_M_singularEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:293: _ZNK11__gnu_debug19_Safe_iterator_base14_M_can_compareERKS0_@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libc6:arm64.symbols:27: _dl_debug_state@GLIBC_PRIVATE 0 1
+/var/lib/dpkg/info/libc6:arm64.symbols:38: _r_debug@GLIBC_2.17 2.17
+/var/lib/dpkg/info/libc6:arm64.symbols:3099:libc_malloc_debug.so.0 libc6 #MINVER#
+/var/lib/dpkg/info/libgnutls30t64:arm64.symbols:61: _gnutls_log_level@GNUTLS_PRIVATE_3_4 3.8.1-0+private+1
+/var/lib/dpkg/info/libgnutls30t64:arm64.symbols:346: gnutls_global_set_log_level@GNUTLS_3_4 3.7.0
+/var/lib/dpkg/info/libpam-modules:arm64.list:21:/usr/lib/aarch64-linux-gnu/security/pam_debug.so
+/var/lib/dpkg/info/libpam-modules:arm64.list:87:/usr/share/man/man8/pam_debug.8.gz
+/var/lib/dpkg/info/libc6:arm64.md5sums:261:75da9827214ddb7e507d63f549688745  usr/lib/aarch64-linux-gnu/libc_malloc_debug.so.0
+/var/lib/dpkg/info/util-linux.md5sums:162:9ef9dc1aa0c4c2813f5221ff4bb4aa26  usr/share/doc/util-linux/howto-debug.txt
+/var/lib/dpkg/info/libtsan2:arm64.symbols:651: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/openssl.md5sums:105:2f5432e68b007c62273e18a6f37b004f  usr/share/man/man7/EVP_KDF-X942-ASN1.7ssl.gz
+/var/lib/dpkg/info/python3-pip.md5sums:32:982999a2c214205026fc87277dd2495f  usr/lib/python3/dist-packages/pip/_internal/commands/debug.py
+/var/lib/dpkg/info/python3-pip.md5sums:267:80df840e0ac823fa34bcfa543296ba35  usr/lib/python3/dist-packages/pip/_vendor/packaging/_manylinux.py
+/var/lib/dpkg/info/python3-pip.md5sums:516:e1bb36f103aa974c4cf5bfc030beb3a6  usr/share/doc/python3-pip/html/cli/pip_debug.rst
+/var/lib/dpkg/info/python3-pip.md5sums:560:05bc35ae735d3ca8d78fa9959b636fb3  usr/share/doc/python3-pip/html/reference/pip_debug.rst
+/var/lib/dpkg/info/python3-pip.md5sums:591:196c0c85299104a7c9034d980b684725  usr/share/doc/python3-pip/man/commands/debug.rst
+/var/lib/dpkg/info/libubsan1:arm64.symbols:18: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:593:fc0e4fd303d93abf2672162c9635cfb2  usr/include/linux/nfsd/debug.h
+/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:720:fb7bb9da32ced3d728cabc31bb3611c8  usr/include/linux/sunrpc/debug.h
+/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:806:88c638ffac1963f516cb5432d7c779dc  usr/include/linux/usbip.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:46:a43f927113a96dbed973dda64b9acc79  usr/include/python3.12/cpython/pydebug.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:119:646f4ca12723000289316c8913f83772  usr/include/python3.12/internal/pycore_instruments.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:177:49390352789420b5390ed32c1a15432b  usr/include/python3.12/objimpl.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:188:240c1328387d78ebb3000471f0f64c25  usr/include/python3.12/pyexpat.h
+/var/lib/dpkg/info/libgprofng0:arm64.symbols:1673: _ZN8ElfReloc19dump_rela_debug_secEi@Base 2.41
+/var/lib/dpkg/info/libgprofng0:arm64.symbols:1913: _ZN9Coll_Ctrl14set_debug_modeEi@Base 2.41
+/var/lib/dpkg/info/libgprofng0:arm64.symbols:2557: mpmt_debug_opt@Base 2.41
+/var/lib/dpkg/info/libc6-dev:arm64.list:541:/usr/lib/aarch64-linux-gnu/libc_malloc_debug.so
+/var/lib/dpkg/info/libldap2:arm64.symbols:120: ber_sockbuf_io_debug@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libldap2:arm64.symbols:138: lutil_debug@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libldap2:arm64.symbols:139: lutil_debug_file@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libldap2:arm64.symbols:695: ldif_debug@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libperl5.38t64:arm64.md5sums:394:1dbbdef37d64126df521c64deee4ec7d  usr/lib/aarch64-linux-gnu/perl/debian-config-data-5.38.2/config.sh.debug.gz
+/var/lib/dpkg/info/libx11-6:arm64.symbols:944: _Xdebug@Base 0
+/var/lib/dpkg/info/python3-setuptools.md5sums:45:bc1e4c71305dfbeeba03cd8e4e56e931  usr/lib/python3/dist-packages/setuptools/_distutils/debug.py
+/var/lib/dpkg/info/manpages.md5sums:19:633000e0b45f71e9c529b47c35f9fd49  usr/share/man/man2/intro.2.gz
+/var/lib/dpkg/info/manpages.md5sums:161:ccdb01236d80bf96a65b85c93d0433cc  usr/share/man/man5/proc_sys_debug.5.gz
+/var/lib/dpkg/info/perl-modules-5.38.list:1188:/usr/share/perl/5.38.2/unicore/lib/Nv/3000.pl
+/var/lib/dpkg/info/perl-modules-5.38.list:1189:/usr/share/perl/5.38.2/unicore/lib/Nv/30000.pl
+/var/lib/dpkg/info/libc6-dev:arm64.md5sums:62:c0f77390630002c7e240b9f215a17a15  usr/include/aarch64-linux-gnu/bits/mman_ext.h
+/var/lib/dpkg/info/libc6-dev:arm64.md5sums:455:be97a4e9c6717819543245e5cc1a3770  usr/include/thread_db.h
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:243: event_debug_created_threadable_ctx_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:244: event_debug_logging_mask_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:245: event_debug_map_HT_CLEAR@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:246: event_debug_map_HT_GROW@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:247: event_debug_map_HT_REP_IS_BAD_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:248: event_debug_mode_on_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:249: event_debug_unassign@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:250: event_debugx_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:259: event_disable_debug_mode@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:261: event_enable_debug_logging@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:262: event_enable_debug_mode@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:335: evthread_debug_get_real_lock_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:336: evthread_enable_lock_debugging@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:337: evthread_enable_lock_debuging@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:341: evthread_is_debug_lock_held_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:342: evthread_lock_debugging_enabled_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:349: evthreadimpl_disable_lock_debugging_@Base 2.1.8-stable
+/var/lib/dpkg/info/netbase.postinst:7:	127.0.0.1	localhost
+/var/lib/dpkg/info/netbase.postinst:8:	::1		localhost ip6-localhost ip6-loopback
+/var/lib/dpkg/info/libgomp1:arm64.symbols:36: GOMP_PLUGIN_debug@GOMP_PLUGIN_1.0 5
+/var/lib/dpkg/info/libctf0:arm64.symbols:75: ctf_getdebug@LIBCTF_1.0 2.34
+/var/lib/dpkg/info/libctf0:arm64.symbols:113: ctf_setdebug@LIBCTF_1.0 2.34
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:242:/usr/include/c++/13/debug
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:243:/usr/include/c++/13/debug/assertions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:244:/usr/include/c++/13/debug/bitset
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:245:/usr/include/c++/13/debug/debug.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:246:/usr/include/c++/13/debug/deque
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:247:/usr/include/c++/13/debug/formatter.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:248:/usr/include/c++/13/debug/forward_list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:249:/usr/include/c++/13/debug/functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:250:/usr/include/c++/13/debug/helper_functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:251:/usr/include/c++/13/debug/list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:252:/usr/include/c++/13/debug/macros.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:253:/usr/include/c++/13/debug/map
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:254:/usr/include/c++/13/debug/map.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:255:/usr/include/c++/13/debug/multimap.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:256:/usr/include/c++/13/debug/multiset.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:257:/usr/include/c++/13/debug/safe_base.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:258:/usr/include/c++/13/debug/safe_container.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:259:/usr/include/c++/13/debug/safe_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:260:/usr/include/c++/13/debug/safe_iterator.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:261:/usr/include/c++/13/debug/safe_local_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:262:/usr/include/c++/13/debug/safe_local_iterator.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:263:/usr/include/c++/13/debug/safe_sequence.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:264:/usr/include/c++/13/debug/safe_sequence.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:265:/usr/include/c++/13/debug/safe_unordered_base.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:266:/usr/include/c++/13/debug/safe_unordered_container.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:267:/usr/include/c++/13/debug/safe_unordered_container.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:268:/usr/include/c++/13/debug/set
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:269:/usr/include/c++/13/debug/set.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:270:/usr/include/c++/13/debug/stl_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:271:/usr/include/c++/13/debug/string
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:272:/usr/include/c++/13/debug/unordered_map
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:273:/usr/include/c++/13/debug/unordered_set
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:274:/usr/include/c++/13/debug/vector
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:356:/usr/include/c++/13/ext/debug_allocator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:375:/usr/include/c++/13/ext/pb_ds/detail/bin_search_tree_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:392:/usr/include/c++/13/ext/pb_ds/detail/binary_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:408:/usr/include/c++/13/ext/pb_ds/detail/binomial_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:412:/usr/include/c++/13/ext/pb_ds/detail/binomial_heap_base_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:428:/usr/include/c++/13/ext/pb_ds/detail/cc_hash_table_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:429:/usr/include/c++/13/ext/pb_ds/detail/cc_hash_table_map_/debug_no_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:430:/usr/include/c++/13/ext/pb_ds/detail/cc_hash_table_map_/debug_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:450:/usr/include/c++/13/ext/pb_ds/detail/debug_map_base.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:458:/usr/include/c++/13/ext/pb_ds/detail/gp_hash_table_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:459:/usr/include/c++/13/ext/pb_ds/detail/gp_hash_table_map_/debug_no_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:460:/usr/include/c++/13/ext/pb_ds/detail/gp_hash_table_map_/debug_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:495:/usr/include/c++/13/ext/pb_ds/detail/left_child_next_sibling_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:507:/usr/include/c++/13/ext/pb_ds/detail/list_update_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:521:/usr/include/c++/13/ext/pb_ds/detail/ov_tree_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:533:/usr/include/c++/13/ext/pb_ds/detail/pairing_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:541:/usr/include/c++/13/ext/pb_ds/detail/pat_trie_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:560:/usr/include/c++/13/ext/pb_ds/detail/rb_tree_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:571:/usr/include/c++/13/ext/pb_ds/detail/rc_binomial_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:590:/usr/include/c++/13/ext/pb_ds/detail/splay_tree_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:603:/usr/include/c++/13/ext/pb_ds/detail/thin_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libheif1:arm64.symbols:32: heif_context_debug_dump_boxes_to_file@Base 1.0.0
+/var/lib/dpkg/info/liblsan0:arm64.symbols:65: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/python3-setuptools.list:50:/usr/lib/python3/dist-packages/setuptools/_distutils/debug.py
+/var/lib/dpkg/info/tzdata.md5sums:172:e9d30004e7af0a429178282f82cb32e1  usr/share/zoneinfo/America/Punta_Arenas
+/var/lib/dpkg/info/libasan8:arm64.symbols:546: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:230:09280bd73a4d727d1d29eabb39c7fee1  usr/include/c++/13/debug/assertions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:231:ce79efddea89cd0400284453b6c47c08  usr/include/c++/13/debug/bitset
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:232:752210a319f5f5d356cc29cd1ce3cdc7  usr/include/c++/13/debug/debug.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:233:d723cddadad626e4147ae555a795d3ac  usr/include/c++/13/debug/deque
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:234:92c5ac3f7e20f86e3d86f1342849f7dd  usr/include/c++/13/debug/formatter.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:235:eb3ad55c903b7d6432e96f2f61e61420  usr/include/c++/13/debug/forward_list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:236:8fcdb38b4006678d506e0e223988824a  usr/include/c++/13/debug/functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:237:dce642be87943b1f37b2680d758c8e3c  usr/include/c++/13/debug/helper_functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:238:3e1868550108da7987015b77b3629fad  usr/include/c++/13/debug/list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:239:c845fd12d717810528aaf5733a4658e4  usr/include/c++/13/debug/macros.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:240:72ee22202e97490f4d8c37281e830aa4  usr/include/c++/13/debug/map
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:241:d5844aa5092f35f6cdf39396dce97604  usr/include/c++/13/debug/map.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:242:8d4679fa6a8e970942dbe3b756ae5bc2  usr/include/c++/13/debug/multimap.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:243:d443675b9794922fdb6c461970f46f25  usr/include/c++/13/debug/multiset.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:244:575884fb576324c807e0a94cca2eff7c  usr/include/c++/13/debug/safe_base.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:245:44f2fc7d6d27fe3a96e1738e5c822061  usr/include/c++/13/debug/safe_container.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:246:3ad930cc0c68c1430017b76ccd9c0d6b  usr/include/c++/13/debug/safe_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:247:00ddfda7c8638d6207e74ded47f3e868  usr/include/c++/13/debug/safe_iterator.tcc
+[?2004hroot@595ced9a7266:/app# ls -la /logs && (ls -la /logs/* 2>/dev/null || true) && echo '---' && (tail -n 200 /logs/agent.log 2>/dev/null || true); tmux wait -S donne
+[?2004ltotal 44
+drwxr-xr-x 3 root root    96 Mar 28 19:39 [0m[01;34m.[0m
+drwxr-xr-x 1 root root  4096 Mar 28 19:39 [01;34m..[0m
+-rw-r--r-- 1 root root 39705 Mar 28 19:40 agent.log
+-rw-r--r-- 1 root root 39887 Mar 28 19:40 /logs/agent.log
+---
+[?2004hroot@595ced9a7266:/app# grep -R "myservice\|mydb" -n / 2>/dev/null | head -n 50; tmux wait -S done
+[?2004l^C
+[?2004hroot@595ced9a7266:/app# tail -n 200 /logs/agent.log 2>/dev/null || true; tmux wait -S done
+[?2004l/var/lib/dpkg/info/libssl3t64:arm64.symbols:5802: SSL_set_debug@OPENSSL_3.0.0 3.0.0
+/var/lib/dpkg/info/libmount1:arm64.symbols:179: mnt_fs_print_debug@MOUNT_2.19 2.19.1
+/var/lib/dpkg/info/libmount1:arm64.symbols:208: mnt_init_debug@MOUNT_2.19 2.19.1
+/var/lib/dpkg/info/procps.md5sums:97:72016be93cf5a89e5432a1cbe511ded0  usr/share/man/ro/man1/pgrep.1.gz
+/var/lib/dpkg/info/libsmartcols1:arm64.symbols:59: scols_init_debug@SMARTCOLS_2.25 2.25
+/var/lib/dpkg/info/perl-base.md5sums:416:94d1af2aed806980ecaa5ca551c97887  usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/3000.pl
+/var/lib/dpkg/info/perl-base.md5sums:417:cfd674a8c73709d8af01ada1641b29e6  usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/30000.pl
+/var/lib/dpkg/info/libblkid1:arm64.symbols:40: blkid_init_debug@BLKID_2.23 2.24.2
+/var/lib/dpkg/info/util-linux.list:183:/usr/share/doc/util-linux/howto-debug.txt
+/var/lib/dpkg/info/libc6:arm64.shlibs:5:libc_malloc_debug 0 libc6 (>= 2.39)
+/var/lib/dpkg/info/libpam-modules:arm64.md5sums:2:91aba5efc41c0ccbf268e6a6f6a518e1  usr/lib/aarch64-linux-gnu/security/pam_debug.so
+/var/lib/dpkg/info/libpam-modules:arm64.md5sums:59:39bd560243cda5ab06969d6bf7b8cc4e  usr/share/man/man8/pam_debug.8.gz
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:43: gcry_log_debug@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:44: gcry_log_debughex@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:45: gcry_log_debugmpi@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:46: gcry_log_debugpnt@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:47: gcry_log_debugsxp@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/libgcrypt20:arm64.symbols:69: gcry_md_debug@GCRYPT_1.6 1.10.0
+/var/lib/dpkg/info/perl-base.list:508:/usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/3000.pl
+/var/lib/dpkg/info/perl-base.list:509:/usr/lib/aarch64-linux-gnu/perl-base/unicore/lib/Nv/30000.pl
+/var/lib/dpkg/info/e2fsprogs.md5sums:12:935d4153cb30e96aa25cdc75f2fe8baf  usr/sbin/debugfs
+/var/lib/dpkg/info/e2fsprogs.md5sums:37:14ba09019349dc8de8f14c8f02353fdb  usr/share/man/man8/debugfs.8.gz
+/var/lib/dpkg/info/libc6:arm64.list:270:/usr/lib/aarch64-linux-gnu/libc_malloc_debug.so.0
+/var/lib/dpkg/info/e2fsprogs.list:28:/usr/sbin/debugfs
+/var/lib/dpkg/info/e2fsprogs.list:62:/usr/share/man/man8/debugfs.8.gz
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:197: _ZN11__gnu_debug19_Safe_iterator_base12_M_get_mutexEv@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:198: _ZN11__gnu_debug19_Safe_iterator_base16_M_attach_singleEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:199: _ZN11__gnu_debug19_Safe_iterator_base16_M_detach_singleEv@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:200: _ZN11__gnu_debug19_Safe_iterator_base9_M_attachEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:201: _ZN11__gnu_debug19_Safe_iterator_base9_M_detachEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:202: _ZN11__gnu_debug19_Safe_sequence_base12_M_get_mutexEv@GLIBCXX_3.4.9 4.2.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:203: _ZN11__gnu_debug19_Safe_sequence_base13_M_detach_allEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:204: _ZN11__gnu_debug19_Safe_sequence_base18_M_detach_singularEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:205: _ZN11__gnu_debug19_Safe_sequence_base22_M_revalidate_singularEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:206: _ZN11__gnu_debug19_Safe_sequence_base7_M_swapERS0_@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:207: _ZN11__gnu_debug25_Safe_local_iterator_base16_M_attach_singleEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4.26 9
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:208: _ZN11__gnu_debug25_Safe_local_iterator_base9_M_attachEPNS_19_Safe_sequence_baseEb@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:209: _ZN11__gnu_debug25_Safe_local_iterator_base9_M_detachEv@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:210: _ZN11__gnu_debug30_Safe_unordered_container_base13_M_detach_allEv@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:211: _ZN11__gnu_debug30_Safe_unordered_container_base7_M_swapERS0_@GLIBCXX_3.4.17 4.7
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:285: _ZNK11__gnu_debug16_Error_formatter10_M_messageENS_13_Debug_msg_idE@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:286: _ZNK11__gnu_debug16_Error_formatter10_Parameter14_M_print_fieldEPKS0_PKc@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:287: _ZNK11__gnu_debug16_Error_formatter10_Parameter20_M_print_descriptionEPKS0_@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:288: _ZNK11__gnu_debug16_Error_formatter13_M_print_wordEPKc@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:289: _ZNK11__gnu_debug16_Error_formatter15_M_print_stringEPKc@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:290: _ZNK11__gnu_debug16_Error_formatter17_M_get_max_lengthEv@GLIBCXX_3.4.10 4.3
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:291: _ZNK11__gnu_debug16_Error_formatter8_M_errorEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:292: _ZNK11__gnu_debug19_Safe_iterator_base11_M_singularEv@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libstdc++6:arm64.symbols:293: _ZNK11__gnu_debug19_Safe_iterator_base14_M_can_compareERKS0_@GLIBCXX_3.4 4.1.1
+/var/lib/dpkg/info/libc6:arm64.symbols:27: _dl_debug_state@GLIBC_PRIVATE 0 1
+/var/lib/dpkg/info/libc6:arm64.symbols:38: _r_debug@GLIBC_2.17 2.17
+/var/lib/dpkg/info/libc6:arm64.symbols:3099:libc_malloc_debug.so.0 libc6 #MINVER#
+/var/lib/dpkg/info/libgnutls30t64:arm64.symbols:61: _gnutls_log_level@GNUTLS_PRIVATE_3_4 3.8.1-0+private+1
+/var/lib/dpkg/info/libgnutls30t64:arm64.symbols:346: gnutls_global_set_log_level@GNUTLS_3_4 3.7.0
+/var/lib/dpkg/info/libpam-modules:arm64.list:21:/usr/lib/aarch64-linux-gnu/security/pam_debug.so
+/var/lib/dpkg/info/libpam-modules:arm64.list:87:/usr/share/man/man8/pam_debug.8.gz
+/var/lib/dpkg/info/libc6:arm64.md5sums:261:75da9827214ddb7e507d63f549688745  usr/lib/aarch64-linux-gnu/libc_malloc_debug.so.0
+/var/lib/dpkg/info/util-linux.md5sums:162:9ef9dc1aa0c4c2813f5221ff4bb4aa26  usr/share/doc/util-linux/howto-debug.txt
+/var/lib/dpkg/info/libtsan2:arm64.symbols:651: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/openssl.md5sums:105:2f5432e68b007c62273e18a6f37b004f  usr/share/man/man7/EVP_KDF-X942-ASN1.7ssl.gz
+/var/lib/dpkg/info/python3-pip.md5sums:32:982999a2c214205026fc87277dd2495f  usr/lib/python3/dist-packages/pip/_internal/commands/debug.py
+/var/lib/dpkg/info/python3-pip.md5sums:267:80df840e0ac823fa34bcfa543296ba35  usr/lib/python3/dist-packages/pip/_vendor/packaging/_manylinux.py
+/var/lib/dpkg/info/python3-pip.md5sums:516:e1bb36f103aa974c4cf5bfc030beb3a6  usr/share/doc/python3-pip/html/cli/pip_debug.rst
+/var/lib/dpkg/info/python3-pip.md5sums:560:05bc35ae735d3ca8d78fa9959b636fb3  usr/share/doc/python3-pip/html/reference/pip_debug.rst
+/var/lib/dpkg/info/python3-pip.md5sums:591:196c0c85299104a7c9034d980b684725  usr/share/doc/python3-pip/man/commands/debug.rst
+/var/lib/dpkg/info/libubsan1:arm64.symbols:18: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:593:fc0e4fd303d93abf2672162c9635cfb2  usr/include/linux/nfsd/debug.h
+/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:720:fb7bb9da32ced3d728cabc31bb3611c8  usr/include/linux/sunrpc/debug.h
+/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:806:88c638ffac1963f516cb5432d7c779dc  usr/include/linux/usbip.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:46:a43f927113a96dbed973dda64b9acc79  usr/include/python3.12/cpython/pydebug.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:119:646f4ca12723000289316c8913f83772  usr/include/python3.12/internal/pycore_instruments.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:177:49390352789420b5390ed32c1a15432b  usr/include/python3.12/objimpl.h
+/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:188:240c1328387d78ebb3000471f0f64c25  usr/include/python3.12/pyexpat.h
+/var/lib/dpkg/info/libgprofng0:arm64.symbols:1673: _ZN8ElfReloc19dump_rela_debug_secEi@Base 2.41
+/var/lib/dpkg/info/libgprofng0:arm64.symbols:1913: _ZN9Coll_Ctrl14set_debug_modeEi@Base 2.41
+/var/lib/dpkg/info/libgprofng0:arm64.symbols:2557: mpmt_debug_opt@Base 2.41
+/var/lib/dpkg/info/libc6-dev:arm64.list:541:/usr/lib/aarch64-linux-gnu/libc_malloc_debug.so
+/var/lib/dpkg/info/libldap2:arm64.symbols:120: ber_sockbuf_io_debug@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libldap2:arm64.symbols:138: lutil_debug@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libldap2:arm64.symbols:139: lutil_debug_file@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libldap2:arm64.symbols:695: ldif_debug@OPENLDAP_2.200 2.6.2
+/var/lib/dpkg/info/libperl5.38t64:arm64.md5sums:394:1dbbdef37d64126df521c64deee4ec7d  usr/lib/aarch64-linux-gnu/perl/debian-config-data-5.38.2/config.sh.debug.gz
+/var/lib/dpkg/info/libx11-6:arm64.symbols:944: _Xdebug@Base 0
+/var/lib/dpkg/info/python3-setuptools.md5sums:45:bc1e4c71305dfbeeba03cd8e4e56e931  usr/lib/python3/dist-packages/setuptools/_distutils/debug.py
+/var/lib/dpkg/info/manpages.md5sums:19:633000e0b45f71e9c529b47c35f9fd49  usr/share/man/man2/intro.2.gz
+/var/lib/dpkg/info/manpages.md5sums:161:ccdb01236d80bf96a65b85c93d0433cc  usr/share/man/man5/proc_sys_debug.5.gz
+/var/lib/dpkg/info/perl-modules-5.38.list:1188:/usr/share/perl/5.38.2/unicore/lib/Nv/3000.pl
+/var/lib/dpkg/info/perl-modules-5.38.list:1189:/usr/share/perl/5.38.2/unicore/lib/Nv/30000.pl
+/var/lib/dpkg/info/libc6-dev:arm64.md5sums:62:c0f77390630002c7e240b9f215a17a15  usr/include/aarch64-linux-gnu/bits/mman_ext.h
+/var/lib/dpkg/info/libc6-dev:arm64.md5sums:455:be97a4e9c6717819543245e5cc1a3770  usr/include/thread_db.h
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:243: event_debug_created_threadable_ctx_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:244: event_debug_logging_mask_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:245: event_debug_map_HT_CLEAR@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:246: event_debug_map_HT_GROW@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:247: event_debug_map_HT_REP_IS_BAD_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:248: event_debug_mode_on_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:249: event_debug_unassign@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:250: event_debugx_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:259: event_disable_debug_mode@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:261: event_enable_debug_logging@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:262: event_enable_debug_mode@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:335: evthread_debug_get_real_lock_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:336: evthread_enable_lock_debugging@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:337: evthread_enable_lock_debuging@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:341: evthread_is_debug_lock_held_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:342: evthread_lock_debugging_enabled_@Base 2.1.8-stable
+/var/lib/dpkg/info/libevent-core-2.1-7t64:arm64.symbols:349: evthreadimpl_disable_lock_debugging_@Base 2.1.8-stable
+/var/lib/dpkg/info/netbase.postinst:7:	127.0.0.1	localhost
+/var/lib/dpkg/info/netbase.postinst:8:	::1		localhost ip6-localhost ip6-loopback
+/var/lib/dpkg/info/libgomp1:arm64.symbols:36: GOMP_PLUGIN_debug@GOMP_PLUGIN_1.0 5
+/var/lib/dpkg/info/libctf0:arm64.symbols:75: ctf_getdebug@LIBCTF_1.0 2.34
+/var/lib/dpkg/info/libctf0:arm64.symbols:113: ctf_setdebug@LIBCTF_1.0 2.34
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:242:/usr/include/c++/13/debug
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:243:/usr/include/c++/13/debug/assertions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:244:/usr/include/c++/13/debug/bitset
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:245:/usr/include/c++/13/debug/debug.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:246:/usr/include/c++/13/debug/deque
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:247:/usr/include/c++/13/debug/formatter.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:248:/usr/include/c++/13/debug/forward_list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:249:/usr/include/c++/13/debug/functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:250:/usr/include/c++/13/debug/helper_functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:251:/usr/include/c++/13/debug/list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:252:/usr/include/c++/13/debug/macros.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:253:/usr/include/c++/13/debug/map
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:254:/usr/include/c++/13/debug/map.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:255:/usr/include/c++/13/debug/multimap.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:256:/usr/include/c++/13/debug/multiset.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:257:/usr/include/c++/13/debug/safe_base.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:258:/usr/include/c++/13/debug/safe_container.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:259:/usr/include/c++/13/debug/safe_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:260:/usr/include/c++/13/debug/safe_iterator.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:261:/usr/include/c++/13/debug/safe_local_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:262:/usr/include/c++/13/debug/safe_local_iterator.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:263:/usr/include/c++/13/debug/safe_sequence.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:264:/usr/include/c++/13/debug/safe_sequence.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:265:/usr/include/c++/13/debug/safe_unordered_base.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:266:/usr/include/c++/13/debug/safe_unordered_container.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:267:/usr/include/c++/13/debug/safe_unordered_container.tcc
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:268:/usr/include/c++/13/debug/set
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:269:/usr/include/c++/13/debug/set.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:270:/usr/include/c++/13/debug/stl_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:271:/usr/include/c++/13/debug/string
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:272:/usr/include/c++/13/debug/unordered_map
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:273:/usr/include/c++/13/debug/unordered_set
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:274:/usr/include/c++/13/debug/vector
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:356:/usr/include/c++/13/ext/debug_allocator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:375:/usr/include/c++/13/ext/pb_ds/detail/bin_search_tree_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:392:/usr/include/c++/13/ext/pb_ds/detail/binary_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:408:/usr/include/c++/13/ext/pb_ds/detail/binomial_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:412:/usr/include/c++/13/ext/pb_ds/detail/binomial_heap_base_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:428:/usr/include/c++/13/ext/pb_ds/detail/cc_hash_table_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:429:/usr/include/c++/13/ext/pb_ds/detail/cc_hash_table_map_/debug_no_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:430:/usr/include/c++/13/ext/pb_ds/detail/cc_hash_table_map_/debug_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:450:/usr/include/c++/13/ext/pb_ds/detail/debug_map_base.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:458:/usr/include/c++/13/ext/pb_ds/detail/gp_hash_table_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:459:/usr/include/c++/13/ext/pb_ds/detail/gp_hash_table_map_/debug_no_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:460:/usr/include/c++/13/ext/pb_ds/detail/gp_hash_table_map_/debug_store_hash_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:495:/usr/include/c++/13/ext/pb_ds/detail/left_child_next_sibling_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:507:/usr/include/c++/13/ext/pb_ds/detail/list_update_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:521:/usr/include/c++/13/ext/pb_ds/detail/ov_tree_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:533:/usr/include/c++/13/ext/pb_ds/detail/pairing_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:541:/usr/include/c++/13/ext/pb_ds/detail/pat_trie_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:560:/usr/include/c++/13/ext/pb_ds/detail/rb_tree_map_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:571:/usr/include/c++/13/ext/pb_ds/detail/rc_binomial_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:590:/usr/include/c++/13/ext/pb_ds/detail/splay_tree_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.list:603:/usr/include/c++/13/ext/pb_ds/detail/thin_heap_/debug_fn_imps.hpp
+/var/lib/dpkg/info/libheif1:arm64.symbols:32: heif_context_debug_dump_boxes_to_file@Base 1.0.0
+/var/lib/dpkg/info/liblsan0:arm64.symbols:65: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/python3-setuptools.list:50:/usr/lib/python3/dist-packages/setuptools/_distutils/debug.py
+/var/lib/dpkg/info/tzdata.md5sums:172:e9d30004e7af0a429178282f82cb32e1  usr/share/zoneinfo/America/Punta_Arenas
+/var/lib/dpkg/info/libasan8:arm64.symbols:546: __asan_backtrace_uncompress_zdebug@Base 8
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:230:09280bd73a4d727d1d29eabb39c7fee1  usr/include/c++/13/debug/assertions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:231:ce79efddea89cd0400284453b6c47c08  usr/include/c++/13/debug/bitset
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:232:752210a319f5f5d356cc29cd1ce3cdc7  usr/include/c++/13/debug/debug.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:233:d723cddadad626e4147ae555a795d3ac  usr/include/c++/13/debug/deque
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:234:92c5ac3f7e20f86e3d86f1342849f7dd  usr/include/c++/13/debug/formatter.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:235:eb3ad55c903b7d6432e96f2f61e61420  usr/include/c++/13/debug/forward_list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:236:8fcdb38b4006678d506e0e223988824a  usr/include/c++/13/debug/functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:237:dce642be87943b1f37b2680d758c8e3c  usr/include/c++/13/debug/helper_functions.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:238:3e1868550108da7987015b77b3629fad  usr/include/c++/13/debug/list
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:239:c845fd12d717810528aaf5733a4658e4  usr/include/c++/13/debug/macros.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:240:72ee22202e97490f4d8c37281e830aa4  usr/include/c++/13/debug/map
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:241:d5844aa5092f35f6cdf39396dce97604  usr/include/c++/13/debug/map.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:242:8d4679fa6a8e970942dbe3b756ae5bc2  usr/include/c++/13/debug/multimap.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:243:d443675b9794922fdb6c461970f46f25  usr/include/c++/13/debug/multiset.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:244:575884fb576324c807e0a94cca2eff7c  usr/include/c++/13/debug/safe_base.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:245:44f2fc7d6d27fe3a96e1738e5c822061  usr/include/c++/13/debug/safe_container.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:246:3ad930cc0c68c1430017b76ccd9c0d6b  usr/include/c++/13/debug/safe_iterator.h
+/var/lib/dpkg/info/libstdc++-13-dev:arm64.md5sums:247:00ddfda7c8638d6207e74ded47f3e868  usr/include/c++/13/debug/safe_iterator.tcc
+[?2004hroot@595ced9a7266:/app# ls -la /logs && (ls -la /logs/* 2>/dev/null || true) && echo '---' && (tail -n 200 /logs/agent.log 2>/dev/null || true); tmux wait -S donne
+[?2004ltotal 44
+drwxr-xr-x 3 root root    96 Mar 28 19:39 [0m[01;34m.[0m
+drwxr-xr-x 1 root root  4096 Mar 28 19:39 [01;34m..[0m
+-rw-r--r-- 1 root root 39705 Mar 28 19:40 agent.log
+-rw-r--r-- 1 root root 39887 Mar 28 19:40 /logs/agent.log
+---
+[?2004hroot@595ced9a7266:/app# grep -R "myservice\|mydb" -n / 2>/dev/null | head -n 50; tmux wait -S done
+[?2004l^C
+[?2004hroot@595ced9a7266:/app# tail -n 200 /logs/agent.log 2>/dev/null || true; tmux wait -S done
+[?2004l[?2004hroot@595ced9a7266:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@595ced9a7266:/app# ls -la /logs && echo '---' && sed -n '1,120p' /logs/agent.log; tmux wait -S done
+[?2004ltotal 136
+drwxr-xr-x 3 root root    96 Mar 28 19:39 [0m[01;34m.[0m
+drwxr-xr-x 1 root root  4096 Mar 28 19:39 [01;34m..[0m
+-rw-r--r-- 1 root root 83315 Mar 28 19:41 agent.log
+---
+[?2004hroot@595ced9a7266:/app# ls -R /app/config && echo '---' && cat /app/config/settings.json; tmux wait -S done
+[?2004l/app/config:
+settings.json
+---
+{
+  "app_name": "myservice",
+  "port": 3000,
+  "debug": true,
+  "log_level": "info",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "mydb"
+  }
+}
+[?2004hroot@595ced9a7266:/app# ls -R /app | head; tmux wait -S done
+[?2004l/app:
+config
+
+/app/config:
+settings.json
+[?2004hroot@595ced9a7266:/app# find /app -maxdepth 3 -type f \( -name '*.json' -o -name '*.md' -o -name 'Dockerfile' -o -name 'README*' -o -name '*.env*' \) -print; tmuux wait -S done
+[?2004l/app/config/settings.json
+[?2004hroot@595ced9a7266:/app# grep -R "settings.json" -n /app 2>/dev/null || true; grep -R "app_name\|log_level\|database\|debug\|port" -n /app 2>/dev/null | head; tmuux wait -S done
+[?2004l/app/config/settings.json:2:  "app_name": "myservice",
+/app/config/settings.json:3:  "port": 3000,
+/app/config/settings.json:4:  "debug": true,
+/app/config/settings.json:5:  "log_level": "info",
+/app/config/settings.json:6:  "database": {
+/app/config/settings.json:8:    "port": 5432,
+[?2004hroot@595ced9a7266:/app# env | sort | head -n 200; tmux wait -S done
+[?2004lHOME=/root
+HOSTNAME=595ced9a7266
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/app
+SHELL=/bin/bash
+SHLVL=1
+TERM=tmux-256color
+TERM_PROGRAM=tmux
+TERM_PROGRAM_VERSION=3.4
+TEST_DIR=/tests
+TMUX=/tmp/tmux-0/default,21,0
+TMUX_PANE=%0
+_=/usr/bin/env
+[?2004hroot@595ced9a7266:/app# ls -R /tests && echo '---' && find /tests -type f -maxdepth 3 -print; tmux wait -S done
+[?2004lls: cannot access '/tests': No such file or directory
+[?2004hroot@595ced9a7266:/app# find /app -maxdepth 3 -type f -print; tmux wait -S done
+[?2004l/app/config/settings.json
+[?2004hroot@595ced9a7266:/app# find / -maxdepth 4 -type f \( -name '*.py' -o -name '*.js' -o -name '*.ts' -o -name '*.go' -o -name '*.java' -o -name '*.rb' -o -name '*..cs' \) 2>/dev/null | head -n 200; tmux wait -S done
+[?2004l/usr/share/python3/py3versions.py
+/usr/lib/python3.12/symtable.py
+/usr/lib/python3.12/reprlib.py
+/usr/lib/python3.12/dataclasses.py
+/usr/lib/python3.12/socketserver.py
+/usr/lib/python3.12/weakref.py
+/usr/lib/python3.12/zipapp.py
+/usr/lib/python3.12/optparse.py
+/usr/lib/python3.12/_weakrefset.py
+/usr/lib/python3.12/token.py
+/usr/lib/python3.12/runpy.py
+/usr/lib/python3.12/ast.py
+/usr/lib/python3.12/locale.py
+/usr/lib/python3.12/timeit.py
+/usr/lib/python3.12/graphlib.py
+/usr/lib/python3.12/trace.py
+/usr/lib/python3.12/_sitebuiltins.py
+/usr/lib/python3.12/tarfile.py
+/usr/lib/python3.12/antigravity.py
+/usr/lib/python3.12/dis.py
+/usr/lib/python3.12/codecs.py
+/usr/lib/python3.12/tabnanny.py
+/usr/lib/python3.12/secrets.py
+/usr/lib/python3.12/mailbox.py
+/usr/lib/python3.12/shlex.py
+/usr/lib/python3.12/bz2.py
+/usr/lib/python3.12/ftplib.py
+/usr/lib/python3.12/pdb.py
+/usr/lib/python3.12/tty.py
+/usr/lib/python3.12/filecmp.py
+/usr/lib/python3.12/abc.py
+/usr/lib/python3.12/site.py
+/usr/lib/python3.12/crypt.py
+/usr/lib/python3.12/quopri.py
+/usr/lib/python3.12/_compression.py
+/usr/lib/python3.12/profile.py
+/usr/lib/python3.12/genericpath.py
+/usr/lib/python3.12/gzip.py
+/usr/lib/python3.12/gettext.py
+/usr/lib/python3.12/uuid.py
+/usr/lib/python3.12/webbrowser.py
+/usr/lib/python3.12/pyclbr.py
+/usr/lib/python3.12/warnings.py
+/usr/lib/python3.12/configparser.py
+/usr/lib/python3.12/_strptime.py
+/usr/lib/python3.12/xdrlib.py
+/usr/lib/python3.12/heapq.py
+/usr/lib/python3.12/platform.py
+/usr/lib/python3.12/shutil.py
+/usr/lib/python3.12/inspect.py
+/usr/lib/python3.12/_collections_abc.py
+/usr/lib/python3.12/shelve.py
+/usr/lib/python3.12/__hello__.py
+/usr/lib/python3.12/enum.py
+/usr/lib/python3.12/posixpath.py
+/usr/lib/python3.12/_threading_local.py
+/usr/lib/python3.12/cmd.py
+/usr/lib/python3.12/threading.py
+/usr/lib/python3.12/nturl2path.py
+/usr/lib/python3.12/aifc.py
+/usr/lib/python3.12/keyword.py
+/usr/lib/python3.12/modulefinder.py
+/usr/lib/python3.12/pickle.py
+/usr/lib/python3.12/netrc.py
+/usr/lib/python3.12/plistlib.py
+/usr/lib/python3.12/lzma.py
+/usr/lib/python3.12/sre_compile.py
+/usr/lib/python3.12/code.py
+/usr/lib/python3.12/stringprep.py
+/usr/lib/python3.12/difflib.py
+[?2004hroot@595ced9a7266:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@595ced9a7266:/app# 

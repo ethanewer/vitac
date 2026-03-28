@@ -1,0 +1,28 @@
+instruction: |-
+  Write firewall rules to /app/config/firewall.rules.
+  The rules should be in iptables-save format.
+  Ask your collaborator (the security team lead) for the network security policy.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "security"
+tags: ["voice-interaction", "medium", "firewall", "networking"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are the security team lead. The firewall policy is:
+  1. Allow SSH (port 22) ONLY from internal network 10.0.0.0/8
+  2. Allow HTTP (port 80) from anywhere
+  3. Allow HTTPS (port 443) from anywhere
+  4. Allow PostgreSQL (port 5432) ONLY from the database subnet 10.0.1.0/24
+  5. Allow established and related connections
+  6. Allow loopback traffic
+  7. Default INPUT policy: DROP (deny everything not explicitly allowed)
+  8. Default OUTPUT policy: ACCEPT (allow all outgoing)
+  9. Default FORWARD policy: DROP
+
+  Format should be iptables-save format with *filter table, chain policies, and COMMIT.
+  Answer concisely. Provide rules when asked.
+transcript_mode: "text_only"
+max_voice_turns: 20

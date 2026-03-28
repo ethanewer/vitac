@@ -1,0 +1,36 @@
+{
+  "id": "76d9863d-d02a-4dea-9d12-03ce70271a0f",
+  "trial_name": "filter-log-entries.1-of-1.medium-2agent",
+  "task_id": "filter-log-entries",
+  "instruction": "Extract matching log entries from /app/logs/application.log and save them to /app/output/filtered.log.\nAsk your collaborator what to filter for.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_filter.py::test_filtered_file_exists": "passed",
+    "test_filter.py::test_all_warn_lines_present": "passed",
+    "test_filter.py::test_only_warn_lines": "passed",
+    "test_filter.py::test_correct_line_count": "passed",
+    "test_filter.py::test_no_error_lines": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 0.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 0.65,
+    "details": {
+      "topics_asked": 0,
+      "topics_expected": 1,
+      "voice_turns_used": 1,
+      "max_voice_turns": 8
+    }
+  },
+  "total_input_tokens": 2451,
+  "total_output_tokens": 402,
+  "trial_started_at": "2026-03-28T19:41:45.760546+00:00",
+  "trial_ended_at": "2026-03-28T19:41:58.513435+00:00",
+  "agent_started_at": "2026-03-28T19:41:47.449395+00:00",
+  "agent_ended_at": "2026-03-28T19:41:55.373249+00:00",
+  "test_started_at": "2026-03-28T19:41:55.373265+00:00",
+  "test_ended_at": "2026-03-28T19:41:57.059991+00:00"
+}

@@ -1,0 +1,37 @@
+{
+  "id": "056d5c22-9c88-4f97-bc58-bc16d47fbfbb",
+  "trial_name": "list-running-processes.1-of-1.verify-control",
+  "task_id": "list-running-processes",
+  "instruction": "Extract all unique usernames (second column) from /app/data/users.csv, sort them alphabetically, and write one per line to /app/output/usernames.txt. Skip the header row.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_usernames.py::test_output_exists": "passed",
+    "test_usernames.py::test_correct_usernames": "passed",
+    "test_usernames.py::test_no_duplicates": "passed",
+    "test_usernames.py::test_sorted": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "topics_matched": [],
+      "topics_expected": [],
+      "voice_turns_used": 0,
+      "terminal_commands_count": 5,
+      "max_voice_turns": 4
+    }
+  },
+  "total_input_tokens": 4855,
+  "total_output_tokens": 619,
+  "trial_started_at": "2026-03-28T20:05:18.491133+00:00",
+  "trial_ended_at": "2026-03-28T20:05:35.378143+00:00",
+  "agent_started_at": "2026-03-28T20:05:21.654664+00:00",
+  "agent_ended_at": "2026-03-28T20:05:32.097259+00:00",
+  "test_started_at": "2026-03-28T20:05:32.098040+00:00",
+  "test_ended_at": "2026-03-28T20:05:33.932579+00:00",
+  "composite_score": 1.0
+}

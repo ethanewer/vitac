@@ -1,0 +1,6 @@
+[?2004hroot@663ea6f2ebbc:/app# ls -l /app/output/greeting.txt && cat /app/output/greeting.txt; tmux wait -S done
+[?2004lls: cannot access '/app/output/greeting.txt': No such file or directory
+[?2004hroot@663ea6f2ebbc:/app# mkdir -p /app/output && echo "Hello! Welcome to the application." > /app/output/greeting.txt && ls -l /app/output/greeting.txt && cat /appp/output/greeting.txt; tmux wait -S done
+[?2004l-rw-r--r-- 1 root root 35 Mar 28 19:26 /app/output/greeting.txt
+Hello! Welcome to the application.
+[?2004hroot@663ea6f2ebbc:/app# 

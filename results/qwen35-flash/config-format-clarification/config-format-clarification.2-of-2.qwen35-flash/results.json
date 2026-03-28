@@ -1,0 +1,35 @@
+{
+  "id": "2fe90e4c-056a-42fa-a5a5-5cb0e5367f08",
+  "trial_name": "config-format-clarification.2-of-2.qwen35-flash",
+  "task_id": "config-format-clarification",
+  "instruction": "Generate the application configuration file and save it to /app/config/app_config.\nThe file extension should match the format used.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_config.py::test_config_file_exists": "passed",
+    "test_config.py::test_config_is_valid_yaml": "passed",
+    "test_config.py::test_app_name": "passed",
+    "test_config.py::test_port": "passed",
+    "test_config.py::test_database_config": "passed",
+    "test_config.py::test_log_level": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 9329,
+  "total_output_tokens": 438,
+  "trial_started_at": "2026-03-28T21:11:56.117075+00:00",
+  "trial_ended_at": "2026-03-28T21:14:02.813872+00:00",
+  "agent_started_at": "2026-03-28T21:11:57.591935+00:00",
+  "agent_ended_at": "2026-03-28T21:13:48.570014+00:00",
+  "test_started_at": "2026-03-28T21:13:48.570052+00:00",
+  "test_ended_at": "2026-03-28T21:14:01.215891+00:00",
+  "composite_score": 1.0
+}

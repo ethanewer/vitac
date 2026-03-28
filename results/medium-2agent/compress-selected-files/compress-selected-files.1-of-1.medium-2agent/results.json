@@ -1,0 +1,36 @@
+{
+  "id": "5efe9385-ca38-460f-8714-c90c837d9c65",
+  "trial_name": "compress-selected-files.1-of-1.medium-2agent",
+  "task_id": "compress-selected-files",
+  "instruction": "Create a compressed archive from files in /app/data/.\nSave the archive to /app/output/archive.tar.gz.\nAsk your collaborator which files to include.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_archive.py::test_archive_exists": "passed",
+    "test_archive.py::test_archive_is_valid": "passed",
+    "test_archive.py::test_csv_files_included": "passed",
+    "test_archive.py::test_no_tmp_files": "passed",
+    "test_archive.py::test_no_log_files": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "topics_asked": 1,
+      "topics_expected": 1,
+      "voice_turns_used": 1,
+      "max_voice_turns": 8
+    }
+  },
+  "total_input_tokens": 3583,
+  "total_output_tokens": 1022,
+  "trial_started_at": "2026-03-28T19:41:45.760445+00:00",
+  "trial_ended_at": "2026-03-28T19:42:03.034799+00:00",
+  "agent_started_at": "2026-03-28T19:41:47.451451+00:00",
+  "agent_ended_at": "2026-03-28T19:41:59.861176+00:00",
+  "test_started_at": "2026-03-28T19:41:59.861212+00:00",
+  "test_ended_at": "2026-03-28T19:42:01.614198+00:00"
+}

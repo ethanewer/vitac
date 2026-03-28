@@ -1,0 +1,9 @@
+[?2004hroot@9998e086679d:/app# ls -l /app/output/archive.tar.gz 2>/dev/null || echo 'archive does not exist'; tmux wait -S done
+[?2004larchive does not exist
+[?2004hroot@9998e086679d:/app# mkdir -p /app/output && cd /app/data && find . -type f -name '*.csv' -print0 | tar --null -czf /app/output/archive.tar.gz --files-from=-;; tmux wait -S done
+[?2004l[?2004hroot@9998e086679d:/app/data# ls -lh /app/output/archive.tar.gz && tar -tzf /app/output/archive.tar.gz | head; tmux wait -S done
+[?2004l-rw-r--r-- 1 root root 235 Mar 28 20:20 [0m[01;31m/app/output/archive.tar.gz[0m
+./users.csv
+./orders.csv
+./products.csv
+[?2004hroot@9998e086679d:/app/data# 

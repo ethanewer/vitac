@@ -1,0 +1,2 @@
+[?2004hroot@8959fab78684:/app# mkdir -p /app/output && echo 'Dear Alice, Welcome to the team!' > /app/output/greeting.txt; tmux wait -S done
+[?2004l[?2004hroot@8959fab78684:/app# 

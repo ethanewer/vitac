@@ -1,0 +1,35 @@
+{
+  "id": "2d37db69-277a-4f7a-93fb-fad3eb6e7a30",
+  "trial_name": "debug-config-generator.2-of-2.qwen35-flash",
+  "task_id": "debug-config-generator",
+  "instruction": "Generate an nginx config file by running: run-code gen_config.py\nThe output should be written to /app/output/nginx.conf.\nThe source code is permission-restricted so you cannot read it directly.\nIf the script fails or produces incorrect output, ask your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix gen_config.py\nAfter fixing, run the script again to verify it generates the config correctly.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_config.py::test_output_exists": "passed",
+    "test_config.py::test_correct_server_name": "passed",
+    "test_config.py::test_correct_proxy_pass": "passed",
+    "test_config.py::test_proxy_pass_semicolon": "passed",
+    "test_config.py::test_listen_port": "passed",
+    "test_config.py::test_no_localhost": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 21983,
+  "total_output_tokens": 839,
+  "trial_started_at": "2026-03-28T21:15:13.820464+00:00",
+  "trial_ended_at": "2026-03-28T21:17:09.431095+00:00",
+  "agent_started_at": "2026-03-28T21:15:15.224032+00:00",
+  "agent_ended_at": "2026-03-28T21:16:56.002851+00:00",
+  "test_started_at": "2026-03-28T21:16:56.002882+00:00",
+  "test_ended_at": "2026-03-28T21:17:08.022312+00:00",
+  "composite_score": 1.0
+}

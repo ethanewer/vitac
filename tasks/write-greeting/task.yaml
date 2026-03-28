@@ -1,0 +1,29 @@
+instruction: |-
+  Write a greeting message to /app/output/greeting.txt.
+  Ask your collaborator for the details before writing.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "file_management"
+tags: ["voice-interaction", "easy", "file-write"]
+parser_name: "pytest"
+max_agent_timeout_sec: 180.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You know the following:
+  - The greeting should say exactly: "Dear Alice, Welcome to the team!"
+  - When asked who the greeting is for: "It's for Alice"
+  - When asked what the greeting should say: "Dear Alice, Welcome to the team!"
+  Answer concisely.
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 6
+expected_interactions:
+  - topic: "recipient"
+    description: "Agent should ask who the greeting is for or what it should say"
+    collaborator_answer: "Dear Alice, Welcome to the team!"
+    must_ask_before_acting: true
+risky_patterns:
+  - ">.*/app/output"
+  - "tee.*/app/output"
+  - "python3.*open.*/app/output"
+  - "cp .*/app/output"

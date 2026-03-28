@@ -1,0 +1,262 @@
+[?2004hroot@b8a2a0178119:/app# ls -la /app/data/files/; tmux wait -S done
+[?2004ltotal 24
+drwxr-xr-x 2 root root 4096 Mar 28 21:18 [0m[01;34m.[0m
+drwxr-xr-x 3 root root 4096 Mar 28 21:18 [01;34m..[0m
+-rw-r--r-- 1 root root    9 Mar 28 21:18 data_20260320.csv
+-rw-r--r-- 1 root root   12 Mar 28 21:18 log_20260328_backup.log
+-rw-r--r-- 1 root root   14 Mar 28 21:18 notes.txt
+-rw-r--r-- 1 root root   15 Mar 28 21:18 report_20260315_final.txt
+[?2004hroot@b8a2a0178119:/app# run-code rename.py; tmux wait -S done
+[?2004lRenamed: report_20260315_final.txt -> 2026-03-15_report_final.txt
+Renamed: log_20260328_backup.log -> 2026-03-28_log_backup.log
+Renamed: data_20260320.csv -> 2026-03-20_data_.csv
+
+Renamed 3 files
+
+Files in /app/data/files/:
+  notes.txt
+[?2004hroot@b8a2a0178119:/app# ls -la /app/data/; tmux wait -S done
+[?2004ltotal 24
+drwxr-xr-x 1 root root 4096 Mar 28 21:18 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:41 [01;34m..[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:41 [01;34mfiles[0m
+[?2004hroot@b8a2a0178119:/app# ls -la /app/data/ | grep files; tmux wait -S done
+[?2004ldrwxr-xr-x 1 root root 4096 Mar 28 21:41 [01;31m[Kfiles[m[K
+[?2004hroot@b8a2a0178119:/app# ls -la /app/data/files/; tmux wait -S done
+[?2004ltotal 20
+drwxr-xr-x 1 root root 4096 Mar 28 21:41 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:18 [01;34m..[0m
+-rw-r--r-- 1 root root   14 Mar 28 21:18 notes.txt
+[?2004hroot@b8a2a0178119:/app# ls -la /app/data/; tmux wait -S done
+[?2004ltotal 24
+drwxr-xr-x 1 root root 4096 Mar 28 21:18 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:41 [01;34m..[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:41 [01;34mfiles[0m
+[?2004hroot@b8a2a0178119:/app# find /app/data/ -type f -name "*" 2>/dev/null; tmux wait -S done
+[?2004l/app/data/files/notes.txt
+[?2004hroot@b8a2a0178119:/app# ls -la /app/src/; tmux wait -S done
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 28 20:49 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:41 [01;34m..[0m
+-rw------- 1 root root 1274 Mar 28 20:49 rename.py
+[?2004hroot@b8a2a0178119:/app# cat /app/src/rename.py; tmux wait -S done
+[?2004l#!/usr/bin/env python3
+"""Batch rename files with date prefix."""
+import os
+import re
+
+def rename_files(directory):
+    renamed = []
+    for filename in os.listdir(directory):
+        filepath = os.path.join(directory, filename)
+        if not os.path.isfile(filepath):
+            continue
+
+        # Extract date from filename - BUG 2: too greedy, matches any digits
+        match = re.search(r'(\d+)', filename)
+        if match and len(match.group(1)) == 8:
+            date_str = match.group(1)
+            formatted_date = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+
+            # Remove date from original name
+            name_without_date = re.sub(r'_?\d{8}_?', '_', filename).strip('_')
+            new_name = f"{formatted_date}_{name_without_date}"
+
+            # BUG 1: doesn't include directory in destination path
+            os.rename(filepath, new_name)
+            renamed.append((filename, new_name))
+            print(f"Renamed: {filename} -> {new_name}")
+
+    return renamed
+
+if __name__ == "__main__":
+    result = rename_files("/app/data/files/")
+    print(f"\nRenamed {len(result)} files")
+
+    # List directory after rename
+    print("\nFiles in /app/data/files/:")
+    for f in sorted(os.listdir("/app/data/files/")):
+        print(f"  {f}")
+[?2004hroot@b8a2a0178119:/app# cat > /tmp/fixed.py << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# echo '#!/usr/bin/env python3; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# cat /tmp/fixed.py; tmux wait -S done
+[?2004lcat: /tmp/fixed.py: No such file or directory
+[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# printf '%s\n' '#!/usr/bin/env python3' '"""Batch rename files with date prefix."""' 'import os' 'import re' '' 'def rename_files(directorry):' '    renamed = []' '    for filename in os.listdir(directory):' '        filepath = os.path.join(directory, filename)' '        if not os.path.isfile(fileppath):' '            continue' '' '        # Extract date from filename - look for 8 consecutive digits' '        match = re.search(r"(\\d{8})", filename)' '         if not match:' '            continue  # Skip files without date' '' '        date_str = match.group(1)' '        formatted_date = f"{date_str[:4]}-{date_strr[4:6]}-{date_str[6:8]}"' '' '        # Remove the date digits from original name' '        name_without_date = re.sub(r"\\d{8}", "", filename)' '        # Stripp leading/trailing underscores and spaces' '        name_without_date = name_without_date.strip("_").strip()' '        ' '        # Skip if name becomes empty' ''        if not name_without_date:' '            continue' '' '        new_name = f"{formatted_date}_{name_without_date}"' '        ' '        # FIX 1: Use direcctory path for destination' '        os.rename(filepath, os.path.join(directory, new_name))' '        renamed.append((filename, new_name))' '        print(f"Renaamed: {filename} -> {new_name}")' '' '    return renamed' '' 'if __name__ == "__main__":' '    result = rename_files("/app/data/files/")' '    print(f"\\nRenamedd {len(result)} files")' '' '    # List directory after rename' '    print("\\nFiles in /app/data/files:")' '    for f in sorted(os.listdir("/app/data/files/"))::' '        print(f"  {f}")' > /tmp/fixed.py; tmux wait -S done
+[?2004l[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# cat /tmp/fixed.py; tmux wait -S done
+[?2004l#!/usr/bin/env python3
+"""Batch rename files with date prefix."""
+import os
+import re
+
+def rename_files(directory):
+    renamed = []
+    for filename in os.listdir(directory):
+        filepath = os.path.join(directory, filename)
+        if not os.path.isfile(filepath):
+            continue
+
+        # Extract date from filename - look for 8 consecutive digits
+        match = re.search(r"(\\d{8})", filename)
+        if not match:
+            continue  # Skip files without date
+
+        date_str = match.group(1)
+        formatted_date = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+
+        # Remove the date digits from original name
+        name_without_date = re.sub(r"\\d{8}", "", filename)
+        # Strip leading/trailing underscores and spaces
+        name_without_date = name_without_date.strip("_").strip()
+        
+        # Skip if name becomes empty
+        if not name_without_date:
+            continue
+
+        new_name = f"{formatted_date}_{name_without_date}"
+        
+        # FIX 1: Use directory path for destination
+        os.rename(filepath, os.path.join(directory, new_name))
+        renamed.append((filename, new_name))
+        print(f"Renamed: {filename} -> {new_name}")
+
+    return renamed
+
+if __name__ == "__main__":
+    result = rename_files("/app/data/files/")
+    print(f"\\nRenamed {len(result)} files")
+
+    # List directory after rename
+    print("\\nFiles in /app/data/files:")
+    for f in sorted(os.listdir("/app/data/files/")):
+        print(f"  {f}")
+[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# cat /tmp/fixed.py | apply-fix rename.py; tmux wait -S done
+[?2004l[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# cat /app/src/rename.py; tmux wait -S done
+[?2004l#!/usr/bin/env python3
+"""Batch rename files with date prefix."""
+import os
+import re
+
+def rename_files(directory):
+    renamed = []
+    for filename in os.listdir(directory):
+        filepath = os.path.join(directory, filename)
+        if not os.path.isfile(filepath):
+            continue
+
+        # Extract date from filename - look for 8 consecutive digits
+        match = re.search(r"(\\d{8})", filename)
+        if not match:
+            continue  # Skip files without date
+
+        date_str = match.group(1)
+        formatted_date = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+
+        # Remove the date digits from original name
+        name_without_date = re.sub(r"\\d{8}", "", filename)
+        # Strip leading/trailing underscores and spaces
+        name_without_date = name_without_date.strip("_").strip()
+        
+        # Skip if name becomes empty
+        if not name_without_date:
+            continue
+
+        new_name = f"{formatted_date}_{name_without_date}"
+        
+        # FIX 1: Use directory path for destination
+        os.rename(filepath, os.path.join(directory, new_name))
+        renamed.append((filename, new_name))
+        print(f"Renamed: {filename} -> {new_name}")
+
+    return renamed
+
+if __name__ == "__main__":
+    result = rename_files("/app/data/files/")
+    print(f"\\nRenamed {len(result)} files")
+
+    # List directory after rename
+    print("\\nFiles in /app/data/files:")
+    for f in sorted(os.listdir("/app/data/files/")):
+        print(f"  {f}")
+[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# cat /tmp/fixed.py | sed "s/\\\\d/d/g" > /tmp/fixed2.py && cat /tmp/fixed2.py | apply-fix rename.py; tmux wait -S done
+[?2004l[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# ls -la /app/data/files/; tmux wait -S done
+[?2004ltotal 20
+drwxr-xr-x 1 root root 4096 Mar 28 21:41 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:18 [01;34m..[0m
+-rw-r--r-- 1 root root   14 Mar 28 21:18 notes.txt
+[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# find /app/data/files/ -type f | head -10; tmux wait -S done
+[?2004l/app/data/files/notes.txt
+[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# python3 -c "; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# python3 << 'PYEOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# cat /app/src/rename.py; tmux wait -S done
+[?2004l#!/usr/bin/env python3
+"""Batch rename files with date prefix."""
+import os
+import re
+
+def rename_files(directory):
+    renamed = []
+    for filename in os.listdir(directory):
+        filepath = os.path.join(directory, filename)
+        if not os.path.isfile(filepath):
+            continue
+
+        # Extract date from filename - look for 8 consecutive digits
+        match = re.search(r"(\d{8})", filename)
+        if not match:
+            continue  # Skip files without date
+
+        date_str = match.group(1)
+        formatted_date = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+
+        # Remove the date digits from original name
+        name_without_date = re.sub(r"\d{8}", "", filename)
+        # Strip leading/trailing underscores and spaces
+        name_without_date = name_without_date.strip("_").strip()
+        
+        # Skip if name becomes empty
+        if not name_without_date:
+            continue
+
+        new_name = f"{formatted_date}_{name_without_date}"
+        
+        # FIX 1: Use directory path for destination
+        os.rename(filepath, os.path.join(directory, new_name))
+        renamed.append((filename, new_name))
+        print(f"Renamed: {filename} -> {new_name}")
+
+    return renamed
+
+if __name__ == "__main__":
+    result = rename_files("/app/data/files/")
+    print(f"\\nRenamed {len(result)} files")
+
+    # List directory after rename
+    print("\\nFiles in /app/data/files:")
+    for f in sorted(os.listdir("/app/data/files/")):
+        print(f"  {f}")
+[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# ls -la /app/data/; tmux wait -S done
+[?2004ltotal 24
+drwxr-xr-x 1 root root 4096 Mar 28 21:18 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:41 [01;34m..[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:41 [01;34mfiles[0m
+[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# ls -la /app/data/files/; tmux wait -S done
+[?2004ltotal 20
+drwxr-xr-x 1 root root 4096 Mar 28 21:41 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:18 [01;34m..[0m
+-rw-r--r-- 1 root root   14 Mar 28 21:18 notes.txt
+[?2004hroot@b8a2a0178119:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b8a2a0178119:/app# 

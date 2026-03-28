@@ -1,0 +1,8 @@
+[?2004hroot@f600dd575e37:/app# mkdir -p /app/output; tmux wait -S done
+[?2004l[?2004hroot@f600dd575e37:/app# grep "WARN" /app/logs/application.log > /app/output/filtered.log; tmux wait -S done
+[?2004l[?2004hroot@f600dd575e37:/app# wc -l /app/output/filtered.log && head -n 5 /app/output/filtered.log; tmux wait -S done
+[?2004l3 /app/output/filtered.log
+2026-03-28 10:00:06 WARN  Using fallback database
+2026-03-28 10:00:10 WARN  Deprecated API version detected
+2026-03-28 10:00:13 WARN  SSL certificate expires in 7 days
+[?2004hroot@f600dd575e37:/app# 

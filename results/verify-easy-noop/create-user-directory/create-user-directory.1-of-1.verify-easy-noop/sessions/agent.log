@@ -1,0 +1,32 @@
+[?2004hroot@5b0d51cc0a83:/app# ls -la /app/users || true; tmux wait -S done
+[?2004ltotal 8
+drwxr-xr-x 2 root root 4096 Mar 28 19:19 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:19 [01;34m..[0m
+[?2004hroot@5b0d51cc0a83:/app# ls -la /app && ls -la /app/users && whoami; tmux wait -S done
+[?2004ltotal 12
+drwxr-xr-x 1 root root 4096 Mar 28 19:19 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 20:05 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 19:19 [01;34musers[0m
+total 8
+drwxr-xr-x 2 root root 4096 Mar 28 19:19 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:19 [01;34m..[0m
+root
+[?2004hroot@5b0d51cc0a83:/app# mkdir -p /app/users/appuser/documents /app/users/appuser/downloads /app/users/appuser/projects; tmux wait -S done
+[?2004l[?2004hroot@5b0d51cc0a83:/app# ls -la /app/users/appuser && find /app/users/appuser -maxdepth 1 -type d -printf '%f; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@5b0d51cc0a83:/app# ls -la /app/users && ls -la /app/users/appuser && ls -1 -d /app/users/appuser/*; tmux wait -S done
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 28 20:05 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:19 [01;34m..[0m
+drwxr-xr-x 5 root root 4096 Mar 28 20:05 [01;34mappuser[0m
+total 20
+drwxr-xr-x 5 root root 4096 Mar 28 20:05 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 20:05 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 20:05 [01;34mdocuments[0m
+drwxr-xr-x 2 root root 4096 Mar 28 20:05 [01;34mdownloads[0m
+drwxr-xr-x 2 root root 4096 Mar 28 20:05 [01;34mprojects[0m
+[0m[01;34m/app/users/appuser/documents[0m
+[01;34m/app/users/appuser/downloads[0m
+[01;34m/app/users/appuser/projects[0m
+[?2004hroot@5b0d51cc0a83:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@5b0d51cc0a83:/app# 

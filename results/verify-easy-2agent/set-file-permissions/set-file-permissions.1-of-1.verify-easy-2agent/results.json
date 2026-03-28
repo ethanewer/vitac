@@ -1,0 +1,39 @@
+{
+  "id": "43c5a7a5-1454-4721-af8b-b755dd4626a2",
+  "trial_name": "set-file-permissions.1-of-1.verify-easy-2agent",
+  "task_id": "set-file-permissions",
+  "instruction": "Change the file permissions on /app/data/report.csv as requested.\nAsk your collaborator what permissions to set.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_permissions.py::test_file_exists": "passed",
+    "test_permissions.py::test_permissions_750": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "topics_matched": [
+        "permissions"
+      ],
+      "topics_expected": [
+        "permissions"
+      ],
+      "voice_turns_used": 1,
+      "terminal_commands_count": 2,
+      "max_voice_turns": 6
+    }
+  },
+  "total_input_tokens": 1629,
+  "total_output_tokens": 155,
+  "trial_started_at": "2026-03-28T20:07:12.985613+00:00",
+  "trial_ended_at": "2026-03-28T20:07:23.135308+00:00",
+  "agent_started_at": "2026-03-28T20:07:14.356969+00:00",
+  "agent_ended_at": "2026-03-28T20:07:19.787755+00:00",
+  "test_started_at": "2026-03-28T20:07:19.787777+00:00",
+  "test_ended_at": "2026-03-28T20:07:21.643942+00:00",
+  "composite_score": 1.0
+}

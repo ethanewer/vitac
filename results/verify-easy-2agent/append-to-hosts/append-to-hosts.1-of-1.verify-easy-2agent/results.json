@@ -1,0 +1,39 @@
+{
+  "id": "2bb25f09-36cc-4b88-bb39-98e37475d409",
+  "trial_name": "append-to-hosts.1-of-1.verify-easy-2agent",
+  "task_id": "append-to-hosts",
+  "instruction": "Add a new entry to the hosts file at /app/etc/hosts.\nAsk your collaborator for the IP address and hostname to add.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_hosts.py::test_hosts_file_exists": "passed",
+    "test_hosts.py::test_original_entries_preserved": "passed",
+    "test_hosts.py::test_new_entry_present": "passed",
+    "test_hosts.py::test_new_entry_on_same_line": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 0.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 0.8,
+    "overall": 0.62,
+    "details": {
+      "topics_matched": [],
+      "topics_expected": [
+        "host_entry"
+      ],
+      "voice_turns_used": 2,
+      "terminal_commands_count": 2,
+      "max_voice_turns": 6
+    }
+  },
+  "total_input_tokens": 2433,
+  "total_output_tokens": 465,
+  "trial_started_at": "2026-03-28T20:07:12.985379+00:00",
+  "trial_ended_at": "2026-03-28T20:07:26.046499+00:00",
+  "agent_started_at": "2026-03-28T20:07:14.359081+00:00",
+  "agent_ended_at": "2026-03-28T20:07:22.857443+00:00",
+  "test_started_at": "2026-03-28T20:07:22.857477+00:00",
+  "test_ended_at": "2026-03-28T20:07:24.616128+00:00",
+  "composite_score": 0.62
+}

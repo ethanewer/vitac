@@ -1,0 +1,38 @@
+{
+  "id": "82a03d79-f644-45d6-853a-187736ba44a8",
+  "trial_name": "sort-and-deduplicate.1-of-1.final-medium-noop",
+  "task_id": "sort-and-deduplicate",
+  "instruction": "Process the data file at /app/data/records.csv.\nSort it and remove duplicate entries, then save the result to /app/output/clean.csv.\nAsk your collaborator how to process it.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_sort.py::test_sorted_by_score_descending - AssertionError: Scores should be descending: [92, 78, 85, 95, 88]": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 0.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 0.65,
+    "details": {
+      "topics_matched": [
+        "processing"
+      ],
+      "topics_expected": [
+        "processing"
+      ],
+      "voice_turns_used": 1,
+      "terminal_commands_count": 7,
+      "max_voice_turns": 8
+    }
+  },
+  "total_input_tokens": 13233,
+  "total_output_tokens": 2277,
+  "trial_started_at": "2026-03-28T20:17:18.837092+00:00",
+  "trial_ended_at": "2026-03-28T20:17:47.360229+00:00",
+  "agent_started_at": "2026-03-28T20:17:19.681721+00:00",
+  "agent_ended_at": "2026-03-28T20:17:43.931139+00:00",
+  "test_started_at": "2026-03-28T20:17:43.931182+00:00",
+  "test_ended_at": "2026-03-28T20:17:45.880847+00:00",
+  "composite_score": 0.0
+}

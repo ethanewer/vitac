@@ -1,0 +1,25 @@
+instruction: |-
+  Rotate the application secrets. Old secrets need to be replaced with new ones across all configuration files.
+  Search /app/config/, /app/services/, and /app/env/ for files containing secrets.
+  Ask your collaborator for the new secret values to use as replacements.
+  Make sure to replace ALL occurrences of each old secret across ALL files.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "security"
+tags: ["voice-interaction", "medium", "secrets", "multi-step"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are the security engineer with the new secret values for rotation.
+
+  When the agent reports finding old secrets, provide the replacements:
+  - DB_PASSWORD: old value "oldpass123" → new value "Kx9mP2qL7nW"
+  - API_KEY: old value "sk-old-key-abc123" → new value "sk-new-key-xyz789"
+  - JWT_SECRET: old value "jwt-secret-old-value" → new value "hN4kQ8wR2vBj5mT"
+
+  Answer concisely. If they ask about one secret, give that one. If they ask for all, list all three.
+  Don't volunteer which files contain the secrets — the agent should search for them.
+transcript_mode: "text_only"
+max_voice_turns: 20

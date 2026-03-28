@@ -1,0 +1,37 @@
+{
+  "id": "0cd343ca-93ca-418c-aa35-94412f0c9dff",
+  "trial_name": "deploy-config-multi-env.1-of-2.qwen35-9b",
+  "task_id": "deploy-config-multi-env",
+  "instruction": "Create deployment configuration files for three environments: dev, staging, and prod.\nWrite them as JSON files at /app/deploy/dev.json, /app/deploy/staging.json, and /app/deploy/prod.json.\nAsk your collaborator for the configuration values for each environment.\nEach config should include: app_name, environment, database settings, cache settings, feature flags, replicas, and log_level.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_deploy_config.py::test_dev_database - KeyError: 'database'": "failed",
+    "test_deploy_config.py::test_staging_database - KeyError: 'database'": "failed",
+    "test_deploy_config.py::test_prod_database - KeyError: 'database'": "failed",
+    "test_deploy_config.py::test_dev_cache - KeyError: 'cache'": "failed",
+    "test_deploy_config.py::test_staging_cache - KeyError: 'cache'": "failed",
+    "test_deploy_config.py::test_prod_cache - KeyError: 'cache'": "failed",
+    "test_deploy_config.py::test_prod_no_beta - KeyError: 'features'": "failed",
+    "test_deploy_config.py::test_dev_beta_enabled - KeyError: 'features'": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 21051,
+  "total_output_tokens": 1229,
+  "trial_started_at": "2026-03-28T21:46:14.574278+00:00",
+  "trial_ended_at": "2026-03-28T21:48:42.303214+00:00",
+  "agent_started_at": "2026-03-28T21:46:15.816497+00:00",
+  "agent_ended_at": "2026-03-28T21:48:28.625026+00:00",
+  "test_started_at": "2026-03-28T21:48:28.625080+00:00",
+  "test_ended_at": "2026-03-28T21:48:40.780798+00:00",
+  "composite_score": 0.0
+}

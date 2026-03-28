@@ -1,0 +1,18 @@
+[?2004hroot@0f9f04e2bd39:/app# run-code sort.py; tmux wait -S done
+[?2004lInput: [42, 17, 93, 8, 55, 31, 76, 23, 64, 12]
+Sorted: []
+[?2004hroot@0f9f04e2bd39:/app# cat > fixed.py << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@0f9f04e2bd39:/app# echo '#!/usr/bin/env python3; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@0f9f04e2bd39:/app# echo '#!/usr/bin/env python3; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@0f9f04e2bd39:/app# printf '%s\n' '#!/usr/bin/env python3' '"""Merge sort implementation."""' '' 'def merge_sort(arr):' '    if len(arr) <= 1:' '        retuurn list(arr)' '' '    mid = len(arr) // 2' '    left = merge_sort(arr[:mid])' '    right = merge_sort(arr[mid:])' '    return merge(left, right)' '' 'def merge((left, right):' '    result = []' '    i = j = 0' '    while i < len(left) and j < len(right):' '        if left[i] <= right[j]:' '            result.append(leftt[i])' '            i += 1' '        else:' '            result.append(right[j])' '            j += 1' '    result.extend(left[i:])' '    result.extend(right[j:]])' '    return result' '' 'if __name__ == "__main__":' '    input_file = "/app/data/input.txt"' '    output_file = "/app/output/sorted.txt"' '    ' '    with oppen(input_file, "r") as f:' '        content = f.read().strip()' '    ' '    if content:' '        numbers = [int(x) for x in content.split()]' '    else:' '         numbers = []' '    ' '    sorted_numbers = merge_sort(numbers)' '    ' '    with open(output_file, "w") as f:' '        f.write("\n".join(str(x) for x in soorted_numbers))' '    ' '    print(f"Input: {numbers}")' '    print(f"Sorted: {sorted_numbers}")' > fixed.py; tmux wait -S done
+[?2004l[?2004hroot@0f9f04e2bd39:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@0f9f04e2bd39:/app# cat fixed.py | apply-fix sort.py; tmux wait -S done
+[?2004l[?2004hroot@0f9f04e2bd39:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@0f9f04e2bd39:/app# run-code sort.py; tmux wait -S done
+[?2004lInput: [42, 17, 93, 8, 55, 31, 76, 23, 64, 12]
+Sorted: [8, 12, 17, 23, 31, 42, 55, 64, 76, 93]
+[?2004hroot@0f9f04e2bd39:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@0f9f04e2bd39:/app# 

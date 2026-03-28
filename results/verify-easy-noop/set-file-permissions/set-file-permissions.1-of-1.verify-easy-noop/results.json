@@ -1,0 +1,38 @@
+{
+  "id": "57dd4e0c-c3ba-45a7-b0b2-b90f711fa867",
+  "trial_name": "set-file-permissions.1-of-1.verify-easy-noop",
+  "task_id": "set-file-permissions",
+  "instruction": "Change the file permissions on /app/data/report.csv as requested.\nAsk your collaborator what permissions to set.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_permissions.py::test_permissions_750 - AssertionError: Permissions should be 750, got 664": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 0.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 0.65,
+    "details": {
+      "topics_matched": [
+        "permissions"
+      ],
+      "topics_expected": [
+        "permissions"
+      ],
+      "voice_turns_used": 1,
+      "terminal_commands_count": 2,
+      "max_voice_turns": 6
+    }
+  },
+  "total_input_tokens": 1613,
+  "total_output_tokens": 250,
+  "trial_started_at": "2026-03-28T20:05:35.402086+00:00",
+  "trial_ended_at": "2026-03-28T20:05:47.652620+00:00",
+  "agent_started_at": "2026-03-28T20:05:36.349562+00:00",
+  "agent_ended_at": "2026-03-28T20:05:44.518141+00:00",
+  "test_started_at": "2026-03-28T20:05:44.518159+00:00",
+  "test_ended_at": "2026-03-28T20:05:46.248642+00:00",
+  "composite_score": 0.0
+}

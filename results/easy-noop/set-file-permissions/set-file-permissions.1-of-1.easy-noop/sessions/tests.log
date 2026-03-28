@@ -1,0 +1,29 @@
+[?2004hroot@228c73632823:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 2 items                                                                                                                                              [0m
+
+test_permissions.py::test_file_exists [32mPASSED[0m[32m                                                                                                             [ 50%][0m
+test_permissions.py::test_permissions_750 [31mFAILED[0m[31m                                                                                                         [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m_____________________________________________________________________ test_permissions_750 _____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_permissions_750[39;49;00m():[90m[39;49;00m
+        st = os.stat([33m"[39;49;00m[33m/app/data/report.csv[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+        mode = [96moct[39;49;00m(st.st_mode)[-[94m3[39;49;00m:][90m[39;49;00m
+>       [94massert[39;49;00m mode == [33m"[39;49;00m[33m750[39;49;00m[33m"[39;49;00m, [33mf[39;49;00m[33m"[39;49;00m[33mPermissions should be 750, got [39;49;00m[33m{[39;49;00mmode[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Permissions should be 750, got 644[0m
+[1m[31mE       assert '644' == '750'[0m
+[1m[31mE         [0m
+[1m[31mE         [0m[91m- 750[39;49;00m[90m[39;49;00m[0m
+[1m[31mE         [92m+ 644[39;49;00m[90m[39;49;00m[0m
+
+[1m[31mtest_permissions.py[0m:10: AssertionError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_permissions.py::[1mtest_permissions_750[0m - AssertionError: Permissions should be 750, got 644
+[31m================================================================= [31m[1m1 failed[0m, [32m1 passed[0m[31m in 0.02s[0m[31m ==================================================================[0m
+[?2004hroot@228c73632823:/app# 

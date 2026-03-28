@@ -1,0 +1,28 @@
+{
+  "id": "9fcf98ad-dac0-432d-ab80-d95200c7915c",
+  "trial_name": "guided-refactor.1-of-2.qwen35-9b",
+  "task_id": "guided-refactor",
+  "instruction": "The monolithic app at /app/src/app.py needs to be split into three separate modules.\nRun `run-code app.py` to see how it currently works. You cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for the code that should go in each new module.\nCreate three new files:\n  - /app/src/models.py (data classes)\n  - /app/src/utils.py (helper functions)\n  - /app/src/main.py (entry point that imports from models and utils)\nYou can create files directly in /app/src/ since the directory is writable.\nAfter refactoring, run `sudo python3 /app/src/main.py` to verify it works.\nOutput goes to /app/output/report.json.",
+  "is_resolved": false,
+  "failure_mode": "agent_timeout",
+  "parser_results": null,
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "trial_started_at": "2026-03-28T21:48:47.817105+00:00",
+  "trial_ended_at": "2026-03-28T21:54:50.409476+00:00",
+  "agent_started_at": "2026-03-28T21:48:48.779267+00:00",
+  "agent_ended_at": "2026-03-28T21:54:48.814330+00:00",
+  "test_started_at": "",
+  "test_ended_at": "",
+  "composite_score": 0.0
+}

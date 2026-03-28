@@ -1,0 +1,21 @@
+[?2004hroot@53aca36403bc:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
+[?2004l[?2004hroot@53aca36403bc:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 9 items                                                                                                                                              [0m
+
+test_firewall.py::test_file_exists [32mPASSED[0m[32m                                                                                                                [ 11%][0m
+test_firewall.py::test_ssh_restricted [32mPASSED[0m[32m                                                                                                             [ 22%][0m
+test_firewall.py::test_http_open [32mPASSED[0m[32m                                                                                                                  [ 33%][0m
+test_firewall.py::test_https_open [32mPASSED[0m[32m                                                                                                                 [ 44%][0m
+test_firewall.py::test_postgres_restricted [32mPASSED[0m[32m                                                                                                        [ 55%][0m
+test_firewall.py::test_default_drop [32mPASSED[0m[32m                                                                                                               [ 66%][0m
+test_firewall.py::test_output_accept [32mPASSED[0m[32m                                                                                                              [ 77%][0m
+test_firewall.py::test_established_connections [32mPASSED[0m[32m                                                                                                    [ 88%][0m
+test_firewall.py::test_no_wide_open_ssh [32mPASSED[0m[32m                                                                                                           [100%][0m
+
+[32m====================================================================== [32m[1m9 passed[0m[32m in 0.01s[0m[32m =======================================================================[0m
+[?2004hroot@53aca36403bc:/app# 

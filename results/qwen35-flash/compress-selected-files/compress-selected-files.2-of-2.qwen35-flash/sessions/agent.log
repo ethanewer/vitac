@@ -1,0 +1,9 @@
+[?2004hroot@e87d400e8efa:/app# find /app/data -name '*.csv' -type f; tmux wait -S done
+[?2004l/app/data/users.csv
+/app/data/orders.csv
+/app/data/products.csv
+[?2004hroot@e87d400e8efa:/app# tar -czvf /app/output/archive.tar.gz -C /app/data users.csv orders.csv products.csv; tmux wait -S done
+[?2004lusers.csv
+orders.csv
+products.csv
+[?2004hroot@e87d400e8efa:/app# 

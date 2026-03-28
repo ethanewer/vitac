@@ -1,0 +1,47 @@
+[?2004hroot@18eafc92ac0e:/app# run-code parse_csv.py; tmux wait -S done
+[?2004lTraceback (most recent call last):
+  File "/app/src/parse_csv.py", line 22, in <module>
+    records = parse_csv("/app/data/input.csv")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/parse_csv.py", line 16, in parse_csv
+    record[col] = values[i]  # BUG 2: IndexError on empty lines
+                  ~~~~~~^^^
+IndexError: list index out of range
+[?2004hroot@18eafc92ac0e:/app# cat << 'EOF' | apply-fix parse_csv.py; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@18eafc92ac0e:/app# printf '%s\n' '#!/usr/bin/env python3' 'import csv' 'import json' '' 'def parse_csv(filepath):' '    records = []' '    with open(filepatth, newline="") as f:' '        reader = csv.reader(f)' '        header = next(reader)' '        for row in reader:' '            if not row:' '                ccontinue' '            if len(row) != len(header):' '                continue' '            record = {}' '            for i, col in enumerate(header):' '                 record[col] = row[i]' '            records.append(record)' '    return records' '' 'if __name__ == "__main__":' '    records = parse_csv("/app/data/inpuut.csv")' '    with open("/app/output/parsed.json", "w") as f:' '        json.dump(records, f, indent=2)' > /tmp/fixed.py; tmux wait -S done
+[?2004l[?2004hroot@18eafc92ac0e:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@18eafc92ac0e:/app# cat /tmp/fixed.py | apply-fix parse_csv.py; tmux wait -S done
+[?2004l[?2004hroot@18eafc92ac0e:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@18eafc92ac0e:/app# run-code parse_csv.py; tmux wait -S done
+[?2004l[?2004hroot@18eafc92ac0e:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@18eafc92ac0e:/app# ls -la /app/output/; tmux wait -S done
+[?2004ltotal 16
+drwxrwxrwx 1 root root 4096 Mar 28 21:16 [0m[34;42m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:15 [01;34m..[0m
+-rw-r--r-- 1 root root  283 Mar 28 21:16 parsed.json
+[?2004hroot@18eafc92ac0e:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@18eafc92ac0e:/app# cat /app/output/parsed.json; tmux wait -S done
+[?2004l[
+  {
+    "name": "Alice",
+    "age": "30",
+    "city": "Portland"
+  },
+  {
+    "name": "Smith, John",
+    "age": "45",
+    "city": "Denver"
+  },
+  {
+    "name": "Bob",
+    "age": "28",
+    "city": "Seattle"
+  },
+  {
+    "name": "Charlie",
+    "age": "35",
+    "city": "Austin"
+  }
+][?2004hroot@18eafc92ac0e:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@18eafc92ac0e:/app# 

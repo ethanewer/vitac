@@ -1,0 +1,63 @@
+[?2004hroot@e6c0c688b280:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
+[?2004l[?2004hroot@e6c0c688b280:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 6 items                                                                                                                                              [0m
+
+test_rename.py::test_report_renamed [32mPASSED[0m[32m                                                                                                               [ 16%][0m
+test_rename.py::test_data_renamed [31mFAILED[0m[31m                                                                                                                 [ 33%][0m
+test_rename.py::test_log_renamed [32mPASSED[0m[31m                                                                                                                  [ 50%][0m
+test_rename.py::test_notes_unchanged [31mFAILED[0m[31m                                                                                                              [ 66%][0m
+test_rename.py::test_old_names_gone [32mPASSED[0m[31m                                                                                                               [ 83%][0m
+test_rename.py::test_correct_file_count [31mFAILED[0m[31m                                                                                                           [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m______________________________________________________________________ test_data_renamed _______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_data_renamed[39;49;00m():[90m[39;49;00m
+>       [94massert[39;49;00m os.path.exists(os.path.join(FILES_DIR, [33m"[39;49;00m[33m2026-03-20_data.csv[39;49;00m[33m"[39;49;00m)), \
+            [33mf[39;49;00m[33m"[39;49;00m[33mExpected 2026-03-20_data.csv in [39;49;00m[33m{[39;49;00mos.listdir(FILES_DIR)[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Expected 2026-03-20_data.csv in ['2026-03-20_data_.csv', '2026-03-28_log_backup.log', '2026-03-15_report_final.txt'][0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = <function exists at 0xffffa6d9b560>('/app/data/files/2026-03-20_data.csv')[0m
+[1m[31mE        +    where <function exists at 0xffffa6d9b560> = <module 'posixpath' (frozen)>.exists[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+[1m[31mE        +    and   '/app/data/files/2026-03-20_data.csv' = <function join at 0xffffa6b60c20>('/app/data/files', '2026-03-20_data.csv')[0m
+[1m[31mE        +      where <function join at 0xffffa6b60c20> = <module 'posixpath' (frozen)>.join[0m
+[1m[31mE        +        where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_rename.py[0m:10: AssertionError
+[31m[1m_____________________________________________________________________ test_notes_unchanged _____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_notes_unchanged[39;49;00m():[90m[39;49;00m
+>       [94massert[39;49;00m os.path.exists(os.path.join(FILES_DIR, [33m"[39;49;00m[33mnotes.txt[39;49;00m[33m"[39;49;00m)), \
+            [33m"[39;49;00m[33mnotes.txt should remain unchanged[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: notes.txt should remain unchanged[0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = <function exists at 0xffffa6d9b560>('/app/data/files/notes.txt')[0m
+[1m[31mE        +    where <function exists at 0xffffa6d9b560> = <module 'posixpath' (frozen)>.exists[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+[1m[31mE        +    and   '/app/data/files/notes.txt' = <function join at 0xffffa6b60c20>('/app/data/files', 'notes.txt')[0m
+[1m[31mE        +      where <function join at 0xffffa6b60c20> = <module 'posixpath' (frozen)>.join[0m
+[1m[31mE        +        where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_rename.py[0m:18: AssertionError
+[31m[1m___________________________________________________________________ test_correct_file_count ____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_correct_file_count[39;49;00m():[90m[39;49;00m
+        files = [f [94mfor[39;49;00m f [95min[39;49;00m os.listdir(FILES_DIR) [94mif[39;49;00m os.path.isfile(os.path.join(FILES_DIR, f))][90m[39;49;00m
+>       [94massert[39;49;00m [96mlen[39;49;00m(files) == [94m4[39;49;00m, [33mf[39;49;00m[33m"[39;49;00m[33mExpected 4 files, got [39;49;00m[33m{[39;49;00m[96mlen[39;49;00m(files)[33m}[39;49;00m[33m: [39;49;00m[33m{[39;49;00mfiles[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Expected 4 files, got 3: ['2026-03-20_data_.csv', '2026-03-28_log_backup.log', '2026-03-15_report_final.txt'][0m
+[1m[31mE       assert 3 == 4[0m
+[1m[31mE        +  where 3 = len(['2026-03-20_data_.csv', '2026-03-28_log_backup.log', '2026-03-15_report_final.txt'])[0m
+
+[1m[31mtest_rename.py[0m:28: AssertionError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_rename.py::[1mtest_data_renamed[0m - AssertionError: Expected 2026-03-20_data.csv in ['2026-03-20_data_.csv', '2026-03-28_log_backup.log', '2026-03-15_report_final.txt']
+[31mFAILED[0m test_rename.py::[1mtest_notes_unchanged[0m - AssertionError: notes.txt should remain unchanged
+[31mFAILED[0m test_rename.py::[1mtest_correct_file_count[0m - AssertionError: Expected 4 files, got 3: ['2026-03-20_data_.csv', '2026-03-28_log_backup.log', '2026-03-15_report_final.txt']
+[31m================================================================= [31m[1m3 failed[0m, [32m3 passed[0m[31m in 0.02s[0m[31m ==================================================================[0m
+[?2004hroot@e6c0c688b280:/app# 

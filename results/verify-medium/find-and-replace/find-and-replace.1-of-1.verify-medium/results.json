@@ -1,0 +1,42 @@
+{
+  "id": "93dd55ab-94c8-4d1e-a9b3-4b6e22bd44b0",
+  "trial_name": "find-and-replace.1-of-1.verify-medium",
+  "task_id": "find-and-replace",
+  "instruction": "Perform a find-and-replace operation across all .txt files in /app/docs/.\nAsk your collaborator what text to find and what to replace it with.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_replace.py::test_no_acme_remaining": "passed",
+    "test_replace.py::test_globex_in_readme": "passed",
+    "test_replace.py::test_globex_in_contact": "passed",
+    "test_replace.py::test_globex_in_handbook": "passed",
+    "test_replace.py::test_notes_unchanged": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 0.8571428571428572,
+    "overall": 0.9785714285714285,
+    "details": {
+      "topics_matched": [
+        "find_replace"
+      ],
+      "topics_expected": [
+        "find_replace"
+      ],
+      "voice_turns_used": 2,
+      "terminal_commands_count": 3,
+      "max_voice_turns": 8
+    }
+  },
+  "total_input_tokens": 3727,
+  "total_output_tokens": 957,
+  "trial_started_at": "2026-03-28T20:14:21.844531+00:00",
+  "trial_ended_at": "2026-03-28T20:14:40.682960+00:00",
+  "agent_started_at": "2026-03-28T20:14:23.575765+00:00",
+  "agent_ended_at": "2026-03-28T20:14:37.349805+00:00",
+  "test_started_at": "2026-03-28T20:14:37.349834+00:00",
+  "test_ended_at": "2026-03-28T20:14:39.212075+00:00",
+  "composite_score": 0.9785714285714285
+}

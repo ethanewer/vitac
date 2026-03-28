@@ -1,0 +1,47 @@
+[?2004hroot@10c59539c774:/app# cat /app/config/settings.json; tmux wait -S done
+[?2004l{
+  "app_name": "myservice",
+  "port": 3000,
+  "debug": true,
+  "log_level": "info",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "mydb"
+  }
+}
+[?2004hroot@10c59539c774:/app# cp /app/config/settings.json /app/config/settings.json.bak; tmux wait -S done
+[?2004l[?2004hroot@10c59539c774:/app# jq '.port=8080 | .debug=false | .database.host="db.prod.internal"' /app/config/settings.json > /app/config/settings.json.tmp && mv /app/cconfig/settings.json.tmp /app/config/settings.json; tmux wait -S done
+[?2004l[?2004hroot@10c59539c774:/app# jq '.port=8080 | .debug=false | .database.host="db.prod.internal"' /app/config/settings.json; tmux wait -S done
+[?2004l[1;39m{
+  [0m[1;34m"app_name"[0m[1;39m: [0m[0;32m"myservice"[0m[1;39m,
+  [0m[1;34m"port"[0m[1;39m: [0m[0;39m8080[0m[1;39m,
+  [0m[1;34m"debug"[0m[1;39m: [0m[0;39mfalse[0m[1;39m,
+  [0m[1;34m"log_level"[0m[1;39m: [0m[0;32m"info"[0m[1;39m,
+  [0m[1;34m"database"[0m[1;39m: [0m[1;39m{
+    [0m[1;34m"host"[0m[1;39m: [0m[0;32m"db.prod.internal"[0m[1;39m,
+    [0m[1;34m"port"[0m[1;39m: [0m[0;39m5432[0m[1;39m,
+    [0m[1;34m"name"[0m[1;39m: [0m[0;32m"mydb"[0m[1;39m
+  [1;39m}[0m[1;39m
+[1;39m}[0m
+[?2004hroot@10c59539c774:/app# ls -l /app/config/settings.json.bak /app/config/settings.json; tmux wait -S done
+[?2004l-rw-r--r-- 1 root root 177 Mar 28 19:42 /app/config/settings.json
+-rw-r--r-- 1 root root 169 Mar 28 19:42 [0m[00;90m/app/config/settings.json.bak[0m
+[?2004hroot@10c59539c774:/app# diff -u /app/config/settings.json.bak /app/config/settings.json || true; tmux wait -S done
+[?2004l--- /app/config/settings.json.bak	2026-03-28 19:42:07.398635002 +0000
++++ /app/config/settings.json	2026-03-28 19:42:09.404635003 +0000
+@@ -1,10 +1,10 @@
+ {
+   "app_name": "myservice",
+-  "port": 3000,
+-  "debug": true,
++  "port": 8080,
++  "debug": false,
+   "log_level": "info",
+   "database": {
+-    "host": "localhost",
++    "host": "db.prod.internal",
+     "port": 5432,
+     "name": "mydb"
+   }
+[?2004hroot@10c59539c774:/app# 

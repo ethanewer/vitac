@@ -1,0 +1,47 @@
+[?2004hroot@4248b5b8d9ea:/app# cat /app/config/settings.json; tmux wait -S done
+[?2004l{
+  "app_name": "myservice",
+  "port": 3000,
+  "debug": true,
+  "log_level": "info",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "mydb"
+  }
+}
+[?2004hroot@4248b5b8d9ea:/app# cat > /app/config/settings.json << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@4248b5b8d9ea:/app# sed -i 's/"port": 3000/"port": 8080/' /app/config/settings.json; tmux wait -S done
+[?2004l[?2004hroot@4248b5b8d9ea:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@4248b5b8d9ea:/app# cat /app/config/settings.json; tmux wait -S done
+[?2004l{
+  "app_name": "myservice",
+  "port": 8080,
+  "debug": true,
+  "log_level": "info",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "mydb"
+  }
+}
+[?2004hroot@4248b5b8d9ea:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@4248b5b8d9ea:/app# sed -i 's/"debug": true/"debug": false/' /app/config/settings.json; tmux wait -S done
+[?2004l[?2004hroot@4248b5b8d9ea:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@4248b5b8d9ea:/app# sed -i 's/"host": "localhost"/"host": "db.prod.internal"/' /app/config/settings.json; tmux wait -S done
+[?2004l[?2004hroot@4248b5b8d9ea:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@4248b5b8d9ea:/app# cat /app/config/settings.json; tmux wait -S done
+[?2004l{
+  "app_name": "myservice",
+  "port": 8080,
+  "debug": false,
+  "log_level": "info",
+  "database": {
+    "host": "db.prod.internal",
+    "port": 5432,
+    "name": "mydb"
+  }
+}
+[?2004hroot@4248b5b8d9ea:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@4248b5b8d9ea:/app# 

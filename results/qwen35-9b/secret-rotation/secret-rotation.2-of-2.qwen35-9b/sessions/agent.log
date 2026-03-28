@@ -1,0 +1,63 @@
+[?2004hroot@7aa2c87d0db5:/app# grep -r -l -i 'secret\|password\|api_key\|token' /app/config/ /app/services/ /app/env/ 2>/dev/null || echo "No matches found"; tmux wait  -S done
+[?2004l[35m[K/app/config/api.conf[m[K
+[35m[K/app/config/database.yml[m[K
+[35m[K/app/services/auth/config.json[m[K
+[35m[K/app/services/worker/env[m[K
+[35m[K/app/env/.env.production[m[K
+[?2004hroot@7aa2c87d0db5:/app# grep -rn -i 'secret\|password\|api_key\|token' /app/config/ /app/services/ /app/env/ 2>/dev/null | grep -v 'Binary\|#\|\\\$' | head -100;; tmux wait -S done
+[?2004l/app/config/api.conf:2:API_KEY=sk-old-key-abc123
+/app/config/database.yml:4:  password: oldpass123
+/app/services/auth/config.json:2:  "jwt_secret": "jwt-secret-old-value",
+/app/services/auth/config.json:3:  "token_expiry": 3600,
+/app/services/worker/env:2:DB_PASSWORD=oldpass123
+/app/env/.env.production:2:DB_PASSWORD=oldpass123
+/app/env/.env.production:3:API_KEY=sk-old-key-abc123
+/app/env/.env.production:4:JWT_SECRET=jwt-secret-old-value
+[?2004hroot@7aa2c87d0db5:/app# cat /app/config/api.conf /app/config/database.yml /app/services/auth/config.json /app/services/worker/env /app/env/.env.production; tmux  wait -S done
+[?2004lAPI_ENDPOINT=https://api.example.com
+API_KEY=sk-old-key-abc123
+API_TIMEOUT=30
+database:
+  host: db.internal
+  port: 5432
+  password: oldpass123
+  name: production
+{
+  "jwt_secret": "jwt-secret-old-value",
+  "token_expiry": 3600,
+  "issuer": "myapp"
+}
+WORKER_THREADS=4
+DB_PASSWORD=oldpass123
+QUEUE_URL=redis://cache.internal:6379
+APP_ENV=production
+DB_PASSWORD=oldpass123
+API_KEY=sk-old-key-abc123
+JWT_SECRET=jwt-secret-old-value
+LOG_LEVEL=warn
+[?2004hroot@7aa2c87d0db5:/app# sed -i 's/sk-old-key-abc123/sk-new-key-xyz789/g' /app/config/api.conf /app/env/.env.production && sed -i 's/oldpass123/Kx9mP2qL7nW/g' /appp/config/database.yml /app/services/worker/env /app/env/.env.production && sed -i 's/jwt-secret-old-value/hN4kQ8wR2vBj5mT/g' /app/services/auth/config.json /appp/env/.env.production; tmux wait -S done
+[?2004l[?2004hroot@7aa2c87d0db5:/app# cat /app/config/api.conf /app/config/database.yml /app/services/auth/config.json /app/services/worker/env /app/env/.env.production; tmux  wait -S done
+[?2004lAPI_ENDPOINT=https://api.example.com
+API_KEY=sk-new-key-xyz789
+API_TIMEOUT=30
+database:
+  host: db.internal
+  port: 5432
+  password: Kx9mP2qL7nW
+  name: production
+{
+  "jwt_secret": "hN4kQ8wR2vBj5mT",
+  "token_expiry": 3600,
+  "issuer": "myapp"
+}
+WORKER_THREADS=4
+DB_PASSWORD=Kx9mP2qL7nW
+QUEUE_URL=redis://cache.internal:6379
+APP_ENV=production
+DB_PASSWORD=Kx9mP2qL7nW
+API_KEY=sk-new-key-xyz789
+JWT_SECRET=hN4kQ8wR2vBj5mT
+LOG_LEVEL=warn
+[?2004hroot@7aa2c87d0db5:/app# grep -rn 'sk-old-key-abc123\|oldpass123\|jwt-secret-old-value' /app/config/ /app/services/ /app/env/ 2>/dev/null || echo "All old secretss successfully replaced"; tmux wait -S done
+[?2004lAll old secrets successfully replaced
+[?2004hroot@7aa2c87d0db5:/app# 

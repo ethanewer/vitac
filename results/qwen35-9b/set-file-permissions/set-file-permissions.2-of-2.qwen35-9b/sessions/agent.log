@@ -1,0 +1,6 @@
+[?2004hroot@671ebe256ead:/app# ls -l /app/data/report.csv; tmux wait -S done
+[?2004l---------- 1 root root 14 Mar 28 19:19 /app/data/report.csv
+[?2004hroot@671ebe256ead:/app# chmod 750 /app/data/report.csv; tmux wait -S done
+[?2004l[?2004hroot@671ebe256ead:/app# ls -l /app/data/report.csv; tmux wait -S done
+[?2004l-rwxr-x--- 1 root root 14 Mar 28 19:19 [0m[01;32m/app/data/report.csv[0m
+[?2004hroot@671ebe256ead:/app# 

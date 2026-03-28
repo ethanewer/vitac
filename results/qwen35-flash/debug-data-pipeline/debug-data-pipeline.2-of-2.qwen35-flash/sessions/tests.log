@@ -1,0 +1,76 @@
+[?2004hroot@0300bbdf2872:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
+[?2004l[?2004hroot@0300bbdf2872:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 6 items                                                                                                                                              [0m
+
+test_pipeline.py::test_output_exists [31mFAILED[0m[31m                                                                                                              [ 16%][0m
+test_pipeline.py::test_record_count [31mFAILED[0m[31m                                                                                                               [ 33%][0m
+test_pipeline.py::test_dates_are_iso [31mFAILED[0m[31m                                                                                                              [ 50%][0m
+test_pipeline.py::test_amounts_are_numbers [31mFAILED[0m[31m                                                                                                        [ 66%][0m
+test_pipeline.py::test_first_record_correct [31mFAILED[0m[31m                                                                                                       [ 83%][0m
+test_pipeline.py::test_amounts_correct [31mFAILED[0m[31m                                                                                                            [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m______________________________________________________________________ test_output_exists ______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_output_exists[39;49;00m():[90m[39;49;00m
+>       [94massert[39;49;00m os.path.exists([33m"[39;49;00m[33m/app/output/transformed.json[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
+[1m[31mE       AssertionError: assert False[0m
+[1m[31mE        +  where False = <function exists at 0xffff915bb560>('/app/output/transformed.json')[0m
+[1m[31mE        +    where <function exists at 0xffff915bb560> = <module 'posixpath' (frozen)>.exists[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_pipeline.py[0m:5: AssertionError
+[31m[1m______________________________________________________________________ test_record_count _______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_record_count[39;49;00m():[90m[39;49;00m
+>       [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/output/transformed.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       FileNotFoundError: [Errno 2] No such file or directory: '/app/output/transformed.json'[0m
+
+[1m[31mtest_pipeline.py[0m:8: FileNotFoundError
+[31m[1m______________________________________________________________________ test_dates_are_iso ______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_dates_are_iso[39;49;00m():[90m[39;49;00m
+>       [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/output/transformed.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       FileNotFoundError: [Errno 2] No such file or directory: '/app/output/transformed.json'[0m
+
+[1m[31mtest_pipeline.py[0m:13: FileNotFoundError
+[31m[1m___________________________________________________________________ test_amounts_are_numbers ___________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_amounts_are_numbers[39;49;00m():[90m[39;49;00m
+>       [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/output/transformed.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       FileNotFoundError: [Errno 2] No such file or directory: '/app/output/transformed.json'[0m
+
+[1m[31mtest_pipeline.py[0m:20: FileNotFoundError
+[31m[1m__________________________________________________________________ test_first_record_correct ___________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_first_record_correct[39;49;00m():[90m[39;49;00m
+>       [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/output/transformed.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       FileNotFoundError: [Errno 2] No such file or directory: '/app/output/transformed.json'[0m
+
+[1m[31mtest_pipeline.py[0m:27: FileNotFoundError
+[31m[1m_____________________________________________________________________ test_amounts_correct _____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_amounts_correct[39;49;00m():[90m[39;49;00m
+>       [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/output/transformed.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       FileNotFoundError: [Errno 2] No such file or directory: '/app/output/transformed.json'[0m
+
+[1m[31mtest_pipeline.py[0m:37: FileNotFoundError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_pipeline.py::[1mtest_output_exists[0m - AssertionError: assert False
+[31mFAILED[0m test_pipeline.py::[1mtest_record_count[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/output/transformed.json'
+[31mFAILED[0m test_pipeline.py::[1mtest_dates_are_iso[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/output/transformed.json'
+[31mFAILED[0m test_pipeline.py::[1mtest_amounts_are_numbers[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/output/transformed.json'
+[31mFAILED[0m test_pipeline.py::[1mtest_first_record_correct[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/output/transformed.json'
+[31mFAILED[0m test_pipeline.py::[1mtest_amounts_correct[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/output/transformed.json'
+[31m====================================================================== [31m[1m6 failed[0m[31m in 0.02s[0m[31m =======================================================================[0m
+[?2004hroot@0300bbdf2872:/app# 

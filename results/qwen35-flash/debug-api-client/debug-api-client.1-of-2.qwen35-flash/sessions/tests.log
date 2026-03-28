@@ -1,0 +1,52 @@
+[?2004hroot@0760b6039c4f:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
+[?2004l[?2004hroot@0760b6039c4f:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 4 items                                                                                                                                              [0m
+
+test_api_client.py::test_output_exists [32mPASSED[0m[32m                                                                                                            [ 25%][0m
+test_api_client.py::test_three_records [31mFAILED[0m[31m                                                                                                            [ 50%][0m
+test_api_client.py::test_record_fields [31mFAILED[0m[31m                                                                                                            [ 75%][0m
+test_api_client.py::test_correct_data [31mFAILED[0m[31m                                                                                                             [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m______________________________________________________________________ test_three_records ______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_three_records[39;49;00m():[90m[39;49;00m
+        [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/output/api_results.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+            results = json.load(f)[90m[39;49;00m
+>       [94massert[39;49;00m [96mlen[39;49;00m(results) == [94m3[39;49;00m, [33mf[39;49;00m[33m"[39;49;00m[33mExpected 3 records, got [39;49;00m[33m{[39;49;00m[96mlen[39;49;00m(results)[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Expected 3 records, got 2[0m
+[1m[31mE       assert 2 == 3[0m
+[1m[31mE        +  where 2 = len({'results': [{'id': 1, 'name': 'Alpha', 'value': 100}, {'id': 2, 'name': 'Beta', 'value': 200}, {'id': 3, 'name': 'Gamma', 'value': 300}], 'total': 3})[0m
+
+[1m[31mtest_api_client.py[0m:10: AssertionError
+[31m[1m______________________________________________________________________ test_record_fields ______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_record_fields[39;49;00m():[90m[39;49;00m
+        [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/output/api_results.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+            results = json.load(f)[90m[39;49;00m
+        [94mfor[39;49;00m r [95min[39;49;00m results:[90m[39;49;00m
+>           [94massert[39;49;00m [33m"[39;49;00m[33mid[39;49;00m[33m"[39;49;00m [95min[39;49;00m r [95mand[39;49;00m [33m"[39;49;00m[33mname[39;49;00m[33m"[39;49;00m [95min[39;49;00m r [95mand[39;49;00m [33m"[39;49;00m[33mvalue[39;49;00m[33m"[39;49;00m [95min[39;49;00m r[90m[39;49;00m
+[1m[31mE           AssertionError: assert ('id' in 'results')[0m
+
+[1m[31mtest_api_client.py[0m:16: AssertionError
+[31m[1m______________________________________________________________________ test_correct_data _______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_correct_data[39;49;00m():[90m[39;49;00m
+        [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/output/api_results.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+            results = json.load(f)[90m[39;49;00m
+>       names = [r[[33m"[39;49;00m[33mname[39;49;00m[33m"[39;49;00m] [94mfor[39;49;00m r [95min[39;49;00m results][90m[39;49;00m
+                 ^^^^^^^^^[90m[39;49;00m
+[1m[31mE       TypeError: string indices must be integers, not 'str'[0m
+
+[1m[31mtest_api_client.py[0m:21: TypeError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_api_client.py::[1mtest_three_records[0m - AssertionError: Expected 3 records, got 2
+[31mFAILED[0m test_api_client.py::[1mtest_record_fields[0m - AssertionError: assert ('id' in 'results')
+[31mFAILED[0m test_api_client.py::[1mtest_correct_data[0m - TypeError: string indices must be integers, not 'str'
+[31m================================================================= [31m[1m3 failed[0m, [32m1 passed[0m[31m in 0.02s[0m[31m ==================================================================[0m
+[?2004hroot@0760b6039c4f:/app# 

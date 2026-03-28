@@ -1,0 +1,70 @@
+instruction: |-
+  There is a batch file renaming script at /app/src/rename.py that renames files in /app/data/files/ to add a date prefix in YYYY-MM-DD format.
+  Run it with: run-code rename.py
+  The script has bugs — some files may end up in the wrong place or not be renamed correctly.
+  If the data files get corrupted or moved, run: restore-data
+  You cannot read the source code directly (it's permission-restricted).
+  Ask your collaborator for help diagnosing and fixing the bugs.
+  Apply fixes using: cat fixed.py | apply-fix rename.py
+  After fixing, run the script again to verify all files are correctly renamed in /app/data/files/.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "medium"
+category: "debugging"
+tags: ["voice-interaction", "medium", "runner-editor", "python"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are a code reviewer helping debug a file renaming script. The runner cannot read the source code.
+
+  Here is the source code at /app/src/rename.py:
+
+  ```python
+  #!/usr/bin/env python3
+  """Batch rename files with date prefix."""
+  import os
+  import re
+
+  def rename_files(directory):
+      renamed = []
+      for filename in os.listdir(directory):
+          filepath = os.path.join(directory, filename)
+          if not os.path.isfile(filepath):
+              continue
+
+          # Extract date from filename
+          match = re.search(r'(\d+)', filename)
+          if match and len(match.group(1)) == 8:
+              date_str = match.group(1)
+              formatted_date = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
+
+              # Remove date from original name
+              base, ext = os.path.splitext(filename)
+              name_without_date = re.sub(r'_?\d{8}_?', '_', base).strip('_')
+              new_name = f"{formatted_date}_{name_without_date}{ext}"
+
+              os.rename(filepath, new_name)
+              renamed.append((filename, new_name))
+              print(f"Renamed: {filename} -> {new_name}")
+
+      return renamed
+
+  if __name__ == "__main__":
+      result = rename_files("/app/data/files/")
+      print(f"\nRenamed {len(result)} files")
+
+      # List directory after rename
+      print("\nFiles in /app/data/files/:")
+      for f in sorted(os.listdir("/app/data/files/")):
+          print(f"  {f}")
+  ```
+
+  The bugs are:
+  1. `os.rename(filepath, new_name)` doesn't include the directory in the destination path — renamed files end up in the current working directory instead of /app/data/files/. The fix is to use `os.rename(filepath, os.path.join(directory, new_name))`.
+  2. The regex `r'(\d+)'` is too greedy — it matches any run of digits, not specifically an 8-digit date. The fix is to use `r'(\d{8})'` to match exactly 8 digits, removing the `len(match.group(1)) == 8` check.
+
+  When the runner reports issues, help them identify which parts of the code are buggy and what the fix is. Guide them to write the corrected full file and apply it.
+  Answer concisely. Don't volunteer information not asked about.
+transcript_mode: "text_only"
+max_voice_turns: 20

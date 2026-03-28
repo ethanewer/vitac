@@ -1,0 +1,34 @@
+{
+  "id": "31d18b44-baff-47fa-b1bb-b9da4c049b8c",
+  "trial_name": "find-and-replace.2-of-2.qwen35-flash",
+  "task_id": "find-and-replace",
+  "instruction": "Perform a find-and-replace operation across all .txt files in /app/docs/.\nAsk your collaborator what text to find and what to replace it with.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_replace.py::test_no_acme_remaining": "passed",
+    "test_replace.py::test_globex_in_readme": "passed",
+    "test_replace.py::test_globex_in_contact": "passed",
+    "test_replace.py::test_globex_in_handbook": "passed",
+    "test_replace.py::test_notes_unchanged": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 1232,
+  "total_output_tokens": 85,
+  "trial_started_at": "2026-03-28T21:23:22.555971+00:00",
+  "trial_ended_at": "2026-03-28T21:23:30.889421+00:00",
+  "agent_started_at": "2026-03-28T21:23:23.303109+00:00",
+  "agent_ended_at": "2026-03-28T21:23:27.446448+00:00",
+  "test_started_at": "2026-03-28T21:23:27.446476+00:00",
+  "test_ended_at": "2026-03-28T21:23:29.502354+00:00",
+  "composite_score": 1.0
+}

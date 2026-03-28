@@ -1,0 +1,4 @@
+[?2004hroot@c55458b11e1c:/app# tar -czf /app/output/archive.tar.gz /app/data/*.csv; tmux wait -S done
+[?2004ltar: Removing leading `/' from member names
+tar: Removing leading `/' from hard link targets
+[?2004hroot@c55458b11e1c:/app# 

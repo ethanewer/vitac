@@ -1,0 +1,78 @@
+[?2004hroot@179f082ebab8:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
+[?2004l[?2004hroot@179f082ebab8:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 6 items                                                                                                                                              [0m
+
+test_rename.py::test_report_renamed [31mFAILED[0m[31m                                                                                                               [ 16%][0m
+test_rename.py::test_data_renamed [31mFAILED[0m[31m                                                                                                                 [ 33%][0m
+test_rename.py::test_log_renamed [31mFAILED[0m[31m                                                                                                                  [ 50%][0m
+test_rename.py::test_notes_unchanged [32mPASSED[0m[31m                                                                                                              [ 66%][0m
+test_rename.py::test_old_names_gone [31mFAILED[0m[31m                                                                                                               [ 83%][0m
+test_rename.py::test_correct_file_count [32mPASSED[0m[31m                                                                                                           [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m_____________________________________________________________________ test_report_renamed ______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_report_renamed[39;49;00m():[90m[39;49;00m
+>       [94massert[39;49;00m os.path.exists(os.path.join(FILES_DIR, [33m"[39;49;00m[33m2026-03-15_report_final.txt[39;49;00m[33m"[39;49;00m)), \
+            [33mf[39;49;00m[33m"[39;49;00m[33mExpected 2026-03-15_report_final.txt in [39;49;00m[33m{[39;49;00mos.listdir(FILES_DIR)[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Expected 2026-03-15_report_final.txt in ['report_20260315_final.txt', 'notes.txt', 'log_20260328_backup.log', 'data_20260320.csv'][0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = <function exists at 0xffff884eb560>('/app/data/files/2026-03-15_report_final.txt')[0m
+[1m[31mE        +    where <function exists at 0xffff884eb560> = <module 'posixpath' (frozen)>.exists[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+[1m[31mE        +    and   '/app/data/files/2026-03-15_report_final.txt' = <function join at 0xffff882b0c20>('/app/data/files', '2026-03-15_report_final.txt')[0m
+[1m[31mE        +      where <function join at 0xffff882b0c20> = <module 'posixpath' (frozen)>.join[0m
+[1m[31mE        +        where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_rename.py[0m:6: AssertionError
+[31m[1m______________________________________________________________________ test_data_renamed _______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_data_renamed[39;49;00m():[90m[39;49;00m
+>       [94massert[39;49;00m os.path.exists(os.path.join(FILES_DIR, [33m"[39;49;00m[33m2026-03-20_data.csv[39;49;00m[33m"[39;49;00m)), \
+            [33mf[39;49;00m[33m"[39;49;00m[33mExpected 2026-03-20_data.csv in [39;49;00m[33m{[39;49;00mos.listdir(FILES_DIR)[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Expected 2026-03-20_data.csv in ['report_20260315_final.txt', 'notes.txt', 'log_20260328_backup.log', 'data_20260320.csv'][0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = <function exists at 0xffff884eb560>('/app/data/files/2026-03-20_data.csv')[0m
+[1m[31mE        +    where <function exists at 0xffff884eb560> = <module 'posixpath' (frozen)>.exists[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+[1m[31mE        +    and   '/app/data/files/2026-03-20_data.csv' = <function join at 0xffff882b0c20>('/app/data/files', '2026-03-20_data.csv')[0m
+[1m[31mE        +      where <function join at 0xffff882b0c20> = <module 'posixpath' (frozen)>.join[0m
+[1m[31mE        +        where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_rename.py[0m:10: AssertionError
+[31m[1m_______________________________________________________________________ test_log_renamed _______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_log_renamed[39;49;00m():[90m[39;49;00m
+>       [94massert[39;49;00m os.path.exists(os.path.join(FILES_DIR, [33m"[39;49;00m[33m2026-03-28_log_backup.log[39;49;00m[33m"[39;49;00m)), \
+            [33mf[39;49;00m[33m"[39;49;00m[33mExpected 2026-03-28_log_backup.log in [39;49;00m[33m{[39;49;00mos.listdir(FILES_DIR)[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Expected 2026-03-28_log_backup.log in ['report_20260315_final.txt', 'notes.txt', 'log_20260328_backup.log', 'data_20260320.csv'][0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = <function exists at 0xffff884eb560>('/app/data/files/2026-03-28_log_backup.log')[0m
+[1m[31mE        +    where <function exists at 0xffff884eb560> = <module 'posixpath' (frozen)>.exists[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+[1m[31mE        +    and   '/app/data/files/2026-03-28_log_backup.log' = <function join at 0xffff882b0c20>('/app/data/files', '2026-03-28_log_backup.log')[0m
+[1m[31mE        +      where <function join at 0xffff882b0c20> = <module 'posixpath' (frozen)>.join[0m
+[1m[31mE        +        where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_rename.py[0m:14: AssertionError
+[31m[1m_____________________________________________________________________ test_old_names_gone ______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_old_names_gone[39;49;00m():[90m[39;49;00m
+        files = os.listdir(FILES_DIR)[90m[39;49;00m
+>       [94massert[39;49;00m [33m"[39;49;00m[33mreport_20260315_final.txt[39;49;00m[33m"[39;49;00m [95mnot[39;49;00m [95min[39;49;00m files, [33m"[39;49;00m[33mOld filename should be gone[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Old filename should be gone[0m
+[1m[31mE       assert 'report_20260315_final.txt' not in ['report_20260315_final.txt', 'notes.txt', 'log_20260328_backup.log', 'data_20260320.csv'][0m
+
+[1m[31mtest_rename.py[0m:23: AssertionError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_rename.py::[1mtest_report_renamed[0m - AssertionError: Expected 2026-03-15_report_final.txt in ['report_20260315_final.txt', 'notes.txt', 'log_20260328_backup.log', 'data_20260320.csv']
+[31mFAILED[0m test_rename.py::[1mtest_data_renamed[0m - AssertionError: Expected 2026-03-20_data.csv in ['report_20260315_final.txt', 'notes.txt', 'log_20260328_backup.log', 'data_20260320.csv']
+[31mFAILED[0m test_rename.py::[1mtest_log_renamed[0m - AssertionError: Expected 2026-03-28_log_backup.log in ['report_20260315_final.txt', 'notes.txt', 'log_20260328_backup.log', 'data_20260320.csv']
+[31mFAILED[0m test_rename.py::[1mtest_old_names_gone[0m - AssertionError: Old filename should be gone
+[31m================================================================= [31m[1m4 failed[0m, [32m2 passed[0m[31m in 0.02s[0m[31m ==================================================================[0m
+[?2004hroot@179f082ebab8:/app# 

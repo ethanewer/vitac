@@ -1,0 +1,75 @@
+{
+  "id": "8af3f0a5-e776-4e46-a3b4-bff3622decf6",
+  "results": [
+    {
+      "id": "8da26353-5856-419c-8e4e-9e163caadc1c",
+      "trial_name": "debug-file-processor.2-of-2.qwen35-9b-rerun",
+      "task_id": "debug-file-processor",
+      "instruction": "There is a batch file renaming script at /app/src/rename.py that renames files in /app/data/files/ to add a date prefix in YYYY-MM-DD format.\nRun it with: run-code rename.py\nThe script has bugs — some files may end up in the wrong place or not be renamed correctly.\nIf the data files get corrupted or moved, run: restore-data\nYou cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix rename.py\nAfter fixing, run the script again to verify all files are correctly renamed in /app/data/files/.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T22:27:19.402417+00:00",
+      "trial_ended_at": "2026-03-28T22:33:21.702963+00:00",
+      "agent_started_at": "2026-03-28T22:27:20.240011+00:00",
+      "agent_ended_at": "2026-03-28T22:33:20.266010+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "e477e04b-3f5d-4e5b-8fa8-541f06bf2f5a",
+      "trial_name": "debug-file-processor.1-of-2.qwen35-9b-rerun",
+      "task_id": "debug-file-processor",
+      "instruction": "There is a batch file renaming script at /app/src/rename.py that renames files in /app/data/files/ to add a date prefix in YYYY-MM-DD format.\nRun it with: run-code rename.py\nThe script has bugs — some files may end up in the wrong place or not be renamed correctly.\nIf the data files get corrupted or moved, run: restore-data\nYou cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix rename.py\nAfter fixing, run the script again to verify all files are correctly renamed in /app/data/files/.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_rename.py::test_report_renamed": "passed",
+        "test_rename.py::test_data_renamed": "passed",
+        "test_rename.py::test_log_renamed": "passed",
+        "test_rename.py::test_notes_unchanged": "passed",
+        "test_rename.py::test_old_names_gone": "passed",
+        "test_rename.py::test_correct_file_count": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 391634,
+      "total_output_tokens": 3118,
+      "trial_started_at": "2026-03-28T22:27:19.402235+00:00",
+      "trial_ended_at": "2026-03-28T22:33:25.433610+00:00",
+      "agent_started_at": "2026-03-28T22:27:20.239154+00:00",
+      "agent_ended_at": "2026-03-28T22:33:11.662068+00:00",
+      "test_started_at": "2026-03-28T22:33:11.662091+00:00",
+      "test_ended_at": "2026-03-28T22:33:23.963000+00:00",
+      "composite_score": 1.0
+    }
+  ],
+  "n_resolved": 1,
+  "accuracy": 0.5,
+  "avg_voice_score": 1.0,
+  "resolved_ids": [
+    "debug-file-processor"
+  ],
+  "avg_composite_score": 0.5
+}

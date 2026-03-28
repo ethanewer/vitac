@@ -1,0 +1,28 @@
+{
+  "id": "8d956664-572c-4dd5-b486-03ab22d3b1c7",
+  "trial_name": "debug-calculator.1-of-2.qwen35-flash",
+  "task_id": "debug-calculator",
+  "instruction": "Run the calculator tests with: run-code calculator.py --test\nSome tests will produce wrong results. You cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed_code.py | apply-fix calculator.py\nAfter fixing, run the tests again to verify.\nThe test results are written to /app/output/results.json.",
+  "is_resolved": false,
+  "failure_mode": "agent_timeout",
+  "parser_results": null,
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "trial_started_at": "2026-03-28T21:14:02.814725+00:00",
+  "trial_ended_at": "2026-03-28T21:20:05.734480+00:00",
+  "agent_started_at": "2026-03-28T21:14:04.191324+00:00",
+  "agent_ended_at": "2026-03-28T21:20:04.224995+00:00",
+  "test_started_at": "",
+  "test_ended_at": "",
+  "composite_score": 0.0
+}

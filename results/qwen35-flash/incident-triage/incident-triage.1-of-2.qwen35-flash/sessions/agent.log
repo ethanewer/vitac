@@ -1,0 +1,18 @@
+[?2004hroot@bdb23b98e2c5:/app# cat /app/logs/service-a.log /app/logs/service-b.log /app/logs/service-c.log; tmux wait -S done
+[?2004l[2026-03-28 09:00:01] ERROR: Connection refused on port 5432
+[2026-03-28 09:00:02] ERROR: Failed to connect to database
+[2026-03-28 09:00:03] WARN: Retrying connection...
+[2026-03-28 09:00:04] ERROR: Connection refused on port 5432
+[2026-03-28 09:00:01] WARN: Disk space critically low: /app/cache/ using 95%
+[2026-03-28 09:00:02] ERROR: Cannot write to cache
+[2026-03-28 09:00:03] INFO: Cache write failed, falling back to memory
+[2026-03-28 09:00:01] ERROR: SSL certificate expired: /app/certs/active/server.pem
+[2026-03-28 09:00:02] ERROR: TLS handshake failed
+[2026-03-28 09:00:03] WARN: Connections being rejected
+[?2004hroot@bdb23b98e2c5:/app# sed -i 's/port=5432/port=5433/' /app/config/db.conf && echo "Service A fix applied: port changed to 5433"; tmux wait -S done
+[?2004lService A fix applied: port changed to 5433
+[?2004hroot@bdb23b98e2c5:/app# find /app/cache/ -name "*.tmp" -mtime +0 -delete && echo "Service B fix applied: old .tmp files deleted"; tmux wait -S done
+[?2004lService B fix applied: old .tmp files deleted
+[?2004hroot@bdb23b98e2c5:/app# cp /app/certs/renewed/server.pem /app/certs/active/server.pem && echo "Service C fix applied: renewed certificate deployed"; tmux wait -SS done
+[?2004lService C fix applied: renewed certificate deployed
+[?2004hroot@bdb23b98e2c5:/app# 

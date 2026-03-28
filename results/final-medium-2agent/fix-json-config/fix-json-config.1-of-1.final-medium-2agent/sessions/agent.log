@@ -1,0 +1,31 @@
+[?2004hroot@74fce17fdc7b:/app# ls -l /app/config/settings.json && cat /app/config/settings.json; tmux wait -S done
+[?2004l-rw-r--r-- 1 root root 169 Mar 28 19:30 /app/config/settings.json
+{
+  "app_name": "myservice",
+  "port": 3000,
+  "debug": true,
+  "log_level": "info",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "mydb"
+  }
+}
+[?2004hroot@74fce17fdc7b:/app# jq --version; tmux wait -S done
+[?2004ljq-1.7
+[?2004hroot@74fce17fdc7b:/app# cp /app/config/settings.json /app/config/settings.json.bak && jq '.port=8080 | .debug=false | .database.host="db.prod.internal"' /app/connfig/settings.json > /app/config/settings.json.tmp && mv /app/config/settings.json.tmp /app/config/settings.json; tmux wait -S done
+[?2004l[?2004hroot@74fce17fdc7b:/app# cat /app/config/settings.json && ls -l /app/config/settings.json /app/config/settings.json.bak; tmux wait -S done
+[?2004l{
+  "app_name": "myservice",
+  "port": 8080,
+  "debug": false,
+  "log_level": "info",
+  "database": {
+    "host": "db.prod.internal",
+    "port": 5432,
+    "name": "mydb"
+  }
+}
+-rw-r--r-- 1 root root 177 Mar 28 20:21 /app/config/settings.json
+-rw-r--r-- 1 root root 169 Mar 28 20:21 [0m[00;90m/app/config/settings.json.bak[0m
+[?2004hroot@74fce17fdc7b:/app# 

@@ -1,0 +1,35 @@
+[?2004hroot@ed8347e1df69:/app# git rev-parse --is-inside-work-tree && git remote -v && git status -sb && git branch --show-current && git fetch --all --prune && git braanch -a --sort=-committerdate | head -n 50 && git tag --list --sort=-version:refname | head -n 50; tmux wait -S done
+[?2004lfatal: not a git repository (or any of the parent directories): .git
+[?2004hroot@ed8347e1df69:/app# ls -la && find .. -maxdepth 4 -type d -name .git 2>/dev/null | head; tmux wait -S done
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 28 19:04 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:04 [01;34m..[0m
+drwxr-xr-x 3 root root 4096 Mar 28 19:04 [01;34mproject[0m
+drwxr-xr-x 7 root root 4096 Mar 28 19:04 [01;34mremote.git[0m
+../app/project/.git
+[?2004hroot@ed8347e1df69:/app# cd /app/project && git rev-parse --is-inside-work-tree && git remote -v && git status -sb && git branch --show-current && git fetch --alll --prune && git branch -a --sort=-committerdate | head -n 50 && git tag --list --sort=-version:refname | head -n 50; tmux wait -S done
+[?2004ltrue
+origin	/app/remote.git (fetch)
+origin	/app/remote.git (push)
+## [32mdevelop[m
+develop
+* develop
+  main
+  remotes/origin/develop
+  remotes/origin/main
+[?2004hroot@ed8347e1df69:/app/project# cd /app/project && git tag --list --sort=-version:refname | head -n 30 && git log -1 --oneline && git show -s --format='%H %D %s'' HEAD; tmux wait -S done
+[?2004l[?1h=[33m76babda[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m Add utilities[m
+[K[?1l>[?1h=76babda5e04dde6b5b08fd39d17edcd49c01fb4e HEAD -> develop, origin/develop Add utilities[m
+[K[?1l>[?2004hroot@ed8347e1df69:/app/project# cd /app/project && git tag --list --sort=-version:refname && git branch -vv; tmux wait -S done
+[?2004l[?1h=[K[?1l>[?1h=* [32mdevelop[m 76babda Add utilities[m
+  main   [m 8ce004c Initial commit[m
+[K[?1l>[?2004hroot@ed8347e1df69:/app/project# cd /app/project && git ls-remote --heads origin && git ls-remote --tags origin | head; tmux wait -S done
+[?2004l76babda5e04dde6b5b08fd39d17edcd49c01fb4e	refs/heads/develop
+8ce004cbc19dea5d89b0b844d7f5b8ac058d2bcd	refs/heads/main
+[?2004hroot@ed8347e1df69:/app/project# cd /app/project && git ls-remote --tags origin | tail -n +1 && git tag --list --sort=-version:refname; tmux wait -S done
+[?2004l[?1h=[K[?1l>[?2004hroot@ed8347e1df69:/app/project# cd /app/project && git fetch origin --prune && echo '== Remote release branches ==' && git branch -r | grep -E 'release' || true  && echo '== All remote branches ==' && git branch -r; tmux wait -S done
+[?2004l== Remote release branches ==
+== All remote branches ==
+[?1h=  [31morigin/develop[m[m
+  [31morigin/main[m[m
+[K[?1l>[?2004hroot@ed8347e1df69:/app/project# 

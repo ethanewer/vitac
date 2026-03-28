@@ -1,0 +1,64 @@
+instruction: |-
+  Query user order data from the database. Run `run-code query.py`.
+  The database is at /app/data/store.db and output goes to /app/output/user_orders.csv.
+  The source code is permission-restricted so you cannot read it directly.
+  Ask your collaborator for help diagnosing and fixing any bugs.
+  Apply fixes using: cat fixed.py | apply-fix query.py
+  After fixing, run the script again to verify the output.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "debugging"
+tags: ["voice-interaction", "medium", "runner-editor", "python"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are a code reviewer helping debug a database query script. The runner cannot read the source code.
+
+  Here is the source code at /app/src/query.py:
+
+  ```python
+  #!/usr/bin/env python3
+  """Query user orders from SQLite database."""
+  import csv
+  import sqlite3
+
+  def query_user_orders(db_path, output_path):
+      conn = sqlite3.connect(db_path)
+
+      # BUG 1: INNER JOIN excludes users without orders (should be LEFT JOIN)
+      # BUG 2: No GROUP BY - duplicates when user has multiple orders
+      query = """
+          SELECT u.name, u.email, COUNT(o.id) as order_count, COALESCE(SUM(o.amount), 0) as total_spent
+          FROM users u
+          INNER JOIN orders o ON u.id = o.user_id
+      """
+
+      cursor = conn.execute(query)
+      rows = cursor.fetchall()
+
+      with open(output_path, "w", newline="") as f:
+          writer = csv.writer(f)
+          writer.writerow(["name", "email", "order_count", "total_spent"])
+          for row in rows:
+              writer.writerow(row)
+
+      print(f"Wrote {len(rows)} rows to {output_path}")
+      for row in rows:
+          print(f"  {row}")
+
+      conn.close()
+
+  if __name__ == "__main__":
+      query_user_orders("/app/data/store.db", "/app/output/user_orders.csv")
+  ```
+
+  The bugs are:
+  1. INNER JOIN excludes users without orders — should be LEFT JOIN
+  2. Missing `GROUP BY u.id, u.name, u.email` — causes incorrect aggregation with duplicate rows
+
+  When the runner reports wrong results, help them identify which parts of the query are buggy and what the fix is. Guide them to write the corrected full file and apply it.
+  Answer concisely. Don't volunteer information not asked about.
+transcript_mode: "text_only"
+max_voice_turns: 20

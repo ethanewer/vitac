@@ -1,0 +1,16 @@
+[?2004hroot@76a5def22132:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
+[?2004l[?2004hroot@76a5def22132:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 4 items                                                                                                                                              [0m
+
+test_branch.py::test_release_branch_exists_locally [32mPASSED[0m[32m                                                                                                [ 25%][0m
+test_branch.py::test_release_branch_pushed_to_remote [32mPASSED[0m[32m                                                                                              [ 50%][0m
+test_branch.py::test_branch_based_on_develop [32mPASSED[0m[32m                                                                                                      [ 75%][0m
+test_branch.py::test_branch_name_correct [32mPASSED[0m[32m                                                                                                          [100%][0m
+
+[32m====================================================================== [32m[1m4 passed[0m[32m in 0.01s[0m[32m =======================================================================[0m
+[?2004hroot@76a5def22132:/app# 

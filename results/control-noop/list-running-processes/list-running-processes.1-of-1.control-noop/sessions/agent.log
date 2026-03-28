@@ -1,0 +1,14 @@
+[?2004hroot@2e6eae089026:/app# mkdir -p /app/output && awk -F',' 'NR>1{print $2}' /app/data/users.csv | sort -u > /app/output/usernames.txt; tmux wait -S done
+[?2004l[?2004hroot@2e6eae089026:/app# wc -l /app/output/usernames.txt && head -n 20 /app/output/usernames.txt && tail -n 20 /app/output/usernames.txt; tmux wait -S done
+[?2004l5 /app/output/usernames.txt
+alice
+bob
+charlie
+diana
+eve
+alice
+bob
+charlie
+diana
+eve
+[?2004hroot@2e6eae089026:/app# 

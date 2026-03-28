@@ -1,0 +1,64 @@
+instruction: |-
+  Transform CSV data to JSON format. Run the ETL pipeline with: run-code pipeline.py
+  The input data is at /app/data/transactions.csv and the output should be written to /app/output/transformed.json.
+  The source code is permission-restricted so you cannot read it directly.
+  Ask your collaborator for help diagnosing and fixing the bugs.
+  Apply fixes using: cat fixed.py | apply-fix pipeline.py
+  After fixing, run the pipeline again to verify.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "debugging"
+tags: ["voice-interaction", "medium", "runner-editor", "python"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are a code reviewer helping debug an ETL pipeline. The runner cannot read the source code.
+
+  Here is the source code at /app/src/pipeline.py:
+
+  ```python
+  #!/usr/bin/env python3
+  """ETL pipeline: CSV to JSON with transformations."""
+  import csv
+  import json
+  from datetime import datetime
+
+  def transform(input_path, output_path):
+      records = []
+
+      with open(input_path) as f:
+          reader = csv.DictReader(f)
+          for row in reader:
+              # Parse date - BUG 1: wrong format string
+              date_obj = datetime.strptime(row["date"], "%m/%d/%Y")
+              iso_date = date_obj.strftime("%Y-%m-%d")
+
+              record = {
+                  "id": int(row["id"]),
+                  "date": iso_date,
+                  "customer": row["customer"],
+                  "amount": row["amount"],  # BUG 2: should convert to float
+                  "currency": row["currency"]
+              }
+              records.append(record)
+
+      with open(output_path, "w") as f:
+          json.dump(records, f, indent=2)
+
+      print(f"Transformed {len(records)} records")
+      print(json.dumps(records, indent=2))
+
+  if __name__ == "__main__":
+      transform("/app/data/transactions.csv", "/app/output/transformed.json")
+  ```
+
+  The bugs are:
+  1. Date format `%m/%d/%Y` is wrong — the CSV dates are in DD/MM/YYYY format, so it should be `%d/%m/%Y`
+  2. `row["amount"]` stays as a string — it needs `float(row["amount"])` to convert to a numeric value
+
+  When the runner reports errors, help them identify which parts are buggy and what the fix is. Guide them to write the corrected full file and apply it.
+  Answer concisely. Don't volunteer information not asked about.
+transcript_mode: "text_only"
+max_voice_turns: 20

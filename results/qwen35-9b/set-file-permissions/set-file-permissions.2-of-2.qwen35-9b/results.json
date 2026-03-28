@@ -1,0 +1,31 @@
+{
+  "id": "c9a431b3-f39b-4f3e-9606-7b7053ecd232",
+  "trial_name": "set-file-permissions.2-of-2.qwen35-9b",
+  "task_id": "set-file-permissions",
+  "instruction": "Change the file permissions on /app/data/report.csv as requested.\nAsk your collaborator what permissions to set.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_permissions.py::test_file_exists": "passed",
+    "test_permissions.py::test_permissions_750": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 2533,
+  "total_output_tokens": 105,
+  "trial_started_at": "2026-03-28T21:50:17.147903+00:00",
+  "trial_ended_at": "2026-03-28T21:50:30.688576+00:00",
+  "agent_started_at": "2026-03-28T21:50:17.954871+00:00",
+  "agent_ended_at": "2026-03-28T21:50:27.387549+00:00",
+  "test_started_at": "2026-03-28T21:50:27.387566+00:00",
+  "test_ended_at": "2026-03-28T21:50:29.182279+00:00",
+  "composite_score": 1.0
+}

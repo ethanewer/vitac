@@ -1,0 +1,15 @@
+[?2004hroot@8821c3362cc6:/app# head -5 /app/data/users.csv; tmux wait -S done
+[?2004lid,username,role
+1,alice,admin
+2,bob,user
+3,charlie,user
+4,alice,admin
+[?2004hroot@8821c3362cc6:/app# mkdir -p /app/output; tmux wait -S done
+[?2004l[?2004hroot@8821c3362cc6:/app# tail -n +2 /app/data/users.csv | cut -d',' -f2 | sort -u > /app/output/usernames.txt; tmux wait -S done
+[?2004l[?2004hroot@8821c3362cc6:/app# cat /app/output/usernames.txt; tmux wait -S done
+[?2004lalice
+bob
+charlie
+diana
+eve
+[?2004hroot@8821c3362cc6:/app# 

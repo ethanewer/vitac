@@ -1,0 +1,35 @@
+{
+  "id": "11d75c9b-9eb8-4970-9047-5220f870ac26",
+  "trial_name": "create-user-directory.1-of-1.easy-2agent",
+  "task_id": "create-user-directory",
+  "instruction": "Create a home directory structure for a new user under /app/users/.\nThe structure should include: the user's directory, and subdirs: documents, downloads, projects.\nAsk your collaborator for the username.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_userdir.py::test_user_dir_exists": "passed",
+    "test_userdir.py::test_documents_dir": "passed",
+    "test_userdir.py::test_downloads_dir": "passed",
+    "test_userdir.py::test_projects_dir": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "topics_asked": 1,
+      "topics_expected": 1,
+      "voice_turns_used": 1,
+      "max_voice_turns": 6
+    }
+  },
+  "total_input_tokens": 3531,
+  "total_output_tokens": 639,
+  "trial_started_at": "2026-03-28T19:28:23.469751+00:00",
+  "trial_ended_at": "2026-03-28T19:28:38.719181+00:00",
+  "agent_started_at": "2026-03-28T19:28:24.930509+00:00",
+  "agent_ended_at": "2026-03-28T19:28:35.564461+00:00",
+  "test_started_at": "2026-03-28T19:28:35.564476+00:00",
+  "test_ended_at": "2026-03-28T19:28:37.266993+00:00"
+}

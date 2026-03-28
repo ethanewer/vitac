@@ -1,0 +1,16 @@
+[?2004hroot@b4b234730cef:/app# ls -1 /app/users 2>/dev/null || echo 'MISSING /app/users'; tmux wait -S done
+[?2004l[?2004hroot@b4b234730cef:/app# ls -la /app/users 2>/dev/null || echo 'MISSING /app/users'; tmux wait -S done
+[?2004ltotal 8
+drwxr-xr-x 2 root root 4096 Mar 28 19:19 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:19 [01;34m..[0m
+[?2004hroot@b4b234730cef:/app# mkdir -p /app/users/newuser/{documents,downloads,projects} && ls -la /app/users/newuser && ls -1 /app/users/newuser; tmux wait -S done
+[?2004ltotal 20
+drwxr-xr-x 5 root root 4096 Mar 28 19:26 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:26 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 19:26 [01;34mdocuments[0m
+drwxr-xr-x 2 root root 4096 Mar 28 19:26 [01;34mdownloads[0m
+drwxr-xr-x 2 root root 4096 Mar 28 19:26 [01;34mprojects[0m
+[0m[01;34mdocuments[0m
+[01;34mdownloads[0m
+[01;34mprojects[0m
+[?2004hroot@b4b234730cef:/app# 

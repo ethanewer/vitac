@@ -1,0 +1,60 @@
+[?2004hroot@1b749a75946d:/app# run-code api_client.py; tmux wait -S done
+[?2004lHTTP Error 401: {"error": "Unauthorized. Expected 'Bearer <token>' in Authorization header."}
+Fetched 0 records
+[?2004hroot@1b749a75946d:/app# ls -la /app/; tmux wait -S done
+[?2004ltotal 20
+drwxr-xr-x 1 root root 4096 Mar 28 21:10 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:10 [01;34m..[0m
+drwxrwxrwx 1 root root 4096 Mar 28 21:10 [34;42moutput[0m
+drwxr-xr-x 1 root root 4096 Mar 28 20:48 [01;34msrc[0m
+[?2004hroot@1b749a75946d:/app# ls -la /app/src/; tmux wait -S done
+[?2004ltotal 20
+drwxr-xr-x 1 root root 4096 Mar 28 20:48 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:10 [01;34m..[0m
+-rw------- 1 root root 1058 Mar 28 20:48 api_client.py
+-rw-r--r-- 1 root root 1336 Mar 28 20:48 server.py
+[?2004hroot@1b749a75946d:/app# cat /app/src/server.py; tmux wait -S done
+[?2004l#!/usr/bin/env python3
+"""Mock REST API server."""
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import json
+
+VALID_TOKEN = "secret-api-key-12345"
+
+DATA = {
+    "results": [
+        {"id": 1, "name": "Alpha", "value": 100},
+        {"id": 2, "name": "Beta", "value": 200},
+        {"id": 3, "name": "Gamma", "value": 300},
+    ],
+    "total": 3
+}
+
+class Handler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        auth = self.headers.get("Authorization", "")
+        if auth != f"Bearer {VALID_TOKEN}":
+            self.send_response(401)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps({"error": "Unauthorized. Expected 'Bearer <token>' in Authorization header."}).encode())
+            return
+
+        if self.path == "/api/data":
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.end_headers()
+            self.wfile.write(json.dumps(DATA).encode())
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def log_message(self, format, *args):
+        pass  # Suppress logs
+
+if __name__ == "__main__":
+    server = HTTPServer(("0.0.0.0", 5000), Handler)
+    print("Mock API server running on port 5000")
+    server.serve_forever()
+[?2004hroot@1b749a75946d:/app# cat > /app/fixed.py << 'EOF'; tmux wait -S done
+[?2004l[?2004h> 

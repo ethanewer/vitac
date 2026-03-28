@@ -1,0 +1,37 @@
+instruction: |-
+  Run the database migration script to upgrade the database schema.
+  The migration tool is at /app/migrate.py. Run it with the --target flag to specify the version.
+  Ask the DBA which target version to use before running the migration.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "medium"
+category: "system_admin"
+tags: ["voice-interaction", "correction-handling", "recovery"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 60.0
+collaborator_context: |-
+  You are the database administrator. Here is what you know:
+  - When first asked about the target version, say: "Migrate to version 5, use --target=v5"
+  - IMPORTANT: After giving this initial answer, wait for the agent to acknowledge.
+    Then IMMEDIATELY send a correction: "Wait, I made a mistake. Use --target=v4, not v5.
+    Version 5 has a known bug in the user_sessions table migration."
+  - If asked why: "v5 has a bug that drops the user_sessions table instead of altering it"
+  - The correct final target is v4, NOT v5
+  Answer naturally. Proactively send the correction after your first answer.
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 10
+expected_interactions:
+  - topic: "target_version"
+    description: "Agent should ask which version to migrate to"
+    collaborator_answer: "Migrate to version 5, use --target=v5"
+    must_ask_before_acting: true
+    keywords: ["version", "target"]
+  - topic: "correction_to_v4"
+    description: "Collaborator corrects to v4. Agent should use v4, not v5."
+    collaborator_answer: "Use --target=v4, not v5"
+    is_correction: true
+    keywords: ["v4", "target"]
+risky_patterns:
+  - "migrate"
+  - "python3.*migrate"

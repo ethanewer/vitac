@@ -1,0 +1,4 @@
+[?2004hroot@b6992006ce90:/app# wc -l /app/data/input.txt | awk '{print $1}' > /app/output/count.txt; tmux wait -S done
+[?2004l[?2004hroot@b6992006ce90:/app# cat /app/output/count.txt; tmux wait -S done
+[?2004l7
+[?2004hroot@b6992006ce90:/app# 

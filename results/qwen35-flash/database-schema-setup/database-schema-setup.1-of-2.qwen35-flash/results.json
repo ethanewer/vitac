@@ -1,0 +1,30 @@
+{
+  "id": "3a0652a2-46b4-45fd-be44-6301696d5d9b",
+  "trial_name": "database-schema-setup.1-of-2.qwen35-flash",
+  "task_id": "database-schema-setup",
+  "instruction": "Create a SQLite database schema. Write the SQL to /app/schema.sql, then execute it with `sqlite3 /app/data/app.db < /app/schema.sql`. Ask your collaborator for the table definitions and constraints.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_schema.py::test_orders_fks - AssertionError: orders should reference users": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 168642,
+  "total_output_tokens": 2969,
+  "trial_started_at": "2026-03-28T21:12:15.623164+00:00",
+  "trial_ended_at": "2026-03-28T21:17:07.268550+00:00",
+  "agent_started_at": "2026-03-28T21:12:16.360175+00:00",
+  "agent_ended_at": "2026-03-28T21:16:53.623660+00:00",
+  "test_started_at": "2026-03-28T21:16:53.623691+00:00",
+  "test_ended_at": "2026-03-28T21:17:05.735651+00:00",
+  "composite_score": 0.0
+}

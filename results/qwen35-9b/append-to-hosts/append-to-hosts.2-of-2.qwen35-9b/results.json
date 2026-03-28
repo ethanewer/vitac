@@ -1,0 +1,33 @@
+{
+  "id": "11a030ed-8e67-47f9-82aa-5eb778e016bc",
+  "trial_name": "append-to-hosts.2-of-2.qwen35-9b",
+  "task_id": "append-to-hosts",
+  "instruction": "Add a new entry to the hosts file at /app/etc/hosts.\nAsk your collaborator for the IP address and hostname to add.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_hosts.py::test_hosts_file_exists": "passed",
+    "test_hosts.py::test_original_entries_preserved": "passed",
+    "test_hosts.py::test_new_entry_present": "passed",
+    "test_hosts.py::test_new_entry_on_same_line": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 2772,
+  "total_output_tokens": 131,
+  "trial_started_at": "2026-03-28T21:33:39.289335+00:00",
+  "trial_ended_at": "2026-03-28T21:33:56.599809+00:00",
+  "agent_started_at": "2026-03-28T21:33:41.634210+00:00",
+  "agent_ended_at": "2026-03-28T21:33:52.797952+00:00",
+  "test_started_at": "2026-03-28T21:33:52.797967+00:00",
+  "test_ended_at": "2026-03-28T21:33:54.706606+00:00",
+  "composite_score": 1.0
+}

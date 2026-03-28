@@ -1,0 +1,10 @@
+[?2004hroot@475e396ff04e:/app# mkdir -p /app/users/newuser/{documents,downloads,projects}; tmux wait -S done
+[?2004l[?2004hroot@475e396ff04e:/app# rm -rf /app/users/newuser && mkdir -p /app/users/jdoe/{documents,downloads,projects}; tmux wait -S done
+[?2004l[?2004hroot@475e396ff04e:/app# ls -la /app/users/jdoe/; tmux wait -S done
+[?2004ltotal 20
+drwxr-xr-x 5 root root 4096 Mar 28 21:10 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:10 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 21:10 [01;34mdocuments[0m
+drwxr-xr-x 2 root root 4096 Mar 28 21:10 [01;34mdownloads[0m
+drwxr-xr-x 2 root root 4096 Mar 28 21:10 [01;34mprojects[0m
+[?2004hroot@475e396ff04e:/app# 

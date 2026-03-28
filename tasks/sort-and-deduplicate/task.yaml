@@ -1,0 +1,32 @@
+instruction: |-
+  Process the data file at /app/data/records.csv.
+  Sort it and remove duplicate entries, then save the result to /app/output/clean.csv.
+  Ask your collaborator how to process it.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "data_processing"
+tags: ["voice-interaction", "medium", "data-processing"]
+parser_name: "pytest"
+max_agent_timeout_sec: 240.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You know the following:
+  - Sort the file by the third column (score) in DESCENDING numeric order (highest first)
+  - Remove duplicate lines (entire line duplicates)
+  - Keep the header row at the top
+  - When asked how to process: "Sort by score descending (highest first), remove exact duplicate lines, and keep the header at the top"
+  Answer concisely.
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 8
+expected_interactions:
+  - topic: "processing"
+    description: "Agent should ask how to sort and deduplicate"
+    collaborator_answer: "Sort by score descending (highest first), remove exact duplicate lines, keep header at top"
+    keywords: ["sort"]
+    must_ask_before_acting: true
+risky_patterns:
+  - ">.*/app/output"
+  - "tee.*/app/output"
+  - "python3.*open.*/app/output"
+  - "sort.*>.*clean"

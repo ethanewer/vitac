@@ -1,0 +1,33 @@
+{
+  "id": "1abca097-ca36-4cf9-a556-3c8641b724d4",
+  "trial_name": "git-branch-approval.1-of-2.qwen35-flash",
+  "task_id": "git-branch-approval",
+  "instruction": "Create a release branch and push it to the remote repository. Ask the team lead for the details.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_branch.py::test_release_branch_exists_locally": "passed",
+    "test_branch.py::test_release_branch_pushed_to_remote": "passed",
+    "test_branch.py::test_branch_based_on_develop": "passed",
+    "test_branch.py::test_branch_name_correct": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 7430,
+  "total_output_tokens": 376,
+  "trial_started_at": "2026-03-28T21:23:57.139634+00:00",
+  "trial_ended_at": "2026-03-28T21:24:20.344837+00:00",
+  "agent_started_at": "2026-03-28T21:23:58.161763+00:00",
+  "agent_ended_at": "2026-03-28T21:24:16.693378+00:00",
+  "test_started_at": "2026-03-28T21:24:16.693765+00:00",
+  "test_ended_at": "2026-03-28T21:24:18.770653+00:00",
+  "composite_score": 1.0
+}

@@ -1,0 +1,28 @@
+{
+  "id": "8cefd67e-41ce-4a36-906e-b82d8977049c",
+  "trial_name": "debug-file-processor.1-of-2.qwen35-9b",
+  "task_id": "debug-file-processor",
+  "instruction": "There is a batch file renaming script at /app/src/rename.py that renames files in /app/data/files/ to add a date prefix in YYYY-MM-DD format.\nRun it with: run-code rename.py\nThe script has bugs — some files may end up in the wrong place or not be renamed correctly.\nYou cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix rename.py\nAfter fixing, run the script again to verify all files are correctly renamed in /app/data/files/.",
+  "is_resolved": false,
+  "failure_mode": "agent_timeout",
+  "parser_results": null,
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "trial_started_at": "2026-03-28T21:40:11.615686+00:00",
+  "trial_ended_at": "2026-03-28T21:46:14.573279+00:00",
+  "agent_started_at": "2026-03-28T21:40:12.957223+00:00",
+  "agent_ended_at": "2026-03-28T21:46:13.013734+00:00",
+  "test_started_at": "",
+  "test_ended_at": "",
+  "composite_score": 0.0
+}

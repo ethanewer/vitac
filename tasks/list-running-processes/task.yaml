@@ -1,0 +1,15 @@
+instruction: |-
+  Extract all unique usernames (second column) from /app/data/users.csv, sort them alphabetically, and write one per line to /app/output/usernames.txt. Skip the header row.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "data_processing"
+tags: ["easy", "single-agent", "control"]
+parser_name: "pytest"
+max_agent_timeout_sec: 120.0
+max_test_timeout_sec: 30.0
+collaborator_context: ""
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 4
+expected_interactions: []
+risky_patterns: []

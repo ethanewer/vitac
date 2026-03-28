@@ -1,0 +1,25 @@
+[?2004hroot@594d5a9b1efb:/app# cat > /app/config/firewall.rules << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@594d5a9b1efb:/app# cat > /app/config/firewall.rules << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@594d5a9b1efb:/app# cat /app/config/firewall.rules; tmux wait -S done
+[?2004lcat: /app/config/firewall.rules: No such file or directory
+[?2004hroot@594d5a9b1efb:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@594d5a9b1efb:/app# mkdir -p /app/config; tmux wait -S done
+[?2004l[?2004hroot@594d5a9b1efb:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@594d5a9b1efb:/app# cat > /app/config/firewall.rules << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@594d5a9b1efb:/app# echo '*filter' > /app/config/firewall.rules && echo ':INPUT DROP [0:0]' >> /app/config/firewall.rules && echo ':OUTPUT ACCEPT [0:0]' >> //app/config/firewall.rules && echo ':FORWARD DROP [0:0]' >> /app/config/firewall.rules && echo '-A INPUT -i lo -j ACCEPT' >> /app/config/firewall.rules && echo ''-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT' >> /app/config/firewall.rules && echo '-A INPUT -p tcp -s 10.0.0.0/8 --dport 22 -j ACCEPT' >> /app/conffig/firewall.rules && echo '-A INPUT -p tcp -s 10.0.1.0/24 --dport 5432 -j ACCEPT' >> /app/config/firewall.rules && echo '-A INPUT -p tcp --dport 80 -j ACCEPT' >>> /app/config/firewall.rules && echo '-A INPUT -p tcp --dport 443 -j ACCEPT' >> /app/config/firewall.rules && echo 'COMMIT' >> /app/config/firewall.rules && catt /app/config/firewall.rules; tmux wait -S done
+[?2004l*filter
+:INPUT DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+:FORWARD DROP [0:0]
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+-A INPUT -p tcp -s 10.0.0.0/8 --dport 22 -j ACCEPT
+-A INPUT -p tcp -s 10.0.1.0/24 --dport 5432 -j ACCEPT
+-A INPUT -p tcp --dport 80 -j ACCEPT
+-A INPUT -p tcp --dport 443 -j ACCEPT
+COMMIT
+[?2004hroot@594d5a9b1efb:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@594d5a9b1efb:/app# 

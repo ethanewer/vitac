@@ -1,0 +1,513 @@
+[?2004hroot@25aada179374:/app# ls -R /app/config || true; tmux wait -S done
+[?2004l/app/config:
+[?2004hroot@25aada179374:/app# ls -R /app || true; tmux wait -S done
+[?2004l/app:
+[0m[01;34mconfig[0m
+
+/app/config:
+[?2004hroot@25aada179374:/app# ls -R / | head -n 200; tmux wait -S done
+[?2004l/:
+app
+bin
+boot
+dev
+etc
+home
+lib
+logs
+media
+mnt
+opt
+proc
+root
+run
+sbin
+srv
+sys
+tmp
+usr
+var
+
+/app:
+config
+
+/app/config:
+
+/boot:
+
+/dev:
+core
+fd
+full
+mqueue
+null
+ptmx
+pts
+random
+shm
+stderr
+stdin
+stdout
+tty
+urandom
+zero
+
+/dev/mqueue:
+
+/dev/pts:
+0
+ptmx
+
+/dev/shm:
+
+/etc:
+X11
+adduser.conf
+alternatives
+apache2
+apt
+bash.bashrc
+bindresvport.blacklist
+ca-certificates
+ca-certificates.conf
+cloud
+cron.d
+cron.daily
+debconf.conf
+debian_version
+default
+deluser.conf
+dpkg
+e2scrub.conf
+environment
+ethertypes
+fonts
+fstab
+gai.conf
+gnutls
+gprofng.rc
+group
+group-
+gshadow
+gshadow-
+host.conf
+hostname
+hosts
+init.d
+inputrc
+issue
+issue.net
+kernel
+ld.so.cache
+ld.so.conf
+ld.so.conf.d
+ldap
+legal
+libaudit.conf
+lighttpd
+localtime
+logcheck
+login.defs
+logrotate.d
+lsb-release
+machine-id
+mime.types
+mke2fs.conf
+mtab
+networks
+nsswitch.conf
+opt
+os-release
+pam.conf
+pam.d
+passwd
+passwd-
+perl
+profile
+profile.d
+protocols
+python3
+python3.12
+rc0.d
+rc1.d
+rc2.d
+rc3.d
+rc4.d
+rc5.d
+rc6.d
+rcS.d
+resolv.conf
+rmt
+rpc
+security
+selinux
+services
+shadow
+shadow-
+shells
+skel
+ssl
+subgid
+subgid-
+subuid
+subuid-
+sysctl.conf
+sysctl.d
+systemd
+terminfo
+timezone
+update-motd.d
+xattr.conf
+
+/etc/X11:
+Xsession.d
+
+/etc/X11/Xsession.d:
+90gpg-agent
+
+/etc/alternatives:
+README
+awk
+c++
+c89
+c99
+cc
+cpp
+fakeroot
+lzcat
+lzcmp
+lzdiff
+lzegrep
+lzfgrep
+lzgrep
+lzless
+lzma
+lzmore
+nawk
+pager
+pinentry
+rmt
+unlzma
+which
+
+/etc/apache2:
+conf-available
+
+/etc/apache2/conf-available:
+javascript-common.conf
+
+/etc/apt:
+apt.conf.d
+auth.conf.d
+keyrings
+preferences.d
+sources.list
+sources.list.d
+trusted.gpg.d
+
+/etc/apt/apt.conf.d:
+[?2004hroot@25aada179374:/app# find /app -maxdepth 3 -type f \( -name '.env*' -o -name 'env*.example*' -o -name '*example*env*' -o -name '*config*' -o -name '*.env' \)  2>/dev/null || true; tmux wait -S done
+[?2004l[?2004hroot@25aada179374:/app# ls -la /app && find /app -maxdepth 2 -type f 2>/dev/null || true; tmux wait -S done
+[?2004ltotal 12
+drwxr-xr-x 1 root root 4096 Mar 28 19:19 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 20:05 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 19:19 [01;34mconfig[0m
+[?2004hroot@25aada179374:/app# find /app/config -maxdepth 3 -type f -print -o -type d -print 2>/dev/null || true; tmux wait -S done
+[?2004l/app/config
+[?2004hroot@25aada179374:/app# find / -maxdepth 6 -name '.env*' 2>/dev/null | head -n 50; tmux wait -S done
+[?2004l[?2004hroot@25aada179374:/app# ls -la /; tmux wait -S done
+[?2004ltotal 60
+drwxr-xr-x   1 root root 4096 Mar 28 20:05 [0m[01;34m.[0m
+drwxr-xr-x   1 root root 4096 Mar 28 20:05 [01;34m..[0m
+-rwxr-xr-x   1 root root    0 Mar 28 20:05 [01;32m.dockerenv[0m
+drwxr-xr-x   1 root root 4096 Mar 28 19:19 [01;34mapp[0m
+lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mbin[0m -> [01;34musr/bin[0m
+drwxr-xr-x   2 root root 4096 Apr 22  2024 [01;34mboot[0m
+drwxr-xr-x   5 root root  340 Mar 28 20:05 [01;34mdev[0m
+drwxr-xr-x   1 root root 4096 Mar 28 20:05 [01;34metc[0m
+drwxr-xr-x   3 root root 4096 Feb 17 02:12 [01;34mhome[0m
+lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mlib[0m -> [01;34musr/lib[0m
+drwxr-xr-x   3 root root   96 Mar 28 20:05 [01;34mlogs[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmedia[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmnt[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mopt[0m
+dr-xr-xr-x 253 root root    0 Mar 28 20:05 [01;34mproc[0m
+drwx------   2 root root 4096 Feb 17 02:12 [01;34mroot[0m
+drwxr-xr-x   4 root root 4096 Feb 17 02:12 [01;34mrun[0m
+lrwxrwxrwx   1 root root    8 Apr 22  2024 [01;36msbin[0m -> [01;34musr/sbin[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34msrv[0m
+dr-xr-xr-x  11 root root    0 Mar 28 20:05 [01;34msys[0m
+drwxrwxrwt   1 root root 4096 Mar 28 20:05 [30;42mtmp[0m
+drwxr-xr-x   1 root root 4096 Feb 17 02:06 [01;34musr[0m
+drwxr-xr-x   1 root root 4096 Feb 17 02:12 [01;34mvar[0m
+[?2004hroot@25aada179374:/app# find /app -maxdepth 4 -type f -print 2>/dev/null | head -n 200; tmux wait -S done
+[?2004l[?2004hroot@25aada179374:/app# find /app -maxdepth 10 -type f -print 2>/dev/null | head -n 200; tmux wait -S done
+[?2004l[?2004hroot@25aada179374:/app# find / -maxdepth 4 -type f \( -name '*.env.example' -o -name '.env.example' -o -name '*example*.env*' -o -name '*docker-compose*.yml' -o  -name '*compose*.yml' -o -name '*compose*.yaml' -o -name '*application*.yml' -o -name '*settings*.json' \) 2>/dev/null | head -n 200; tmux wait -S done
+[?2004l[?2004hroot@25aada179374:/app# find /app -maxdepth 5 -type f -print 2>/dev/null | head -n 200; tmux wait -S done
+[?2004l[?2004hroot@25aada179374:/app# find / -maxdepth 5 -name 'package.json' 2>/dev/null | head -n 20; tmux wait -S done
+[?2004l[?2004hroot@25aada179374:/app# ls -la /opt && find /opt -maxdepth 4 -type f 2>/dev/null | head -n 200; tmux wait -S done
+[?2004ltotal 8
+drwxr-xr-x 2 root root 4096 Feb 17 02:06 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 20:05 [01;34m..[0m
+[?2004hroot@25aada179374:/app# find /app -maxdepth 6 -type f \( -name '*.js' -o -name '*.ts' -o -name '*.py' -o -name '*.env*' -o -name '*.sh' -o -name 'docker-compose**.yml' -o -name '*.yaml' -o -name '*.yml' -o -name '*.json' -o -name '*.go' -o -name '*.rb' -o -name '*.java' \) 2>/dev/null | head -n 200; tmux wait -S done
+[?2004l[?2004hroot@25aada179374:/app# ls -la /app/config; tmux wait -S done
+[?2004ltotal 8
+drwxr-xr-x 2 root root 4096 Mar 28 19:19 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:19 [01;34m..[0m
+[?2004hroot@25aada179374:/app# ls -la /app && find / -maxdepth 3 -type d 2>/dev/null | head -n 200; tmux wait -S done
+[?2004ltotal 12
+drwxr-xr-x 1 root root 4096 Mar 28 19:19 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 20:05 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 19:19 [01;34mconfig[0m
+/
+/boot
+/home
+/home/ubuntu
+/run
+/run/systemd
+/run/lock
+/var
+/var/opt
+/var/backups
+/var/cache
+/var/cache/ldconfig
+/var/cache/debconf
+/var/cache/apt
+/var/cache/adduser
+/var/spool
+/var/log
+/var/log/apt
+/var/mail
+/var/local
+/var/tmp
+/var/lib
+/var/lib/dpkg
+/var/lib/misc
+/var/lib/systemd
+/var/lib/pam
+/var/lib/apt
+/var/lib/python
+/opt
+/dev
+/dev/shm
+/dev/mqueue
+/dev/pts
+/usr
+/usr/games
+/usr/src
+/usr/src/python3.12
+/usr/share
+/usr/share/libc-bin
+/usr/share/bug
+/usr/share/pixmaps
+/usr/share/terminfo
+/usr/share/doc-base
+/usr/share/bash-completion
+/usr/share/doc
+/usr/share/util-linux
+/usr/share/keyrings
+/usr/share/dpkg
+/usr/share/base-passwd
+/usr/share/debianutils
+/usr/share/misc
+/usr/share/man
+/usr/share/sensible-utils
+/usr/share/base-files
+/usr/share/apport
+/usr/share/perl5
+/usr/share/polkit-1
+/usr/share/gdb
+/usr/share/pam-configs
+/usr/share/tabset
+/usr/share/common-licenses
+/usr/share/dict
+/usr/share/info
+/usr/share/menu
+/usr/share/locale
+/usr/share/libgcrypt20
+/usr/share/gcc
+/usr/share/debconf
+/usr/share/lintian
+/usr/share/pam
+/usr/share/zoneinfo
+/usr/share/readline
+/usr/share/ca-certificates
+/usr/share/gnupg
+/usr/share/X11
+/usr/share/fontconfig
+/usr/share/build-essential
+/usr/share/zsh
+/usr/share/binfmts
+/usr/share/javascript
+/usr/share/applications
+/usr/share/aclocal
+/usr/share/python3
+/usr/share/fonts
+/usr/share/xml
+/usr/share/lto-disabled-list
+/usr/share/perl
+/usr/libexec
+/usr/libexec/dpkg
+/usr/libexec/coreutils
+/usr/libexec/gcc
+/usr/include
+/usr/include/nfs
+/usr/include/netash
+/usr/include/drm
+/usr/include/asm-generic
+/usr/include/protocols
+/usr/include/rpcsvc
+/usr/include/scsi
+/usr/include/c++
+/usr/include/netrom
+/usr/include/python3.12
+/usr/include/mtd
+/usr/include/misc
+/usr/include/finclude
+/usr/include/netpacket
+/usr/include/linux
+/usr/include/netiucv
+/usr/include/video
+/usr/include/netinet
+/usr/include/sound
+/usr/include/netax25
+/usr/include/rdma
+/usr/include/netipx
+/usr/include/regulator
+/usr/include/net
+/usr/include/netrose
+/usr/include/arpa
+/usr/include/rpc
+/usr/include/netatalk
+/usr/include/xen
+/usr/include/neteconet
+/usr/include/aarch64-linux-gnu
+/usr/local
+/usr/local/games
+/usr/local/src
+/usr/local/etc
+/usr/local/share
+/usr/local/include
+/usr/local/bin
+/usr/local/lib
+/usr/local/sbin
+/usr/bin
+/usr/lib
+/usr/lib/udev
+/usr/lib/dpkg
+/usr/lib/systemd
+/usr/lib/lsb
+/usr/lib/tmpfiles.d
+/usr/lib/sysctl.d
+/usr/lib/mime
+/usr/lib/init
+/usr/lib/locale
+/usr/lib/aarch64-linux-gnu
+/usr/lib/apt
+/usr/lib/binfmt.d
+/usr/lib/gnupg2
+/usr/lib/gnupg
+/usr/lib/python3.12
+/usr/lib/bfd-plugins
+/usr/lib/compat-ld
+/usr/lib/python3
+/usr/lib/ssl
+/usr/lib/gcc
+/usr/lib/valgrind
+/usr/lib/gold-ld
+/usr/lib/sasl2
+/usr/sbin
+/media
+/etc
+/etc/rc0.d
+/etc/terminfo
+/etc/security
+/etc/security/limits.d
+/etc/security/namespace.d
+/etc/opt
+/etc/profile.d
+/etc/selinux
+/etc/init.d
+/etc/alternatives
+/etc/dpkg
+/etc/dpkg/origins
+/etc/dpkg/dpkg.cfg.d
+/etc/skel
+/etc/logrotate.d
+/etc/pam.d
+/etc/cron.d
+/etc/rc5.d
+/etc/rcS.d
+/etc/systemd
+/etc/systemd/user
+/etc/systemd/system
+/etc/ld.so.conf.d
+/etc/default
+/etc/rc6.d
+/etc/rc1.d
+/etc/rc3.d
+/etc/cron.daily
+/etc/sysctl.d
+/etc/gnutls
+/etc/update-motd.d
+/etc/cloud
+/etc/rc4.d
+/etc/rc2.d
+/etc/kernel
+/etc/kernel/postinst.d
+/etc/apt
+/etc/apt/keyrings
+/etc/apt/sources.list.d
+/etc/apt/auth.conf.d
+[?2004hroot@25aada179374:/app# find / -maxdepth 4 -type f \( -iname 'readme*' -o -iname 'dockerfile*' -o -iname 'compose*.yml' -o -iname 'compose*.yaml' -o -iname 'entrrypoint*.sh' -o -iname '*config*.yml' -o -iname '*config*.yaml' \) 2>/dev/null | head -n 100; tmux wait -S done
+[?2004l/etc/terminfo/README
+/etc/alternatives/README
+/etc/sysctl.d/README.sysctl
+/etc/fonts/conf.d/README
+[?2004hroot@25aada179374:/app# env | sort | head -n 200; tmux wait -S done
+[?2004lHOME=/root
+HOSTNAME=25aada179374
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/app
+SHELL=/bin/bash
+SHLVL=1
+TERM=tmux-256color
+TERM_PROGRAM=tmux
+TERM_PROGRAM_VERSION=3.4
+TEST_DIR=/tests
+TMUX=/tmp/tmux-0/default,21,0
+TMUX_PANE=%0
+_=/usr/bin/env
+[?2004hroot@25aada179374:/app# ls -la /tests && find /tests -maxdepth 3 -type f 2>/dev/null | head -n 200; tmux wait -S done
+[?2004lls: cannot access '/tests': No such file or directory
+[?2004hroot@25aada179374:/app# ls -la / && ls -la /app && ls -la /workspace 2>/dev/null || true && ls -la /src 2>/dev/null || true && ls -la /code 2>/dev/null || true &&& ls -la /var/www 2>/dev/null || true; tmux wait -S done
+[?2004ltotal 60
+drwxr-xr-x   1 root root 4096 Mar 28 20:05 [0m[01;34m.[0m
+drwxr-xr-x   1 root root 4096 Mar 28 20:05 [01;34m..[0m
+-rwxr-xr-x   1 root root    0 Mar 28 20:05 [01;32m.dockerenv[0m
+drwxr-xr-x   1 root root 4096 Mar 28 19:19 [01;34mapp[0m
+lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mbin[0m -> [01;34musr/bin[0m
+drwxr-xr-x   2 root root 4096 Apr 22  2024 [01;34mboot[0m
+drwxr-xr-x   5 root root  340 Mar 28 20:05 [01;34mdev[0m
+drwxr-xr-x   1 root root 4096 Mar 28 20:05 [01;34metc[0m
+drwxr-xr-x   3 root root 4096 Feb 17 02:12 [01;34mhome[0m
+lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mlib[0m -> [01;34musr/lib[0m
+drwxr-xr-x   3 root root   96 Mar 28 20:05 [01;34mlogs[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmedia[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmnt[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mopt[0m
+dr-xr-xr-x 245 root root    0 Mar 28 20:05 [01;34mproc[0m
+drwx------   2 root root 4096 Feb 17 02:12 [01;34mroot[0m
+drwxr-xr-x   4 root root 4096 Feb 17 02:12 [01;34mrun[0m
+lrwxrwxrwx   1 root root    8 Apr 22  2024 [01;36msbin[0m -> [01;34musr/sbin[0m
+drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34msrv[0m
+dr-xr-xr-x  11 root root    0 Mar 28 20:06 [01;34msys[0m
+drwxrwxrwt   1 root root 4096 Mar 28 20:05 [30;42mtmp[0m
+drwxr-xr-x   1 root root 4096 Feb 17 02:06 [01;34musr[0m
+drwxr-xr-x   1 root root 4096 Feb 17 02:12 [01;34mvar[0m
+total 12
+drwxr-xr-x 1 root root 4096 Mar 28 19:19 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 20:05 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 19:19 [01;34mconfig[0m
+[?2004hroot@25aada179374:/app# 

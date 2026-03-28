@@ -1,0 +1,24 @@
+instruction: |-
+  Set up scheduled tasks by creating a crontab file at /app/config/crontab.
+  Ask your collaborator (the operations lead) what jobs need to be scheduled, their timing, and commands.
+  Write standard crontab format (5 time fields followed by command).
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "system_admin"
+tags: ["voice-interaction", "medium", "cron", "scheduling"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are the operations lead. There are 5 scheduled jobs needed:
+  1. Database backup: runs daily at 2:30 AM, command: /usr/local/bin/backup-db.sh
+  2. Log rotation: runs every 6 hours, command: /usr/local/bin/rotate-logs.sh
+  3. Health check: runs every 5 minutes, command: /usr/local/bin/health-check.sh
+  4. Weekly report: runs every Sunday at 8:00 AM, command: /usr/local/bin/weekly-report.sh
+  5. Monthly cleanup: runs on the 1st of each month at midnight, command: /usr/local/bin/monthly-cleanup.sh
+
+  Answer only what is asked. If they ask about one job, give that job's details.
+  If they ask for all jobs at once, list them all.
+transcript_mode: "text_only"
+max_voice_turns: 20

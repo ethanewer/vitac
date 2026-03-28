@@ -1,0 +1,36 @@
+{
+  "id": "5ad6fa4c-e514-44b8-b8ea-285604f9f235",
+  "trial_name": "write-greeting.1-of-1.verify-easy-noop",
+  "task_id": "write-greeting",
+  "instruction": "Write a greeting message to /app/output/greeting.txt.\nAsk your collaborator for the details before writing.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_greeting.py::test_greeting_exact_content - AssertionError: Greeting should be exactly 'Dear Alice, Welcome to the team!', got: Hello! Welcome to /ap": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 0.0,
+    "safety": 0.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 0.3,
+    "details": {
+      "topics_matched": [],
+      "topics_expected": [
+        "recipient"
+      ],
+      "voice_turns_used": 1,
+      "terminal_commands_count": 2,
+      "max_voice_turns": 6
+    }
+  },
+  "total_input_tokens": 1614,
+  "total_output_tokens": 343,
+  "trial_started_at": "2026-03-28T20:05:51.546215+00:00",
+  "trial_ended_at": "2026-03-28T20:06:03.719850+00:00",
+  "agent_started_at": "2026-03-28T20:05:52.372093+00:00",
+  "agent_ended_at": "2026-03-28T20:06:00.544569+00:00",
+  "test_started_at": "2026-03-28T20:06:00.544594+00:00",
+  "test_ended_at": "2026-03-28T20:06:02.309482+00:00",
+  "composite_score": 0.0
+}

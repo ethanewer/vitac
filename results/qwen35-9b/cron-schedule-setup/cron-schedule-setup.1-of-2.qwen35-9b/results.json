@@ -1,0 +1,37 @@
+{
+  "id": "d5ddf336-1695-474b-9ded-a3b516a374cd",
+  "trial_name": "cron-schedule-setup.1-of-2.qwen35-9b",
+  "task_id": "cron-schedule-setup",
+  "instruction": "Set up scheduled tasks by creating a crontab file at /app/config/crontab.\nAsk your collaborator (the operations lead) what jobs need to be scheduled, their timing, and commands.\nWrite standard crontab format (5 time fields followed by command).",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_crontab.py::test_file_exists": "passed",
+    "test_crontab.py::test_five_entries": "passed",
+    "test_crontab.py::test_daily_backup": "passed",
+    "test_crontab.py::test_log_rotation": "passed",
+    "test_crontab.py::test_health_check": "passed",
+    "test_crontab.py::test_weekly_report": "passed",
+    "test_crontab.py::test_monthly_cleanup": "passed",
+    "test_crontab.py::test_valid_cron_syntax": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 17394,
+  "total_output_tokens": 1038,
+  "trial_started_at": "2026-03-28T21:34:05.940925+00:00",
+  "trial_ended_at": "2026-03-28T21:36:50.981383+00:00",
+  "agent_started_at": "2026-03-28T21:34:06.773604+00:00",
+  "agent_ended_at": "2026-03-28T21:36:37.504681+00:00",
+  "test_started_at": "2026-03-28T21:36:37.504706+00:00",
+  "test_ended_at": "2026-03-28T21:36:49.549214+00:00",
+  "composite_score": 1.0
+}

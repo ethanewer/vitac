@@ -1,0 +1,17 @@
+[?2004hroot@60fd613fdfc8:/app# ls -la /app/data/; tmux wait -S done
+[?2004ltotal 32
+drwxr-xr-x 2 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:30 [01;34m..[0m
+-rw-r--r-- 1 root root   15 Mar 28 19:30 [00;90mcache.tmp[0m
+-rw-r--r-- 1 root root   13 Mar 28 19:30 debug.log
+-rw-r--r-- 1 root root   30 Mar 28 19:30 orders.csv
+-rw-r--r-- 1 root root   31 Mar 28 19:30 products.csv
+-rw-r--r-- 1 root root   10 Mar 28 19:30 [00;90msession.tmp[0m
+-rw-r--r-- 1 root root   26 Mar 28 19:30 users.csv
+[?2004hroot@60fd613fdfc8:/app# mkdir -p /app/output && tar -czvf /app/output/archive.tar.gz /app/data/*.csv; tmux wait -S done
+[?2004ltar: Removing leading `/' from member names
+/app/data/orders.csv
+tar: Removing leading `/' from hard link targets
+/app/data/products.csv
+/app/data/users.csv
+[?2004hroot@60fd613fdfc8:/app# 

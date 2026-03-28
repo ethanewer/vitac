@@ -1,0 +1,39 @@
+{
+  "id": "a618eea8-c28d-48f5-8894-1120cb0be17a",
+  "trial_name": "fix-json-config.1-of-1.verify-medium",
+  "task_id": "fix-json-config",
+  "instruction": "The JSON configuration file at /app/config/settings.json has incorrect values that need to be updated.\nAsk your collaborator which values need to be changed.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_json.py::test_port_is_8080": "passed",
+    "test_json.py::test_debug_is_false": "passed",
+    "test_json.py::test_db_host_updated": "passed",
+    "test_json.py::test_unchanged_values_preserved": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 0.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 0.7142857142857143,
+    "overall": 0.6071428571428571,
+    "details": {
+      "topics_matched": [],
+      "topics_expected": [
+        "changes"
+      ],
+      "voice_turns_used": 3,
+      "terminal_commands_count": 5,
+      "max_voice_turns": 8
+    }
+  },
+  "total_input_tokens": 9096,
+  "total_output_tokens": 1274,
+  "trial_started_at": "2026-03-28T20:14:21.844594+00:00",
+  "trial_ended_at": "2026-03-28T20:14:46.498860+00:00",
+  "agent_started_at": "2026-03-28T20:14:23.575441+00:00",
+  "agent_ended_at": "2026-03-28T20:14:43.246091+00:00",
+  "test_started_at": "2026-03-28T20:14:43.246128+00:00",
+  "test_ended_at": "2026-03-28T20:14:45.054912+00:00",
+  "composite_score": 0.6071428571428571
+}

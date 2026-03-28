@@ -1,0 +1,21 @@
+[?2004hroot@02fb5480b61e:/app# git remote -v; tmux wait -S done
+[?2004lfatal: not a git repository (or any of the parent directories): .git
+[?2004hroot@02fb5480b61e:/app# cd / && find . -type d -name .git 2>/dev/null | head -n 20; tmux wait -S done
+[?2004l./app/project/.git
+[?2004hroot@02fb5480b61e:/# cd /app/project && git remote -v; tmux wait -S done
+[?2004lorigin	/app/remote.git (fetch)
+origin	/app/remote.git (push)
+[?2004hroot@02fb5480b61e:/app/project# cd /app/project && git branch -a; tmux wait -S done
+[?2004l[?1h=* [32mdevelop[m[m
+  main[m[m
+  [31mremotes/origin/develop[m[m
+  [31mremotes/origin/main[m[m
+[K[?1l>[?2004hroot@02fb5480b61e:/app/project# cd /app/project && ls; tmux wait -S done
+[?2004lREADME.md  feature.py  utils.py
+[?2004hroot@02fb5480b61e:/app/project# cd /app/project && git describe --tags --always; tmux wait -S done
+[?2004l76babda
+[?2004hroot@02fb5480b61e:/app/project# cd /app/project && git tag --list | tail -n 20; tmux wait -S done
+[?2004l[?2004hroot@02fb5480b61e:/app/project# cd /app/project && git rev-parse main develop; tmux wait -S done
+[?2004l8ce004cbc19dea5d89b0b844d7f5b8ac058d2bcd
+76babda5e04dde6b5b08fd39d17edcd49c01fb4e
+[?2004hroot@02fb5480b61e:/app/project# 

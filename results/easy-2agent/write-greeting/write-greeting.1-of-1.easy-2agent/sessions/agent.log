@@ -1,0 +1,14 @@
+[?2004hroot@02530db2096b:/app# mkdir -p /app/output && printf '%s; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@02530db2096b:/app# ls -l /app/output/greeting.txt && cat /app/output/greeting.txt; tmux wait -S done
+[?2004lls: cannot access '/app/output/greeting.txt': No such file or directory
+[?2004hroot@02530db2096b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@02530db2096b:/app# printf '%s; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@02530db2096b:/app# mkdir -p /app/output && echo 'Dear Alice, Welcome to the team!' > /app/output/greeting.txt; tmux wait -S done
+[?2004l[?2004hroot@02530db2096b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@02530db2096b:/app# ls -l /app/output/greeting.txt && cat /app/output/greeting.txt; tmux wait -S done
+[?2004l-rw-r--r-- 1 root root 33 Mar 28 19:29 /app/output/greeting.txt
+Dear Alice, Welcome to the team!
+[?2004hroot@02530db2096b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@02530db2096b:/app# 

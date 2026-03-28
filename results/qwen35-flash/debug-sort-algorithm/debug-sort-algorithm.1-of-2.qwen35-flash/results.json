@@ -1,0 +1,34 @@
+{
+  "id": "b181e466-7b98-490e-858a-499d9e1ca8e9",
+  "trial_name": "debug-sort-algorithm.1-of-2.qwen35-flash",
+  "task_id": "debug-sort-algorithm",
+  "instruction": "Sort the numbers in /app/data/input.txt using the provided sort program.\nRun `run-code sort.py` to execute it. Output goes to /app/output/sorted.txt.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing any bugs.\nApply fixes using: cat fixed.py | apply-fix sort.py\nAfter fixing, run `run-code sort.py` again to verify.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_sort.py::test_output_exists": "passed",
+    "test_sort.py::test_correct_count": "passed",
+    "test_sort.py::test_sorted_ascending": "passed",
+    "test_sort.py::test_no_duplicates": "passed",
+    "test_sort.py::test_all_original_values_present": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 20612,
+  "total_output_tokens": 1649,
+  "trial_started_at": "2026-03-28T21:19:26.275016+00:00",
+  "trial_ended_at": "2026-03-28T21:21:40.882622+00:00",
+  "agent_started_at": "2026-03-28T21:19:28.469376+00:00",
+  "agent_ended_at": "2026-03-28T21:21:27.071009+00:00",
+  "test_started_at": "2026-03-28T21:21:27.071054+00:00",
+  "test_ended_at": "2026-03-28T21:21:39.342675+00:00",
+  "composite_score": 1.0
+}

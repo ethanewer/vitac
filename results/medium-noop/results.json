@@ -1,0 +1,177 @@
+{
+  "id": "cbc5d242-1570-4f4f-9075-5c0b54cff4d2",
+  "results": [
+    {
+      "id": "60bb77b4-87fa-483e-b653-ea11ca26e3e2",
+      "trial_name": "compress-selected-files.1-of-1.medium-noop",
+      "task_id": "compress-selected-files",
+      "instruction": "Create a compressed archive from files in /app/data/.\nSave the archive to /app/output/archive.tar.gz.\nAsk your collaborator which files to include.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_archive.py::test_no_tmp_files - AssertionError: Archive should not contain .tmp files: ['./session.tmp', './cache.tmp']": "failed",
+        "test_archive.py::test_no_log_files - AssertionError: Archive should not contain .log files: ['./debug.log']": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "topics_asked": 1,
+          "topics_expected": 1,
+          "voice_turns_used": 1,
+          "max_voice_turns": 8
+        }
+      },
+      "total_input_tokens": 3888,
+      "total_output_tokens": 270,
+      "trial_started_at": "2026-03-28T19:39:08.609059+00:00",
+      "trial_ended_at": "2026-03-28T19:39:22.381086+00:00",
+      "agent_started_at": "2026-03-28T19:39:09.990134+00:00",
+      "agent_ended_at": "2026-03-28T19:39:19.169471+00:00",
+      "test_started_at": "2026-03-28T19:39:19.169499+00:00",
+      "test_ended_at": "2026-03-28T19:39:20.960794+00:00"
+    },
+    {
+      "id": "13a9fab3-0da1-461e-b987-d6e526c0748b",
+      "trial_name": "filter-log-entries.1-of-1.medium-noop",
+      "task_id": "filter-log-entries",
+      "instruction": "Extract matching log entries from /app/logs/application.log and save them to /app/output/filtered.log.\nAsk your collaborator what to filter for.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_filter.py::test_all_warn_lines_present - AssertionError: assert 'Using fallback database' in '3:2026-03-28 10:00:03 ERROR Failed to connect to datab": "failed",
+        "test_filter.py::test_only_warn_lines - AssertionError: Non-WARN line found: 3:2026-03-28 10:00:03 ERROR Failed to connect to database: timeout": "failed",
+        "test_filter.py::test_no_error_lines - AssertionError: Should not contain ERROR lines": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "topics_asked": 1,
+          "topics_expected": 1,
+          "voice_turns_used": 1,
+          "max_voice_turns": 8
+        }
+      },
+      "total_input_tokens": 5412,
+      "total_output_tokens": 420,
+      "trial_started_at": "2026-03-28T19:39:08.609231+00:00",
+      "trial_ended_at": "2026-03-28T19:39:24.638995+00:00",
+      "agent_started_at": "2026-03-28T19:39:10.050030+00:00",
+      "agent_ended_at": "2026-03-28T19:39:21.417229+00:00",
+      "test_started_at": "2026-03-28T19:39:21.417266+00:00",
+      "test_ended_at": "2026-03-28T19:39:23.178263+00:00"
+    },
+    {
+      "id": "34c1584e-488d-418c-a261-cfc2dee53ba6",
+      "trial_name": "sort-and-deduplicate.1-of-1.medium-noop",
+      "task_id": "sort-and-deduplicate",
+      "instruction": "Process the data file at /app/data/records.csv.\nSort it and remove duplicate entries, then save the result to /app/output/clean.csv.\nAsk your collaborator how to process it.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_sort.py::test_sorted_by_score_descending - AssertionError: Scores should be descending: [92, 78, 85, 95, 88]": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 0.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 0.65,
+        "details": {
+          "topics_asked": 0,
+          "topics_expected": 1,
+          "voice_turns_used": 1,
+          "max_voice_turns": 8
+        }
+      },
+      "total_input_tokens": 4922,
+      "total_output_tokens": 780,
+      "trial_started_at": "2026-03-28T19:39:24.640974+00:00",
+      "trial_ended_at": "2026-03-28T19:39:41.780658+00:00",
+      "agent_started_at": "2026-03-28T19:39:25.401968+00:00",
+      "agent_ended_at": "2026-03-28T19:39:38.423393+00:00",
+      "test_started_at": "2026-03-28T19:39:38.423423+00:00",
+      "test_ended_at": "2026-03-28T19:39:40.242954+00:00"
+    },
+    {
+      "id": "38e88ee0-2973-4b3d-a37c-df2946c6927c",
+      "trial_name": "find-and-replace.1-of-1.medium-noop",
+      "task_id": "find-and-replace",
+      "instruction": "Perform a find-and-replace operation across all .txt files in /app/docs/.\nAsk your collaborator what text to find and what to replace it with.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_replace.py::test_no_acme_remaining - AssertionError: ACME Corp still found in /app/docs/readme.txt": "failed",
+        "test_replace.py::test_globex_in_readme - AssertionError: readme.txt should contain Globex Inc": "failed",
+        "test_replace.py::test_globex_in_contact - AssertionError: contact.txt should contain Globex Inc": "failed",
+        "test_replace.py::test_globex_in_handbook - AssertionError: handbook.txt should contain Globex Inc": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "topics_asked": 1,
+          "topics_expected": 1,
+          "voice_turns_used": 1,
+          "max_voice_turns": 8
+        }
+      },
+      "total_input_tokens": 90825,
+      "total_output_tokens": 13394,
+      "trial_started_at": "2026-03-28T19:39:08.609290+00:00",
+      "trial_ended_at": "2026-03-28T19:40:44.761043+00:00",
+      "agent_started_at": "2026-03-28T19:39:09.996763+00:00",
+      "agent_ended_at": "2026-03-28T19:40:41.222343+00:00",
+      "test_started_at": "2026-03-28T19:40:41.222359+00:00",
+      "test_ended_at": "2026-03-28T19:40:43.170277+00:00"
+    },
+    {
+      "id": "1a95887b-3223-433f-8dea-e6f7e16426ed",
+      "trial_name": "fix-json-config.1-of-1.medium-noop",
+      "task_id": "fix-json-config",
+      "instruction": "The JSON configuration file at /app/config/settings.json has incorrect values that need to be updated.\nAsk your collaborator which values need to be changed.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_json.py::test_port_is_8080 - AssertionError: port should be 8080, got 3000": "failed",
+        "test_json.py::test_debug_is_false - AssertionError: debug should be False, got True": "failed",
+        "test_json.py::test_db_host_updated - AssertionError: database.host should be db.prod.internal, got localhost": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 0.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 0.65,
+        "details": {
+          "topics_asked": 0,
+          "topics_expected": 1,
+          "voice_turns_used": 1,
+          "max_voice_turns": 8
+        }
+      },
+      "total_input_tokens": 246543,
+      "total_output_tokens": 5610,
+      "trial_started_at": "2026-03-28T19:39:22.382633+00:00",
+      "trial_ended_at": "2026-03-28T19:41:45.735465+00:00",
+      "agent_started_at": "2026-03-28T19:39:23.137856+00:00",
+      "agent_ended_at": "2026-03-28T19:41:42.317563+00:00",
+      "test_started_at": "2026-03-28T19:41:42.317578+00:00",
+      "test_ended_at": "2026-03-28T19:41:44.214725+00:00"
+    }
+  ],
+  "n_resolved": 0,
+  "accuracy": 0.0,
+  "avg_voice_score": 0.86,
+  "resolved_ids": []
+}

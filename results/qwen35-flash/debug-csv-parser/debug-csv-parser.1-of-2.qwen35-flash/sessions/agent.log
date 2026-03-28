@@ -1,0 +1,53 @@
+[?2004hroot@cbd5f48e7a6b:/app# run-code parse_csv.py; tmux wait -S done
+[?2004lTraceback (most recent call last):
+  File "/app/src/parse_csv.py", line 22, in <module>
+    records = parse_csv("/app/data/input.csv")
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/parse_csv.py", line 16, in parse_csv
+    record[col] = values[i]  # BUG 2: IndexError on empty lines
+                  ~~~~~~^^^
+IndexError: list index out of range
+[?2004hroot@cbd5f48e7a6b:/app# cat > fixed.py << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@cbd5f48e7a6b:/app# echo '#!/usr/bin/env python3; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@cbd5f48e7a6b:/app# echo '#!/usr/bin/env python3' > fixed.py; tmux wait -S done
+[?2004l[?2004hroot@cbd5f48e7a6b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@cbd5f48e7a6b:/app# printf '%s\n' '#!/usr/bin/env python3' 'import csv' '' 'def parse_csv(filepath):' '    records = []' '    with open(filepath, "r") as f:'' '        lines = f.readlines()' '        if not lines:' '            return records' '        headers = lines[0].strip().split(",")' '        for line in liness[1:]:' '            stripped_line = line.strip()' '            if not stripped_line:' '                continue' '            values = stripped_line.split(",")'' '            record = {}' '            for i, col in enumerate(headers):' '                if i < len(values):' '                    record[col] = values[i]' ''            records.append(record)' '        return records' '' 'if __name__ == "__main__":' '    records = parse_csv("/app/data/input.csv")' '    print(recordss)' > fixed.py; tmux wait -S done
+[?2004l[?2004hroot@cbd5f48e7a6b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@cbd5f48e7a6b:/app# chmod +x fixed.py && cat fixed.py | apply-fix parse_csv.py; tmux wait -S done
+[?2004l[?2004hroot@cbd5f48e7a6b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@cbd5f48e7a6b:/app# run-code parse_csv.py; tmux wait -S done
+[?2004l[{'name': 'Alice', 'age': '30', 'city': 'Portland'}, {'name': '"Smith', 'age': ' John"', 'city': '45'}, {'name': 'Bob', 'age': '28', 'city': 'Seattle'}, {'name': 'Charlie', 'age': '35', 'city': 'Austin'}]
+[?2004hroot@cbd5f48e7a6b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@cbd5f48e7a6b:/app# printf '%s\n' '#!/usr/bin/env python3' 'import csv' 'import json' '' 'def parse_csv(filepath):' '    records = []' '    with open(filepatth, "r") as f:' '        reader = csv.DictReader(f)' '        for row in reader:' '            records.append(row)' '    return records' '' 'if __name__ == "__maain__":' '    records = parse_csv("/app/data/input.csv")' '    with open("/app/output/parsed.json", "w") as f:' '        json.dump(records, f, indent=2)' '    prrint("Parsed to /app/output/parsed.json")' > fixed.py; tmux wait -S done
+[?2004l[?2004hroot@cbd5f48e7a6b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@cbd5f48e7a6b:/app# cat fixed.py | apply-fix parse_csv.py; tmux wait -S done
+[?2004l[?2004hroot@cbd5f48e7a6b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@cbd5f48e7a6b:/app# run-code parse_csv.py; tmux wait -S done
+[?2004lParsed to /app/output/parsed.json
+[?2004hroot@cbd5f48e7a6b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@cbd5f48e7a6b:/app# cat /app/output/parsed.json; tmux wait -S done
+[?2004l[
+  {
+    "name": "Alice",
+    "age": "30",
+    "city": "Portland"
+  },
+  {
+    "name": "Smith, John",
+    "age": "45",
+    "city": "Denver"
+  },
+  {
+    "name": "Bob",
+    "age": "28",
+    "city": "Seattle"
+  },
+  {
+    "name": "Charlie",
+    "age": "35",
+    "city": "Austin"
+  }
+][?2004hroot@cbd5f48e7a6b:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@cbd5f48e7a6b:/app# 

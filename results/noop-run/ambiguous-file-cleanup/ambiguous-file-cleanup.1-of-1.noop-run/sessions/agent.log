@@ -1,0 +1,98 @@
+[?2004hroot@1b2623fd17e1:/app# set -euo pipefail
+[?2004l[?2004hroot@1b2623fd17e1:/app# whoami
+[?2004lroot
+[?2004hroot@1b2623fd17e1:/app# (sudo true) 2>/dev/null || true
+[?2004l[?2004hroot@1b2623fd17e1:/app# # Basic space usage
+[?2004l[?2004hroot@1b2623fd17e1:/app# sudo du -sh /var/log 2>/dev/null || du -sh /var/log || true
+[?2004l416K	/var/log
+[?2004hroot@1b2623fd17e1:/app# sudo du -h --max-depth=2 /var/log 2>/dev/null | sort -hr | head -n 20 || true
+[?2004l[?2004hroot@1b2623fd17e1:/app# # Find oldest/large candidates (dry-run)
+[?2004l[?2004hroot@1b2623fd17e1:/app# echo '--- Old log files (older than 30 days) under /var/log (show top 50 by size) ---'
+[?2004l--- Old log files (older than 30 days) under /var/log (show top 50 by size) ---
+[?2004hroot@1b2623fd17e1:/app# sudo find /var/log -type f -mtime +30 -printf '%s%TY-%Tm-%Td%p
+[?2004l[?2004h> ' 2>/dev/null | sort -nr | head -n 50 || true
+[?2004l[?2004hroot@1b2623fd17e1:/app# # systemd journal usage
+[?2004l[?2004hroot@1b2623fd17e1:/app# command -v journalctl >/dev/null 2>&1 && (sudo journalctl --disk-usage 2>/dev/null || journalctl --disk-usage 2>/dev/null || true) || truue
+[?2004l[?2004hroot@1b2623fd17e1:/app# # Docker containers logs (if present)
+[?2004l[?2004hroot@1b2623fd17e1:/app# if [ -d /var/lib/docker/containers ]; then
+[?2004l[?2004h>   echo '--- Docker container log files (if any) older than 30 days (top 20) ---'
+[?2004l[?2004h>   sudo find /var/lib/docker/containers -type f -name '*.log' -mtime +30 -printf '%s\t%TY-%Tm-%Td\t%p\n' 2>/dev/null | sort -nr | head -n 20 || true
+[?2004l[?2004h> fi; tmux wait -S done
+[?2004l[?2004hroot@1b2623fd17e1:/app# set -euo pipefail
+[?2004l[?2004hroot@1b2623fd17e1:/app# # Check other likely offenders (read-only)
+[?2004l[?2004hroot@1b2623fd17e1:/app# for p in /var/log /var/lib/docker /var/lib/containerd /var/log/journal /var/lib/systemd/coredump /var/lib/systemd/journal /tmp /var/tmp;  do
+[?2004l[?2004h>   if [ -e "$p" ]; then
+[?2004l[?2004h>     echo "--- du -sh $p ---"; du -sh "$p" 2>/dev/null || true
+[?2004l[?2004h>   fi
+[?2004l[?2004h> done
+[?2004l--- du -sh /var/log ---
+416K	/var/log
+--- du -sh /tmp ---
+8.0K	/tmp
+--- du -sh /var/tmp ---
+4.0K	/var/tmp
+[?2004hroot@1b2623fd17e1:/app# 
+[?2004l[?2004hroot@1b2623fd17e1:/app# # List top-level sizes under /var/lib (depth 1)
+[?2004l[?2004hroot@1b2623fd17e1:/app# echo '--- Top under /var/lib (max-depth=1) ---'
+[?2004l--- Top under /var/lib (max-depth=1) ---
+[?2004hroot@1b2623fd17e1:/app# sudo du -h --max-depth=1 /var/lib 2>/dev/null | sort -hr | head -n 20 || du -h --max-depth=1 /var/lib 2>/dev/null | sort -hr | head -n 200 || true
+[?2004l8.9M	/var/lib
+8.7M	/var/lib/dpkg
+76K	/var/lib/systemd
+32K	/var/lib/apt
+28K	/var/lib/pam
+4.0K	/var/lib/python
+4.0K	/var/lib/misc
+[?2004hroot@1b2623fd17e1:/app# 
+[?2004l[?2004hroot@1b2623fd17e1:/app# # If systemd journal exists, show current sizes and retention
+[?2004l[?2004hroot@1b2623fd17e1:/app# if command -v journalctl >/dev/null 2>&1; then
+[?2004l[?2004h>   echo '--- journalctl disk usage ---'
+[?2004l[?2004h>   journalctl --disk-usage 2>/dev/null || true
+[?2004l[?2004h>   echo '--- journalctl tail (last 5 lines) ---'
+[?2004l[?2004h>   journalctl -n 5 --no-pager 2>/dev/null || true
+[?2004l[?2004h> fi
+[?2004l[?2004hroot@1b2623fd17e1:/app# 
+[?2004l[?2004hroot@1b2623fd17e1:/app# # Check whether nginx/apache logs exist and their sizes
+[?2004l[?2004hroot@1b2623fd17e1:/app# for d in /var/log/nginx /var/log/apache2 /var/log/httpd; do
+[?2004l[?2004h>   if [ -d "$d" ]; then
+[?2004l[?2004h>     echo "--- Files under $d (top 20 by size) ---"
+[?2004l[?2004h>     find "$d" -type f -maxdepth 2 -printf '%s\t%p\n' 2>/dev/null | sort -nr | head -n 20 || true
+[?2004l[?2004h>   fi
+[?2004l[?2004h> done; tmux wait -S done
+[?2004l[?2004hroot@1b2623fd17e1:/app# set -euo pipefail
+[?2004l[?2004hroot@1b2623fd17e1:/app# echo 'journalctl path:'
+[?2004ljournalctl path:
+[?2004hroot@1b2623fd17e1:/app# command -v journalctl || true
+[?2004l[?2004hroot@1b2623fd17e1:/app# echo '--- journalctl disk usage (if supported) ---'
+[?2004l--- journalctl disk usage (if supported) ---
+[?2004hroot@1b2623fd17e1:/app# journalctl --disk-usage --no-pager 2>/dev/null || journalctl --disk-usage 2>/dev/null || true
+[?2004l[?2004hroot@1b2623fd17e1:/app# 
+[?2004l[?2004hroot@1b2623fd17e1:/app# echo '--- /var/log top files by size (depth 2) ---'
+[?2004l--- /var/log top files by size (depth 2) ---
+[?2004hroot@1b2623fd17e1:/app# if [ -d /var/log ]; then
+[?2004l[?2004h>   find /var/log -maxdepth 2 -type f -printf '%s\t%p\n' 2>/dev/null | sort -nr | head -n 30 || true
+[?2004l[?2004h> fi
+[?2004l256234	/var/log/dpkg.log
+61237	/var/log/bootstrap.log
+43292	/var/log/apt/term.log
+26299	/var/log/apt/history.log
+11472	/var/log/apt/eipp.log.xz
+9576	/var/log/alternatives.log
+0	/var/log/wtmp
+0	/var/log/lastlog
+0	/var/log/faillog
+0	/var/log/btmp
+[?2004hroot@1b2623fd17e1:/app# 
+[?2004l[?2004hroot@1b2623fd17e1:/app# echo '--- rotated/compressed logs (depth 2) ---'
+[?2004l--- rotated/compressed logs (depth 2) ---
+[?2004hroot@1b2623fd17e1:/app# find /var/log -maxdepth 2 -type f \( -name '*.gz' -o -name '*.1' -o -name '*.log.*' -o -name '*.old' \) -printf '%s\t%p\n' 2>/dev/null |  sort -nr | head -n 30 || true
+[?2004l11472	/var/log/apt/eipp.log.xz
+[?2004hroot@1b2623fd17e1:/app# 
+[?2004l[?2004hroot@1b2623fd17e1:/app# echo '--- large files anywhere under /var/log (threshold 10M) ---'
+[?2004l--- large files anywhere under /var/log (threshold 10M) ---
+[?2004hroot@1b2623fd17e1:/app# find /var/log -type f -size +10M -printf '%s\t%p\n' 2>/dev/null | sort -nr | head -n 20 || true; tmux wait -S done
+[?2004l[?2004hroot@1b2623fd17e1:/app# set -euo pipefail
+[?2004l[?2004hroot@1b2623fd17e1:/app# # Non-destructive scan: locate potentially large/old log-like files
+[?2004l[?2004hroot@1b2623fd17e1:/app# printf "--- Top log-like files under /var (by size, limit 25) ---\n"
+[?2004l-bash: printf: --: invalid option
+printf: usage: printf [-v var] format [arguments]

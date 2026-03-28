@@ -1,0 +1,35 @@
+{
+  "id": "9cfe969f-da91-4f72-a0b1-ab287195dac9",
+  "trial_name": "count-lines-in-file.1-of-1.verify-control",
+  "task_id": "count-lines-in-file",
+  "instruction": "Count the number of lines in /app/data/input.txt and write just the number to /app/output/count.txt.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_count.py::test_output_exists": "passed",
+    "test_count.py::test_correct_count": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "topics_matched": [],
+      "topics_expected": [],
+      "voice_turns_used": 0,
+      "terminal_commands_count": 2,
+      "max_voice_turns": 4
+    }
+  },
+  "total_input_tokens": 1122,
+  "total_output_tokens": 117,
+  "trial_started_at": "2026-03-28T20:05:18.490971+00:00",
+  "trial_ended_at": "2026-03-28T20:05:29.374663+00:00",
+  "agent_started_at": "2026-03-28T20:05:21.655143+00:00",
+  "agent_ended_at": "2026-03-28T20:05:26.005057+00:00",
+  "test_started_at": "2026-03-28T20:05:26.005105+00:00",
+  "test_ended_at": "2026-03-28T20:05:27.958844+00:00",
+  "composite_score": 1.0
+}

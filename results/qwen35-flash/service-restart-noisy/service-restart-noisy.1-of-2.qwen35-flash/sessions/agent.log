@@ -1,0 +1,7 @@
+[?2004hroot@0ca45e451b42:/app# python3 /app/svcctl.py restart payment-gateway; tmux wait -S done
+[?2004lRestarting payment-gateway...
+payment-gateway restarted successfully.
+[?2004hroot@0ca45e451b42:/app# python3 /app/svcctl.py restart notification-service; tmux wait -S done
+[?2004lRestarting notification-service...
+notification-service restarted successfully.
+[?2004hroot@0ca45e451b42:/app# 

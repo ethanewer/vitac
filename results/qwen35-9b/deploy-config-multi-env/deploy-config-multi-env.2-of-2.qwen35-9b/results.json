@@ -1,0 +1,34 @@
+{
+  "id": "73c5e02e-63d5-46c0-a490-e01fa90ece8b",
+  "trial_name": "deploy-config-multi-env.2-of-2.qwen35-9b",
+  "task_id": "deploy-config-multi-env",
+  "instruction": "Create deployment configuration files for three environments: dev, staging, and prod.\nWrite them as JSON files at /app/deploy/dev.json, /app/deploy/staging.json, and /app/deploy/prod.json.\nAsk your collaborator for the configuration values for each environment.\nEach config should include: app_name, environment, database settings, cache settings, feature flags, replicas, and log_level.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_deploy_config.py::test_dev_database - KeyError: 'pool_size'": "failed",
+    "test_deploy_config.py::test_staging_database - KeyError: 'pool_size'": "failed",
+    "test_deploy_config.py::test_prod_database - KeyError: 'pool_size'": "failed",
+    "test_deploy_config.py::test_prod_no_beta - KeyError: 'features'": "failed",
+    "test_deploy_config.py::test_dev_beta_enabled - KeyError: 'features'": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 22698,
+  "total_output_tokens": 1161,
+  "trial_started_at": "2026-03-28T21:47:08.426153+00:00",
+  "trial_ended_at": "2026-03-28T21:49:49.261725+00:00",
+  "agent_started_at": "2026-03-28T21:47:09.634021+00:00",
+  "agent_ended_at": "2026-03-28T21:49:35.761462+00:00",
+  "test_started_at": "2026-03-28T21:49:35.761490+00:00",
+  "test_ended_at": "2026-03-28T21:49:47.781514+00:00",
+  "composite_score": 0.0
+}

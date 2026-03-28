@@ -1,0 +1,23 @@
+[?2004hroot@392fa7ef2869:/app# mkdir -p /app/config; tmux wait -S done
+[?2004l[?2004hroot@392fa7ef2869:/app# cat > /app/config/app_config.yaml << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@392fa7ef2869:/app# cat > /app/config/app_config.yaml << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@392fa7ef2869:/app# cat > /app/config/app_config.yaml << EOF; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@392fa7ef2869:/app# echo -e "app:\n  name: MyApplication\n  version: 1.0.0\n  debug: false\nserver:\n  host: localhost\n  port: 8080\ndatabase:\n  host: locaalhost\n  port: 5432\n  name: mydb" > /app/config/app_config.yaml; tmux wait -S done
+[?2004l[?2004hroot@392fa7ef2869:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@392fa7ef2869:/app# cat /app/config/app_config.yaml; tmux wait -S done
+[?2004lapp:
+  name: MyApplication
+  version: 1.0.0
+  debug: false
+server:
+  host: localhost
+  port: 8080
+database:
+  host: localhost
+  port: 5432
+  name: mydb
+[?2004hroot@392fa7ef2869:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@392fa7ef2869:/app# 

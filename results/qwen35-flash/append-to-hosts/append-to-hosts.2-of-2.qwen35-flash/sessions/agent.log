@@ -1,0 +1,6 @@
+[?2004hroot@fa825362a1a6:/app# echo '10.0.1.50 api.internal.corp' >> /app/etc/hosts; tmux wait -S done
+[?2004l[?2004hroot@fa825362a1a6:/app# cat /app/etc/hosts; tmux wait -S done
+[?2004l127.0.0.1 localhost
+::1 localhost
+10.0.1.50 api.internal.corp
+[?2004hroot@fa825362a1a6:/app# 

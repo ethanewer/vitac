@@ -1,0 +1,32 @@
+[?2004hroot@b4031d432b55:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
+[?2004l[?2004hroot@b4031d432b55:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 6 items                                                                                                                                              [0m
+
+test_config.py::test_output_exists [32mPASSED[0m[32m                                                                                                                [ 16%][0m
+test_config.py::test_correct_server_name [32mPASSED[0m[32m                                                                                                          [ 33%][0m
+test_config.py::test_correct_proxy_pass [31mFAILED[0m[31m                                                                                                           [ 50%][0m
+test_config.py::test_proxy_pass_semicolon [32mPASSED[0m[31m                                                                                                         [ 66%][0m
+test_config.py::test_listen_port [32mPASSED[0m[31m                                                                                                                  [ 83%][0m
+test_config.py::test_no_localhost [32mPASSED[0m[31m                                                                                                                 [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m___________________________________________________________________ test_correct_proxy_pass ____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_correct_proxy_pass[39;49;00m():[90m[39;49;00m
+        [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/output/nginx.conf[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+            content = f.read()[90m[39;49;00m
+>       [94massert[39;49;00m [33m"[39;49;00m[33mproxy_pass http://backend:3000;[39;49;00m[33m"[39;49;00m [95min[39;49;00m content, \
+            [33m"[39;49;00m[33mproxy_pass should use backend:3000 with semicolon[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: proxy_pass should use backend:3000 with semicolon[0m
+[1m[31mE       assert 'proxy_pass http://backend:3000;' in 'server { listen 80; server_name app.example.com; location / { proxy_pass http://127.0.0.1:3000; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; } }'[0m
+
+[1m[31mtest_config.py[0m:18: AssertionError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_config.py::[1mtest_correct_proxy_pass[0m - AssertionError: proxy_pass should use backend:3000 with semicolon
+[31m================================================================= [31m[1m1 failed[0m, [32m5 passed[0m[31m in 0.02s[0m[31m ==================================================================[0m
+[?2004hroot@b4031d432b55:/app# 

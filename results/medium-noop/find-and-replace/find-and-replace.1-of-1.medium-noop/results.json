@@ -1,0 +1,35 @@
+{
+  "id": "38e88ee0-2973-4b3d-a37c-df2946c6927c",
+  "trial_name": "find-and-replace.1-of-1.medium-noop",
+  "task_id": "find-and-replace",
+  "instruction": "Perform a find-and-replace operation across all .txt files in /app/docs/.\nAsk your collaborator what text to find and what to replace it with.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_replace.py::test_no_acme_remaining - AssertionError: ACME Corp still found in /app/docs/readme.txt": "failed",
+    "test_replace.py::test_globex_in_readme - AssertionError: readme.txt should contain Globex Inc": "failed",
+    "test_replace.py::test_globex_in_contact - AssertionError: contact.txt should contain Globex Inc": "failed",
+    "test_replace.py::test_globex_in_handbook - AssertionError: handbook.txt should contain Globex Inc": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "topics_asked": 1,
+      "topics_expected": 1,
+      "voice_turns_used": 1,
+      "max_voice_turns": 8
+    }
+  },
+  "total_input_tokens": 90825,
+  "total_output_tokens": 13394,
+  "trial_started_at": "2026-03-28T19:39:08.609290+00:00",
+  "trial_ended_at": "2026-03-28T19:40:44.761043+00:00",
+  "agent_started_at": "2026-03-28T19:39:09.996763+00:00",
+  "agent_ended_at": "2026-03-28T19:40:41.222343+00:00",
+  "test_started_at": "2026-03-28T19:40:41.222359+00:00",
+  "test_ended_at": "2026-03-28T19:40:43.170277+00:00"
+}

@@ -1,0 +1,81 @@
+[?2004hroot@e1a315d2d472:/app# run-code app.py; tmux wait -S done
+[?2004lGenerated report: 3 users, 3 products
+Total value: $89.97
+[?2004hroot@e1a315d2d472:/app# mkdir -p /app/output; tmux wait -S done
+[?2004l[?2004hroot@e1a315d2d472:/app# cat > /app/src/models.py << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# printf '%s' 'from datetime import datetime; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# echo -e 'from datetime import datetime\n\nclass User:\n    def __init__(self, name, email, role="member"):\n        self.name = name\n         self.email = email\n        self.role = role\n        self.created_at = datetime.now()\n\n    def to_dict(self):\n        return {\n            "name": sellf.name,\n            "email": self.email,\n            "role": self.role,\n            "created_at": self.created_at.isoformat()\n        }\n\nclass Product:\n     def __init__(self, name, price, category):\n        self.name = name\n        self.price = price\n        self.category = category\n\n    def to_dict(self):\\n        return {\n            "name": self.name,\n            "price": self.price,\n            "category": self.category\n        }\n' > /app/src/models.py; ttmux wait -S done
+[?2004l[?2004hroot@e1a315d2d472:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# echo -e 'from datetime import datetime\n\nclass User:\n    def __init__(self, name, email, role="member"):\n        self.name = name\n         self.email = email\n        self.role = role\n        self.created_at = datetime.now()\n\n    def to_dict(self):\n        return {"name": self.name, "emaill": self.email, "role": self.role, "created_at": self.created_at.isoformat()}\n\nclass Product:\n    def __init__(self, name, price, category):\n        self.namme = name\n        self.price = price\n        self.category = category\n\n    def to_dict(self):\n        return {"name": self.name, "price": self.price, "categgory": self.category}\n' > /app/src/models.py; tmux wait -S done
+[?2004l[?2004hroot@e1a315d2d472:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# echo 'from datetime import datetime' > /app/src/models.py && echo '' >> /app/src/models.py && echo 'class User:' >> /app/src/models.py &&& echo '    def __init__(self, name, email, role="member"): self.name = name; self.email = email; self.role = role; self.created_at = datetime.now()' >> /app/srcc/models.py && echo '' >> /app/src/models.py && echo '    def to_dict(self): return {"name": self.name, "email": self.email, "role": self.role, "created_at": sellf.created_at.isoformat()}' >> /app/src/models.py && echo '' >> /app/src/models.py && echo 'class Product:' >> /app/src/models.py && echo '    def __init__(self,, name, price, category): self.name = name; self.price = price; self.category = category' >> /app/src/models.py && echo '' >> /app/src/models.py && echo '    deff to_dict(self): return {"name": self.name, "price": self.price, "category": self.category}' >> /app/src/models.py; tmux wait -S done
+[?2004l[?2004hroot@e1a315d2d472:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# cat /app/src/models.py; tmux wait -S done
+[?2004lfrom datetime import datetime
+
+class User:
+    def __init__(self, name, email, role="member"): self.name = name; self.email = email; self.role = role; self.created_at = datetime.now()
+
+    def to_dict(self): return {"name": self.name, "email": self.email, "role": self.role, "created_at": self.created_at.isoformat()}
+
+class Product:
+    def __init__(self, name, price, category): self.name = name; self.price = price; self.category = category
+
+    def to_dict(self): return {"name": self.name, "price": self.price, "category": self.category}
+[?2004hroot@e1a315d2d472:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# echo 'def format_currency(amount): return f"${amount:.2f}"' > /app/src/utils.py && echo '' >> /app/src/utils.py && echo 'def validate_emaail(email): return "@" in email and any("." in part for part in email.split("@")) if "@" in email else False' >> /app/src/utils.py && echo '' >> /app/src/utils.ppy && echo 'def generate_report(users, products): return {"total_users": len(users), "total_products": len(products), "total_value": sum(p.price for p in productts), "users": [u.to_dict() for u in users], "products": [p.to_dict() for p in products]}' >> /app/src/utils.py; tmux wait -S done
+[?2004l[?2004hroot@e1a315d2d472:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# cat /app/src/utils.py; tmux wait -S done
+[?2004ldef format_currency(amount): return f"${amount:.2f}"
+
+def validate_email(email): return "@" in email and any("." in part for part in email.split("@")) if "@" in email else False
+
+def generate_report(users, products): return {"total_users": len(users), "total_products": len(products), "total_value": sum(p.price for p in products), "users": [u.to_dict() for u in users], "products": [p.to_dict() for p in products]}
+[?2004hroot@e1a315d2d472:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# echo 'import json' > /app/src/main.py && echo 'from models import User, Product' >> /app/src/main.py && echo 'from utils import format_cuurrency, generate_report' >> /app/src/main.py && echo '' >> /app/src/main.py && echo 'users = [User("Alice", "alice@example.com", "admin"), User("Bob", "bob@testt.org", "member"), User("Carol", "carol@demo.net", "member")]' >> /app/src/main.py && echo '' >> /app/src/main.py && echo 'products = [Product("Widget", 10.99, ""electronics"), Product("Gadget", 50.00, "electronics"), Product("Service", 28.98, "services")]' >> /app/src/main.py && echo '' >> /app/src/main.py && echo 'repoort = generate_report(users, products)' >> /app/src/main.py && echo 'report["formatted_total"] = format_currency(report["total_value"])' >> /app/src/main.py && eecho '' >> /app/src/main.py && echo 'with open("/app/output/report.json", "w") as f: json.dump(report, f, indent=2)' >> /app/src/main.py && echo '' >> /app/src/mmain.py && echo 'print(f"Generated report: {len(users)} users, {len(products)} products")' >> /app/src/main.py && echo 'print(f"Total value: {report["formatted_ttotal"]}")' > /app/src/main.py; tmux wait -S done
+[?2004l[?2004hroot@e1a315d2d472:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# cat /app/src/main.py; tmux wait -S done
+[?2004lprint(f"Total value: {report["formatted_total"]}")
+[?2004hroot@e1a315d2d472:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# python3 -c "open('/app/src/models.py','w').write('''from datetime import datetime; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# python3 << 'PYEOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# python3 -c """with open('/app/src/models.py','w') as f: f.write('from datetime import datetime\nclass User:\n    def __init__(self, name,, email, role=\"member\"):\n        self.name=name;self.email=email;self.role=role;self.created_at=datetime.now()\n    def to_dict(self):\n        return {\"namee\":self.name,\"email\":self.email,\"role\":self.role,\"created_at\":self.created_at.isoformat()}\nclass Product:\n    def __init__(self, name, price, category)::\n        self.name=name;self.price=price;self.category=category\n    def to_dict(self):\n        return {\"name\":self.name,\"price\":self.price,\"category\":sself.category}\n')"""; tmux wait -S done
+[?2004l[?2004hroot@e1a315d2d472:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# cd /app/src && python3 -c '''): with open('models.py','w') as f: f.write('from datetime import datetime\n\nclass User:\n    def __init__((self,name,email,role="member"):\n        self.name=name\n        self.email=email\n        self.role=role\n        self.created_at=datetime.now()\n    def to_diict(self):\n        return {"name":self.name,"email":self.email,"role":self.role,"created_at":self.created_at.isoformat()}\n\nclass Product:\n    def __init__(seelf,name,price,category):\n        self.name=name\n        self.price=price\n        self.category=category\n    def to_dict(self):\n        return {"name":self..name,"price":self.price,"category":self.category}\n')'''; tmux wait -S done
+[?2004l-bash: syntax error near unexpected token `('
+[?2004hroot@e1a315d2d472:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app# cd /app/src && rm -f models.py utils.py main.py && echo -e 'from datetime import datetime\n\nclass User:\n    def __init__(self,name,emaiil,role="member"):\n        self.name=name\n        self.email=email\n        self.role=role\n        self.created_at=datetime.now()\n    def to_dict(self):\n         return {"name":self.name,"email":self.email,"role":self.role,"created_at":self.created_at.isoformat()}\n\nclass Product:\n    def __init__(self,name,price,,category):\n        self.name=name\n        self.price=price\n        self.category=category\n    def to_dict(self):\n        return {"name":self.name,"price":sself.price,"category":self.category}\n' > models.py && cat models.py; tmux wait -S done
+[?2004lfrom datetime import datetime
+
+class User:
+    def __init__(self,name,email,role="member"):
+        self.name=name
+        self.email=email
+        self.role=role
+        self.created_at=datetime.now()
+    def to_dict(self):
+        return {"name":self.name,"email":self.email,"role":self.role,"created_at":self.created_at.isoformat()}
+
+class Product:
+    def __init__(self,name,price,category):
+        self.name=name
+        self.price=price
+        self.category=category
+    def to_dict(self):
+        return {"name":self.name,"price":self.price,"category":self.category}
+
+[?2004hroot@e1a315d2d472:/app/src# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app/src# echo -e 'def format_currency(amount): return f"${amount:.2f}"\n\ndef validate_email(email): return "@" in email and any("." in part ffor part in email.split("@")) if "@" in email else False\n\ndef generate_report(users, products): return {"total_users": len(users), "total_products": len(produccts), "total_value": sum(p.price for p in products), "users": [u.to_dict() for u in users], "products": [p.to_dict() for p in products]}' > utils.py && cat utilss.py; tmux wait -S done
+[?2004ldef format_currency(amount): return f"${amount:.2f}"
+
+def validate_email(email): return "@" in email and any("." in part for part in email.split("@")) if "@" in email else False
+
+def generate_report(users, products): return {"total_users": len(users), "total_products": len(products), "total_value": sum(p.price for p in products), "users": [u.to_dict() for u in users], "products": [p.to_dict() for p in products]}
+[?2004hroot@e1a315d2d472:/app/src# ^C[?2004l[?2004h[?2004l
+[?2004hroot@e1a315d2d472:/app/src# rm main.py && echo 'import json' > main.py && echo 'from models import User, Product' >> main.py && echo 'from utils import format_cuurrency, generate_report' >> main.py && echo '' >> main.py && echo 'users = [User("Alice", "alice@example.com", "admin"), User("Bob", "bob@test.org", "member"),  User("Carol", "carol@demo.net", "member")]' >> main.py && echo '' >> main.py && echo 'products = [Product("Widget", 10.99, "electronics"), Product("Gadget", 50..00, "electronics"), Product("Service", 28.98, "services")]' >> main.py && echo '' >> main.py && echo 'report = generate_report(users, products)' >> main.py && eecho 'report["formatted_total"] = format_currency(report["total_value"])' >> main.py && echo '' >> main.py && echo 'with open("/app/output/report.json", "w") as  f: json.dump(report, f, indent=2)' >> main.py && echo '' >> main.py && echo 'print(f"Generated report: {len(users)} users, {len(products)} products")' >> main.ppy && echo 'print(f"Total value: {report["formatted_total"]}")' > main.py && cat main.py; tmux wait -S done
+[?2004lrm: cannot remove 'main.py': No such file or directory
+[?2004hroot@e1a315d2d472:/app/src# 

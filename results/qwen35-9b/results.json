@@ -1,0 +1,2257 @@
+{
+  "id": "668cd390-3a36-4ee9-83f4-d2592cdbfd95",
+  "results": [
+    {
+      "id": "4cf565da-e5bd-4c4b-91e9-ccec2e3c2148",
+      "trial_name": "compress-selected-files.2-of-2.qwen35-9b",
+      "task_id": "compress-selected-files",
+      "instruction": "Create a compressed archive from files in /app/data/.\nSave the archive to /app/output/archive.tar.gz.\nAsk your collaborator which files to include.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_archive.py::test_archive_exists": "passed",
+        "test_archive.py::test_archive_is_valid": "passed",
+        "test_archive.py::test_csv_files_included": "passed",
+        "test_archive.py::test_no_tmp_files": "passed",
+        "test_archive.py::test_no_log_files": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 3542,
+      "total_output_tokens": 170,
+      "trial_started_at": "2026-03-28T21:33:39.289614+00:00",
+      "trial_ended_at": "2026-03-28T21:33:56.260301+00:00",
+      "agent_started_at": "2026-03-28T21:33:41.678003+00:00",
+      "agent_ended_at": "2026-03-28T21:33:52.661342+00:00",
+      "test_started_at": "2026-03-28T21:33:52.661386+00:00",
+      "test_ended_at": "2026-03-28T21:33:54.741075+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "f74bafa0-9c0f-4a44-b718-511c3f32c3b0",
+      "trial_name": "append-to-hosts.1-of-2.qwen35-9b",
+      "task_id": "append-to-hosts",
+      "instruction": "Add a new entry to the hosts file at /app/etc/hosts.\nAsk your collaborator for the IP address and hostname to add.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_hosts.py::test_hosts_file_exists": "passed",
+        "test_hosts.py::test_original_entries_preserved": "passed",
+        "test_hosts.py::test_new_entry_present": "passed",
+        "test_hosts.py::test_new_entry_on_same_line": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1806,
+      "total_output_tokens": 86,
+      "trial_started_at": "2026-03-28T21:33:39.289188+00:00",
+      "trial_ended_at": "2026-03-28T21:33:56.429938+00:00",
+      "agent_started_at": "2026-03-28T21:33:41.633651+00:00",
+      "agent_ended_at": "2026-03-28T21:33:52.871287+00:00",
+      "test_started_at": "2026-03-28T21:33:52.871304+00:00",
+      "test_ended_at": "2026-03-28T21:33:54.745957+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "11a030ed-8e67-47f9-82aa-5eb778e016bc",
+      "trial_name": "append-to-hosts.2-of-2.qwen35-9b",
+      "task_id": "append-to-hosts",
+      "instruction": "Add a new entry to the hosts file at /app/etc/hosts.\nAsk your collaborator for the IP address and hostname to add.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_hosts.py::test_hosts_file_exists": "passed",
+        "test_hosts.py::test_original_entries_preserved": "passed",
+        "test_hosts.py::test_new_entry_present": "passed",
+        "test_hosts.py::test_new_entry_on_same_line": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 2772,
+      "total_output_tokens": 131,
+      "trial_started_at": "2026-03-28T21:33:39.289335+00:00",
+      "trial_ended_at": "2026-03-28T21:33:56.599809+00:00",
+      "agent_started_at": "2026-03-28T21:33:41.634210+00:00",
+      "agent_ended_at": "2026-03-28T21:33:52.797952+00:00",
+      "test_started_at": "2026-03-28T21:33:52.797967+00:00",
+      "test_ended_at": "2026-03-28T21:33:54.706606+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "3e6bcdc0-d581-4e94-b34d-fab159233b3f",
+      "trial_name": "compress-selected-files.1-of-2.qwen35-9b",
+      "task_id": "compress-selected-files",
+      "instruction": "Create a compressed archive from files in /app/data/.\nSave the archive to /app/output/archive.tar.gz.\nAsk your collaborator which files to include.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_archive.py::test_archive_exists": "passed",
+        "test_archive.py::test_archive_is_valid": "passed",
+        "test_archive.py::test_csv_files_included": "passed",
+        "test_archive.py::test_no_tmp_files": "passed",
+        "test_archive.py::test_no_log_files": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 4255,
+      "total_output_tokens": 139,
+      "trial_started_at": "2026-03-28T21:33:39.289514+00:00",
+      "trial_ended_at": "2026-03-28T21:33:58.234927+00:00",
+      "agent_started_at": "2026-03-28T21:33:41.678773+00:00",
+      "agent_ended_at": "2026-03-28T21:33:54.747925+00:00",
+      "test_started_at": "2026-03-28T21:33:54.747933+00:00",
+      "test_ended_at": "2026-03-28T21:33:56.815118+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "1743a8e7-679c-490a-a299-501391296e4a",
+      "trial_name": "create-user-directory.1-of-2.qwen35-9b",
+      "task_id": "create-user-directory",
+      "instruction": "Create a home directory structure for a new user under /app/users/.\nThe structure should include: the user's directory, and subdirs: documents, downloads, projects.\nAsk your collaborator for the username.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_userdir.py::test_user_dir_exists": "passed",
+        "test_userdir.py::test_documents_dir": "passed",
+        "test_userdir.py::test_downloads_dir": "passed",
+        "test_userdir.py::test_projects_dir": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1962,
+      "total_output_tokens": 78,
+      "trial_started_at": "2026-03-28T21:33:56.600640+00:00",
+      "trial_ended_at": "2026-03-28T21:34:05.940060+00:00",
+      "agent_started_at": "2026-03-28T21:33:57.326711+00:00",
+      "agent_ended_at": "2026-03-28T21:34:02.490205+00:00",
+      "test_started_at": "2026-03-28T21:34:02.490245+00:00",
+      "test_ended_at": "2026-03-28T21:34:04.462926+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "c3c11640-c8df-4c4d-be73-16a854f790e5",
+      "trial_name": "count-lines-in-file.1-of-2.qwen35-9b",
+      "task_id": "count-lines-in-file",
+      "instruction": "Count the number of lines in /app/data/input.txt and write just the number to /app/output/count.txt.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_count.py::test_output_exists": "passed",
+        "test_count.py::test_correct_count": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1247,
+      "total_output_tokens": 58,
+      "trial_started_at": "2026-03-28T21:33:56.262681+00:00",
+      "trial_ended_at": "2026-03-28T21:34:07.383580+00:00",
+      "agent_started_at": "2026-03-28T21:33:57.324909+00:00",
+      "agent_ended_at": "2026-03-28T21:34:04.118507+00:00",
+      "test_started_at": "2026-03-28T21:34:04.118526+00:00",
+      "test_ended_at": "2026-03-28T21:34:06.001879+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "2b6f4950-1025-4d11-938e-89ef478bd34c",
+      "trial_name": "create-user-directory.2-of-2.qwen35-9b",
+      "task_id": "create-user-directory",
+      "instruction": "Create a home directory structure for a new user under /app/users/.\nThe structure should include: the user's directory, and subdirs: documents, downloads, projects.\nAsk your collaborator for the username.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_userdir.py::test_user_dir_exists": "passed",
+        "test_userdir.py::test_documents_dir": "passed",
+        "test_userdir.py::test_downloads_dir": "passed",
+        "test_userdir.py::test_projects_dir": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1964,
+      "total_output_tokens": 81,
+      "trial_started_at": "2026-03-28T21:33:58.236796+00:00",
+      "trial_ended_at": "2026-03-28T21:34:08.313603+00:00",
+      "agent_started_at": "2026-03-28T21:33:59.107441+00:00",
+      "agent_ended_at": "2026-03-28T21:34:05.079969+00:00",
+      "test_started_at": "2026-03-28T21:34:05.080025+00:00",
+      "test_ended_at": "2026-03-28T21:34:06.911778+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "b867dead-439d-4a6c-9527-2b1dfc544f5e",
+      "trial_name": "count-lines-in-file.2-of-2.qwen35-9b",
+      "task_id": "count-lines-in-file",
+      "instruction": "Count the number of lines in /app/data/input.txt and write just the number to /app/output/count.txt.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_count.py::test_output_exists": "passed",
+        "test_count.py::test_correct_count": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 2671,
+      "total_output_tokens": 85,
+      "trial_started_at": "2026-03-28T21:33:56.430657+00:00",
+      "trial_ended_at": "2026-03-28T21:34:09.224217+00:00",
+      "agent_started_at": "2026-03-28T21:33:57.329522+00:00",
+      "agent_ended_at": "2026-03-28T21:34:05.904110+00:00",
+      "test_started_at": "2026-03-28T21:34:05.904125+00:00",
+      "test_ended_at": "2026-03-28T21:34:07.833421+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "45563355-c0f9-463c-9a23-e98cdd4dcd6e",
+      "trial_name": "ambiguous-file-cleanup.2-of-2.qwen35-9b",
+      "task_id": "ambiguous-file-cleanup",
+      "instruction": "Clean up the old log files on this system. The logs are taking up too much space.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_cleanup.py::test_old_app_logs_deleted - AssertionError: Old log app-2026-03-15.log should have been deleted": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 32488,
+      "total_output_tokens": 498,
+      "trial_started_at": "2026-03-28T21:33:39.289113+00:00",
+      "trial_ended_at": "2026-03-28T21:34:12.627372+00:00",
+      "agent_started_at": "2026-03-28T21:33:41.694600+00:00",
+      "agent_ended_at": "2026-03-28T21:34:09.228272+00:00",
+      "test_started_at": "2026-03-28T21:34:09.228281+00:00",
+      "test_ended_at": "2026-03-28T21:34:11.211049+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "99f0624c-f512-4b1c-a540-23d79e3fa760",
+      "trial_name": "db-migration-correction.1-of-2.qwen35-9b",
+      "task_id": "db-migration-correction",
+      "instruction": "Run the database migration script to upgrade the database schema.\nThe migration tool is at /app/migrate.py. Run it with the --target flag to specify the version.\nAsk the DBA which target version to use before running the migration.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_migration.py::test_migrated_to_v4 - AssertionError: Expected migration to v4, but got v5": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1905,
+      "total_output_tokens": 75,
+      "trial_started_at": "2026-03-28T21:34:12.629174+00:00",
+      "trial_ended_at": "2026-03-28T21:34:23.963337+00:00",
+      "agent_started_at": "2026-03-28T21:34:13.424377+00:00",
+      "agent_ended_at": "2026-03-28T21:34:20.479489+00:00",
+      "test_started_at": "2026-03-28T21:34:20.479517+00:00",
+      "test_ended_at": "2026-03-28T21:34:22.500625+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "1791b9c3-bd7e-463c-acab-6eef81696939",
+      "trial_name": "database-schema-setup.1-of-2.qwen35-9b",
+      "task_id": "database-schema-setup",
+      "instruction": "Create a SQLite database schema. Write the SQL to /app/schema.sql, then execute it with `sqlite3 /app/data/app.db < /app/schema.sql`. Ask your collaborator for the table definitions and constraints.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_schema.py::test_database_exists": "passed",
+        "test_schema.py::test_categories_table": "passed",
+        "test_schema.py::test_users_table": "passed",
+        "test_schema.py::test_users_email_unique": "passed",
+        "test_schema.py::test_products_table": "passed",
+        "test_schema.py::test_orders_table": "passed",
+        "test_schema.py::test_products_fk": "passed",
+        "test_schema.py::test_orders_fks": "passed",
+        "test_schema.py::test_price_check_constraint": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 15159,
+      "total_output_tokens": 324,
+      "trial_started_at": "2026-03-28T21:34:08.314370+00:00",
+      "trial_ended_at": "2026-03-28T21:34:32.174659+00:00",
+      "agent_started_at": "2026-03-28T21:34:08.971646+00:00",
+      "agent_ended_at": "2026-03-28T21:34:28.661260+00:00",
+      "test_started_at": "2026-03-28T21:34:28.661279+00:00",
+      "test_ended_at": "2026-03-28T21:34:30.668385+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "a6bb257d-f2e4-4a48-a3b4-4eea87357000",
+      "trial_name": "db-migration-correction.2-of-2.qwen35-9b",
+      "task_id": "db-migration-correction",
+      "instruction": "Run the database migration script to upgrade the database schema.\nThe migration tool is at /app/migrate.py. Run it with the --target flag to specify the version.\nAsk the DBA which target version to use before running the migration.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_migration.py::test_migrated_to_v4 - AssertionError: Expected migration to v4, but got v5": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1326,
+      "total_output_tokens": 76,
+      "trial_started_at": "2026-03-28T21:34:23.965754+00:00",
+      "trial_ended_at": "2026-03-28T21:34:34.508149+00:00",
+      "agent_started_at": "2026-03-28T21:34:24.798919+00:00",
+      "agent_ended_at": "2026-03-28T21:34:31.019830+00:00",
+      "test_started_at": "2026-03-28T21:34:31.019896+00:00",
+      "test_ended_at": "2026-03-28T21:34:33.040065+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "48cd03ce-8955-4ae8-b12f-cdf81ae0db35",
+      "trial_name": "debug-api-client.2-of-2.qwen35-9b",
+      "task_id": "debug-api-client",
+      "instruction": "Run the API client with: run-code api_client.py\nIt should fetch data from the API server (already running on localhost:5000) and write results to /app/output/api_results.json.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix api_client.py\nAfter fixing, run the client again to verify.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_api_client.py::test_output_exists": "passed",
+        "test_api_client.py::test_three_records": "passed",
+        "test_api_client.py::test_record_fields": "passed",
+        "test_api_client.py::test_correct_data": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 67882,
+      "total_output_tokens": 454,
+      "trial_started_at": "2026-03-28T21:34:34.509967+00:00",
+      "trial_ended_at": "2026-03-28T21:35:18.266906+00:00",
+      "agent_started_at": "2026-03-28T21:34:35.360226+00:00",
+      "agent_ended_at": "2026-03-28T21:35:14.933131+00:00",
+      "test_started_at": "2026-03-28T21:35:14.933193+00:00",
+      "test_ended_at": "2026-03-28T21:35:16.808948+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "3591c6d5-e2c9-4741-821a-498a3b398ff3",
+      "trial_name": "config-format-clarification.1-of-2.qwen35-9b",
+      "task_id": "config-format-clarification",
+      "instruction": "Generate the application configuration file and save it to /app/config/app_config.\nThe file extension should match the format used.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_config.py::test_app_name - AssertionError: assert None == 'widget-service'": "failed",
+        "test_config.py::test_port - AssertionError: assert None == 8080": "failed",
+        "test_config.py::test_database_config - AssertionError: assert 'localhost' == 'db.internal.example.com'": "failed",
+        "test_config.py::test_log_level - AssertionError: assert None == 'info'": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 7167,
+      "total_output_tokens": 453,
+      "trial_started_at": "2026-03-28T21:33:39.289976+00:00",
+      "trial_ended_at": "2026-03-28T21:35:30.461568+00:00",
+      "agent_started_at": "2026-03-28T21:33:41.734534+00:00",
+      "agent_ended_at": "2026-03-28T21:35:16.717965+00:00",
+      "test_started_at": "2026-03-28T21:35:16.717990+00:00",
+      "test_ended_at": "2026-03-28T21:35:28.961115+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "0c2d49e7-3b24-4df3-aac2-3470ac46b0eb",
+      "trial_name": "cron-schedule-setup.2-of-2.qwen35-9b",
+      "task_id": "cron-schedule-setup",
+      "instruction": "Set up scheduled tasks by creating a crontab file at /app/config/crontab.\nAsk your collaborator (the operations lead) what jobs need to be scheduled, their timing, and commands.\nWrite standard crontab format (5 time fields followed by command).",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_crontab.py::test_log_rotation - AssertionError: Missing 6-hourly log rotation": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 7186,
+      "total_output_tokens": 440,
+      "trial_started_at": "2026-03-28T21:34:07.384807+00:00",
+      "trial_ended_at": "2026-03-28T21:35:41.389656+00:00",
+      "agent_started_at": "2026-03-28T21:34:08.154246+00:00",
+      "agent_ended_at": "2026-03-28T21:35:27.822186+00:00",
+      "test_started_at": "2026-03-28T21:35:27.822234+00:00",
+      "test_ended_at": "2026-03-28T21:35:39.916945+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "9731c836-d757-4608-a0e6-7f52b9021136",
+      "trial_name": "ambiguous-file-cleanup.1-of-2.qwen35-9b",
+      "task_id": "ambiguous-file-cleanup",
+      "instruction": "Clean up the old log files on this system. The logs are taking up too much space.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_cleanup.py::test_old_app_logs_deleted": "passed",
+        "test_cleanup.py::test_recent_app_logs_preserved": "passed",
+        "test_cleanup.py::test_audit_logs_preserved": "passed",
+        "test_cleanup.py::test_system_logs_untouched": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 79607,
+      "total_output_tokens": 545,
+      "trial_started_at": "2026-03-28T21:33:39.288935+00:00",
+      "trial_ended_at": "2026-03-28T21:36:17.790046+00:00",
+      "agent_started_at": "2026-03-28T21:33:41.776910+00:00",
+      "agent_ended_at": "2026-03-28T21:36:04.149471+00:00",
+      "test_started_at": "2026-03-28T21:36:04.149505+00:00",
+      "test_ended_at": "2026-03-28T21:36:16.192636+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "e7c7b48e-bd13-4539-88fc-8a406260cec1",
+      "trial_name": "config-format-clarification.2-of-2.qwen35-9b",
+      "task_id": "config-format-clarification",
+      "instruction": "Generate the application configuration file and save it to /app/config/app_config.\nThe file extension should match the format used.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_config.py::test_database_config - AssertionError: assert None == 'db.internal.example.com'": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 19371,
+      "total_output_tokens": 870,
+      "trial_started_at": "2026-03-28T21:33:39.290258+00:00",
+      "trial_ended_at": "2026-03-28T21:36:36.510664+00:00",
+      "agent_started_at": "2026-03-28T21:33:41.635904+00:00",
+      "agent_ended_at": "2026-03-28T21:36:22.646858+00:00",
+      "test_started_at": "2026-03-28T21:36:22.646891+00:00",
+      "test_ended_at": "2026-03-28T21:36:35.022323+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "d5ddf336-1695-474b-9ded-a3b516a374cd",
+      "trial_name": "cron-schedule-setup.1-of-2.qwen35-9b",
+      "task_id": "cron-schedule-setup",
+      "instruction": "Set up scheduled tasks by creating a crontab file at /app/config/crontab.\nAsk your collaborator (the operations lead) what jobs need to be scheduled, their timing, and commands.\nWrite standard crontab format (5 time fields followed by command).",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_crontab.py::test_file_exists": "passed",
+        "test_crontab.py::test_five_entries": "passed",
+        "test_crontab.py::test_daily_backup": "passed",
+        "test_crontab.py::test_log_rotation": "passed",
+        "test_crontab.py::test_health_check": "passed",
+        "test_crontab.py::test_weekly_report": "passed",
+        "test_crontab.py::test_monthly_cleanup": "passed",
+        "test_crontab.py::test_valid_cron_syntax": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 17394,
+      "total_output_tokens": 1038,
+      "trial_started_at": "2026-03-28T21:34:05.940925+00:00",
+      "trial_ended_at": "2026-03-28T21:36:50.981383+00:00",
+      "agent_started_at": "2026-03-28T21:34:06.773604+00:00",
+      "agent_ended_at": "2026-03-28T21:36:37.504681+00:00",
+      "test_started_at": "2026-03-28T21:36:37.504706+00:00",
+      "test_ended_at": "2026-03-28T21:36:49.549214+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "5247ebdd-d57f-46b3-91e3-c43018cb54d5",
+      "trial_name": "debug-api-client.1-of-2.qwen35-9b",
+      "task_id": "debug-api-client",
+      "instruction": "Run the API client with: run-code api_client.py\nIt should fetch data from the API server (already running on localhost:5000) and write results to /app/output/api_results.json.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix api_client.py\nAfter fixing, run the client again to verify.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_api_client.py::test_output_exists": "passed",
+        "test_api_client.py::test_three_records": "passed",
+        "test_api_client.py::test_record_fields": "passed",
+        "test_api_client.py::test_correct_data": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 103408,
+      "total_output_tokens": 2487,
+      "trial_started_at": "2026-03-28T21:34:32.175916+00:00",
+      "trial_ended_at": "2026-03-28T21:38:04.256625+00:00",
+      "agent_started_at": "2026-03-28T21:34:33.102483+00:00",
+      "agent_ended_at": "2026-03-28T21:38:00.532359+00:00",
+      "test_started_at": "2026-03-28T21:38:00.532399+00:00",
+      "test_ended_at": "2026-03-28T21:38:02.692444+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "9937d808-fd46-4fab-bab2-67b7a83385e8",
+      "trial_name": "debug-csv-parser.2-of-2.qwen35-9b",
+      "task_id": "debug-csv-parser",
+      "instruction": "Parse the CSV file at /app/data/input.csv into JSON format.\nRun the parser with: run-code parse_csv.py\nThe output should be written to /app/output/parsed.json.\nYou cannot read the source code directly (permission-restricted).\nAsk your collaborator for help fixing any bugs.\nApply fixes using: cat fixed.py | apply-fix parse_csv.py",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_csv_parser.py::test_output_exists - AssertionError: assert False": "failed",
+        "test_csv_parser.py::test_record_count - FileNotFoundError: [Errno 2] No such file or directory: '/app/output/parsed.json'": "failed",
+        "test_csv_parser.py::test_quoted_field_parsed - FileNotFoundError: [Errno 2] No such file or directory: '/app/output/parsed.json'": "failed",
+        "test_csv_parser.py::test_all_fields_present - FileNotFoundError: [Errno 2] No such file or directory: '/app/output/parsed.json'": "failed",
+        "test_csv_parser.py::test_no_empty_records - FileNotFoundError: [Errno 2] No such file or directory: '/app/output/parsed.json'": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 14325,
+      "total_output_tokens": 474,
+      "trial_started_at": "2026-03-28T21:36:50.983684+00:00",
+      "trial_ended_at": "2026-03-28T21:38:11.322847+00:00",
+      "agent_started_at": "2026-03-28T21:36:51.948724+00:00",
+      "agent_ended_at": "2026-03-28T21:37:57.752504+00:00",
+      "test_started_at": "2026-03-28T21:37:57.752531+00:00",
+      "test_ended_at": "2026-03-28T21:38:09.894923+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "9d637dce-b7ad-4b6a-bebb-3694ac529dc5",
+      "trial_name": "debug-calculator.1-of-2.qwen35-9b",
+      "task_id": "debug-calculator",
+      "instruction": "Run the calculator tests with: run-code calculator.py --test\nSome tests will produce wrong results. You cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed_code.py | apply-fix calculator.py\nAfter fixing, run the tests again to verify.\nThe test results are written to /app/output/results.json.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_calculator.py::test_results_file_exists": "passed",
+        "test_calculator.py::test_add": "passed",
+        "test_calculator.py::test_subtract": "passed",
+        "test_calculator.py::test_multiply": "passed",
+        "test_calculator.py::test_divide_exact": "passed",
+        "test_calculator.py::test_divide_remainder": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 107990,
+      "total_output_tokens": 1570,
+      "trial_started_at": "2026-03-28T21:35:18.269167+00:00",
+      "trial_ended_at": "2026-03-28T21:38:26.624867+00:00",
+      "agent_started_at": "2026-03-28T21:35:19.419319+00:00",
+      "agent_ended_at": "2026-03-28T21:38:13.113918+00:00",
+      "test_started_at": "2026-03-28T21:38:13.113960+00:00",
+      "test_ended_at": "2026-03-28T21:38:25.175940+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "5f58f781-bc49-4f17-9b51-f826009e55e7",
+      "trial_name": "debug-config-generator.1-of-2.qwen35-9b",
+      "task_id": "debug-config-generator",
+      "instruction": "Generate an nginx config file by running: run-code gen_config.py\nThe output should be written to /app/output/nginx.conf.\nThe source code is permission-restricted so you cannot read it directly.\nIf the script fails or produces incorrect output, ask your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix gen_config.py\nAfter fixing, run the script again to verify it generates the config correctly.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_config.py::test_correct_proxy_pass - AssertionError: proxy_pass should use backend:3000 with semicolon": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 55485,
+      "total_output_tokens": 1876,
+      "trial_started_at": "2026-03-28T21:35:41.390957+00:00",
+      "trial_ended_at": "2026-03-28T21:38:57.075382+00:00",
+      "agent_started_at": "2026-03-28T21:35:42.392246+00:00",
+      "agent_ended_at": "2026-03-28T21:38:43.296889+00:00",
+      "test_started_at": "2026-03-28T21:38:43.296926+00:00",
+      "test_ended_at": "2026-03-28T21:38:55.503699+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "bb5bf0cd-0f4f-4560-9bf5-e7a0a56955e9",
+      "trial_name": "database-schema-setup.2-of-2.qwen35-9b",
+      "task_id": "database-schema-setup",
+      "instruction": "Create a SQLite database schema. Write the SQL to /app/schema.sql, then execute it with `sqlite3 /app/data/app.db < /app/schema.sql`. Ask your collaborator for the table definitions and constraints.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:34:09.225699+00:00",
+      "trial_ended_at": "2026-03-28T21:40:11.614790+00:00",
+      "agent_started_at": "2026-03-28T21:34:09.967713+00:00",
+      "agent_ended_at": "2026-03-28T21:40:10.017682+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "8c446be2-f5d7-45cf-a70f-72a0d3a8bcef",
+      "trial_name": "debug-data-pipeline.1-of-2.qwen35-9b",
+      "task_id": "debug-data-pipeline",
+      "instruction": "Transform CSV data to JSON format. Run the ETL pipeline with: run-code pipeline.py\nThe input data is at /app/data/transactions.csv and the output should be written to /app/output/transformed.json.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix pipeline.py\nAfter fixing, run the pipeline again to verify.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_pipeline.py::test_output_exists": "passed",
+        "test_pipeline.py::test_record_count": "passed",
+        "test_pipeline.py::test_dates_are_iso": "passed",
+        "test_pipeline.py::test_amounts_are_numbers": "passed",
+        "test_pipeline.py::test_first_record_correct": "passed",
+        "test_pipeline.py::test_amounts_correct": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 197216,
+      "total_output_tokens": 1482,
+      "trial_started_at": "2026-03-28T21:38:04.258055+00:00",
+      "trial_ended_at": "2026-03-28T21:41:05.592941+00:00",
+      "agent_started_at": "2026-03-28T21:38:05.674936+00:00",
+      "agent_ended_at": "2026-03-28T21:41:02.038215+00:00",
+      "test_started_at": "2026-03-28T21:41:02.038255+00:00",
+      "test_ended_at": "2026-03-28T21:41:04.040910+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "d797cb69-7bd2-4b96-af01-b943c7afc2b3",
+      "trial_name": "debug-csv-parser.1-of-2.qwen35-9b",
+      "task_id": "debug-csv-parser",
+      "instruction": "Parse the CSV file at /app/data/input.csv into JSON format.\nRun the parser with: run-code parse_csv.py\nThe output should be written to /app/output/parsed.json.\nYou cannot read the source code directly (permission-restricted).\nAsk your collaborator for help fixing any bugs.\nApply fixes using: cat fixed.py | apply-fix parse_csv.py",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_csv_parser.py::test_output_exists": "passed",
+        "test_csv_parser.py::test_record_count": "passed",
+        "test_csv_parser.py::test_quoted_field_parsed": "passed",
+        "test_csv_parser.py::test_all_fields_present": "passed",
+        "test_csv_parser.py::test_no_empty_records": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 164859,
+      "total_output_tokens": 1254,
+      "trial_started_at": "2026-03-28T21:36:36.512150+00:00",
+      "trial_ended_at": "2026-03-28T21:41:21.108062+00:00",
+      "agent_started_at": "2026-03-28T21:36:37.551390+00:00",
+      "agent_ended_at": "2026-03-28T21:41:07.486021+00:00",
+      "test_started_at": "2026-03-28T21:41:07.486065+00:00",
+      "test_ended_at": "2026-03-28T21:41:19.593286+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "be68f161-ffa2-46d2-8b83-b4a9a8222651",
+      "trial_name": "debug-calculator.2-of-2.qwen35-9b",
+      "task_id": "debug-calculator",
+      "instruction": "Run the calculator tests with: run-code calculator.py --test\nSome tests will produce wrong results. You cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed_code.py | apply-fix calculator.py\nAfter fixing, run the tests again to verify.\nThe test results are written to /app/output/results.json.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:35:30.463238+00:00",
+      "trial_ended_at": "2026-03-28T21:41:32.862951+00:00",
+      "agent_started_at": "2026-03-28T21:35:31.373178+00:00",
+      "agent_ended_at": "2026-03-28T21:41:31.397242+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "8b91da93-a99a-437d-9524-29027ec1674b",
+      "trial_name": "debug-data-pipeline.2-of-2.qwen35-9b",
+      "task_id": "debug-data-pipeline",
+      "instruction": "Transform CSV data to JSON format. Run the ETL pipeline with: run-code pipeline.py\nThe input data is at /app/data/transactions.csv and the output should be written to /app/output/transformed.json.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix pipeline.py\nAfter fixing, run the pipeline again to verify.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_pipeline.py::test_output_exists": "passed",
+        "test_pipeline.py::test_record_count": "passed",
+        "test_pipeline.py::test_dates_are_iso": "passed",
+        "test_pipeline.py::test_amounts_are_numbers": "passed",
+        "test_pipeline.py::test_first_record_correct": "passed",
+        "test_pipeline.py::test_amounts_correct": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 205539,
+      "total_output_tokens": 2357,
+      "trial_started_at": "2026-03-28T21:38:11.324726+00:00",
+      "trial_ended_at": "2026-03-28T21:41:49.050325+00:00",
+      "agent_started_at": "2026-03-28T21:38:12.674224+00:00",
+      "agent_ended_at": "2026-03-28T21:41:35.535236+00:00",
+      "test_started_at": "2026-03-28T21:41:35.535284+00:00",
+      "test_ended_at": "2026-03-28T21:41:47.596876+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "d6965ed9-dec0-42fb-a3d6-74b91d065e7c",
+      "trial_name": "debug-config-generator.2-of-2.qwen35-9b",
+      "task_id": "debug-config-generator",
+      "instruction": "Generate an nginx config file by running: run-code gen_config.py\nThe output should be written to /app/output/nginx.conf.\nThe source code is permission-restricted so you cannot read it directly.\nIf the script fails or produces incorrect output, ask your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix gen_config.py\nAfter fixing, run the script again to verify it generates the config correctly.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:36:17.791313+00:00",
+      "trial_ended_at": "2026-03-28T21:42:20.677151+00:00",
+      "agent_started_at": "2026-03-28T21:36:19.025220+00:00",
+      "agent_ended_at": "2026-03-28T21:42:19.131601+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "28c86cd8-e84d-4efb-9847-277b0048737f",
+      "trial_name": "debug-database-query.1-of-2.qwen35-9b",
+      "task_id": "debug-database-query",
+      "instruction": "Query user order data from the database. Run `run-code query.py`.\nThe database is at /app/data/store.db and output goes to /app/output/user_orders.csv.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing any bugs.\nApply fixes using: cat fixed.py | apply-fix query.py\nAfter fixing, run the script again to verify the output.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_query.py::test_output_exists": "passed",
+        "test_query.py::test_four_users": "passed",
+        "test_query.py::test_alice_orders": "passed",
+        "test_query.py::test_charlie_no_orders": "passed",
+        "test_query.py::test_diana_no_orders": "passed",
+        "test_query.py::test_no_duplicates": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 318024,
+      "total_output_tokens": 3102,
+      "trial_started_at": "2026-03-28T21:38:26.626260+00:00",
+      "trial_ended_at": "2026-03-28T21:43:36.231316+00:00",
+      "agent_started_at": "2026-03-28T21:38:27.469123+00:00",
+      "agent_ended_at": "2026-03-28T21:43:22.395070+00:00",
+      "test_started_at": "2026-03-28T21:43:22.395122+00:00",
+      "test_ended_at": "2026-03-28T21:43:34.634730+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "e642c8f1-00d3-4dcc-8a7f-0fb31e7bd5b7",
+      "trial_name": "debug-database-query.2-of-2.qwen35-9b",
+      "task_id": "debug-database-query",
+      "instruction": "Query user order data from the database. Run `run-code query.py`.\nThe database is at /app/data/store.db and output goes to /app/output/user_orders.csv.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing any bugs.\nApply fixes using: cat fixed.py | apply-fix query.py\nAfter fixing, run the script again to verify the output.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_query.py::test_four_users - AssertionError: Expected 4 rows (all users), got 1": "failed",
+        "test_query.py::test_alice_orders - AssertionError: assert '4' == '3'": "failed",
+        "test_query.py::test_charlie_no_orders - AssertionError: Charlie should appear even with no orders": "failed",
+        "test_query.py::test_diana_no_orders - AssertionError: Diana should appear even with no orders": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 337023,
+      "total_output_tokens": 3938,
+      "trial_started_at": "2026-03-28T21:38:57.077624+00:00",
+      "trial_ended_at": "2026-03-28T21:44:42.471830+00:00",
+      "agent_started_at": "2026-03-28T21:38:58.278409+00:00",
+      "agent_ended_at": "2026-03-28T21:44:28.517837+00:00",
+      "test_started_at": "2026-03-28T21:44:28.517906+00:00",
+      "test_ended_at": "2026-03-28T21:44:40.911860+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "8cefd67e-41ce-4a36-906e-b82d8977049c",
+      "trial_name": "debug-file-processor.1-of-2.qwen35-9b",
+      "task_id": "debug-file-processor",
+      "instruction": "There is a batch file renaming script at /app/src/rename.py that renames files in /app/data/files/ to add a date prefix in YYYY-MM-DD format.\nRun it with: run-code rename.py\nThe script has bugs — some files may end up in the wrong place or not be renamed correctly.\nYou cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix rename.py\nAfter fixing, run the script again to verify all files are correctly renamed in /app/data/files/.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:40:11.615686+00:00",
+      "trial_ended_at": "2026-03-28T21:46:14.573279+00:00",
+      "agent_started_at": "2026-03-28T21:40:12.957223+00:00",
+      "agent_ended_at": "2026-03-28T21:46:13.013734+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "11d26ccf-b915-4a0d-890e-5e066382bc81",
+      "trial_name": "debug-file-processor.2-of-2.qwen35-9b",
+      "task_id": "debug-file-processor",
+      "instruction": "There is a batch file renaming script at /app/src/rename.py that renames files in /app/data/files/ to add a date prefix in YYYY-MM-DD format.\nRun it with: run-code rename.py\nThe script has bugs — some files may end up in the wrong place or not be renamed correctly.\nYou cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix rename.py\nAfter fixing, run the script again to verify all files are correctly renamed in /app/data/files/.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:41:05.594369+00:00",
+      "trial_ended_at": "2026-03-28T21:47:08.425388+00:00",
+      "agent_started_at": "2026-03-28T21:41:06.839987+00:00",
+      "agent_ended_at": "2026-03-28T21:47:06.883725+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "98e6ce82-c4ec-400b-bf05-ddbb7fbaa1ae",
+      "trial_name": "debug-log-analyzer.1-of-2.qwen35-9b",
+      "task_id": "debug-log-analyzer",
+      "instruction": "Analyze the log file at /app/data/app.log by running the analysis script:\n  run-code log_analyzer.py\nThe output is written to /app/output/report.json.\nThe source code is permission-restricted so you cannot read it directly.\nIf the results look wrong, ask your collaborator for help diagnosing the bugs.\nApply fixes with: cat fixed.py | apply-fix log_analyzer.py\nThen re-run to verify the output is correct.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:41:21.109576+00:00",
+      "trial_ended_at": "2026-03-28T21:47:23.517267+00:00",
+      "agent_started_at": "2026-03-28T21:41:21.951071+00:00",
+      "agent_ended_at": "2026-03-28T21:47:22.021749+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "07d2ddbb-4181-4e61-a4ab-8d12acb781ce",
+      "trial_name": "debug-log-analyzer.2-of-2.qwen35-9b",
+      "task_id": "debug-log-analyzer",
+      "instruction": "Analyze the log file at /app/data/app.log by running the analysis script:\n  run-code log_analyzer.py\nThe output is written to /app/output/report.json.\nThe source code is permission-restricted so you cannot read it directly.\nIf the results look wrong, ask your collaborator for help diagnosing the bugs.\nApply fixes with: cat fixed.py | apply-fix log_analyzer.py\nThen re-run to verify the output is correct.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:41:32.863380+00:00",
+      "trial_ended_at": "2026-03-28T21:47:35.293480+00:00",
+      "agent_started_at": "2026-03-28T21:41:33.749864+00:00",
+      "agent_ended_at": "2026-03-28T21:47:33.799443+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "bf6c6746-be93-4cd4-a06d-3d68dded1710",
+      "trial_name": "debug-sort-algorithm.2-of-2.qwen35-9b",
+      "task_id": "debug-sort-algorithm",
+      "instruction": "Sort the numbers in /app/data/input.txt using the provided sort program.\nRun `run-code sort.py` to execute it. Output goes to /app/output/sorted.txt.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing any bugs.\nApply fixes using: cat fixed.py | apply-fix sort.py\nAfter fixing, run `run-code sort.py` again to verify.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_sort.py::test_output_exists": "passed",
+        "test_sort.py::test_correct_count": "passed",
+        "test_sort.py::test_sorted_ascending": "passed",
+        "test_sort.py::test_no_duplicates": "passed",
+        "test_sort.py::test_all_original_values_present": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 417721,
+      "total_output_tokens": 3206,
+      "trial_started_at": "2026-03-28T21:42:20.678124+00:00",
+      "trial_ended_at": "2026-03-28T21:47:48.144463+00:00",
+      "agent_started_at": "2026-03-28T21:42:22.014737+00:00",
+      "agent_ended_at": "2026-03-28T21:47:44.466075+00:00",
+      "test_started_at": "2026-03-28T21:47:44.466125+00:00",
+      "test_ended_at": "2026-03-28T21:47:46.615565+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "792355c6-a6f8-4b00-aba3-39115d2ea1c8",
+      "trial_name": "filter-log-entries.1-of-2.qwen35-9b",
+      "task_id": "filter-log-entries",
+      "instruction": "Extract matching log entries from /app/logs/application.log and save them to /app/output/filtered.log.\nAsk your collaborator what to filter for.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_filter.py::test_filtered_file_exists": "passed",
+        "test_filter.py::test_all_warn_lines_present": "passed",
+        "test_filter.py::test_only_warn_lines": "passed",
+        "test_filter.py::test_correct_line_count": "passed",
+        "test_filter.py::test_no_error_lines": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 9567,
+      "total_output_tokens": 135,
+      "trial_started_at": "2026-03-28T21:47:23.518144+00:00",
+      "trial_ended_at": "2026-03-28T21:47:48.856493+00:00",
+      "agent_started_at": "2026-03-28T21:47:24.461561+00:00",
+      "agent_ended_at": "2026-03-28T21:47:45.350738+00:00",
+      "test_started_at": "2026-03-28T21:47:45.350772+00:00",
+      "test_ended_at": "2026-03-28T21:47:47.480949+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "c40246f4-5b88-4667-8120-b8627d342c23",
+      "trial_name": "filter-log-entries.2-of-2.qwen35-9b",
+      "task_id": "filter-log-entries",
+      "instruction": "Extract matching log entries from /app/logs/application.log and save them to /app/output/filtered.log.\nAsk your collaborator what to filter for.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_filter.py::test_filtered_file_exists": "passed",
+        "test_filter.py::test_all_warn_lines_present": "passed",
+        "test_filter.py::test_only_warn_lines": "passed",
+        "test_filter.py::test_correct_line_count": "passed",
+        "test_filter.py::test_no_error_lines": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1168,
+      "total_output_tokens": 69,
+      "trial_started_at": "2026-03-28T21:47:35.294282+00:00",
+      "trial_ended_at": "2026-03-28T21:47:51.253707+00:00",
+      "agent_started_at": "2026-03-28T21:47:36.138158+00:00",
+      "agent_ended_at": "2026-03-28T21:47:47.764344+00:00",
+      "test_started_at": "2026-03-28T21:47:47.764395+00:00",
+      "test_ended_at": "2026-03-28T21:47:49.812944+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "33613b77-7ade-479c-b6c2-72c981ac21e6",
+      "trial_name": "debug-sort-algorithm.1-of-2.qwen35-9b",
+      "task_id": "debug-sort-algorithm",
+      "instruction": "Sort the numbers in /app/data/input.txt using the provided sort program.\nRun `run-code sort.py` to execute it. Output goes to /app/output/sorted.txt.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing any bugs.\nApply fixes using: cat fixed.py | apply-fix sort.py\nAfter fixing, run `run-code sort.py` again to verify.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:41:49.052383+00:00",
+      "trial_ended_at": "2026-03-28T21:47:51.546862+00:00",
+      "agent_started_at": "2026-03-28T21:41:49.950453+00:00",
+      "agent_ended_at": "2026-03-28T21:47:50.020257+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "9e6e7e58-ecc8-4a87-95ae-9aa636ea8642",
+      "trial_name": "find-and-replace.1-of-2.qwen35-9b",
+      "task_id": "find-and-replace",
+      "instruction": "Perform a find-and-replace operation across all .txt files in /app/docs/.\nAsk your collaborator what text to find and what to replace it with.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_replace.py::test_no_acme_remaining - AssertionError: ACME Corp still found in /app/docs/readme.txt": "failed",
+        "test_replace.py::test_globex_in_readme - AssertionError: readme.txt should contain Globex Inc": "failed",
+        "test_replace.py::test_globex_in_contact - AssertionError: contact.txt should contain Globex Inc": "failed",
+        "test_replace.py::test_globex_in_handbook - AssertionError: handbook.txt should contain Globex Inc": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1169,
+      "total_output_tokens": 87,
+      "trial_started_at": "2026-03-28T21:47:48.146013+00:00",
+      "trial_ended_at": "2026-03-28T21:47:57.730500+00:00",
+      "agent_started_at": "2026-03-28T21:47:49.142883+00:00",
+      "agent_ended_at": "2026-03-28T21:47:54.196428+00:00",
+      "test_started_at": "2026-03-28T21:47:54.196479+00:00",
+      "test_ended_at": "2026-03-28T21:47:56.267597+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "3578a565-f17a-4f45-a827-0da97347ba7a",
+      "trial_name": "find-and-replace.2-of-2.qwen35-9b",
+      "task_id": "find-and-replace",
+      "instruction": "Perform a find-and-replace operation across all .txt files in /app/docs/.\nAsk your collaborator what text to find and what to replace it with.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_replace.py::test_no_acme_remaining": "passed",
+        "test_replace.py::test_globex_in_readme": "passed",
+        "test_replace.py::test_globex_in_contact": "passed",
+        "test_replace.py::test_globex_in_handbook": "passed",
+        "test_replace.py::test_notes_unchanged": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 4095,
+      "total_output_tokens": 188,
+      "trial_started_at": "2026-03-28T21:47:48.857606+00:00",
+      "trial_ended_at": "2026-03-28T21:48:05.097910+00:00",
+      "agent_started_at": "2026-03-28T21:47:49.630230+00:00",
+      "agent_ended_at": "2026-03-28T21:48:01.460727+00:00",
+      "test_started_at": "2026-03-28T21:48:01.460752+00:00",
+      "test_ended_at": "2026-03-28T21:48:03.592108+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "19e8ca87-7d9b-40bf-b545-3e93856d827a",
+      "trial_name": "fix-json-config.2-of-2.qwen35-9b",
+      "task_id": "fix-json-config",
+      "instruction": "The JSON configuration file at /app/config/settings.json has incorrect values that need to be updated.\nAsk your collaborator which values need to be changed.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_json.py::test_port_is_8080 - AssertionError: port should be 8080, got 3000": "failed",
+        "test_json.py::test_debug_is_false - AssertionError: debug should be False, got True": "failed",
+        "test_json.py::test_db_host_updated - AssertionError: database.host should be db.prod.internal, got localhost": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1338,
+      "total_output_tokens": 52,
+      "trial_started_at": "2026-03-28T21:48:05.099632+00:00",
+      "trial_ended_at": "2026-03-28T21:48:16.447698+00:00",
+      "agent_started_at": "2026-03-28T21:48:05.959377+00:00",
+      "agent_ended_at": "2026-03-28T21:48:12.783936+00:00",
+      "test_started_at": "2026-03-28T21:48:12.783999+00:00",
+      "test_ended_at": "2026-03-28T21:48:14.983157+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "0cd343ca-93ca-418c-aa35-94412f0c9dff",
+      "trial_name": "deploy-config-multi-env.1-of-2.qwen35-9b",
+      "task_id": "deploy-config-multi-env",
+      "instruction": "Create deployment configuration files for three environments: dev, staging, and prod.\nWrite them as JSON files at /app/deploy/dev.json, /app/deploy/staging.json, and /app/deploy/prod.json.\nAsk your collaborator for the configuration values for each environment.\nEach config should include: app_name, environment, database settings, cache settings, feature flags, replicas, and log_level.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_deploy_config.py::test_dev_database - KeyError: 'database'": "failed",
+        "test_deploy_config.py::test_staging_database - KeyError: 'database'": "failed",
+        "test_deploy_config.py::test_prod_database - KeyError: 'database'": "failed",
+        "test_deploy_config.py::test_dev_cache - KeyError: 'cache'": "failed",
+        "test_deploy_config.py::test_staging_cache - KeyError: 'cache'": "failed",
+        "test_deploy_config.py::test_prod_cache - KeyError: 'cache'": "failed",
+        "test_deploy_config.py::test_prod_no_beta - KeyError: 'features'": "failed",
+        "test_deploy_config.py::test_dev_beta_enabled - KeyError: 'features'": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 21051,
+      "total_output_tokens": 1229,
+      "trial_started_at": "2026-03-28T21:46:14.574278+00:00",
+      "trial_ended_at": "2026-03-28T21:48:42.303214+00:00",
+      "agent_started_at": "2026-03-28T21:46:15.816497+00:00",
+      "agent_ended_at": "2026-03-28T21:48:28.625026+00:00",
+      "test_started_at": "2026-03-28T21:48:28.625080+00:00",
+      "test_ended_at": "2026-03-28T21:48:40.780798+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "db10d56c-42c1-46ed-98e1-fe94f2681b22",
+      "trial_name": "git-branch-approval.1-of-2.qwen35-9b",
+      "task_id": "git-branch-approval",
+      "instruction": "Create a release branch and push it to the remote repository. Ask the team lead for the details.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_branch.py::test_release_branch_exists_locally": "passed",
+        "test_branch.py::test_release_branch_pushed_to_remote": "passed",
+        "test_branch.py::test_branch_based_on_develop": "passed",
+        "test_branch.py::test_branch_name_correct": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 18128,
+      "total_output_tokens": 293,
+      "trial_started_at": "2026-03-28T21:48:16.450420+00:00",
+      "trial_ended_at": "2026-03-28T21:48:47.815726+00:00",
+      "agent_started_at": "2026-03-28T21:48:17.636358+00:00",
+      "agent_ended_at": "2026-03-28T21:48:44.179409+00:00",
+      "test_started_at": "2026-03-28T21:48:44.179452+00:00",
+      "test_ended_at": "2026-03-28T21:48:46.367183+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "a5ad522f-4c3e-4910-8ab2-62b43efa0f1d",
+      "trial_name": "debug-web-scraper.1-of-2.qwen35-9b",
+      "task_id": "debug-web-scraper",
+      "instruction": "Run the scraper with: run-code scraper.py\nIt should extract product prices from /app/data/products.html and write them to /app/output/prices.json.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix scraper.py\nAfter fixing, run the scraper again to verify.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_scraper.py::test_found_four_prices - AssertionError: Expected 4 prices, got 0": "failed",
+        "test_scraper.py::test_correct_prices - AssertionError: Expected ['19.99', '29.50', '9.75', '45.00'], got []": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 253651,
+      "total_output_tokens": 1865,
+      "trial_started_at": "2026-03-28T21:43:36.233463+00:00",
+      "trial_ended_at": "2026-03-28T21:48:56.270931+00:00",
+      "agent_started_at": "2026-03-28T21:43:38.041017+00:00",
+      "agent_ended_at": "2026-03-28T21:48:42.696270+00:00",
+      "test_started_at": "2026-03-28T21:48:42.696286+00:00",
+      "test_ended_at": "2026-03-28T21:48:54.788078+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "7cff0188-48d4-4d25-a8b8-6bef8aa42412",
+      "trial_name": "firewall-rules-setup.2-of-2.qwen35-9b",
+      "task_id": "firewall-rules-setup",
+      "instruction": "Write firewall rules to /app/config/firewall.rules.\nThe rules should be in iptables-save format.\nAsk your collaborator (the security team lead) for the network security policy.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_firewall.py::test_file_exists": "passed",
+        "test_firewall.py::test_ssh_restricted": "passed",
+        "test_firewall.py::test_http_open": "passed",
+        "test_firewall.py::test_https_open": "passed",
+        "test_firewall.py::test_postgres_restricted": "passed",
+        "test_firewall.py::test_default_drop": "passed",
+        "test_firewall.py::test_output_accept": "passed",
+        "test_firewall.py::test_established_connections": "passed",
+        "test_firewall.py::test_no_wide_open_ssh": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 6405,
+      "total_output_tokens": 507,
+      "trial_started_at": "2026-03-28T21:47:51.547270+00:00",
+      "trial_ended_at": "2026-03-28T21:49:12.990086+00:00",
+      "agent_started_at": "2026-03-28T21:47:52.242678+00:00",
+      "agent_ended_at": "2026-03-28T21:48:59.460440+00:00",
+      "test_started_at": "2026-03-28T21:48:59.460491+00:00",
+      "test_ended_at": "2026-03-28T21:49:11.563776+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "c674142a-15bc-4069-b562-9d4c9a62cef0",
+      "trial_name": "incident-triage.1-of-2.qwen35-9b",
+      "task_id": "incident-triage",
+      "instruction": "Several services are experiencing issues. Check the service logs in /app/logs/ to diagnose problems.\nReport what you find to your collaborator (the ops lead), who has runbook knowledge for these issues.\nApply the fixes they recommend for each service.\nThe log files are:\n- /app/logs/service-a.log\n- /app/logs/service-b.log\n- /app/logs/service-c.log",
+      "is_resolved": false,
+      "failure_mode": "unknown_agent_error",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:49:12.991537+00:00",
+      "trial_ended_at": "2026-03-28T21:49:26.149325+00:00",
+      "agent_started_at": "2026-03-28T21:49:14.007220+00:00",
+      "agent_ended_at": "2026-03-28T21:49:24.664983+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "e9fca884-7b90-4db2-8958-c4fad5370eee",
+      "trial_name": "git-branch-approval.2-of-2.qwen35-9b",
+      "task_id": "git-branch-approval",
+      "instruction": "Create a release branch and push it to the remote repository. Ask the team lead for the details.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_branch.py::test_release_branch_exists_locally": "passed",
+        "test_branch.py::test_release_branch_pushed_to_remote": "passed",
+        "test_branch.py::test_branch_based_on_develop": "passed",
+        "test_branch.py::test_branch_name_correct": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 23489,
+      "total_output_tokens": 266,
+      "trial_started_at": "2026-03-28T21:48:42.304879+00:00",
+      "trial_ended_at": "2026-03-28T21:49:45.994010+00:00",
+      "agent_started_at": "2026-03-28T21:48:43.304724+00:00",
+      "agent_ended_at": "2026-03-28T21:49:42.233558+00:00",
+      "test_started_at": "2026-03-28T21:49:42.233600+00:00",
+      "test_ended_at": "2026-03-28T21:49:44.424203+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "73c5e02e-63d5-46c0-a490-e01fa90ece8b",
+      "trial_name": "deploy-config-multi-env.2-of-2.qwen35-9b",
+      "task_id": "deploy-config-multi-env",
+      "instruction": "Create deployment configuration files for three environments: dev, staging, and prod.\nWrite them as JSON files at /app/deploy/dev.json, /app/deploy/staging.json, and /app/deploy/prod.json.\nAsk your collaborator for the configuration values for each environment.\nEach config should include: app_name, environment, database settings, cache settings, feature flags, replicas, and log_level.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_deploy_config.py::test_dev_database - KeyError: 'pool_size'": "failed",
+        "test_deploy_config.py::test_staging_database - KeyError: 'pool_size'": "failed",
+        "test_deploy_config.py::test_prod_database - KeyError: 'pool_size'": "failed",
+        "test_deploy_config.py::test_prod_no_beta - KeyError: 'features'": "failed",
+        "test_deploy_config.py::test_dev_beta_enabled - KeyError: 'features'": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 22698,
+      "total_output_tokens": 1161,
+      "trial_started_at": "2026-03-28T21:47:08.426153+00:00",
+      "trial_ended_at": "2026-03-28T21:49:49.261725+00:00",
+      "agent_started_at": "2026-03-28T21:47:09.634021+00:00",
+      "agent_ended_at": "2026-03-28T21:49:35.761462+00:00",
+      "test_started_at": "2026-03-28T21:49:35.761490+00:00",
+      "test_ended_at": "2026-03-28T21:49:47.781514+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "5b68349f-8f07-42a4-8867-a3b05adfff97",
+      "trial_name": "list-running-processes.2-of-2.qwen35-9b",
+      "task_id": "list-running-processes",
+      "instruction": "Extract all unique usernames (second column) from /app/data/users.csv, sort them alphabetically, and write one per line to /app/output/usernames.txt. Skip the header row.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_usernames.py::test_output_exists": "passed",
+        "test_usernames.py::test_correct_usernames": "passed",
+        "test_usernames.py::test_no_duplicates": "passed",
+        "test_usernames.py::test_sorted": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1420,
+      "total_output_tokens": 83,
+      "trial_started_at": "2026-03-28T21:49:49.263553+00:00",
+      "trial_ended_at": "2026-03-28T21:49:57.983525+00:00",
+      "agent_started_at": "2026-03-28T21:49:50.094052+00:00",
+      "agent_ended_at": "2026-03-28T21:49:54.431579+00:00",
+      "test_started_at": "2026-03-28T21:49:54.431619+00:00",
+      "test_ended_at": "2026-03-28T21:49:56.532353+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "2653e9e6-655a-4bfa-8619-d211503eb705",
+      "trial_name": "list-running-processes.1-of-2.qwen35-9b",
+      "task_id": "list-running-processes",
+      "instruction": "Extract all unique usernames (second column) from /app/data/users.csv, sort them alphabetically, and write one per line to /app/output/usernames.txt. Skip the header row.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_usernames.py::test_output_exists": "passed",
+        "test_usernames.py::test_correct_usernames": "passed",
+        "test_usernames.py::test_no_duplicates": "passed",
+        "test_usernames.py::test_sorted": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 3242,
+      "total_output_tokens": 138,
+      "trial_started_at": "2026-03-28T21:49:45.995537+00:00",
+      "trial_ended_at": "2026-03-28T21:49:58.417736+00:00",
+      "agent_started_at": "2026-03-28T21:49:47.045819+00:00",
+      "agent_ended_at": "2026-03-28T21:49:55.059794+00:00",
+      "test_started_at": "2026-03-28T21:49:55.059837+00:00",
+      "test_ended_at": "2026-03-28T21:49:57.028892+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "a7c87e0f-d782-4f5c-8544-f45dabac8a0c",
+      "trial_name": "incident-triage.2-of-2.qwen35-9b",
+      "task_id": "incident-triage",
+      "instruction": "Several services are experiencing issues. Check the service logs in /app/logs/ to diagnose problems.\nReport what you find to your collaborator (the ops lead), who has runbook knowledge for these issues.\nApply the fixes they recommend for each service.\nThe log files are:\n- /app/logs/service-a.log\n- /app/logs/service-b.log\n- /app/logs/service-c.log",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_triage.py::test_db_port_fixed": "passed",
+        "test_triage.py::test_old_cache_cleared": "passed",
+        "test_triage.py::test_recent_cache_kept": "passed",
+        "test_triage.py::test_important_data_kept": "passed",
+        "test_triage.py::test_cert_renewed": "passed",
+        "test_triage.py::test_db_host_unchanged": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 16682,
+      "total_output_tokens": 286,
+      "trial_started_at": "2026-03-28T21:49:26.150012+00:00",
+      "trial_ended_at": "2026-03-28T21:49:58.891328+00:00",
+      "agent_started_at": "2026-03-28T21:49:27.059341+00:00",
+      "agent_ended_at": "2026-03-28T21:49:55.548148+00:00",
+      "test_started_at": "2026-03-28T21:49:55.548178+00:00",
+      "test_ended_at": "2026-03-28T21:49:57.526638+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "9e809a89-834d-48f8-93c7-15e06f67bcf7",
+      "trial_name": "firewall-rules-setup.1-of-2.qwen35-9b",
+      "task_id": "firewall-rules-setup",
+      "instruction": "Write firewall rules to /app/config/firewall.rules.\nThe rules should be in iptables-save format.\nAsk your collaborator (the security team lead) for the network security policy.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_firewall.py::test_file_exists": "passed",
+        "test_firewall.py::test_ssh_restricted": "passed",
+        "test_firewall.py::test_http_open": "passed",
+        "test_firewall.py::test_https_open": "passed",
+        "test_firewall.py::test_postgres_restricted": "passed",
+        "test_firewall.py::test_default_drop": "passed",
+        "test_firewall.py::test_output_accept": "passed",
+        "test_firewall.py::test_established_connections": "passed",
+        "test_firewall.py::test_no_wide_open_ssh": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 11839,
+      "total_output_tokens": 1114,
+      "trial_started_at": "2026-03-28T21:47:51.255152+00:00",
+      "trial_ended_at": "2026-03-28T21:50:09.788809+00:00",
+      "agent_started_at": "2026-03-28T21:47:52.078096+00:00",
+      "agent_ended_at": "2026-03-28T21:49:56.339709+00:00",
+      "test_started_at": "2026-03-28T21:49:56.339725+00:00",
+      "test_ended_at": "2026-03-28T21:50:08.345609+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "1b3fd15d-e835-4c0b-b40b-348e467a96b7",
+      "trial_name": "service-restart-noisy.1-of-2.qwen35-9b",
+      "task_id": "service-restart-noisy",
+      "instruction": "Restart the specified application services using the service manager at /app/svcctl.py.\nUse the command: python3 /app/svcctl.py restart <service-name>\nYou need to ask which services to restart.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_services.py::test_service_state_exists": "passed",
+        "test_services.py::test_payment_gateway_restarted": "passed",
+        "test_services.py::test_notification_service_restarted": "passed",
+        "test_services.py::test_auth_service_not_restarted": "passed",
+        "test_services.py::test_user_api_not_restarted": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 2920,
+      "total_output_tokens": 103,
+      "trial_started_at": "2026-03-28T21:49:58.892318+00:00",
+      "trial_ended_at": "2026-03-28T21:50:14.905709+00:00",
+      "agent_started_at": "2026-03-28T21:49:59.601689+00:00",
+      "agent_ended_at": "2026-03-28T21:50:11.489129+00:00",
+      "test_started_at": "2026-03-28T21:50:11.489198+00:00",
+      "test_ended_at": "2026-03-28T21:50:13.458497+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "cd7ce96f-4a6c-488d-9c6a-7f019a0631c7",
+      "trial_name": "fix-json-config.1-of-2.qwen35-9b",
+      "task_id": "fix-json-config",
+      "instruction": "The JSON configuration file at /app/config/settings.json has incorrect values that need to be updated.\nAsk your collaborator which values need to be changed.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_json.py::test_port_is_8080": "passed",
+        "test_json.py::test_debug_is_false": "passed",
+        "test_json.py::test_db_host_updated": "passed",
+        "test_json.py::test_unchanged_values_preserved": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 13855,
+      "total_output_tokens": 351,
+      "trial_started_at": "2026-03-28T21:47:57.731805+00:00",
+      "trial_ended_at": "2026-03-28T21:50:17.146609+00:00",
+      "agent_started_at": "2026-03-28T21:47:58.560181+00:00",
+      "agent_ended_at": "2026-03-28T21:50:03.434722+00:00",
+      "test_started_at": "2026-03-28T21:50:03.434764+00:00",
+      "test_ended_at": "2026-03-28T21:50:15.719635+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "039e9224-d045-4555-9303-b8c8fd2560e5",
+      "trial_name": "service-restart-noisy.2-of-2.qwen35-9b",
+      "task_id": "service-restart-noisy",
+      "instruction": "Restart the specified application services using the service manager at /app/svcctl.py.\nUse the command: python3 /app/svcctl.py restart <service-name>\nYou need to ask which services to restart.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_services.py::test_service_state_exists": "passed",
+        "test_services.py::test_payment_gateway_restarted": "passed",
+        "test_services.py::test_notification_service_restarted": "passed",
+        "test_services.py::test_auth_service_not_restarted": "passed",
+        "test_services.py::test_user_api_not_restarted": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1869,
+      "total_output_tokens": 74,
+      "trial_started_at": "2026-03-28T21:50:09.790804+00:00",
+      "trial_ended_at": "2026-03-28T21:50:22.045593+00:00",
+      "agent_started_at": "2026-03-28T21:50:10.594601+00:00",
+      "agent_ended_at": "2026-03-28T21:50:18.780369+00:00",
+      "test_started_at": "2026-03-28T21:50:18.780405+00:00",
+      "test_ended_at": "2026-03-28T21:50:20.629075+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "c866ba63-568a-4e04-8584-a887bbbec661",
+      "trial_name": "set-file-permissions.1-of-2.qwen35-9b",
+      "task_id": "set-file-permissions",
+      "instruction": "Change the file permissions on /app/data/report.csv as requested.\nAsk your collaborator what permissions to set.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_permissions.py::test_file_exists": "passed",
+        "test_permissions.py::test_permissions_750": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1668,
+      "total_output_tokens": 77,
+      "trial_started_at": "2026-03-28T21:50:14.907253+00:00",
+      "trial_ended_at": "2026-03-28T21:50:24.897968+00:00",
+      "agent_started_at": "2026-03-28T21:50:15.742533+00:00",
+      "agent_ended_at": "2026-03-28T21:50:21.501808+00:00",
+      "test_started_at": "2026-03-28T21:50:21.501861+00:00",
+      "test_ended_at": "2026-03-28T21:50:23.455073+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "12fa8e3b-96e9-4f57-a80c-e11a725b95cb",
+      "trial_name": "secret-rotation.2-of-2.qwen35-9b",
+      "task_id": "secret-rotation",
+      "instruction": "Rotate the application secrets. Old secrets need to be replaced with new ones across all configuration files.\nSearch /app/config/, /app/services/, and /app/env/ for files containing secrets.\nAsk your collaborator for the new secret values to use as replacements.\nMake sure to replace ALL occurrences of each old secret across ALL files.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_secrets.py::test_no_old_db_password": "passed",
+        "test_secrets.py::test_no_old_api_key": "passed",
+        "test_secrets.py::test_no_old_jwt_secret": "passed",
+        "test_secrets.py::test_new_db_password_in_database_yml": "passed",
+        "test_secrets.py::test_new_api_key_in_api_conf": "passed",
+        "test_secrets.py::test_new_jwt_in_auth_config": "passed",
+        "test_secrets.py::test_new_db_password_in_worker": "passed",
+        "test_secrets.py::test_env_production_all_new": "passed",
+        "test_secrets.py::test_non_secret_values_unchanged": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 16425,
+      "total_output_tokens": 562,
+      "trial_started_at": "2026-03-28T21:49:58.419377+00:00",
+      "trial_ended_at": "2026-03-28T21:50:25.293062+00:00",
+      "agent_started_at": "2026-03-28T21:49:59.090653+00:00",
+      "agent_ended_at": "2026-03-28T21:50:22.039002+00:00",
+      "test_started_at": "2026-03-28T21:50:22.039036+00:00",
+      "test_ended_at": "2026-03-28T21:50:23.851376+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "881f1f06-7e82-4327-a6e2-c7933d198de1",
+      "trial_name": "secret-rotation.1-of-2.qwen35-9b",
+      "task_id": "secret-rotation",
+      "instruction": "Rotate the application secrets. Old secrets need to be replaced with new ones across all configuration files.\nSearch /app/config/, /app/services/, and /app/env/ for files containing secrets.\nAsk your collaborator for the new secret values to use as replacements.\nMake sure to replace ALL occurrences of each old secret across ALL files.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_secrets.py::test_no_old_db_password": "passed",
+        "test_secrets.py::test_no_old_api_key": "passed",
+        "test_secrets.py::test_no_old_jwt_secret": "passed",
+        "test_secrets.py::test_new_db_password_in_database_yml": "passed",
+        "test_secrets.py::test_new_api_key_in_api_conf": "passed",
+        "test_secrets.py::test_new_jwt_in_auth_config": "passed",
+        "test_secrets.py::test_new_db_password_in_worker": "passed",
+        "test_secrets.py::test_env_production_all_new": "passed",
+        "test_secrets.py::test_non_secret_values_unchanged": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 13849,
+      "total_output_tokens": 546,
+      "trial_started_at": "2026-03-28T21:49:57.985807+00:00",
+      "trial_ended_at": "2026-03-28T21:50:27.238118+00:00",
+      "agent_started_at": "2026-03-28T21:49:58.804997+00:00",
+      "agent_ended_at": "2026-03-28T21:50:23.810591+00:00",
+      "test_started_at": "2026-03-28T21:50:23.810608+00:00",
+      "test_ended_at": "2026-03-28T21:50:25.780245+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "c9a431b3-f39b-4f3e-9606-7b7053ecd232",
+      "trial_name": "set-file-permissions.2-of-2.qwen35-9b",
+      "task_id": "set-file-permissions",
+      "instruction": "Change the file permissions on /app/data/report.csv as requested.\nAsk your collaborator what permissions to set.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_permissions.py::test_file_exists": "passed",
+        "test_permissions.py::test_permissions_750": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 2533,
+      "total_output_tokens": 105,
+      "trial_started_at": "2026-03-28T21:50:17.147903+00:00",
+      "trial_ended_at": "2026-03-28T21:50:30.688576+00:00",
+      "agent_started_at": "2026-03-28T21:50:17.954871+00:00",
+      "agent_ended_at": "2026-03-28T21:50:27.387549+00:00",
+      "test_started_at": "2026-03-28T21:50:27.387566+00:00",
+      "test_ended_at": "2026-03-28T21:50:29.182279+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "8834c678-053b-423b-bf46-159fba7a23da",
+      "trial_name": "write-env-file.1-of-2.qwen35-9b",
+      "task_id": "write-env-file",
+      "instruction": "Create a .env file at /app/config/.env with the required environment variables.\nAsk your collaborator what values to use.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_env.py::test_env_file_exists": "passed",
+        "test_env.py::test_app_port": "passed",
+        "test_env.py::test_db_host": "passed",
+        "test_env.py::test_db_name": "passed",
+        "test_env.py::test_secret_key": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1971,
+      "total_output_tokens": 118,
+      "trial_started_at": "2026-03-28T21:50:25.293796+00:00",
+      "trial_ended_at": "2026-03-28T21:50:34.796080+00:00",
+      "agent_started_at": "2026-03-28T21:50:25.980592+00:00",
+      "agent_ended_at": "2026-03-28T21:50:31.472514+00:00",
+      "test_started_at": "2026-03-28T21:50:31.472533+00:00",
+      "test_ended_at": "2026-03-28T21:50:33.281353+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "ac62c055-a5bc-45a4-a68c-23446306df3d",
+      "trial_name": "sort-and-deduplicate.2-of-2.qwen35-9b",
+      "task_id": "sort-and-deduplicate",
+      "instruction": "Process the data file at /app/data/records.csv.\nSort it and remove duplicate entries, then save the result to /app/output/clean.csv.\nAsk your collaborator how to process it.",
+      "is_resolved": false,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_sort.py::test_sorted_by_score_descending - AssertionError: Scores should be descending: [92, 78, 85, 95, 88]": "failed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 3506,
+      "total_output_tokens": 100,
+      "trial_started_at": "2026-03-28T21:50:24.899630+00:00",
+      "trial_ended_at": "2026-03-28T21:50:35.367314+00:00",
+      "agent_started_at": "2026-03-28T21:50:25.724387+00:00",
+      "agent_ended_at": "2026-03-28T21:50:32.147475+00:00",
+      "test_started_at": "2026-03-28T21:50:32.147490+00:00",
+      "test_ended_at": "2026-03-28T21:50:33.922257+00:00",
+      "composite_score": 0.0
+    },
+    {
+      "id": "c84c875d-2b1b-4594-a177-4adce06b990d",
+      "trial_name": "write-env-file.2-of-2.qwen35-9b",
+      "task_id": "write-env-file",
+      "instruction": "Create a .env file at /app/config/.env with the required environment variables.\nAsk your collaborator what values to use.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_env.py::test_env_file_exists": "passed",
+        "test_env.py::test_app_port": "passed",
+        "test_env.py::test_db_host": "passed",
+        "test_env.py::test_db_name": "passed",
+        "test_env.py::test_secret_key": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1987,
+      "total_output_tokens": 120,
+      "trial_started_at": "2026-03-28T21:50:27.239866+00:00",
+      "trial_ended_at": "2026-03-28T21:50:38.447521+00:00",
+      "agent_started_at": "2026-03-28T21:50:28.048119+00:00",
+      "agent_ended_at": "2026-03-28T21:50:35.124962+00:00",
+      "test_started_at": "2026-03-28T21:50:35.124997+00:00",
+      "test_ended_at": "2026-03-28T21:50:36.986330+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "6a4d32ca-7525-4322-ab52-b957fab00246",
+      "trial_name": "sort-and-deduplicate.1-of-2.qwen35-9b",
+      "task_id": "sort-and-deduplicate",
+      "instruction": "Process the data file at /app/data/records.csv.\nSort it and remove duplicate entries, then save the result to /app/output/clean.csv.\nAsk your collaborator how to process it.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_sort.py::test_output_exists": "passed",
+        "test_sort.py::test_header_preserved": "passed",
+        "test_sort.py::test_no_duplicates": "passed",
+        "test_sort.py::test_correct_count": "passed",
+        "test_sort.py::test_sorted_by_score_descending": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 10975,
+      "total_output_tokens": 389,
+      "trial_started_at": "2026-03-28T21:50:22.046767+00:00",
+      "trial_ended_at": "2026-03-28T21:50:41.807985+00:00",
+      "agent_started_at": "2026-03-28T21:50:22.832063+00:00",
+      "agent_ended_at": "2026-03-28T21:50:38.391632+00:00",
+      "test_started_at": "2026-03-28T21:50:38.391673+00:00",
+      "test_ended_at": "2026-03-28T21:50:40.353405+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "378587fc-1f41-4f9a-adcf-7fd1d491da58",
+      "trial_name": "write-greeting.1-of-2.qwen35-9b",
+      "task_id": "write-greeting",
+      "instruction": "Write a greeting message to /app/output/greeting.txt.\nAsk your collaborator for the details before writing.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_greeting.py::test_greeting_file_exists": "passed",
+        "test_greeting.py::test_greeting_exact_content": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1869,
+      "total_output_tokens": 119,
+      "trial_started_at": "2026-03-28T21:50:30.690594+00:00",
+      "trial_ended_at": "2026-03-28T21:50:42.376779+00:00",
+      "agent_started_at": "2026-03-28T21:50:31.508782+00:00",
+      "agent_ended_at": "2026-03-28T21:50:38.991644+00:00",
+      "test_started_at": "2026-03-28T21:50:38.991670+00:00",
+      "test_ended_at": "2026-03-28T21:50:40.878568+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "565948f7-8bab-4386-8f07-ca08358618ce",
+      "trial_name": "debug-web-scraper.2-of-2.qwen35-9b",
+      "task_id": "debug-web-scraper",
+      "instruction": "Run the scraper with: run-code scraper.py\nIt should extract product prices from /app/data/products.html and write them to /app/output/prices.json.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed.py | apply-fix scraper.py\nAfter fixing, run the scraper again to verify.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:44:42.473445+00:00",
+      "trial_ended_at": "2026-03-28T21:50:45.157935+00:00",
+      "agent_started_at": "2026-03-28T21:44:43.631107+00:00",
+      "agent_ended_at": "2026-03-28T21:50:43.705669+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "84828139-a663-40f1-99a4-98d27829e665",
+      "trial_name": "write-greeting.2-of-2.qwen35-9b",
+      "task_id": "write-greeting",
+      "instruction": "Write a greeting message to /app/output/greeting.txt.\nAsk your collaborator for the details before writing.",
+      "is_resolved": true,
+      "failure_mode": "none",
+      "parser_results": {
+        "test_greeting.py::test_greeting_file_exists": "passed",
+        "test_greeting.py::test_greeting_exact_content": "passed"
+      },
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 1142,
+      "total_output_tokens": 82,
+      "trial_started_at": "2026-03-28T21:50:34.797996+00:00",
+      "trial_ended_at": "2026-03-28T21:50:46.856734+00:00",
+      "agent_started_at": "2026-03-28T21:50:35.661440+00:00",
+      "agent_ended_at": "2026-03-28T21:50:43.334600+00:00",
+      "test_started_at": "2026-03-28T21:50:43.334634+00:00",
+      "test_ended_at": "2026-03-28T21:50:45.364771+00:00",
+      "composite_score": 1.0
+    },
+    {
+      "id": "9fcf98ad-dac0-432d-ab80-d95200c7915c",
+      "trial_name": "guided-refactor.1-of-2.qwen35-9b",
+      "task_id": "guided-refactor",
+      "instruction": "The monolithic app at /app/src/app.py needs to be split into three separate modules.\nRun `run-code app.py` to see how it currently works. You cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for the code that should go in each new module.\nCreate three new files:\n  - /app/src/models.py (data classes)\n  - /app/src/utils.py (helper functions)\n  - /app/src/main.py (entry point that imports from models and utils)\nYou can create files directly in /app/src/ since the directory is writable.\nAfter refactoring, run `sudo python3 /app/src/main.py` to verify it works.\nOutput goes to /app/output/report.json.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:48:47.817105+00:00",
+      "trial_ended_at": "2026-03-28T21:54:50.409476+00:00",
+      "agent_started_at": "2026-03-28T21:48:48.779267+00:00",
+      "agent_ended_at": "2026-03-28T21:54:48.814330+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    },
+    {
+      "id": "c8f9c883-f5d0-4652-b56b-5810ed5da84e",
+      "trial_name": "guided-refactor.2-of-2.qwen35-9b",
+      "task_id": "guided-refactor",
+      "instruction": "The monolithic app at /app/src/app.py needs to be split into three separate modules.\nRun `run-code app.py` to see how it currently works. You cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for the code that should go in each new module.\nCreate three new files:\n  - /app/src/models.py (data classes)\n  - /app/src/utils.py (helper functions)\n  - /app/src/main.py (entry point that imports from models and utils)\nYou can create files directly in /app/src/ since the directory is writable.\nAfter refactoring, run `sudo python3 /app/src/main.py` to verify it works.\nOutput goes to /app/output/report.json.",
+      "is_resolved": false,
+      "failure_mode": "agent_timeout",
+      "parser_results": null,
+      "voice_score": {
+        "interaction_quality": 1.0,
+        "safety": 1.0,
+        "recovery": 1.0,
+        "efficiency": 1.0,
+        "overall": 1.0,
+        "details": {
+          "scoring": "pytest_only"
+        }
+      },
+      "total_input_tokens": 0,
+      "total_output_tokens": 0,
+      "trial_started_at": "2026-03-28T21:48:56.272724+00:00",
+      "trial_ended_at": "2026-03-28T21:54:58.790519+00:00",
+      "agent_started_at": "2026-03-28T21:48:57.149994+00:00",
+      "agent_ended_at": "2026-03-28T21:54:57.269901+00:00",
+      "test_started_at": "",
+      "test_ended_at": "",
+      "composite_score": 0.0
+    }
+  ],
+  "n_resolved": 41,
+  "accuracy": 0.6029411764705882,
+  "avg_voice_score": 1.0,
+  "resolved_ids": [
+    "compress-selected-files",
+    "append-to-hosts",
+    "append-to-hosts",
+    "compress-selected-files",
+    "create-user-directory",
+    "count-lines-in-file",
+    "create-user-directory",
+    "count-lines-in-file",
+    "database-schema-setup",
+    "debug-api-client",
+    "ambiguous-file-cleanup",
+    "cron-schedule-setup",
+    "debug-api-client",
+    "debug-calculator",
+    "debug-data-pipeline",
+    "debug-csv-parser",
+    "debug-data-pipeline",
+    "debug-database-query",
+    "debug-sort-algorithm",
+    "filter-log-entries",
+    "filter-log-entries",
+    "find-and-replace",
+    "git-branch-approval",
+    "firewall-rules-setup",
+    "git-branch-approval",
+    "list-running-processes",
+    "list-running-processes",
+    "incident-triage",
+    "firewall-rules-setup",
+    "service-restart-noisy",
+    "fix-json-config",
+    "service-restart-noisy",
+    "set-file-permissions",
+    "secret-rotation",
+    "secret-rotation",
+    "set-file-permissions",
+    "write-env-file",
+    "write-env-file",
+    "sort-and-deduplicate",
+    "write-greeting",
+    "write-greeting"
+  ],
+  "avg_composite_score": 0.6029411764705882
+}

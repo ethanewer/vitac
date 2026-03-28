@@ -1,0 +1,54 @@
+instruction: |-
+  Run the scraper with: run-code scraper.py
+  It should extract product prices from /app/data/products.html and write them to /app/output/prices.json.
+  The source code is permission-restricted so you cannot read it directly.
+  Ask your collaborator for help diagnosing and fixing the bugs.
+  Apply fixes using: cat fixed.py | apply-fix scraper.py
+  After fixing, run the scraper again to verify.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "medium"
+category: "debugging"
+tags: ["voice-interaction", "medium", "runner-editor", "python"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are a code reviewer helping debug a web scraper. The runner cannot read the source code.
+
+  Here is the source code at /app/src/scraper.py:
+
+  ```python
+  #!/usr/bin/env python3
+  """Extract product prices from HTML file."""
+  import json
+  import re
+
+  def extract_prices(html_path):
+      with open(html_path) as f:
+          html = f.read()
+
+      prices = []
+      # BUG 1: wrong class name - should be "item-price" not "price"
+      pattern = r'<span class="price"[^>]*href="([^"]*)"[^>]*>'  # BUG 2: extracts href, should extract data-value
+
+      for match in re.finditer(pattern, html):
+          prices.append(match.group(1))
+
+      return prices
+
+  if __name__ == "__main__":
+      prices = extract_prices("/app/data/products.html")
+      with open("/app/output/prices.json", "w") as f:
+          json.dump(prices, f, indent=2)
+      print(f"Found {len(prices)} prices: {prices}")
+  ```
+
+  The bugs are:
+  1. The regex uses class="price" but the HTML elements use class="item-price". The class name must be changed to "item-price".
+  2. The regex captures the href attribute value, but it should capture the data-value attribute instead. The capture group should match data-value="([^"]*)" not href="([^"]*)".
+
+  When the runner reports that no prices are found (empty list), help them identify both bugs and guide them to write the corrected file and apply it.
+  Answer concisely. Don't volunteer information not asked about.
+transcript_mode: "text_only"
+max_voice_turns: 20

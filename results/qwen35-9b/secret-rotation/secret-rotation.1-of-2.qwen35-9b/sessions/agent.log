@@ -1,0 +1,53 @@
+[?2004hroot@e9447c652620:/app# find /app/config /app/services /app/env -type f 2>/dev/null | head -20; tmux wait -S done
+[?2004l/app/config/api.conf
+/app/config/database.yml
+/app/services/auth/config.json
+/app/services/worker/env
+/app/env/.env.production
+[?2004hroot@e9447c652620:/app# cat /app/config/api.conf /app/config/database.yml /app/services/auth/config.json /app/services/worker/env /app/env/.env.production; tmux  wait -S done
+[?2004lAPI_ENDPOINT=https://api.example.com
+API_KEY=sk-old-key-abc123
+API_TIMEOUT=30
+database:
+  host: db.internal
+  port: 5432
+  password: oldpass123
+  name: production
+{
+  "jwt_secret": "jwt-secret-old-value",
+  "token_expiry": 3600,
+  "issuer": "myapp"
+}
+WORKER_THREADS=4
+DB_PASSWORD=oldpass123
+QUEUE_URL=redis://cache.internal:6379
+APP_ENV=production
+DB_PASSWORD=oldpass123
+API_KEY=sk-old-key-abc123
+JWT_SECRET=jwt-secret-old-value
+LOG_LEVEL=warn
+[?2004hroot@e9447c652620:/app# sed -i 's/oldpass123/Kx9mP2qL7nW/g' /app/config/database.yml /app/services/worker/env /app/env/.env.production; tmux wait -S done
+[?2004l[?2004hroot@e9447c652620:/app# sed -i 's/sk-old-key-abc123/sk-new-key-xyz789/g' /app/config/api.conf /app/env/.env.production && sed -i 's/jwt-secret-old-value/hN4kQ8wRR2vBj5mT/g' /app/services/auth/config.json /app/env/.env.production; tmux wait -S done
+[?2004l[?2004hroot@e9447c652620:/app# cat /app/config/api.conf /app/config/database.yml /app/services/auth/config.json /app/services/worker/env /app/env/.env.production; tmux  wait -S done
+[?2004lAPI_ENDPOINT=https://api.example.com
+API_KEY=sk-new-key-xyz789
+API_TIMEOUT=30
+database:
+  host: db.internal
+  port: 5432
+  password: Kx9mP2qL7nW
+  name: production
+{
+  "jwt_secret": "hN4kQ8wR2vBj5mT",
+  "token_expiry": 3600,
+  "issuer": "myapp"
+}
+WORKER_THREADS=4
+DB_PASSWORD=Kx9mP2qL7nW
+QUEUE_URL=redis://cache.internal:6379
+APP_ENV=production
+DB_PASSWORD=Kx9mP2qL7nW
+API_KEY=sk-new-key-xyz789
+JWT_SECRET=hN4kQ8wR2vBj5mT
+LOG_LEVEL=warn
+[?2004hroot@e9447c652620:/app# 

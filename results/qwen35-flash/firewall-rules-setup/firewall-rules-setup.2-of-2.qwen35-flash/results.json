@@ -1,0 +1,38 @@
+{
+  "id": "05f26205-3865-4df3-a327-8b6d11109006",
+  "trial_name": "firewall-rules-setup.2-of-2.qwen35-flash",
+  "task_id": "firewall-rules-setup",
+  "instruction": "Write firewall rules to /app/config/firewall.rules.\nThe rules should be in iptables-save format.\nAsk your collaborator (the security team lead) for the network security policy.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_firewall.py::test_file_exists": "passed",
+    "test_firewall.py::test_ssh_restricted": "passed",
+    "test_firewall.py::test_http_open": "passed",
+    "test_firewall.py::test_https_open": "passed",
+    "test_firewall.py::test_postgres_restricted": "passed",
+    "test_firewall.py::test_default_drop": "passed",
+    "test_firewall.py::test_output_accept": "passed",
+    "test_firewall.py::test_established_connections": "passed",
+    "test_firewall.py::test_no_wide_open_ssh": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 9036,
+  "total_output_tokens": 1086,
+  "trial_started_at": "2026-03-28T21:23:30.629677+00:00",
+  "trial_ended_at": "2026-03-28T21:25:04.421971+00:00",
+  "agent_started_at": "2026-03-28T21:23:31.435328+00:00",
+  "agent_ended_at": "2026-03-28T21:24:50.698229+00:00",
+  "test_started_at": "2026-03-28T21:24:50.698255+00:00",
+  "test_ended_at": "2026-03-28T21:25:02.842256+00:00",
+  "composite_score": 1.0
+}

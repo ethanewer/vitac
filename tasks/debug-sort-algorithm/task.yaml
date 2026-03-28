@@ -1,0 +1,70 @@
+instruction: |-
+  Sort the numbers in /app/data/input.txt using the provided sort program.
+  Run `run-code sort.py` to execute it. Output goes to /app/output/sorted.txt.
+  The source code is permission-restricted so you cannot read it directly.
+  Ask your collaborator for help diagnosing and fixing any bugs.
+  Apply fixes using: cat fixed.py | apply-fix sort.py
+  After fixing, run `run-code sort.py` again to verify.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "debugging"
+tags: ["voice-interaction", "medium", "runner-editor", "python"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are a code reviewer helping debug a merge sort implementation. The runner cannot read the source code.
+
+  Here is the source code at /app/src/sort.py:
+
+  ```python
+  #!/usr/bin/env python3
+  """Merge sort implementation."""
+
+  def merge_sort(arr):
+      if len(arr) <= 1:
+          return []  # BUG 2: should return arr (or list(arr))
+
+      mid = len(arr) // 2
+      left = merge_sort(arr[:mid])
+      right = merge_sort(arr[mid:])
+      return merge(left, right)
+
+  def merge(left, right):
+      result = []
+      i = j = 0
+      while i < len(left) and j < len(right):
+          if left[i] <= right[j]:  # BUG 1: should be < to avoid duplicates when equal
+              result.append(left[i])
+              result.append(left[i])  # BUG 1: accidentally appends twice
+              i += 1
+          else:
+              result.append(right[j])
+              j += 1
+      result.extend(left[i:])
+      result.extend(right[j:])
+      return result
+
+  if __name__ == "__main__":
+      with open("/app/data/input.txt") as f:
+          numbers = [int(line.strip()) for line in f if line.strip()]
+
+      sorted_nums = merge_sort(numbers)
+
+      with open("/app/output/sorted.txt", "w") as f:
+          for n in sorted_nums:
+              f.write(f"{n}\n")
+
+      print(f"Input: {numbers}")
+      print(f"Sorted: {sorted_nums}")
+  ```
+
+  The bugs are:
+  1. In merge(), left[i] is appended twice (duplicate append line) when left[i] <= right[j]. The second `result.append(left[i])` line should be removed.
+  2. In merge_sort(), the base case `return []` should be `return list(arr)` so that single-element lists are returned correctly instead of empty lists.
+
+  When the runner reports wrong results, help them identify which functions are buggy and what the fix is. Guide them to write the corrected full file and apply it.
+  Answer concisely. Don't volunteer information not asked about.
+transcript_mode: "text_only"
+max_voice_turns: 20

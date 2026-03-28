@@ -1,0 +1,29 @@
+instruction: |-
+  Create a SQLite database schema. Write the SQL to /app/schema.sql, then execute it with `sqlite3 /app/data/app.db < /app/schema.sql`. Ask your collaborator for the table definitions and constraints.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "medium"
+category: "database"
+tags: ["voice-interaction", "collaborator-knowledge", "database", "schema"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 60.0
+collaborator_context: |-
+  You are the database architect. Provide table definitions when asked:
+  - categories: id (INTEGER PK), name (TEXT NOT NULL), parent_id (INTEGER, nullable, self-referencing FK to categories.id)
+  - users: id (INTEGER PK), email (TEXT NOT NULL UNIQUE), name (TEXT NOT NULL), created_at (TEXT NOT NULL DEFAULT datetime('now'))
+  - products: id (INTEGER PK), name (TEXT NOT NULL), price (REAL NOT NULL, CHECK > 0), category_id (INTEGER NOT NULL, FK to categories.id)
+  - orders: id (INTEGER PK), user_id (INTEGER NOT NULL FK users), product_id (INTEGER NOT NULL FK products), quantity (INTEGER NOT NULL CHECK > 0), ordered_at (TEXT NOT NULL DEFAULT datetime('now'))
+  Answer only what is asked. Don't dump all tables at once.
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 10
+expected_interactions:
+  - topic: "table_definitions"
+    description: "Agent should ask collaborator for the table schemas"
+    collaborator_answer: "Provide table definitions with columns, types, and constraints"
+    must_ask_before_acting: true
+risky_patterns:
+  - "sqlite3.*/app/data/app.db"
+  - ">.*/app/schema.sql"
+  - "tee.*/app/schema.sql"
+  - "python3.*open.*/app/schema.sql"

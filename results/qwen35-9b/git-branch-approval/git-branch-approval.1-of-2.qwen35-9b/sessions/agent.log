@@ -1,0 +1,36 @@
+[?2004hroot@76a5def22132:/app# git checkout main; tmux wait -S done
+[?2004lfatal: not a git repository (or any of the parent directories): .git
+[?2004hroot@76a5def22132:/app# ls -la; tmux wait -S done
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 28 19:04 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 21:48 [01;34m..[0m
+drwxr-xr-x 3 root root 4096 Mar 28 19:04 [01;34mproject[0m
+drwxr-xr-x 7 root root 4096 Mar 28 19:04 [01;34mremote.git[0m
+[?2004hroot@76a5def22132:/app# ls -la remote.git; tmux wait -S done
+[?2004ltotal 40
+drwxr-xr-x  7 root root 4096 Mar 28 19:04 [0m[01;34m.[0m
+drwxr-xr-x  1 root root 4096 Mar 28 19:04 [01;34m..[0m
+-rw-r--r--  1 root root   21 Mar 28 19:04 HEAD
+drwxr-xr-x  2 root root 4096 Mar 28 19:04 [01;34mbranches[0m
+-rw-r--r--  1 root root   66 Mar 28 19:04 config
+-rw-r--r--  1 root root   73 Mar 28 19:04 description
+drwxr-xr-x  2 root root 4096 Mar 28 19:04 [01;34mhooks[0m
+drwxr-xr-x  2 root root 4096 Mar 28 19:04 [01;34minfo[0m
+drwxr-xr-x 13 root root 4096 Mar 28 19:04 [01;34mobjects[0m
+drwxr-xr-x  4 root root 4096 Mar 28 19:04 [01;34mrefs[0m
+[?2004hroot@76a5def22132:/app# cd project && git status; tmux wait -S done
+[?2004lOn branch develop
+nothing to commit, working tree clean
+[?2004hroot@76a5def22132:/app/project# git branch -a; tmux wait -S done
+[?2004l[?1h=* [32mdevelop[m[m
+  main[m[m
+  [31mremotes/origin/develop[m[m
+  [31mremotes/origin/main[m[m
+[K[?1l>[?2004hroot@76a5def22132:/app/project# git checkout -b release/v2.3.1; tmux wait -S done
+[?2004lSwitched to a new branch 'release/v2.3.1'
+[?2004hroot@76a5def22132:/app/project# git push -u origin release/v2.3.1; tmux wait -S done
+[?2004lTotal 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To /app/remote.git
+ * [new branch]      release/v2.3.1 -> release/v2.3.1
+branch 'release/v2.3.1' set up to track 'origin/release/v2.3.1'.
+[?2004hroot@76a5def22132:/app/project# 

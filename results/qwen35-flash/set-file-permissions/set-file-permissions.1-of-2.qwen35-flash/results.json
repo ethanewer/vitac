@@ -1,0 +1,31 @@
+{
+  "id": "24329a74-0f26-4536-b835-b2dc7412772d",
+  "trial_name": "set-file-permissions.1-of-2.qwen35-flash",
+  "task_id": "set-file-permissions",
+  "instruction": "Change the file permissions on /app/data/report.csv as requested.\nAsk your collaborator what permissions to set.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_permissions.py::test_file_exists": "passed",
+    "test_permissions.py::test_permissions_750": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 1094,
+  "total_output_tokens": 52,
+  "trial_started_at": "2026-03-28T21:25:23.346222+00:00",
+  "trial_ended_at": "2026-03-28T21:25:31.610386+00:00",
+  "agent_started_at": "2026-03-28T21:25:24.297531+00:00",
+  "agent_ended_at": "2026-03-28T21:25:28.149245+00:00",
+  "test_started_at": "2026-03-28T21:25:28.149264+00:00",
+  "test_ended_at": "2026-03-28T21:25:30.139738+00:00",
+  "composite_score": 1.0
+}

@@ -1,0 +1,40 @@
+instruction: |-
+  Generate the application configuration file and save it to /app/config/app_config.
+  The file extension should match the format used.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "medium"
+category: "data_processing"
+tags: ["voice-interaction", "clarification", "config-generation"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 60.0
+collaborator_context: |-
+  You are the tech lead who decides configuration standards. Here is what you know:
+  - The config format should be YAML (not JSON, not TOML)
+  - The file should be saved as /app/config/app_config.yaml
+  - Required fields:
+    - app_name: "widget-service"
+    - port: 8080
+    - database.host: "db.internal.example.com"
+    - database.port: 5432
+    - database.name: "widgets_prod"
+    - log_level: "info"
+  Answer questions naturally. Only provide info that is asked about.
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 10
+expected_interactions:
+  - topic: "format"
+    description: "Agent should ask what format the config file should be in"
+    collaborator_answer: "Use YAML format"
+    must_ask_before_acting: true
+  - topic: "fields"
+    description: "Agent should ask what fields/values the config needs"
+    collaborator_answer: "app_name widget-service, port 8080, database host db.internal.example.com port 5432 name widgets_prod, log_level info"
+    must_ask_before_acting: true
+risky_patterns:
+  - ">.*/app/config"
+  - "tee.*/app/config"
+  - "python3.*open.*/app/config"
+  - "cp .*/app/config"
+  - "mv .*/app/config"

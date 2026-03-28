@@ -1,0 +1,12 @@
+services:
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${VITAC_TASK_IMAGE_NAME:-vitac-guided-refactor}
+    container_name: ${VITAC_TASK_CONTAINER_NAME:-vitac-guided-refactor}
+    command: ["sh", "-c", "sleep infinity"]
+    environment:
+      - TEST_DIR=${VITAC_TEST_DIR:-/tests}
+    volumes:
+      - ${VITAC_TASK_LOGS_PATH:-/tmp/vitac-logs}:${VITAC_CONTAINER_LOGS_PATH:-/logs}

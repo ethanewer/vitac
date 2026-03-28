@@ -1,0 +1,34 @@
+{
+  "id": "0f4abf02-c851-4cb3-9e8b-2cdbf3b824a7",
+  "trial_name": "write-env-file.1-of-2.qwen35-flash",
+  "task_id": "write-env-file",
+  "instruction": "Create a .env file at /app/config/.env with the required environment variables.\nAsk your collaborator what values to use.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_env.py::test_env_file_exists": "passed",
+    "test_env.py::test_app_port": "passed",
+    "test_env.py::test_db_host": "passed",
+    "test_env.py::test_db_name": "passed",
+    "test_env.py::test_secret_key": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 2950,
+  "total_output_tokens": 227,
+  "trial_started_at": "2026-03-28T21:25:31.612329+00:00",
+  "trial_ended_at": "2026-03-28T21:26:41.548161+00:00",
+  "agent_started_at": "2026-03-28T21:25:32.480815+00:00",
+  "agent_ended_at": "2026-03-28T21:26:27.770455+00:00",
+  "test_started_at": "2026-03-28T21:26:27.770513+00:00",
+  "test_ended_at": "2026-03-28T21:26:39.894464+00:00",
+  "composite_score": 1.0
+}

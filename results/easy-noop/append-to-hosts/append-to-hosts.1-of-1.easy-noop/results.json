@@ -1,0 +1,33 @@
+{
+  "id": "ef71c702-121a-4d64-95fe-7e1bd243734a",
+  "trial_name": "append-to-hosts.1-of-1.easy-noop",
+  "task_id": "append-to-hosts",
+  "instruction": "Add a new entry to the hosts file at /app/etc/hosts.\nAsk your collaborator for the IP address and hostname to add.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_hosts.py::test_new_entry_present - AssertionError: New IP should be in hosts file": "failed",
+    "test_hosts.py::test_new_entry_on_same_line - AssertionError: IP and hostname should be on the same line": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "topics_asked": 1,
+      "topics_expected": 1,
+      "voice_turns_used": 1,
+      "max_voice_turns": 6
+    }
+  },
+  "total_input_tokens": 4124,
+  "total_output_tokens": 906,
+  "trial_started_at": "2026-03-28T19:26:32.405899+00:00",
+  "trial_ended_at": "2026-03-28T19:26:50.092692+00:00",
+  "agent_started_at": "2026-03-28T19:26:33.669506+00:00",
+  "agent_ended_at": "2026-03-28T19:26:46.912104+00:00",
+  "test_started_at": "2026-03-28T19:26:46.912121+00:00",
+  "test_ended_at": "2026-03-28T19:26:48.674812+00:00"
+}

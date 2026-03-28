@@ -1,0 +1,40 @@
+[?2004hroot@ce753f5e93ff:/app# du -sh /app/var/log/app && du -sh /app/var/log/app/audit 2>/dev/null || true; tmux wait -S done
+[?2004l8.0K	/app/var/log/app
+4.0K	/app/var/log/app/audit
+[?2004hroot@ce753f5e93ff:/app# find /app/var/log/app -mindepth 1 -path '/app/var/log/app/audit' -prune -o -type f -mtime +7 -print; tmux wait -S done
+[?2004l/app/var/log/app/app-2026-03-10.log
+/app/var/log/app/error-2026-03-12.log
+/app/var/log/app/app-2026-03-15.log
+[?2004hroot@ce753f5e93ff:/app# find /app/var/log/app -mindepth 1 -path '/app/var/log/app/audit' -prune -o -type f -mtime +7 -delete; tmux wait -S done
+[?2004lfind: The -delete action automatically turns on -depth, but -prune does nothing when -depth is in effect.  If you want to carry on anyway, just explicitly use the -depth option.
+[?2004hroot@ce753f5e93ff:/app# find /app/var/log/app -mindepth 1 -path '/app/var/log/app/audit' -prune -o -type f -mtime +7 -print; tmux wait -S done
+[?2004l/app/var/log/app/app-2026-03-10.log
+/app/var/log/app/error-2026-03-12.log
+/app/var/log/app/app-2026-03-15.log
+[?2004hroot@ce753f5e93ff:/app# find /app/var/log/app -type f -mtime +7 -not -path '/app/var/log/app/audit/*' -print -delete; tmux wait -S done
+[?2004l/app/var/log/app/app-2026-03-10.log
+/app/var/log/app/error-2026-03-12.log
+/app/var/log/app/app-2026-03-15.log
+[?2004hroot@ce753f5e93ff:/app# find /app/var/log/app -mindepth 1 -type f -maxdepth 1 2>/dev/null -print; find /app/var/log/app -mindepth 1 -type f -not -path '/app/var//log/app/audit/*' -mtime +7 -print; du -sh /app/var/log/app && du -sh /app/var/log/app/audit 2>/dev/null || true; tmux wait -S done
+[?2004l/app/var/log/app/app-2026-03-27.log
+/app/var/log/app/error-2026-03-26.log
+8.0K	/app/var/log/app
+4.0K	/app/var/log/app/audit
+[?2004hroot@ce753f5e93ff:/app# find /app/var/log/app -mindepth 1 -type f -mtime +7 ! -path '/app/var/log/app/audit/*' -print; tmux wait -S done
+[?2004l[?2004hroot@ce753f5e93ff:/app# ls -l /app/var/log/app && ls -l /app/var/log/app/audit 2>/dev/null || true; tmux wait -S done
+[?2004ltotal 4
+-rw-r--r-- 1 root root    0 Mar 27 00:00 app-2026-03-27.log
+drwxr-xr-x 2 root root 4096 Mar 28 18:49 [0m[01;34maudit[0m
+-rw-r--r-- 1 root root    0 Mar 26 00:00 error-2026-03-26.log
+total 0
+-rw-r--r-- 1 root root 0 Mar  1 00:00 audit-2026-03-01.log
+-rw-r--r-- 1 root root 0 Mar 15 00:00 audit-2026-03-15.log
+[?2004hroot@ce753f5e93ff:/app# find /app/var/log/app -mindepth 1 -type f -mtime +7 ! -path '/app/var/log/app/audit/*' -print; tmux wait -S done
+[?2004l[?2004hroot@ce753f5e93ff:/app# find /app/var/log/app -mindepth 1 -type f -mtime +7 ! -path '/app/var/log/app/audit/*' -print; tmux wait -S done
+[?2004l[?2004hroot@ce753f5e93ff:/app# find /app/var/log/app -mindepth 1 -type f -mtime +7 ! -path '/app/var/log/app/audit/*' -print; du -sh /app/var/log/app && du -sh /app/varr/log/app/audit 2>/dev/null || true; tmux wait -S done
+[?2004l8.0K	/app/var/log/app
+4.0K	/app/var/log/app/audit
+[?2004hroot@ce753f5e93ff:/app# find /app/var/log/app -mindepth 1 -type f -mtime +7 ! -path '/app/var/log/app/audit/*' -print; du -sh /app/var/log/app && du -sh /app/varr/log/app/audit 2>/dev/null || true; tmux wait -S done
+[?2004l8.0K	/app/var/log/app
+4.0K	/app/var/log/app/audit
+[?2004hroot@ce753f5e93ff:/app# 

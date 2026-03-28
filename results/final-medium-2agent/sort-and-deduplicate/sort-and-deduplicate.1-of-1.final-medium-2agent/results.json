@@ -1,0 +1,42 @@
+{
+  "id": "77392bf4-4f84-4620-be02-6feba543457b",
+  "trial_name": "sort-and-deduplicate.1-of-1.final-medium-2agent",
+  "task_id": "sort-and-deduplicate",
+  "instruction": "Process the data file at /app/data/records.csv.\nSort it and remove duplicate entries, then save the result to /app/output/clean.csv.\nAsk your collaborator how to process it.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_sort.py::test_output_exists": "passed",
+    "test_sort.py::test_header_preserved": "passed",
+    "test_sort.py::test_no_duplicates": "passed",
+    "test_sort.py::test_correct_count": "passed",
+    "test_sort.py::test_sorted_by_score_descending": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "topics_matched": [
+        "processing"
+      ],
+      "topics_expected": [
+        "processing"
+      ],
+      "voice_turns_used": 1,
+      "terminal_commands_count": 3,
+      "max_voice_turns": 8
+    }
+  },
+  "total_input_tokens": 3318,
+  "total_output_tokens": 989,
+  "trial_started_at": "2026-03-28T20:21:07.290224+00:00",
+  "trial_ended_at": "2026-03-28T20:21:23.891545+00:00",
+  "agent_started_at": "2026-03-28T20:21:08.078270+00:00",
+  "agent_ended_at": "2026-03-28T20:21:20.516101+00:00",
+  "test_started_at": "2026-03-28T20:21:20.516129+00:00",
+  "test_ended_at": "2026-03-28T20:21:22.423494+00:00",
+  "composite_score": 1.0
+}

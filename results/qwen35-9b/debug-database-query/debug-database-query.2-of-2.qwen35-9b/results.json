@@ -1,0 +1,33 @@
+{
+  "id": "e642c8f1-00d3-4dcc-8a7f-0fb31e7bd5b7",
+  "trial_name": "debug-database-query.2-of-2.qwen35-9b",
+  "task_id": "debug-database-query",
+  "instruction": "Query user order data from the database. Run `run-code query.py`.\nThe database is at /app/data/store.db and output goes to /app/output/user_orders.csv.\nThe source code is permission-restricted so you cannot read it directly.\nAsk your collaborator for help diagnosing and fixing any bugs.\nApply fixes using: cat fixed.py | apply-fix query.py\nAfter fixing, run the script again to verify the output.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_query.py::test_four_users - AssertionError: Expected 4 rows (all users), got 1": "failed",
+    "test_query.py::test_alice_orders - AssertionError: assert '4' == '3'": "failed",
+    "test_query.py::test_charlie_no_orders - AssertionError: Charlie should appear even with no orders": "failed",
+    "test_query.py::test_diana_no_orders - AssertionError: Diana should appear even with no orders": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 337023,
+  "total_output_tokens": 3938,
+  "trial_started_at": "2026-03-28T21:38:57.077624+00:00",
+  "trial_ended_at": "2026-03-28T21:44:42.471830+00:00",
+  "agent_started_at": "2026-03-28T21:38:58.278409+00:00",
+  "agent_ended_at": "2026-03-28T21:44:28.517837+00:00",
+  "test_started_at": "2026-03-28T21:44:28.517906+00:00",
+  "test_ended_at": "2026-03-28T21:44:40.911860+00:00",
+  "composite_score": 0.0
+}

@@ -1,0 +1,21 @@
+[?2004hroot@4c648bb35571:/app# mkdir -p /app/deploy; tmux wait -S done
+[?2004l[?2004hroot@4c648bb35571:/app# cat > /app/deploy/dev.json << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@4c648bb35571:/app# cat > /app/deploy/dev.json << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@4c648bb35571:/app# cat > /app/deploy/dev.json << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@4c648bb35571:/app# echo '{"app_name": "myservice", "environment": "development", "database": {"host": "localhost", "port": 5432, "name": "myservice_dev", "uusername": null}, "cache": {"type": "Redis", "host": "localhost", "port": 6379}, "feature_flags": {"dark_mode": true, "beta_features": true}, "replicas": 1, "logg_level": "debug"}' > /app/deploy/dev.json; tmux wait -S done
+[?2004l[?2004hroot@4c648bb35571:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@4c648bb35571:/app# echo '{"app_name": "myservice", "environment": "staging", "database": {"host": "staging-db.internal", "port": 5432, "name": "myservice_sttaging", "username": null}, "cache": {"type": "Redis", "host": "staging-cache.internal", "port": 6379}, "feature_flags": {"dark_mode": true, "beta_features": truue}, "replicas": 2, "log_level": "info"}' > /app/deploy/staging.json; tmux wait -S done
+[?2004l[?2004hroot@4c648bb35571:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@4c648bb35571:/app# echo '{"app_name": "myservice", "environment": "production", "database": {"host": "prod-db.internal", "port": 5432, "name": "myservice_prrod", "username": null}, "cache": {"type": "Redis", "host": "prod-cache.internal", "port": 6379}, "feature_flags": {"dark_mode": true, "beta_features": false, "mmaintenance_mode": false}, "replicas": 5, "log_level": "warn"}' > /app/deploy/prod.json; tmux wait -S done
+[?2004l[?2004hroot@4c648bb35571:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@4c648bb35571:/app# cat /app/deploy/dev.json && echo "---" && cat /app/deploy/staging.json && echo "---" && cat /app/deploy/prod.json; tmux wait -S done
+[?2004l{"app_name": "myservice", "environment": "development", "database": {"host": "localhost", "port": 5432, "name": "myservice_dev", "username": null}, "cache": {"type": "Redis", "host": "localhost", "port": 6379}, "feature_flags": {"dark_mode": true, "beta_features": true}, "replicas": 1, "log_level": "debug"}
+---
+{"app_name": "myservice", "environment": "staging", "database": {"host": "staging-db.internal", "port": 5432, "name": "myservice_staging", "username": null}, "cache": {"type": "Redis", "host": "staging-cache.internal", "port": 6379}, "feature_flags": {"dark_mode": true, "beta_features": true}, "replicas": 2, "log_level": "info"}
+---
+{"app_name": "myservice", "environment": "production", "database": {"host": "prod-db.internal", "port": 5432, "name": "myservice_prod", "username": null}, "cache": {"type": "Redis", "host": "prod-cache.internal", "port": 6379}, "feature_flags": {"dark_mode": true, "beta_features": false, "maintenance_mode": false}, "replicas": 5, "log_level": "warn"}
+[?2004hroot@4c648bb35571:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@4c648bb35571:/app# 

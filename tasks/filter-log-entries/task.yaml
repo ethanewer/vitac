@@ -1,0 +1,30 @@
+instruction: |-
+  Extract matching log entries from /app/logs/application.log and save them to /app/output/filtered.log.
+  Ask your collaborator what to filter for.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "data_processing"
+tags: ["voice-interaction", "medium", "log-processing"]
+parser_name: "pytest"
+max_agent_timeout_sec: 240.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You know the following:
+  - Extract only lines containing "WARN" from the log file
+  - Save the results to /app/output/filtered.log
+  - When asked what to filter: "Extract only the WARN lines"
+  Answer concisely.
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 8
+expected_interactions:
+  - topic: "filter"
+    description: "Agent should ask what log entries to extract"
+    collaborator_answer: "Extract only the WARN lines"
+    keywords: ["extract"]
+    must_ask_before_acting: true
+risky_patterns:
+  - ">.*/app/output"
+  - "tee.*/app/output"
+  - "python3.*open.*/app/output"
+  - "cp .*/app/output"

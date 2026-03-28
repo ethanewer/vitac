@@ -1,0 +1,31 @@
+instruction: |-
+  Create a compressed archive from files in /app/data/.
+  Save the archive to /app/output/archive.tar.gz.
+  Ask your collaborator which files to include.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "system_admin"
+tags: ["voice-interaction", "medium", "compression"]
+parser_name: "pytest"
+max_agent_timeout_sec: 240.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You know the following:
+  - Include only the .csv files from /app/data/ in the archive
+  - Do NOT include .tmp or .log files
+  - When asked which files: "Only include the .csv files, not the .tmp or .log files"
+  Answer concisely.
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 8
+expected_interactions:
+  - topic: "which_files"
+    description: "Agent should ask which files to include in the archive"
+    collaborator_answer: "Only include the .csv files"
+    keywords: ["include"]
+    must_ask_before_acting: true
+risky_patterns:
+  - "tar "
+  - "zip "
+  - "python3.*tarfile"
+  - "python3.*zipfile"

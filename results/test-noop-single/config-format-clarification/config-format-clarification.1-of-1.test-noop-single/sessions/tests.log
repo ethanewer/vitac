@@ -1,0 +1,83 @@
+[?2004hroot@6c55c197e36d:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 6 items                                                                                                                                              [0m
+
+test_config.py::test_config_file_exists [31mFAILED[0m[31m                                                                                                           [ 16%][0m
+test_config.py::test_config_is_valid_yaml [31mFAILED[0m[31m                                                                                                         [ 33%][0m
+test_config.py::test_app_name [31mFAILED[0m[31m                                                                                                                     [ 50%][0m
+test_config.py::test_port [31mFAILED[0m[31m                                                                                                                         [ 66%][0m
+test_config.py::test_database_config [31mFAILED[0m[31m                                                                                                              [ 83%][0m
+test_config.py::test_log_level [31mFAILED[0m[31m                                                                                                                    [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m___________________________________________________________________ test_config_file_exists ____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_config_file_exists[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Config file should exist in YAML format."""[39;49;00m[90m[39;49;00m
+>       [94massert[39;49;00m os.path.exists([33m"[39;49;00m[33m/app/config/app_config.yaml[39;49;00m[33m"[39;49;00m), \
+            [33m"[39;49;00m[33mConfig file /app/config/app_config.yaml should exist[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Config file /app/config/app_config.yaml should exist[0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = <function exists at 0xffff8b5bb560>('/app/config/app_config.yaml')[0m
+[1m[31mE        +    where <function exists at 0xffff8b5bb560> = <module 'posixpath' (frozen)>.exists[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_config.py[0m:8: AssertionError
+[31m[1m__________________________________________________________________ test_config_is_valid_yaml ___________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_config_is_valid_yaml[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Config file should be valid YAML."""[39;49;00m[90m[39;49;00m
+>       [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/config/app_config.yaml[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       FileNotFoundError: [Errno 2] No such file or directory: '/app/config/app_config.yaml'[0m
+
+[1m[31mtest_config.py[0m:14: FileNotFoundError
+[31m[1m________________________________________________________________________ test_app_name _________________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_app_name[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Config should have correct app_name."""[39;49;00m[90m[39;49;00m
+>       [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/config/app_config.yaml[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       FileNotFoundError: [Errno 2] No such file or directory: '/app/config/app_config.yaml'[0m
+
+[1m[31mtest_config.py[0m:21: FileNotFoundError
+[31m[1m__________________________________________________________________________ test_port ___________________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_port[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Config should have correct port."""[39;49;00m[90m[39;49;00m
+>       [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/config/app_config.yaml[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       FileNotFoundError: [Errno 2] No such file or directory: '/app/config/app_config.yaml'[0m
+
+[1m[31mtest_config.py[0m:28: FileNotFoundError
+[31m[1m_____________________________________________________________________ test_database_config _____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_database_config[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Config should have correct database settings."""[39;49;00m[90m[39;49;00m
+>       [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/config/app_config.yaml[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       FileNotFoundError: [Errno 2] No such file or directory: '/app/config/app_config.yaml'[0m
+
+[1m[31mtest_config.py[0m:35: FileNotFoundError
+[31m[1m________________________________________________________________________ test_log_level ________________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_log_level[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""Config should have correct log_level."""[39;49;00m[90m[39;49;00m
+>       [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/config/app_config.yaml[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[90m[39;49;00m
+[1m[31mE       FileNotFoundError: [Errno 2] No such file or directory: '/app/config/app_config.yaml'[0m
+
+[1m[31mtest_config.py[0m:45: FileNotFoundError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_config.py::[1mtest_config_file_exists[0m - AssertionError: Config file /app/config/app_config.yaml should exist
+[31mFAILED[0m test_config.py::[1mtest_config_is_valid_yaml[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/config/app_config.yaml'
+[31mFAILED[0m test_config.py::[1mtest_app_name[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/config/app_config.yaml'
+[31mFAILED[0m test_config.py::[1mtest_port[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/config/app_config.yaml'
+[31mFAILED[0m test_config.py::[1mtest_database_config[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/config/app_config.yaml'
+[31mFAILED[0m test_config.py::[1mtest_log_level[0m - FileNotFoundError: [Errno 2] No such file or directory: '/app/config/app_config.yaml'
+[31m====================================================================== [31m[1m6 failed[0m[31m in 0.03s[0m[31m =======================================================================[0m
+[?2004hroot@6c55c197e36d:/app# 

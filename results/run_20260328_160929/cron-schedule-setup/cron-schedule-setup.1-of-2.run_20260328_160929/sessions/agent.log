@@ -1,0 +1,26 @@
+[?2004hroot@dfad6f433106:/app# mkdir -p /app/config; tmux wait -S done
+[?2004l[?2004hroot@dfad6f433106:/app# cat > /app/config/crontab << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@dfad6f433106:/app# cat > /app/config/crontab << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@dfad6f433106:/app# echo '# Crontab file for scheduled tasks' > /app/config/crontab && echo '# Format: minute hour day-of-month month day-of-week command' >>> /app/config/crontab && echo '' >> /app/config/crontab && echo '# Database backup - Daily at 2:30 AM' >> /app/config/crontab && echo '30 2 * * * /usr/local/bin//backup-db.sh' >> /app/config/crontab && echo '' >> /app/config/crontab && echo '# Log rotation - Every 6 hours' >> /app/config/crontab && echo '0 */6 * * * /usrr/local/bin/rotate-logs.sh' >> /app/config/crontab && echo '' >> /app/config/crontab && echo '# Health check - Every 5 minutes' >> /app/config/crontab && echo '**/5 * * * * /usr/local/bin/health-check.sh' >> /app/config/crontab && echo '' >> /app/config/crontab && echo '# Weekly report - Every Sunday at 8:00 AM' >> /app//config/crontab && echo '0 8 * * 0 /usr/local/bin/weekly-report.sh' >> /app/config/crontab && echo '' >> /app/config/crontab && echo '# Monthly cleanup - On the  1st of each month at midnight' >> /app/config/crontab && echo '0 0 1 * * /usr/local/bin/monthly-cleanup.sh' >> /app/config/crontab; tmux wait -S done
+[?2004l[?2004hroot@dfad6f433106:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@dfad6f433106:/app# cat /app/config/crontab; tmux wait -S done
+[?2004l# Crontab file for scheduled tasks
+# Format: minute hour day-of-month month day-of-week command
+
+# Database backup - Daily at 2:30 AM
+30 2 * * * /usr/local/bin/backup-db.sh
+
+# Log rotation - Every 6 hours
+0 */6 * * * /usr/local/bin/rotate-logs.sh
+
+# Health check - Every 5 minutes
+*/5 * * * * /usr/local/bin/health-check.sh
+
+# Weekly report - Every Sunday at 8:00 AM
+0 8 * * 0 /usr/local/bin/weekly-report.sh
+
+# Monthly cleanup - On the 1st of each month at midnight
+0 0 1 * * /usr/local/bin/monthly-cleanup.sh
+[?2004hroot@dfad6f433106:/app# 

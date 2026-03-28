@@ -1,0 +1,65 @@
+[?2004hroot@df26ea53bea1:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
+[?2004l[?2004hroot@df26ea53bea1:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 5 items                                                                                                                                              [0m
+
+test_replace.py::test_no_acme_remaining [31mFAILED[0m[31m                                                                                                           [ 20%][0m
+test_replace.py::test_globex_in_readme [31mFAILED[0m[31m                                                                                                            [ 40%][0m
+test_replace.py::test_globex_in_contact [31mFAILED[0m[31m                                                                                                           [ 60%][0m
+test_replace.py::test_globex_in_handbook [31mFAILED[0m[31m                                                                                                          [ 80%][0m
+test_replace.py::test_notes_unchanged [32mPASSED[0m[31m                                                                                                             [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m____________________________________________________________________ test_no_acme_remaining ____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_no_acme_remaining[39;49;00m():[90m[39;49;00m
+        [94mfor[39;49;00m path [95min[39;49;00m glob.glob([33m"[39;49;00m[33m/app/docs/*.txt[39;49;00m[33m"[39;49;00m):[90m[39;49;00m
+            content = [96mopen[39;49;00m(path).read()[90m[39;49;00m
+>           [94massert[39;49;00m [33m"[39;49;00m[33mACME Corp[39;49;00m[33m"[39;49;00m [95mnot[39;49;00m [95min[39;49;00m content, [33mf[39;49;00m[33m"[39;49;00m[33mACME Corp still found in [39;49;00m[33m{[39;49;00mpath[33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE           AssertionError: ACME Corp still found in /app/docs/readme.txt[0m
+[1m[31mE           assert 'ACME Corp' not in 'Welcome to ... the best.\n'[0m
+[1m[31mE             [0m
+[1m[31mE             'ACME Corp' is contained here:[0m
+[1m[31mE             ?           ---------[0m
+[1m[31mE               Welcome to ACME Corporation. ACME Corporation is the best.[0m
+[1m[31mE             ?                            ++++++++++++++++++[0m
+
+[1m[31mtest_replace.py[0m:7: AssertionError
+[31m[1m____________________________________________________________________ test_globex_in_readme _____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_globex_in_readme[39;49;00m():[90m[39;49;00m
+        content = [96mopen[39;49;00m([33m"[39;49;00m[33m/app/docs/readme.txt[39;49;00m[33m"[39;49;00m).read()[90m[39;49;00m
+>       [94massert[39;49;00m [33m"[39;49;00m[33mGlobex Inc[39;49;00m[33m"[39;49;00m [95min[39;49;00m content, [33m"[39;49;00m[33mreadme.txt should contain Globex Inc[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: readme.txt should contain Globex Inc[0m
+[1m[31mE       assert 'Globex Inc' in 'Welcome to ACME Corporation. ACME Corporation is the best.\n'[0m
+
+[1m[31mtest_replace.py[0m:11: AssertionError
+[31m[1m____________________________________________________________________ test_globex_in_contact ____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_globex_in_contact[39;49;00m():[90m[39;49;00m
+        content = [96mopen[39;49;00m([33m"[39;49;00m[33m/app/docs/contact.txt[39;49;00m[33m"[39;49;00m).read()[90m[39;49;00m
+>       [94massert[39;49;00m [33m"[39;49;00m[33mGlobex Inc[39;49;00m[33m"[39;49;00m [95min[39;49;00m content, [33m"[39;49;00m[33mcontact.txt should contain Globex Inc[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: contact.txt should contain Globex Inc[0m
+[1m[31mE       assert 'Globex Inc' in 'Contact ACME Corporation at info@acme.com\n'[0m
+
+[1m[31mtest_replace.py[0m:15: AssertionError
+[31m[1m___________________________________________________________________ test_globex_in_handbook ____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_globex_in_handbook[39;49;00m():[90m[39;49;00m
+        content = [96mopen[39;49;00m([33m"[39;49;00m[33m/app/docs/handbook.txt[39;49;00m[33m"[39;49;00m).read()[90m[39;49;00m
+>       [94massert[39;49;00m [33m"[39;49;00m[33mGlobex Inc[39;49;00m[33m"[39;49;00m [95min[39;49;00m content, [33m"[39;49;00m[33mhandbook.txt should contain Globex Inc[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: handbook.txt should contain Globex Inc[0m
+[1m[31mE       assert 'Globex Inc' in 'ACME Corporation Employee Handbook v2.0\n'[0m
+
+[1m[31mtest_replace.py[0m:19: AssertionError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_replace.py::[1mtest_no_acme_remaining[0m - AssertionError: ACME Corp still found in /app/docs/readme.txt
+[31mFAILED[0m test_replace.py::[1mtest_globex_in_readme[0m - AssertionError: readme.txt should contain Globex Inc
+[31mFAILED[0m test_replace.py::[1mtest_globex_in_contact[0m - AssertionError: contact.txt should contain Globex Inc
+[31mFAILED[0m test_replace.py::[1mtest_globex_in_handbook[0m - AssertionError: handbook.txt should contain Globex Inc
+[31m================================================================= [31m[1m4 failed[0m, [32m1 passed[0m[31m in 0.02s[0m[31m ==================================================================[0m
+[?2004hroot@df26ea53bea1:/app# 

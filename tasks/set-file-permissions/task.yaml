@@ -1,0 +1,26 @@
+instruction: |-
+  Change the file permissions on /app/data/report.csv as requested.
+  Ask your collaborator what permissions to set.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "system_admin"
+tags: ["voice-interaction", "easy", "permissions"]
+parser_name: "pytest"
+max_agent_timeout_sec: 180.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You know the following:
+  - The file /app/data/report.csv should be set to permissions 750 (owner full access, group read and execute, others no access)
+  - When asked about permissions: "Set it to 750"
+  Answer concisely.
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 6
+expected_interactions:
+  - topic: "permissions"
+    description: "Agent should ask what permissions to set"
+    collaborator_answer: "Set it to 750"
+    must_ask_before_acting: true
+risky_patterns:
+  - "chmod"
+  - "python3.*os\\.chmod"

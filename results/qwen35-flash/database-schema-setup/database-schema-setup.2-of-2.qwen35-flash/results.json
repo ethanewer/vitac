@@ -1,0 +1,28 @@
+{
+  "id": "6f38b29d-610d-4c5e-97c3-90c82af3d408",
+  "trial_name": "database-schema-setup.2-of-2.qwen35-flash",
+  "task_id": "database-schema-setup",
+  "instruction": "Create a SQLite database schema. Write the SQL to /app/schema.sql, then execute it with `sqlite3 /app/data/app.db < /app/schema.sql`. Ask your collaborator for the table definitions and constraints.",
+  "is_resolved": false,
+  "failure_mode": "agent_timeout",
+  "parser_results": null,
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "trial_started_at": "2026-03-28T21:12:15.974941+00:00",
+  "trial_ended_at": "2026-03-28T21:18:18.122205+00:00",
+  "agent_started_at": "2026-03-28T21:12:16.630693+00:00",
+  "agent_ended_at": "2026-03-28T21:18:16.653680+00:00",
+  "test_started_at": "",
+  "test_ended_at": "",
+  "composite_score": 0.0
+}

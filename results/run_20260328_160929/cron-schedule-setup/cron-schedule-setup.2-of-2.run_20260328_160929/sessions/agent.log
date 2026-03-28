@@ -1,0 +1,25 @@
+[?2004hroot@2fb3919c527a:/app# mkdir -p /app/config; tmux wait -S done
+[?2004l[?2004hroot@2fb3919c527a:/app# cat > /app/config/crontab << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@2fb3919c527a:/app# echo -e '# Scheduled Tasks Crontab\n# Format: minute hour day month weekday command\n\n# 1. Database backup - Daily at 2:30 AM\n30 2 * *  * /usr/local/bin/backup-db.sh\n\n# 2. Log rotation - Every 6 hours\n*/6 * * * * /usr/local/bin/rotate-logs.sh\n\n# 3. Health check - Every 5 minutes\n*/5 * * *  * /usr/local/bin/health-check.sh\n\n# 4. Weekly report - Every Sunday at 8:00 AM\n0 8 * * 0 /usr/local/bin/weekly-report.sh\n\n# 5. Monthly cleanup - First day  of each month at midnight\n0 0 1 * * /usr/local/bin/monthly-cleanup.sh' > /app/config/crontab; tmux wait -S done
+[?2004l[?2004hroot@2fb3919c527a:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@2fb3919c527a:/app# cat /app/config/crontab; tmux wait -S done
+[?2004l# Scheduled Tasks Crontab
+# Format: minute hour day month weekday command
+
+# 1. Database backup - Daily at 2:30 AM
+30 2 * * * /usr/local/bin/backup-db.sh
+
+# 2. Log rotation - Every 6 hours
+*/6 * * * * /usr/local/bin/rotate-logs.sh
+
+# 3. Health check - Every 5 minutes
+*/5 * * * * /usr/local/bin/health-check.sh
+
+# 4. Weekly report - Every Sunday at 8:00 AM
+0 8 * * 0 /usr/local/bin/weekly-report.sh
+
+# 5. Monthly cleanup - First day of each month at midnight
+0 0 1 * * /usr/local/bin/monthly-cleanup.sh
+[?2004hroot@2fb3919c527a:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@2fb3919c527a:/app# 

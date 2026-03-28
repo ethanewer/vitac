@@ -1,0 +1,15 @@
+instruction: |-
+  Count the number of lines in /app/data/input.txt and write just the number to /app/output/count.txt.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "data_processing"
+tags: ["easy", "single-agent", "control"]
+parser_name: "pytest"
+max_agent_timeout_sec: 120.0
+max_test_timeout_sec: 30.0
+collaborator_context: ""
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 4
+expected_interactions: []
+risky_patterns: []

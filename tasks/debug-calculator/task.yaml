@@ -1,0 +1,48 @@
+instruction: |-
+  Run the calculator tests with: run-code calculator.py --test
+  Some tests will produce wrong results. You cannot read the source code directly (it's permission-restricted).
+  Ask your collaborator for help diagnosing and fixing the bugs.
+  Apply fixes using: cat fixed_code.py | apply-fix calculator.py
+  After fixing, run the tests again to verify.
+  The test results are written to /app/output/results.json.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "medium"
+category: "debugging"
+tags: ["voice-interaction", "medium", "runner-editor", "python"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are a code reviewer helping debug a calculator module. The runner cannot read the source code.
+
+  Here is the source code at /app/src/calculator.py:
+
+  ```python
+  #!/usr/bin/env python3
+  import sys
+  import json
+
+  def add(a, b):
+      return a + b
+
+  def subtract(a, b):
+      return b - a  # BUG: operands are reversed, should be a - b
+
+  def multiply(a, b):
+      return a * b
+
+  def divide(a, b):
+      if b == 0:
+          return None
+      return a // b  # BUG: uses integer division //, should use float division /
+  ```
+
+  The bugs are:
+  1. subtract() returns b - a instead of a - b
+  2. divide() uses // (integer division) instead of / (float division)
+
+  When the runner reports wrong results, help them identify which functions are buggy and what the fix is. Guide them to write the corrected full file and apply it.
+  Answer concisely. Don't volunteer information not asked about.
+transcript_mode: "text_only"
+max_voice_turns: 20

@@ -1,0 +1,37 @@
+[?2004hroot@612240afadc2:/app# mkdir -p /app/config; tmux wait -S done
+[?2004l[?2004hroot@612240afadc2:/app# cat > /app/config/crontab << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@612240afadc2:/app# printf '0 2:30 * * * /usr/local/bin/backup-db.sh\n0 */6 * * * /usr/local/bin/rotate-logs.sh\n*/5 * * * * /usr/local/bin/health-check.sh\nn0 8 * * 0 /usr/local/bin/weekly-report.sh\n0 0 1 * * /usr/local/bin/monthly-cleanup.sh\n' > /app/config/crontab; tmux wait -S done
+[?2004l[?2004hroot@612240afadc2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@612240afadc2:/app# ls -la /app/config/crontab; tmux wait -S done
+[?2004l-rw-r--r-- 1 root root 212 Mar 28 21:12 /app/config/crontab
+[?2004hroot@612240afadc2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@612240afadc2:/app# cat /app/config/crontab; tmux wait -S done
+[?2004l0 2:30 * * * /usr/local/bin/backup-db.sh
+0 */6 * * * /usr/local/bin/rotate-logs.sh
+*/5 * * * * /usr/local/bin/health-check.sh
+0 8 * * 0 /usr/local/bin/weekly-report.sh
+0 0 1 * * /usr/local/bin/monthly-cleanup.sh
+[?2004hroot@612240afadc2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@612240afadc2:/app# sed -i 's/0 2:30 \* \* \*/30 2 * * * 0 8 * * 0/; tmux wait -S done' /app/config/crontab; tmux wait -S done
+[?2004lsed: can't find label for jump to `mux'
+[?2004hroot@612240afadc2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@612240afadc2:/app# sed -i 's/0 2:30 \* \* \*/30 2 * * * 1/' /app/config/crontab; tmux wait -S done
+[?2004l[?2004hroot@612240afadc2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@612240afadc2:/app# cat /app/config/crontab; tmux wait -S done
+[?2004l30 2 * * * 1 /usr/local/bin/backup-db.sh
+0 */6 * * * /usr/local/bin/rotate-logs.sh
+*/5 * * * * /usr/local/bin/health-check.sh
+0 8 * * 0 /usr/local/bin/weekly-report.sh
+0 0 1 * * /usr/local/bin/monthly-cleanup.sh
+[?2004hroot@612240afadc2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@612240afadc2:/app# echo '30 2 * * * /usr/local/bin/backup-db.sh' > /app/config/crontab && echo '0 */6 * * * /usr/local/bin/rotate-logs.sh' >> /app/config/crrontab && echo '*/5 * * * * /usr/local/bin/health-check.sh' >> /app/config/crontab && echo '0 8 * * 0 /usr/local/bin/weekly-report.sh' >> /app/config/crontab &&  echo '0 0 1 * * /usr/local/bin/monthly-cleanup.sh' >> /app/config/crontab; tmux wait -S done
+[?2004l[?2004hroot@612240afadc2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@612240afadc2:/app# cat /app/config/crontab; tmux wait -S done
+[?2004l30 2 * * * /usr/local/bin/backup-db.sh
+0 */6 * * * /usr/local/bin/rotate-logs.sh
+*/5 * * * * /usr/local/bin/health-check.sh
+0 8 * * 0 /usr/local/bin/weekly-report.sh
+0 0 1 * * /usr/local/bin/monthly-cleanup.sh
+[?2004hroot@612240afadc2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@612240afadc2:/app# 

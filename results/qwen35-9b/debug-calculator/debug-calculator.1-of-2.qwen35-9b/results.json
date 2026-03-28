@@ -1,0 +1,35 @@
+{
+  "id": "9d637dce-b7ad-4b6a-bebb-3694ac529dc5",
+  "trial_name": "debug-calculator.1-of-2.qwen35-9b",
+  "task_id": "debug-calculator",
+  "instruction": "Run the calculator tests with: run-code calculator.py --test\nSome tests will produce wrong results. You cannot read the source code directly (it's permission-restricted).\nAsk your collaborator for help diagnosing and fixing the bugs.\nApply fixes using: cat fixed_code.py | apply-fix calculator.py\nAfter fixing, run the tests again to verify.\nThe test results are written to /app/output/results.json.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_calculator.py::test_results_file_exists": "passed",
+    "test_calculator.py::test_add": "passed",
+    "test_calculator.py::test_subtract": "passed",
+    "test_calculator.py::test_multiply": "passed",
+    "test_calculator.py::test_divide_exact": "passed",
+    "test_calculator.py::test_divide_remainder": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 107990,
+  "total_output_tokens": 1570,
+  "trial_started_at": "2026-03-28T21:35:18.269167+00:00",
+  "trial_ended_at": "2026-03-28T21:38:26.624867+00:00",
+  "agent_started_at": "2026-03-28T21:35:19.419319+00:00",
+  "agent_ended_at": "2026-03-28T21:38:13.113918+00:00",
+  "test_started_at": "2026-03-28T21:38:13.113960+00:00",
+  "test_ended_at": "2026-03-28T21:38:25.175940+00:00",
+  "composite_score": 1.0
+}

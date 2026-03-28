@@ -1,0 +1,33 @@
+[?2004hroot@df26ea53bea1:/app# ls -la /app/docs && find /app/docs -type f -name '*.txt' -maxdepth 2 | head; tmux wait -S done
+[?2004ltotal 24
+drwxr-xr-x 2 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 19:30 [01;34m..[0m
+-rw-r--r-- 1 root root   35 Mar 28 19:30 contact.txt
+-rw-r--r-- 1 root root   33 Mar 28 19:30 handbook.txt
+-rw-r--r-- 1 root root   31 Mar 28 19:30 notes.txt
+-rw-r--r-- 1 root root   45 Mar 28 19:30 readme.txt
+find: warning: you have specified the global option -maxdepth after the argument -type, but global options are not positional, i.e., -maxdepth affects tests specified before it as well as those specified after it.  Please specify global options before other arguments.
+/app/docs/notes.txt
+/app/docs/readme.txt
+/app/docs/handbook.txt
+/app/docs/contact.txt
+[?2004hroot@df26ea53bea1:/app# for f in /app/docs/*.txt; do echo '---' $f; cat $f; done; tmux wait -S done
+[?2004l--- /app/docs/contact.txt
+Contact ACME Corp at info@acme.com
+--- /app/docs/handbook.txt
+ACME Corp Employee Handbook v2.0
+--- /app/docs/notes.txt
+This file has no company name.
+--- /app/docs/readme.txt
+Welcome to ACME Corp. ACME Corp is the best.
+[?2004hroot@df26ea53bea1:/app# sed -i 's/ACME Corp/ACME Corporation/g' /app/docs/*.txt; tmux wait -S done
+[?2004l[?2004hroot@df26ea53bea1:/app# for f in /app/docs/*.txt; do echo '---' $f; cat $f; done; tmux wait -S done
+[?2004l--- /app/docs/contact.txt
+Contact ACME Corporation at info@acme.com
+--- /app/docs/handbook.txt
+ACME Corporation Employee Handbook v2.0
+--- /app/docs/notes.txt
+This file has no company name.
+--- /app/docs/readme.txt
+Welcome to ACME Corporation. ACME Corporation is the best.
+[?2004hroot@df26ea53bea1:/app# 

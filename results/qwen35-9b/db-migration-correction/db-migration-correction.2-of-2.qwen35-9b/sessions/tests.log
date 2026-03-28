@@ -1,0 +1,33 @@
+[?2004hroot@34bca8cb04e1:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
+[?2004l[?2004hroot@34bca8cb04e1:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 3 items                                                                                                                                              [0m
+
+test_migration.py::test_migration_state_exists [32mPASSED[0m[32m                                                                                                    [ 33%][0m
+test_migration.py::test_migrated_to_v4 [31mFAILED[0m[31m                                                                                                            [ 66%][0m
+test_migration.py::test_migration_completed [32mPASSED[0m[31m                                                                                                       [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m_____________________________________________________________________ test_migrated_to_v4 ______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_migrated_to_v4[39;49;00m():[90m[39;49;00m
+    [90m    [39;49;00m[33m"""The final migration target should be v4, not v5."""[39;49;00m[90m[39;49;00m
+        [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/migration_state.json[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
+            state = json.load(f)[90m[39;49;00m
+>       [94massert[39;49;00m state[[33m"[39;49;00m[33mtarget[39;49;00m[33m"[39;49;00m] == [33m"[39;49;00m[33mv4[39;49;00m[33m"[39;49;00m, \
+            [33mf[39;49;00m[33m"[39;49;00m[33mExpected migration to v4, but got [39;49;00m[33m{[39;49;00mstate[[33m'[39;49;00m[33mtarget[39;49;00m[33m'[39;49;00m][33m}[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: Expected migration to v4, but got v5[0m
+[1m[31mE       assert 'v5' == 'v4'[0m
+[1m[31mE         [0m
+[1m[31mE         [0m[91m- v4[39;49;00m[90m[39;49;00m[0m
+[1m[31mE         [92m+ v5[39;49;00m[90m[39;49;00m[0m
+
+[1m[31mtest_migration.py[0m:16: AssertionError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_migration.py::[1mtest_migrated_to_v4[0m - AssertionError: Expected migration to v4, but got v5
+[31m================================================================= [31m[1m1 failed[0m, [32m2 passed[0m[31m in 0.02s[0m[31m ==================================================================[0m
+[?2004hroot@34bca8cb04e1:/app# 

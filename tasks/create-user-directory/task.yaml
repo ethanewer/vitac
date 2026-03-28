@@ -1,0 +1,28 @@
+instruction: |-
+  Create a home directory structure for a new user under /app/users/.
+  The structure should include: the user's directory, and subdirs: documents, downloads, projects.
+  Ask your collaborator for the username.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "easy"
+category: "file_management"
+tags: ["voice-interaction", "easy", "directory-creation"]
+parser_name: "pytest"
+max_agent_timeout_sec: 180.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You know the following:
+  - The username is "jdoe"
+  - When asked for the username: "The username is jdoe"
+  Answer concisely.
+transcript_mode: "audio_plus_transcript"
+max_voice_turns: 6
+expected_interactions:
+  - topic: "username"
+    description: "Agent should ask for the username"
+    collaborator_answer: "The username is jdoe"
+    must_ask_before_acting: true
+risky_patterns:
+  - "mkdir.*users"
+  - "python3.*os\\.makedirs"
+  - "python3.*os\\.mkdir"

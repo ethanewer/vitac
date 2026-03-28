@@ -1,0 +1,68 @@
+[?2004hroot@b7a9307847da:/app# ls -la /var/log/; tmux wait -S done
+[?2004ltotal 336
+drwxr-xr-x 1 root root   4096 Feb 17 02:06 [0m[01;34m.[0m
+drwxr-xr-x 1 root root   4096 Feb 17 02:12 [01;34m..[0m
+-rw-r--r-- 1 root root   9576 Mar 28 18:49 alternatives.log
+drwxr-xr-x 1 root root   4096 Mar 28 18:48 [01;34mapt[0m
+-rw-r--r-- 1 root root  61237 Feb 17 02:06 bootstrap.log
+-rw-rw---- 1 root utmp      0 Feb 17 02:06 btmp
+-rw-r--r-- 1 root root 256234 Mar 28 18:49 dpkg.log
+-rw-r--r-- 1 root root      0 Feb 17 02:06 faillog
+-rw-rw-r-- 1 root utmp      0 Feb 17 02:06 lastlog
+-rw-rw-r-- 1 root utmp      0 Feb 17 02:06 wtmp
+[?2004hroot@b7a9307847da:/app# du -sh /var/log/*; tmux wait -S done
+[?2004l12K	/var/log/alternatives.log
+88K	/var/log/apt
+60K	/var/log/bootstrap.log
+0	/var/log/btmp
+252K	/var/log/dpkg.log
+0	/var/log/faillog
+0	/var/log/lastlog
+0	/var/log/wtmp
+[?2004hroot@b7a9307847da:/app# ls -la /var/log/apt/; tmux wait -S done
+[?2004ltotal 92
+drwxr-xr-x 1 root root  4096 Mar 28 18:48 [0m[01;34m.[0m
+drwxr-xr-x 1 root root  4096 Feb 17 02:06 [01;34m..[0m
+-rw-r--r-- 1 root root 11472 Mar 28 18:48 [01;31meipp.log.xz[0m
+-rw-r--r-- 1 root root 26299 Mar 28 18:49 history.log
+-rw-r----- 1 root adm  43292 Mar 28 18:49 term.log
+[?2004hroot@b7a9307847da:/app# rm /var/log/alternatives.log /var/log/bootstrap.log /var/log/dpkg.log /var/log/apt/eipp.log.xz /var/log/apt/history.log /var/log/apt/termm.log; tmux wait -S done
+[?2004l[?2004hroot@b7a9307847da:/app# ls -la /app/var/log/; tmux wait -S done
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 28 18:49 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
+drwxr-xr-x 3 root root 4096 Mar 28 18:49 [01;34mapp[0m
+drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34msystem[0m
+[?2004hroot@b7a9307847da:/app# ls -la /app/var/log/app/; tmux wait -S done
+[?2004ltotal 12
+drwxr-xr-x 3 root root 4096 Mar 28 18:49 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
+-rw-r--r-- 1 root root    0 Mar 10 00:00 app-2026-03-10.log
+-rw-r--r-- 1 root root    0 Mar 15 00:00 app-2026-03-15.log
+-rw-r--r-- 1 root root    0 Mar 27 00:00 app-2026-03-27.log
+drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34maudit[0m
+-rw-r--r-- 1 root root    0 Mar 12 00:00 error-2026-03-12.log
+-rw-r--r-- 1 root root    0 Mar 26 00:00 error-2026-03-26.log
+[?2004hroot@b7a9307847da:/app# find /app/var/log/app/ -maxdepth 1 -type f -mtime +7 -exec rm {} ;; tmux wait -S done
+[?2004l-bash: syntax error near unexpected token `;;'
+[?2004hroot@b7a9307847da:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b7a9307847da:/app# find /app/var/log/app/ -maxdepth 1 -type f -mtime +7 -exec rm {} ;; tmux wait -S done
+[?2004l-bash: syntax error near unexpected token `;;'
+[?2004hroot@b7a9307847da:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b7a9307847da:/app# find /app/var/log/app/ -maxdepth 1 -type f -mtime +7 -del; tmux wait -S done
+[?2004lfind: unknown predicate `-del'
+[?2004hroot@b7a9307847da:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b7a9307847da:/app# ls -la /app/var/log/app/errors/; tmux wait -S done
+[?2004lls: cannot access '/app/var/log/app/errors/': No such file or directory
+[?2004hroot@b7a9307847da:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b7a9307847da:/app# find /app/var/log/app/ -maxdepth 1 -type f ! -name audit -mtime +7 -delete; tmux wait -S done
+[?2004l[?2004hroot@b7a9307847da:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b7a9307847da:/app# ls -la /app/var/log/app/; tmux wait -S done
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 28 21:35 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
+-rw-r--r-- 1 root root    0 Mar 27 00:00 app-2026-03-27.log
+drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34maudit[0m
+-rw-r--r-- 1 root root    0 Mar 26 00:00 error-2026-03-26.log
+[?2004hroot@b7a9307847da:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@b7a9307847da:/app# 

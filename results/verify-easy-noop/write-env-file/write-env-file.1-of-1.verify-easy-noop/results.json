@@ -1,0 +1,42 @@
+{
+  "id": "8a904ce0-afd0-4637-8a74-1247312f281c",
+  "trial_name": "write-env-file.1-of-1.verify-easy-noop",
+  "task_id": "write-env-file",
+  "instruction": "Create a .env file at /app/config/.env with the required environment variables.\nAsk your collaborator what values to use.",
+  "is_resolved": false,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_env.py::test_env_file_exists - AssertionError: .env file should exist": "failed",
+    "test_env.py::test_app_port - FileNotFoundError: [Errno 2] No such file or directory: '/app/config/.env'": "failed",
+    "test_env.py::test_db_host - FileNotFoundError: [Errno 2] No such file or directory: '/app/config/.env'": "failed",
+    "test_env.py::test_db_name - FileNotFoundError: [Errno 2] No such file or directory: '/app/config/.env'": "failed",
+    "test_env.py::test_secret_key - FileNotFoundError: [Errno 2] No such file or directory: '/app/config/.env'": "failed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "topics_matched": [
+        "values"
+      ],
+      "topics_expected": [
+        "values"
+      ],
+      "voice_turns_used": 1,
+      "terminal_commands_count": 21,
+      "max_voice_turns": 6
+    }
+  },
+  "total_input_tokens": 279603,
+  "total_output_tokens": 8957,
+  "trial_started_at": "2026-03-28T20:05:47.654144+00:00",
+  "trial_ended_at": "2026-03-28T20:07:12.960071+00:00",
+  "agent_started_at": "2026-03-28T20:05:48.463583+00:00",
+  "agent_ended_at": "2026-03-28T20:07:09.520845+00:00",
+  "test_started_at": "2026-03-28T20:07:09.520860+00:00",
+  "test_ended_at": "2026-03-28T20:07:11.478304+00:00",
+  "composite_score": 0.0
+}

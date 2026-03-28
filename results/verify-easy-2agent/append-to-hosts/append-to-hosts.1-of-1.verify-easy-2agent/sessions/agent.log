@@ -1,0 +1,4 @@
+[?2004hroot@46aab656c22f:/app# grep -Fxq '10.0.1.50 api.internal.corp' /app/etc/hosts || echo '10.0.1.50 api.internal.corp' >> /app/etc/hosts; tmux wait -S done
+[?2004l[?2004hroot@46aab656c22f:/app# grep -nFx '10.0.1.50 api.internal.corp' /app/etc/hosts || true; tmux wait -S done
+[?2004l[32m[K3[m[K[36m[K:[m[K[01;31m[K10.0.1.50 api.internal.corp[m[K
+[?2004hroot@46aab656c22f:/app# 

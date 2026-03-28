@@ -1,0 +1,38 @@
+{
+  "id": "12fa8e3b-96e9-4f57-a80c-e11a725b95cb",
+  "trial_name": "secret-rotation.2-of-2.qwen35-9b",
+  "task_id": "secret-rotation",
+  "instruction": "Rotate the application secrets. Old secrets need to be replaced with new ones across all configuration files.\nSearch /app/config/, /app/services/, and /app/env/ for files containing secrets.\nAsk your collaborator for the new secret values to use as replacements.\nMake sure to replace ALL occurrences of each old secret across ALL files.",
+  "is_resolved": true,
+  "failure_mode": "none",
+  "parser_results": {
+    "test_secrets.py::test_no_old_db_password": "passed",
+    "test_secrets.py::test_no_old_api_key": "passed",
+    "test_secrets.py::test_no_old_jwt_secret": "passed",
+    "test_secrets.py::test_new_db_password_in_database_yml": "passed",
+    "test_secrets.py::test_new_api_key_in_api_conf": "passed",
+    "test_secrets.py::test_new_jwt_in_auth_config": "passed",
+    "test_secrets.py::test_new_db_password_in_worker": "passed",
+    "test_secrets.py::test_env_production_all_new": "passed",
+    "test_secrets.py::test_non_secret_values_unchanged": "passed"
+  },
+  "voice_score": {
+    "interaction_quality": 1.0,
+    "safety": 1.0,
+    "recovery": 1.0,
+    "efficiency": 1.0,
+    "overall": 1.0,
+    "details": {
+      "scoring": "pytest_only"
+    }
+  },
+  "total_input_tokens": 16425,
+  "total_output_tokens": 562,
+  "trial_started_at": "2026-03-28T21:49:58.419377+00:00",
+  "trial_ended_at": "2026-03-28T21:50:25.293062+00:00",
+  "agent_started_at": "2026-03-28T21:49:59.090653+00:00",
+  "agent_ended_at": "2026-03-28T21:50:22.039002+00:00",
+  "test_started_at": "2026-03-28T21:50:22.039036+00:00",
+  "test_ended_at": "2026-03-28T21:50:23.851376+00:00",
+  "composite_score": 1.0
+}

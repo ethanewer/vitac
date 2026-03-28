@@ -1,0 +1,17 @@
+[?2004hroot@c78386d926ea:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
+[?2004l[?2004hroot@c78386d926ea:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 5 items                                                                                                                                              [0m
+
+test_replace.py::test_no_acme_remaining [32mPASSED[0m[32m                                                                                                           [ 20%][0m
+test_replace.py::test_globex_in_readme [32mPASSED[0m[32m                                                                                                            [ 40%][0m
+test_replace.py::test_globex_in_contact [32mPASSED[0m[32m                                                                                                           [ 60%][0m
+test_replace.py::test_globex_in_handbook [32mPASSED[0m[32m                                                                                                          [ 80%][0m
+test_replace.py::test_notes_unchanged [32mPASSED[0m[32m                                                                                                             [100%][0m
+
+[32m====================================================================== [32m[1m5 passed[0m[32m in 0.00s[0m[32m =======================================================================[0m
+[?2004hroot@c78386d926ea:/app# 

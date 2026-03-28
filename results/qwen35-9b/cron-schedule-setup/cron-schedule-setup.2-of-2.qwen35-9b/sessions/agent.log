@@ -1,0 +1,15 @@
+[?2004hroot@476acc0f20e8:/app# mkdir -p /app/config; tmux wait -S done
+[?2004l[?2004hroot@476acc0f20e8:/app# cat > /app/config/crontab << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@476acc0f20e8:/app# cat > /app/config/crontab << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@476acc0f20e8:/app# printf '30 2 * * * /usr/local/bin/backup-db.sh\n*/6 * * * * /usr/local/bin/rotate-logs.sh\n*/5 * * * * /usr/local/bin/health-check.sh\n0  8 * * 0 /usr/local/bin/weekly-report.sh\n0 0 1 * * /usr/local/bin/monthly-cleanup.sh\n' > /app/config/crontab; tmux wait -S done
+[?2004l[?2004hroot@476acc0f20e8:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@476acc0f20e8:/app# cat /app/config/crontab; tmux wait -S done
+[?2004l30 2 * * * /usr/local/bin/backup-db.sh
+*/6 * * * * /usr/local/bin/rotate-logs.sh
+*/5 * * * * /usr/local/bin/health-check.sh
+0 8 * * 0 /usr/local/bin/weekly-report.sh
+0 0 1 * * /usr/local/bin/monthly-cleanup.sh
+[?2004hroot@476acc0f20e8:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@476acc0f20e8:/app# 

@@ -1,0 +1,65 @@
+[?2004hroot@b4b234730cef:/app# bash /tests/run-tests.sh; tmux wait -S done
+[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
+[0m[1m===================================================================== test session starts ======================================================================[0m
+platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /tests
+[1mcollecting ... [0m[1mcollected 4 items                                                                                                                                              [0m
+
+test_userdir.py::test_user_dir_exists [31mFAILED[0m[31m                                                                                                             [ 25%][0m
+test_userdir.py::test_documents_dir [31mFAILED[0m[31m                                                                                                               [ 50%][0m
+test_userdir.py::test_downloads_dir [31mFAILED[0m[31m                                                                                                               [ 75%][0m
+test_userdir.py::test_projects_dir [31mFAILED[0m[31m                                                                                                                [100%][0m
+
+=========================================================================== FAILURES ===========================================================================
+[31m[1m_____________________________________________________________________ test_user_dir_exists _____________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_user_dir_exists[39;49;00m():[90m[39;49;00m
+>       [94massert[39;49;00m os.path.isdir([33m"[39;49;00m[33m/app/users/jdoe[39;49;00m[33m"[39;49;00m), [33m"[39;49;00m[33mUser directory /app/users/jdoe should exist[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: User directory /app/users/jdoe should exist[0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = <function isdir at 0xffffab9a02c0>('/app/users/jdoe')[0m
+[1m[31mE        +    where <function isdir at 0xffffab9a02c0> = <module 'posixpath' (frozen)>.isdir[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_userdir.py[0m:4: AssertionError
+[31m[1m______________________________________________________________________ test_documents_dir ______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_documents_dir[39;49;00m():[90m[39;49;00m
+>       [94massert[39;49;00m os.path.isdir([33m"[39;49;00m[33m/app/users/jdoe/documents[39;49;00m[33m"[39;49;00m), [33m"[39;49;00m[33mdocuments subdir should exist[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: documents subdir should exist[0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = <function isdir at 0xffffab9a02c0>('/app/users/jdoe/documents')[0m
+[1m[31mE        +    where <function isdir at 0xffffab9a02c0> = <module 'posixpath' (frozen)>.isdir[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_userdir.py[0m:7: AssertionError
+[31m[1m______________________________________________________________________ test_downloads_dir ______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_downloads_dir[39;49;00m():[90m[39;49;00m
+>       [94massert[39;49;00m os.path.isdir([33m"[39;49;00m[33m/app/users/jdoe/downloads[39;49;00m[33m"[39;49;00m), [33m"[39;49;00m[33mdownloads subdir should exist[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: downloads subdir should exist[0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = <function isdir at 0xffffab9a02c0>('/app/users/jdoe/downloads')[0m
+[1m[31mE        +    where <function isdir at 0xffffab9a02c0> = <module 'posixpath' (frozen)>.isdir[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_userdir.py[0m:10: AssertionError
+[31m[1m______________________________________________________________________ test_projects_dir _______________________________________________________________________[0m
+
+    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_projects_dir[39;49;00m():[90m[39;49;00m
+>       [94massert[39;49;00m os.path.isdir([33m"[39;49;00m[33m/app/users/jdoe/projects[39;49;00m[33m"[39;49;00m), [33m"[39;49;00m[33mprojects subdir should exist[39;49;00m[33m"[39;49;00m[90m[39;49;00m
+[1m[31mE       AssertionError: projects subdir should exist[0m
+[1m[31mE       assert False[0m
+[1m[31mE        +  where False = <function isdir at 0xffffab9a02c0>('/app/users/jdoe/projects')[0m
+[1m[31mE        +    where <function isdir at 0xffffab9a02c0> = <module 'posixpath' (frozen)>.isdir[0m
+[1m[31mE        +      where <module 'posixpath' (frozen)> = os.path[0m
+
+[1m[31mtest_userdir.py[0m:13: AssertionError
+[36m[1m=================================================================== short test summary info ====================================================================[0m
+[31mFAILED[0m test_userdir.py::[1mtest_user_dir_exists[0m - AssertionError: User directory /app/users/jdoe should exist
+[31mFAILED[0m test_userdir.py::[1mtest_documents_dir[0m - AssertionError: documents subdir should exist
+[31mFAILED[0m test_userdir.py::[1mtest_downloads_dir[0m - AssertionError: downloads subdir should exist
+[31mFAILED[0m test_userdir.py::[1mtest_projects_dir[0m - AssertionError: projects subdir should exist
+[31m====================================================================== [31m[1m4 failed[0m[31m in 0.02s[0m[31m =======================================================================[0m
+[?2004hroot@b4b234730cef:/app# 

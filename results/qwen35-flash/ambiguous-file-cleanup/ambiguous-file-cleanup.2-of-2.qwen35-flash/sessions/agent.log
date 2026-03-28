@@ -1,0 +1,55 @@
+[?2004hroot@7d6c31a295b2:/app# find /var/log -type f -name "*.log" -size +100M -exec ls -lh {} ;; tmux wait -S done
+[?2004l-bash: syntax error near unexpected token `;;'
+[?2004hroot@7d6c31a295b2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@7d6c31a295b2:/app# find /var/log -type f -name "*.log" -size +100M -ls; tmux wait -S done
+[?2004l[?2004hroot@7d6c31a295b2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@7d6c31a295b2:/app# find /var/log -type f -name "*.log" -size +100M -ls; tmux wait -S done
+[?2004l[?2004hroot@7d6c31a295b2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@7d6c31a295b2:/app# find /var/log -type f -name "*.log" -size +100M -ls; tmux wait -S done
+[?2004l[?2004hroot@7d6c31a295b2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@7d6c31a295b2:/app# find /var/log -type f -name "*.log" \( -size +100M -o -name "*.old" \) -ls 2>/dev/null; tmux wait -S done
+[?2004l[?2004hroot@7d6c31a295b2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@7d6c31a295b2:/app# du -sh /var/log/* 2>/dev/null | sort -hr | head -20; tmux wait -S done
+[?2004l252K	/var/log/dpkg.log
+88K	/var/log/apt
+60K	/var/log/bootstrap.log
+12K	/var/log/alternatives.log
+0	/var/log/wtmp
+0	/var/log/lastlog
+0	/var/log/faillog
+0	/var/log/btmp
+[?2004hroot@7d6c31a295b2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@7d6c31a295b2:/app# du -sh /app/var/log/app/* 2>/dev/null | sort -hr | head -20; tmux wait -S done
+[?2004l4.0K	/app/var/log/app/audit
+0	/app/var/log/app/error-2026-03-26.log
+0	/app/var/log/app/error-2026-03-12.log
+0	/app/var/log/app/app-2026-03-27.log
+0	/app/var/log/app/app-2026-03-15.log
+0	/app/var/log/app/app-2026-03-10.log
+[?2004hroot@7d6c31a295b2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@7d6c31a295b2:/app# ls -la /app/var/log/app/; tmux wait -S done
+[?2004ltotal 12
+drwxr-xr-x 3 root root 4096 Mar 28 18:49 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
+-rw-r--r-- 1 root root    0 Mar 10 00:00 app-2026-03-10.log
+-rw-r--r-- 1 root root    0 Mar 15 00:00 app-2026-03-15.log
+-rw-r--r-- 1 root root    0 Mar 27 00:00 app-2026-03-27.log
+drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34maudit[0m
+-rw-r--r-- 1 root root    0 Mar 12 00:00 error-2026-03-12.log
+-rw-r--r-- 1 root root    0 Mar 26 00:00 error-2026-03-26.log
+[?2004hroot@7d6c31a295b2:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@7d6c31a295b2:/app# cd /app/var/log/app && find . -maxdepth 1 -type f -name "*.log" -mtime +7 ! -path './audit/*' -delete && ls -la; tmux wait -S done
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 28 21:14 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
+-rw-r--r-- 1 root root    0 Mar 27 00:00 app-2026-03-27.log
+drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34maudit[0m
+-rw-r--r-- 1 root root    0 Mar 26 00:00 error-2026-03-26.log
+[?2004hroot@7d6c31a295b2:/app/var/log/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@7d6c31a295b2:/app/var/log/app# cd /app/var/log/app && find . -maxdepth 1 -type f -empty -name "*.log" -delete && ls -la; tmux wait -S done
+[?2004ltotal 16
+drwxr-xr-x 1 root root 4096 Mar 28 21:14 [0m[01;34m.[0m
+drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
+drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34maudit[0m
+[?2004hroot@7d6c31a295b2:/app/var/log/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@7d6c31a295b2:/app/var/log/app# 

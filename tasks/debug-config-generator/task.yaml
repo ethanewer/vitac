@@ -1,0 +1,63 @@
+instruction: |-
+  Generate an nginx config file by running: run-code gen_config.py
+  The output should be written to /app/output/nginx.conf.
+  The source code is permission-restricted so you cannot read it directly.
+  If the script fails or produces incorrect output, ask your collaborator for help diagnosing and fixing the bugs.
+  Apply fixes using: cat fixed.py | apply-fix gen_config.py
+  After fixing, run the script again to verify it generates the config correctly.
+author_name: "ethan"
+author_email: "ethan@example.com"
+difficulty: "medium"
+category: "debugging"
+tags: ["voice-interaction", "medium", "runner-editor", "python"]
+parser_name: "pytest"
+max_agent_timeout_sec: 360.0
+max_test_timeout_sec: 30.0
+collaborator_context: |-
+  You are a code reviewer helping debug an nginx config generator. The runner cannot read the source code.
+
+  Here is the source code at /app/src/gen_config.py:
+
+  ```python
+  #!/usr/bin/env python3
+  """Generate nginx configuration from parameters."""
+
+  def generate_config(domain, listen_port, upstream_host, upstream_port):
+      config = f"""server {{
+      listen {listen_port};
+      server_name localhost;
+
+      location / {{
+          proxy_pass http://{upstream_host}:{port}
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      }}
+  }}
+  """
+      return config
+
+  if __name__ == "__main__":
+      config = generate_config(
+          domain="app.example.com",
+          listen_port=80,
+          upstream_host="backend",
+          upstream_port=3000
+      )
+
+      with open("/app/output/nginx.conf", "w") as f:
+          f.write(config)
+
+      print("Generated nginx config:")
+      print(config)
+  ```
+
+  The bugs are:
+  1. NameError: uses `{port}` in the f-string but the parameter is named `upstream_port`
+  2. Missing semicolon after the `proxy_pass` directive (nginx requires semicolons)
+  3. Hardcodes `server_name localhost` instead of using the `domain` parameter (should be `server_name {domain}`)
+
+  When the runner reports errors or wrong output, help them identify which parts are buggy and what the fix is. Guide them to write the corrected full file and apply it.
+  Answer concisely. Don't volunteer information not asked about.
+transcript_mode: "text_only"
+max_voice_turns: 20

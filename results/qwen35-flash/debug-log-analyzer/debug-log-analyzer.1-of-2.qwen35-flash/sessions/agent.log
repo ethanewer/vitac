@@ -1,0 +1,185 @@
+[?2004hroot@d202633b352c:/app# run-code log_analyzer.py; tmux wait -S done
+[?2004l{
+  "error_count": 0,
+  "avg_response_time_ms": 37.83,
+  "total_requests": 4,
+  "total_lines": 12
+}
+[?2004hroot@d202633b352c:/app# cat > /app/fixed.py << 'EOF'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# cat > /app/fixed.py << 'ENDOFFILE'; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# echo 'import re; tmux wait -S done
+[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# printf '%s\n' 'import re' 'import json' 'import sys' '' 'def analyze_log(filepath):' '    error_count = 0' '    response_times = []' '     total_lines = 0' '' '    with open(filepath, "r") as f:' '        for line in f:' '            total_lines += 1' '            if re.search(r"ERROR", line):' '                 error_count += 1' '            match = re.search(r"response_time=([0-9.]+)", line)' '            if match:' '                response_times.appennd(float(match.group(1)))' '' '    avg_response_time = sum(response_times) / len(response_times) if response_times else 0.0' '' '    return {' '        "error_coount": error_count,' '        "avg_response_time_ms": round(avg_response_time, 2),' '        "total_requests": len(response_times),' '        "total_lines": totaal_lines' '    }' '' 'if __name__ == "__main__":' '    result = analyze_log(sys.argv[1])' '    print(json.dumps(result, indent=2))' > /app/fixed.py; tmux wait -SS done
+[?2004l[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# cat /app/fixed.py; tmux wait -S done
+[?2004limport re
+import json
+import sys
+
+def analyze_log(filepath):
+    error_count = 0
+    response_times = []
+    total_lines = 0
+
+    with open(filepath, "r") as f:
+        for line in f:
+            total_lines += 1
+            if re.search(r"ERROR", line):
+                error_count += 1
+            match = re.search(r"response_time=([0-9.]+)", line)
+            if match:
+                response_times.append(float(match.group(1)))
+
+    avg_response_time = sum(response_times) / len(response_times) if response_times else 0.0
+
+    return {
+        "error_count": error_count,
+        "avg_response_time_ms": round(avg_response_time, 2),
+        "total_requests": len(response_times),
+        "total_lines": total_lines
+    }
+
+if __name__ == "__main__":
+    result = analyze_log(sys.argv[1])
+    print(json.dumps(result, indent=2))
+[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# cat /app/fixed.py | apply-fix /app/log_analyzer.py; tmux wait -S done
+[?2004ltee: /app/src//app/log_analyzer.py: No such file or directory
+[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# cat /app/fixed.py | apply-fix log_analyzer.py; tmux wait -S done
+[?2004l[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# run-code log_analyzer.py; tmux wait -S done
+[?2004lTraceback (most recent call last):
+  File "/app/src/log_analyzer.py", line 29, in <module>
+    result = analyze_log(sys.argv[1])
+                         ~~~~~~~~^^^
+IndexError: list index out of range
+[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# cat /app/src/log_analyzer.py; tmux wait -S done
+[?2004limport re
+import json
+import sys
+
+def analyze_log(filepath):
+    error_count = 0
+    response_times = []
+    total_lines = 0
+
+    with open(filepath, "r") as f:
+        for line in f:
+            total_lines += 1
+            if re.search(r"ERROR", line):
+                error_count += 1
+            match = re.search(r"response_time=([0-9.]+)", line)
+            if match:
+                response_times.append(float(match.group(1)))
+
+    avg_response_time = sum(response_times) / len(response_times) if response_times else 0.0
+
+    return {
+        "error_count": error_count,
+        "avg_response_time_ms": round(avg_response_time, 2),
+        "total_requests": len(response_times),
+        "total_lines": total_lines
+    }
+
+if __name__ == "__main__":
+    result = analyze_log(sys.argv[1])
+    print(json.dumps(result, indent=2))
+[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# sed -i 's/result = analyze_log(sys.argv\[1\])/result = analyze_log("\/app\/data\/app.log")/' /app/src/log_analyzer.py; tmux wait -S done Mroot@d202633b352c:/app# sed -i 's/result = analyze_log(sys.argv\[1\])/result = analyze_log("\/app\/data\/app.log")/' /app/src/log_analyzer.py; tmux wait -S don[Ke
+[?2004l[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# run-code log_analyzer.py; tmux wait -S done
+[?2004l{
+  "error_count": 4,
+  "avg_response_time_ms": 0.0,
+  "total_requests": 0,
+  "total_lines": 12
+}
+[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# cat /app/data/app.log; tmux wait -S done
+[?2004l[2026-03-28 10:00:01] INFO: Server started on port 8080
+[2026-03-28 10:00:02] INFO: Request /api/users completed in 45ms
+[2026-03-28 10:00:03] ERROR: Database connection timeout
+[2026-03-28 10:00:04] INFO: Request /api/products completed in 120ms
+[2026-03-28 10:00:05] WARN: High memory usage detected
+[2026-03-28 10:00:06] ERROR: Failed to write to cache
+[2026-03-28 10:00:07] INFO: Request /api/orders completed in 89ms
+[2026-03-28 10:00:08] INFO: Health check passed
+[2026-03-28 10:00:09] ERROR: Authentication service unreachable
+[2026-03-28 10:00:10] INFO: Request /api/stats completed in 200ms
+[2026-03-28 10:00:11] INFO: Cleanup job completed
+[2026-03-28 10:00:12] ERROR: Rate limit exceeded for client 192.168.1.50
+[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# sed -i 's/re.search(r"response_time=\([0-9.\]+\)", line)/re.search(r"completed in (\\d+)ms", line)/' /app/src/log_analyzer.py; tmux wait  -S done
+[?2004l[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# run-code log_analyzer.py; tmux wait -S done
+[?2004l{
+  "error_count": 4,
+  "avg_response_time_ms": 0.0,
+  "total_requests": 0,
+  "total_lines": 12
+}
+[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# cat /app/src/log_analyzer.py; tmux wait -S done
+[?2004limport re
+import json
+import sys
+
+def analyze_log(filepath):
+    error_count = 0
+    response_times = []
+    total_lines = 0
+
+    with open(filepath, "r") as f:
+        for line in f:
+            total_lines += 1
+            if re.search(r"ERROR", line):
+                error_count += 1
+            match = re.search(r"response_time=([0-9.]+)", line)
+            if match:
+                response_times.append(float(match.group(1)))
+
+    avg_response_time = sum(response_times) / len(response_times) if response_times else 0.0
+
+    return {
+        "error_count": error_count,
+        "avg_response_time_ms": round(avg_response_time, 2),
+        "total_requests": len(response_times),
+        "total_lines": total_lines
+    }
+
+if __name__ == "__main__":
+    result = analyze_log("/app/data/app.log")
+    print(json.dumps(result, indent=2))
+[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# sed -i 's/re.search(r"response_time=\([^)]*\)", line)/re.search(r"completed in (\\d+)ms", line)/' /app/src/log_analyzer.py; tmux wait -S  done
+[?2004l[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# grep 'response_time' /app/src/log_analyzer.py; tmux wait -S done
+[?2004l    [01;31m[Kresponse_time[m[Ks = []
+            match = re.search(r"[01;31m[Kresponse_time[m[K=([0-9.]+)", line)
+                [01;31m[Kresponse_time[m[Ks.append(float(match.group(1)))
+    avg_[01;31m[Kresponse_time[m[K = sum([01;31m[Kresponse_time[m[Ks) / len([01;31m[Kresponse_time[m[Ks) if [01;31m[Kresponse_time[m[Ks else 0.0
+        "avg_[01;31m[Kresponse_time[m[K_ms": round(avg_[01;31m[Kresponse_time[m[K, 2),
+        "total_requests": len([01;31m[Kresponse_time[m[Ks),
+[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# python3 -c "import re; content = open('/app/src/log_analyzer.py').read(); fixed = content.replace('re.search(r\"response_time=([0-9.]+)\"", line)', 're.search(r\"completed in (\\\\d+)ms\", line)'); open('/app/src/log_analyzer.py','w').write(fixed)"; tmux wait -S done
+[?2004l[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# grep 're.search.*completed' /app/src/log_analyzer.py && run-code log_analyzer.py; tmux wait -S done
+[?2004l            match = [01;31m[Kre.search(r"completed[m[K in (\d+)ms", line)
+{
+  "error_count": 4,
+  "avg_response_time_ms": 113.5,
+  "total_requests": 4,
+  "total_lines": 12
+}
+[?2004hroot@d202633b352c:/app# ^C[?2004l[?2004h[?2004l
+[?2004hroot@d202633b352c:/app# cat /app/output/report.json; tmux wait -S done
+[?2004l{
+  "error_count": 0,
+  "avg_response_time_ms": 37.83,
+  "total_requests": 4,
+  "total_lines": 12
+}[?2004hroot@d202633b352c:/app# 
