@@ -197,6 +197,10 @@ class Harness:
             # Create agent session
             agent_session = terminal.create_session("agent")
 
+            # Pass collaborator context to opencode agents
+            if hasattr(self._primary, "collaborator_context"):
+                self._primary.collaborator_context = task.collaborator_context
+
             # Initialize voice queue with instruction
             initial_audio = text_to_audio(task.instruction)
             initial_msg = VoiceMessage(
@@ -363,14 +367,21 @@ class Harness:
             while not stop_collaborator.is_set():
                 inbox = voice_queue.receive("collaborator")
                 if inbox:
-                    response = self._collaborator.respond(
-                        inbox=inbox,
-                        context=task.collaborator_context,
-                    )
-                    if response:
-                        response.episode_id = agent_session._session_name
-                        response.task_id = task.task_id
-                        voice_queue.send(response)
+                    logger.debug(f"Collaborator received {len(inbox)} message(s)")
+                    try:
+                        response = self._collaborator.respond(
+                            inbox=inbox,
+                            context=task.collaborator_context,
+                        )
+                        if response:
+                            response.episode_id = agent_session._session_name
+                            response.task_id = task.task_id
+                            voice_queue.send(response)
+                            logger.debug("Collaborator sent response")
+                        else:
+                            logger.debug("Collaborator returned None")
+                    except Exception as e:
+                        logger.error(f"Collaborator error: {e}", exc_info=True)
                 time.sleep(0.1)
 
         agent_t = threading.Thread(target=agent_thread, daemon=True)

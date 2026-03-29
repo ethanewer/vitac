@@ -8,5 +8,10 @@ services:
     command: ["sh", "-c", "sleep infinity"]
     environment:
       - TEST_DIR=${VITAC_TEST_DIR:-/tests}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+    ports:
+      - "${VITAC_OPENCODE_PORT:-0}:4096"
     volumes:
       - ${VITAC_TASK_LOGS_PATH:-/tmp/vitac-logs}:${VITAC_CONTAINER_LOGS_PATH:-/logs}

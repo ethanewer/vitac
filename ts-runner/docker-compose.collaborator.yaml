@@ -1,0 +1,14 @@
+services:
+  collaborator:
+    build:
+      context: .
+      dockerfile: Dockerfile.collaborator
+    image: ${VITAC_COLLAB_IMAGE_NAME:-vitac-collaborator}
+    container_name: ${VITAC_COLLAB_CONTAINER_NAME:-vitac-collaborator}
+    command: ["sh", "-c", "sleep infinity"]
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GOOGLE_API_KEY=${GOOGLE_API_KEY:-}
+      - OPENROUTER_API_KEY=${OPENROUTER_API_KEY:-}
+    ports:
+      - "${VITAC_COLLAB_OPENCODE_PORT:-0}:4096"

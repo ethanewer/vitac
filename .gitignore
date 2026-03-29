@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Results (large, ephemeral)
+results/
+
+# OpenCode binary (136MB, must be built locally)
+ts-runner/bin/
+
+# Bun
+ts-runner/node_modules/
+ts-runner/bun.lock
+
+# Task subsets (symlinks for testing)
+tasks-easy/
+tasks-test*/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
