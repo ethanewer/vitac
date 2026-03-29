@@ -26,3 +26,5 @@ tasks-test*/
 
 # OS
 .DS_Store
+
+results*
