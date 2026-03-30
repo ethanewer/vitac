@@ -1,7 +1,11 @@
-"""Agents backed by the opencode-audio SDK voice sessions.
+"""Agents backed by the opencode-audio SDK built-in voice systems.
 
 Each agent runs inside its own Docker container with an OpenCode server.
-A TypeScript runner on the host creates voice sessions and routes audio.
+A TypeScript runner on the host creates voice sessions using the SDK's
+built-in system presets and routes audio between primary and collaborator.
+
+All built-in voice systems share the same interface -- the only parameter
+that changes is the system name string passed to createVoiceSession().
 """
 
 from __future__ import annotations
@@ -22,11 +26,35 @@ from vitac.agents.base_agent import CollaboratorAgent, PrimaryAgent
 from vitac.terminal.docker_compose_manager import DockerComposeManager
 from vitac.types import AgentResult, VoiceMessage
 
+AUDIO_DIR = Path(__file__).parent.parent.parent / "audio"
+INSTRUCTIONS_PATH = AUDIO_DIR / "instructions.json"
+
 logger = logging.getLogger(__name__)
 
-OPENCODE_BINARY = Path(__file__).parent.parent.parent / "ts-runner" / "bin" / "opencode-linux-arm64"
+OPENCODE_BINARY = (
+    Path(__file__).parent.parent.parent / "ts-runner" / "bin" / "opencode-linux-arm64"
+)
 TS_RUNNER = Path(__file__).parent.parent.parent / "ts-runner" / "run-trial.ts"
-COLLAB_COMPOSE = Path(__file__).parent.parent.parent / "ts-runner" / "docker-compose.collaborator.yaml"
+COLLAB_COMPOSE = (
+    Path(__file__).parent.parent.parent
+    / "ts-runner"
+    / "docker-compose.collaborator.yaml"
+)
+
+# All built-in voice system names from the opencode-audio SDK.
+BUILT_IN_SYSTEMS = [
+    "claude-opus-medium-voice",
+    "claude-opus-high-voice",
+    "claude-opus-max-voice",
+    "gpt-medium-voice",
+    "gpt-high-voice",
+    "gpt-xhigh-voice",
+    "gpt-audio-voice",
+    "gemini-flash-voice",
+    "gemini-pro-voice",
+    "minimax-m2.5-voice",
+    "minimax-m2.5-free-voice",
+]
 
 
 def _get_container_host_port(container, container_port: int = 4096) -> int:
@@ -54,16 +82,25 @@ def _inject_opencode(container) -> None:
     logger.info(f"Injected opencode binary into {container.name}")
 
 
+# Environment variables forwarded to OpenCode servers inside containers.
+def _opencode_env() -> dict[str, str]:
+    """Collect API keys and relevant env vars for the OpenCode server."""
+    keys = [
+        "OPENAI_API_KEY",
+        "ANTHROPIC_API_KEY",
+        "GOOGLE_API_KEY",
+        "OPENROUTER_API_KEY",
+        "OPENCODE_API_KEY",
+    ]
+    return {k: os.environ.get(k, "") for k in keys}
+
+
 def _start_opencode_server(container, port: int = 4096, timeout: int = 60) -> None:
     """Start the OpenCode server inside a container and wait for it to be ready."""
     container.exec_run(
         f"bash -c 'nohup /usr/local/bin/opencode serve --hostname 0.0.0.0 --port {port} > /tmp/opencode.log 2>&1 &'",
         detach=True,
-        environment={
-            "OPENAI_API_KEY": os.environ.get("OPENAI_API_KEY", ""),
-            "GOOGLE_API_KEY": os.environ.get("GOOGLE_API_KEY", ""),
-            "OPENROUTER_API_KEY": os.environ.get("OPENROUTER_API_KEY", ""),
-        },
+        environment=_opencode_env(),
     )
 
     for i in range(timeout):
@@ -71,7 +108,7 @@ def _start_opencode_server(container, port: int = 4096, timeout: int = 60) -> No
             result = container.exec_run("cat /tmp/opencode.log")
             output = result.output.decode("utf-8", errors="replace")
             if "opencode server listening" in output:
-                logger.info(f"OpenCode server ready in {container.name} after {i+1}s")
+                logger.info(f"OpenCode server ready in {container.name} after {i + 1}s")
                 return
         except Exception:
             pass
@@ -79,40 +116,54 @@ def _start_opencode_server(container, port: int = 4096, timeout: int = 60) -> No
 
     try:
         logs = container.exec_run("cat /tmp/opencode.log")
-        logger.error(f"OpenCode server logs from {container.name}: {logs.output.decode()[:500]}")
+        logger.error(
+            f"OpenCode server logs from {container.name}: {logs.output.decode()[:500]}"
+        )
     except Exception:
         pass
 
-    raise TimeoutError(f"OpenCode server in {container.name} not ready after {timeout}s")
+    raise TimeoutError(
+        f"OpenCode server in {container.name} not ready after {timeout}s"
+    )
 
 
-class OpencodePrimaryAgent(PrimaryAgent):
-    """Primary agent that runs inside a Docker container via opencode-audio SDK."""
+class VoiceSystemPrimaryAgent(PrimaryAgent):
+    """Primary agent backed by any built-in opencode-audio voice system.
 
-    def __init__(
-        self,
-        model_config: dict,
-        voice: str = "coral",
-        native_audio_input: bool = False,
-        native_audio_output: bool = False,
-        reasoning_effort: str | None = None,
-        collab_model_config: dict | None = None,
-    ):
-        self._model_config = model_config
-        self._voice = voice
-        self._native_audio_input = native_audio_input
-        self._native_audio_output = native_audio_output
-        self._reasoning_effort = reasoning_effort
-        self._collab_model_config = collab_model_config
+    This single class handles all built-in systems (Claude, GPT, Gemini,
+    MiniMax, etc.) -- the only difference is the system name string passed
+    to createVoiceSession() in the TS runner.
+    """
+
+    def __init__(self, system: str, collab_system: str | None = None):
+        if system not in BUILT_IN_SYSTEMS:
+            raise ValueError(
+                f"Unknown built-in system: {system!r}. "
+                f"Available: {', '.join(BUILT_IN_SYSTEMS)}"
+            )
+        self._system = system
+        self._collab_system = collab_system or system
+
+        # Load instruction metadata (start_agent per task)
+        if INSTRUCTIONS_PATH.exists():
+            with open(INSTRUCTIONS_PATH) as f:
+                self._instructions: dict = json.load(f)
+        else:
+            self._instructions = {}
 
         # Set by harness before perform_task
         self.collaborator_context: str = ""
+        self.task_id: str = ""
         self._collab_container = None
         self._docker_client = None
 
     @staticmethod
     def name() -> str:
-        return "opencode"
+        return "voice-system"
+
+    @property
+    def system_name(self) -> str:
+        return self._system
 
     def _start_collaborator_container(self, trial_name: str) -> tuple:
         """Start a collaborator container and return (container, host_port)."""
@@ -137,11 +188,7 @@ class OpencodePrimaryAgent(PrimaryAgent):
             command="sleep infinity",
             name=collab_name,
             detach=True,
-            environment={
-                "OPENAI_API_KEY": os.environ.get("OPENAI_API_KEY", ""),
-                "GOOGLE_API_KEY": os.environ.get("GOOGLE_API_KEY", ""),
-                "OPENROUTER_API_KEY": os.environ.get("OPENROUTER_API_KEY", ""),
-            },
+            environment=_opencode_env(),
             ports={"4096/tcp": None},
         )
 
@@ -179,29 +226,29 @@ class OpencodePrimaryAgent(PrimaryAgent):
         primary_port = _get_container_host_port(container)
         logger.info(f"Primary container {container_name} on port {primary_port}")
 
-        collab_container, collab_port = self._start_collaborator_container(container_name)
+        collab_container, collab_port = self._start_collaborator_container(
+            container_name
+        )
 
         try:
+            # Resolve seed audio path and start agent for this task
+            task_meta = self._instructions.get(self.task_id, {})
+            start_agent = task_meta.get("start_agent", "primary")
+            seed_audio_path = str((AUDIO_DIR / f"{self.task_id}.wav").resolve())
+            if not Path(seed_audio_path).exists():
+                raise FileNotFoundError(
+                    f"Seed audio not found for task {self.task_id!r}: {seed_audio_path}. "
+                    "Run `python -m vitac.generate_audio` first."
+                )
+
             config = {
                 "primaryUrl": f"http://127.0.0.1:{primary_port}",
                 "collabUrl": f"http://127.0.0.1:{collab_port}",
-                "instruction": instruction,
-                "collaboratorContext": self.collaborator_context,
-                "model": self._model_config,
-                "nativeAudioInput": self._native_audio_input,
-                "nativeAudioOutput": self._native_audio_output,
-                "voice": self._voice,
-                "ttsOptions": {
-                    "apiKey": os.environ.get("OPENAI_API_KEY", ""),
-                },
-                "sttOptions": {
-                    "apiKey": os.environ.get("OPENAI_API_KEY", ""),
-                },
+                "system": self._system,
+                "collabSystem": self._collab_system,
+                "seedAudioPath": seed_audio_path,
+                "startAgent": start_agent,
             }
-            if self._collab_model_config:
-                config["collabModel"] = self._collab_model_config
-            if self._reasoning_effort:
-                config["reasoningEffort"] = self._reasoning_effort
 
             config_file = tempfile.NamedTemporaryFile(
                 mode="w", suffix=".json", delete=False, prefix="vitac-config-"
@@ -215,13 +262,21 @@ class OpencodePrimaryAgent(PrimaryAgent):
             output_file.close()
 
             try:
-                ts_timeout = 240
-                config["maxTimeoutMs"] = (ts_timeout - 30) * 1000
+                ts_timeout = 600
+                config["maxTimeoutMs"] = (ts_timeout - 60) * 1000
                 with open(config_file.name, "w") as f:
                     json.dump(config, f)
 
-                cmd = ["bun", "run", str(TS_RUNNER.resolve()), config_file.name, output_file.name]
-                logger.info(f"Starting TypeScript runner for {container_name}")
+                cmd = [
+                    "bun",
+                    "run",
+                    str(TS_RUNNER.resolve()),
+                    config_file.name,
+                    output_file.name,
+                ]
+                logger.info(
+                    f"Starting TypeScript runner for {container_name} with system={self._system}"
+                )
                 result = subprocess.run(
                     cmd,
                     capture_output=True,
@@ -240,9 +295,14 @@ class OpencodePrimaryAgent(PrimaryAgent):
                         ts_result = json.load(f)
                 except (FileNotFoundError, json.JSONDecodeError) as e:
                     logger.error(f"Failed to read TS runner result: {e}")
-                    ts_result = {"completed": False, "error": str(e),
-                                 "totalInputTokens": 0, "totalOutputTokens": 0,
-                                 "voiceMessages": [], "terminalCommands": []}
+                    ts_result = {
+                        "completed": False,
+                        "error": str(e),
+                        "totalInputTokens": 0,
+                        "totalOutputTokens": 0,
+                        "voiceMessages": [],
+                        "terminalCommands": [],
+                    }
 
                 for msg_data in ts_result.get("voiceMessages", []):
                     sender = msg_data.get("sender", "primary")
@@ -257,8 +317,8 @@ class OpencodePrimaryAgent(PrimaryAgent):
                     )
                     voice_queue.send(voice_msg)
 
-                for cmd in ts_result.get("terminalCommands", []):
-                    voice_queue.record_terminal_command(cmd)
+                for cmd_str in ts_result.get("terminalCommands", []):
+                    voice_queue.record_terminal_command(cmd_str)
 
                 return AgentResult(
                     total_input_tokens=ts_result.get("totalInputTokens", 0),
@@ -276,12 +336,12 @@ class OpencodePrimaryAgent(PrimaryAgent):
             self._stop_collaborator_container()
 
 
-class OpencodeCollaboratorAgent(CollaboratorAgent):
-    """No-op collaborator - the real collaborator runs inside the TS runner."""
+class VoiceSystemCollaboratorAgent(CollaboratorAgent):
+    """No-op collaborator -- the real collaborator runs inside the TS runner."""
 
     @staticmethod
     def name() -> str:
-        return "opencode-noop"
+        return "voice-system-noop"
 
     def respond(
         self,
@@ -289,44 +349,3 @@ class OpencodeCollaboratorAgent(CollaboratorAgent):
         context: str,
     ) -> Optional[VoiceMessage]:
         return None
-
-
-# ---------------------------------------------------------------------------
-# Model-specific subclasses (no-arg constructors for agent_factory)
-# ---------------------------------------------------------------------------
-
-class GeminiFlashPrimary(OpencodePrimaryAgent):
-    def __init__(self):
-        super().__init__(
-            model_config={"providerID": "openrouter", "modelID": "google/gemini-3.1-flash-lite-preview"},
-            voice="coral",
-        )
-
-    @staticmethod
-    def name() -> str:
-        return "gemini-3.1-flash-lite-preview"
-
-
-class GeminiFlashCollaborator(OpencodeCollaboratorAgent):
-    @staticmethod
-    def name() -> str:
-        return "gemini-3.1-flash-collab"
-
-
-class Gpt54MiniPrimary(OpencodePrimaryAgent):
-    def __init__(self):
-        super().__init__(
-            model_config={"providerID": "openai", "modelID": "gpt-5.4-mini"},
-            voice="coral",
-            reasoning_effort="medium",
-        )
-
-    @staticmethod
-    def name() -> str:
-        return "gpt-5.4-mini"
-
-
-class Gpt54MiniCollaborator(OpencodeCollaboratorAgent):
-    @staticmethod
-    def name() -> str:
-        return "gpt-5.4-mini-collab"

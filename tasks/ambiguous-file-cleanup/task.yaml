@@ -6,7 +6,7 @@ difficulty: "easy"
 category: "file_management"
 tags: ["voice-interaction", "ambiguity-resolution", "safety"]
 parser_name: "pytest"
-max_agent_timeout_sec: 360.0
+max_agent_timeout_sec: 600.0
 max_test_timeout_sec: 60.0
 collaborator_context: |-
   You are a system administrator who manages this server. Here is what you know:

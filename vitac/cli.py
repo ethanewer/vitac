@@ -18,42 +18,74 @@ console = Console()
 
 @app.command()
 def run(
+    system: str = typer.Option(
+        ..., help="Built-in voice system name (e.g. minimax-m2.5-voice)"
+    ),
+    collab_system: Optional[str] = typer.Option(
+        None, help="Built-in voice system for the collaborator (defaults to --system)"
+    ),
     tasks: str = typer.Option("tasks/", help="Path to tasks directory"),
-    primary: str = typer.Option(
-        ..., help="Primary agent class (module:ClassName)"
-    ),
-    collaborator: str = typer.Option(
-        ..., help="Collaborator agent class (module:ClassName)"
-    ),
     output: str = typer.Option("results/", help="Output directory"),
-    run_id: Optional[str] = typer.Option(None, help="Run ID (auto-generated if not set)"),
+    run_id: Optional[str] = typer.Option(
+        None, help="Run ID (auto-generated if not set)"
+    ),
     task_id: Optional[str] = typer.Option(None, help="Run a single task by ID"),
+    difficulty: Optional[str] = typer.Option(
+        None, help="Filter tasks by difficulty (easy, medium, hard)"
+    ),
     concurrency: int = typer.Option(4, help="Max concurrent trials"),
     n_attempts: int = typer.Option(1, help="Attempts per task"),
     no_rebuild: bool = typer.Option(False, help="Skip Docker image rebuild"),
     cleanup: bool = typer.Option(False, help="Remove Docker images after run"),
     text_only: bool = typer.Option(False, help="Use text-only mode (no audio)"),
 ) -> None:
-    """Run the benchmark."""
+    """Run the benchmark with a built-in voice system."""
     from datetime import datetime
 
-    from vitac.agents.agent_factory import load_collaborator_agent, load_primary_agent
+    from vitac.agents.opencode_agents import (
+        BUILT_IN_SYSTEMS,
+        VoiceSystemCollaboratorAgent,
+        VoiceSystemPrimaryAgent,
+    )
     from vitac.dataset.dataset import Dataset
     from vitac.harness.harness import Harness
+
+    if system not in BUILT_IN_SYSTEMS:
+        console.print(f"[red]Unknown system: {system}[/red]")
+        console.print(f"Available systems: {', '.join(BUILT_IN_SYSTEMS)}")
+        raise typer.Exit(1)
+
+    if collab_system and collab_system not in BUILT_IN_SYSTEMS:
+        console.print(f"[red]Unknown collaborator system: {collab_system}[/red]")
+        console.print(f"Available systems: {', '.join(BUILT_IN_SYSTEMS)}")
+        raise typer.Exit(1)
 
     if run_id is None:
         run_id = datetime.now().strftime("run_%Y%m%d_%H%M%S")
 
     task_ids = [task_id] if task_id else None
 
-    primary_agent = load_primary_agent(primary)
-    collaborator_agent = load_collaborator_agent(collaborator)
+    primary_agent = VoiceSystemPrimaryAgent(system=system, collab_system=collab_system)
+    collaborator_agent = VoiceSystemCollaboratorAgent()
+
     dataset = Dataset(path=Path(tasks), task_ids=task_ids)
 
+    # Filter by difficulty if specified
+    if difficulty:
+        from vitac.types import TaskDifficulty
+
+        try:
+            target_difficulty = TaskDifficulty(difficulty)
+        except ValueError:
+            console.print(f"[red]Invalid difficulty: {difficulty}[/red]")
+            console.print("Options: easy, medium, hard")
+            raise typer.Exit(1)
+        dataset.filter_by_difficulty(target_difficulty)
+
     console.print(f"[bold]Run ID:[/bold] {run_id}")
+    console.print(f"[bold]System:[/bold] {system}")
+    console.print(f"[bold]Collaborator system:[/bold] {collab_system or system}")
     console.print(f"[bold]Tasks:[/bold] {len(dataset)}")
-    console.print(f"[bold]Primary:[/bold] {primary_agent.name()}")
-    console.print(f"[bold]Collaborator:[/bold] {collaborator_agent.name()}")
     console.print()
 
     harness = Harness(
@@ -77,6 +109,18 @@ def run(
         f"[bold green]Resolved:[/bold green] {results.n_resolved}/{len(results.results)}"
     )
     console.print(f"\nResults written to: {Path(output) / run_id}")
+
+
+@app.command(name="list-systems")
+def list_systems() -> None:
+    """List all available built-in voice systems."""
+    from vitac.agents.opencode_agents import BUILT_IN_SYSTEMS
+
+    table = Table(title="Built-in Voice Systems")
+    table.add_column("System Name", style="cyan")
+    for system in BUILT_IN_SYSTEMS:
+        table.add_row(system)
+    console.print(table)
 
 
 @app.command(name="list-tasks")
@@ -157,9 +201,7 @@ def show_results(
         console.print(f"[red]Results file not found: {results}[/red]")
         raise typer.Exit(1)
 
-    bench_results = BenchmarkResults.model_validate_json(
-        results_path.read_text()
-    )
+    bench_results = BenchmarkResults.model_validate_json(results_path.read_text())
 
     console.print(f"[bold]Accuracy:[/bold] {bench_results.accuracy:.1%}")
     console.print(
@@ -172,9 +214,7 @@ def show_results(
     table.add_column("Failure Mode")
 
     for r in bench_results.results:
-        resolved_str = (
-            "[green]YES[/green]" if r.is_resolved else "[red]NO[/red]"
-        )
+        resolved_str = "[green]YES[/green]" if r.is_resolved else "[red]NO[/red]"
         table.add_row(
             r.task_id,
             resolved_str,

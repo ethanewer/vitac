@@ -13,7 +13,7 @@ difficulty: "medium"
 category: "debugging"
 tags: ["voice-interaction", "medium", "runner-editor", "python"]
 parser_name: "pytest"
-max_agent_timeout_sec: 360.0
+max_agent_timeout_sec: 600.0
 max_test_timeout_sec: 30.0
 collaborator_context: |-
   You are a code reviewer helping debug a file renaming script. The runner cannot read the source code.

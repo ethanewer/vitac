@@ -7,7 +7,7 @@ from pathlib import Path
 
 import yaml
 
-from vitac.types import TaskDef
+from vitac.types import TaskDef, TaskDifficulty
 
 logger = logging.getLogger(__name__)
 
@@ -87,6 +87,14 @@ class Dataset:
 
     def get_task_path(self, task_id: str) -> Path:
         return self._task_paths[task_id]
+
+    def filter_by_difficulty(self, difficulty: TaskDifficulty) -> None:
+        """Remove tasks that don't match the given difficulty level."""
+        filtered = [t for t in self._tasks if t.difficulty == difficulty]
+        removed_ids = {t.task_id for t in self._tasks} - {t.task_id for t in filtered}
+        for tid in removed_ids:
+            self._task_paths.pop(tid, None)
+        self._tasks = filtered
 
 
 def load_task(task_dir: Path) -> TaskDef:

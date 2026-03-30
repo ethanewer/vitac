@@ -8,7 +8,7 @@ difficulty: "medium"
 category: "system_admin"
 tags: ["voice-interaction", "correction-handling", "recovery"]
 parser_name: "pytest"
-max_agent_timeout_sec: 360.0
+max_agent_timeout_sec: 600.0
 max_test_timeout_sec: 60.0
 collaborator_context: |-
   You are the database administrator. Here is what you know:

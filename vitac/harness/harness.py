@@ -82,7 +82,9 @@ class Harness:
         for task in self._dataset:
             task_path = self._dataset.get_task_path(task.task_id)
             for attempt in range(1, self._n_attempts + 1):
-                trial_name = f"{task.task_id}.{attempt}-of-{self._n_attempts}.{self._run_id}"
+                trial_name = (
+                    f"{task.task_id}.{attempt}-of-{self._n_attempts}.{self._run_id}"
+                )
                 # Skip if already completed
                 trial_dir = self._run_path / task.task_id / trial_name
                 results_file = trial_dir / "results.json"
@@ -184,6 +186,7 @@ class Harness:
         test_started = ""
         test_ended = ""
         from vitac.types import TranscriptMode
+
         if self._transcript_mode_override:
             mode = TranscriptMode(self._transcript_mode_override)
         else:
@@ -197,9 +200,11 @@ class Harness:
             # Create agent session
             agent_session = terminal.create_session("agent")
 
-            # Pass collaborator context to opencode agents
+            # Pass task metadata to opencode agents
             if hasattr(self._primary, "collaborator_context"):
                 self._primary.collaborator_context = task.collaborator_context
+            if hasattr(self._primary, "task_id"):
+                self._primary.task_id = task.task_id
 
             # Initialize voice queue with instruction
             initial_audio = text_to_audio(task.instruction)
@@ -302,9 +307,7 @@ class Harness:
         )
 
         # Score voice interaction
-        voice_score = evaluate_voice_interaction(
-            task=task, voice_queue=voice_queue
-        )
+        voice_score = evaluate_voice_interaction(task=task, voice_queue=voice_queue)
 
         trial_result = TrialResults(
             trial_name=trial_name,
@@ -314,9 +317,7 @@ class Harness:
             failure_mode=failure_mode,
             parser_results=parser_results,
             voice_score=voice_score,
-            total_input_tokens=(
-                agent_result.total_input_tokens if agent_result else 0
-            ),
+            total_input_tokens=(agent_result.total_input_tokens if agent_result else 0),
             total_output_tokens=(
                 agent_result.total_output_tokens if agent_result else 0
             ),
@@ -396,9 +397,7 @@ class Harness:
         collab_t.join(timeout=5)
 
         if agent_t.is_alive():
-            raise TimeoutError(
-                f"Agent timed out after {timeout_sec} seconds"
-            )
+            raise TimeoutError(f"Agent timed out after {timeout_sec} seconds")
 
         if error_holder[0]:
             raise error_holder[0]

@@ -9,7 +9,7 @@ difficulty: "hard"
 category: "configuration"
 tags: ["voice-interaction", "medium", "config", "multi-env"]
 parser_name: "pytest"
-max_agent_timeout_sec: 360.0
+max_agent_timeout_sec: 600.0
 max_test_timeout_sec: 30.0
 collaborator_context: |-
   You are the DevOps lead who knows the deployment config for all environments.

@@ -1,17 +1,15 @@
 export interface TrialConfig {
   primaryUrl: string
   collabUrl: string
-  instruction: string
-  collaboratorContext: string
-  model: { providerID: string; modelID: string }
-  collabModel?: { providerID: string; modelID: string }
-  nativeAudioInput?: boolean
-  nativeAudioOutput?: boolean
-  voice?: string
-  sttOptions?: { model?: string; apiKey?: string; baseUrl?: string }
-  ttsOptions?: { model?: string; apiKey?: string; baseUrl?: string; voice?: string }
+  /** Built-in voice system name (e.g. "claude-opus-medium-voice"). */
+  system: string
+  /** Built-in voice system name for the collaborator. Defaults to system. */
+  collabSystem?: string
+  /** Path to a pre-generated WAV file used as the seed message. */
+  seedAudioPath: string
+  /** Which agent receives the seed audio: "primary" or "collaborator". */
+  startAgent: "primary" | "collaborator"
   maxTimeoutMs?: number
-  reasoningEffort?: string
 }
 
 export interface VoiceMessageLog {

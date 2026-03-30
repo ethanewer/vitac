@@ -8,7 +8,7 @@ difficulty: "easy"
 category: "system_admin"
 tags: ["voice-interaction", "noisy-transcript", "confirmation"]
 parser_name: "pytest"
-max_agent_timeout_sec: 360.0
+max_agent_timeout_sec: 600.0
 max_test_timeout_sec: 60.0
 collaborator_context: |-
   You are the on-call engineer. Here is what you know:

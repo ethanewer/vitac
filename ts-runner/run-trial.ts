@@ -1,13 +1,20 @@
 #!/usr/bin/env bun
 /**
- * Voice trial runner: creates voice sessions on primary + collaborator OpenCode servers,
- * routes audio between them, detects completion, writes result JSON.
+ * Voice trial runner: creates voice sessions on primary + collaborator OpenCode
+ * servers using built-in voice system presets, seeds the conversation with a
+ * pre-generated audio instruction, routes audio between agents, detects
+ * completion, and writes result JSON.
+ *
+ * No custom system prompts are injected — both agents use their built-in
+ * system prompts from the voice system preset.  The only input is the seed
+ * audio pushed to one agent's input queue.
  *
  * Usage: bun run ts-runner/run-trial.ts <config.json> <output.json>
  */
 
 import { createOpencodeClient } from "@opencode-ai/sdk/v2/client"
-import { createVoiceSession, tts, pcmToWav, stt } from "@opencode-ai/sdk/v2/voice"
+import { createVoiceSession, pcmToWav, stt } from "@opencode-ai/sdk/v2/voice"
+import type { VoiceSystemName } from "@opencode-ai/sdk/v2/voice"
 import type { TrialConfig, TrialResult, VoiceMessageLog } from "./types.js"
 
 const configPath = Bun.argv[2]
@@ -20,7 +27,7 @@ if (!configPath || !outputPath) {
 
 const config: TrialConfig = JSON.parse(await Bun.file(configPath).text())
 
-const maxTimeout = config.maxTimeoutMs ?? 360_000
+const maxTimeout = config.maxTimeoutMs ?? 540_000
 const voiceMessages: VoiceMessageLog[] = []
 const terminalCommands: string[] = []
 let totalInputTokens = 0
@@ -49,75 +56,29 @@ await Promise.all([
   waitForServer(collabClient, "Collaborator"),
 ])
 
-// System prompt for the primary agent
-const primarySystem = `You are completing a coding task. You have access to a bash shell and file editing tools.
-
-YOUR TASK:
-${config.instruction}
-
-WORKFLOW:
-1. If the task says to ask your collaborator, ask ONE clear question and wait for their response.
-2. After getting the collaborator's answer, immediately execute the necessary commands.
-3. Verify the result (e.g., check file contents).
-4. Say "TASK_COMPLETE" when done.
-
-RULES:
-- Include the exact phrase "TASK_COMPLETE" in your response when the task is fully done.
-- Do NOT say TASK_COMPLETE until commands have run and you've verified the result.
-- Do NOT keep chatting after executing commands. Verify and complete.
-- Keep bash commands simple and single-line.`
-
-// System prompt for the collaborator
-const collabSystem = `You are a helpful collaborator assisting someone with a coding task.
-You do NOT have access to a terminal or any tools. You can only provide information and guidance through conversation.
-Answer questions concisely and specifically. Don't volunteer information that wasn't asked about.
-
-CONTEXT:
-${config.collaboratorContext}`
+const systemName = config.system as VoiceSystemName
+const collabSystemName = (config.collabSystem ?? config.system) as VoiceSystemName
 
 console.log("Creating voice sessions...")
+console.log(`System: ${systemName}`)
+console.log(`Collaborator system: ${collabSystemName}`)
 
-// Create primary voice session
+// Minimal additive prompt for the primary — only adds the completion signal
+// convention.  Everything else comes from the agent's built-in system prompt.
+const primaryPrompt = `When the task is fully done and you have verified the result, include the exact phrase "TASK_COMPLETE" in your response.`
+
+// Create voice sessions — agents keep their built-in system prompts intact
 const primarySession = await createVoiceSession(primaryClient, {
-  agent: "voice-build",
-  model: config.model,
-  system: primarySystem,
+  system: systemName,
+  prompt: primaryPrompt,
   permission: "dangerous",
-  nativeAudioInput: config.nativeAudioInput,
-  nativeAudioOutput: config.nativeAudioOutput,
-  tts: config.ttsOptions ? {
-    model: config.ttsOptions.model,
-    apiKey: config.ttsOptions.apiKey,
-    baseUrl: config.ttsOptions.baseUrl,
-    voice: config.ttsOptions.voice ?? config.voice ?? "coral",
-  } : { voice: config.voice ?? "coral" },
-  stt: config.sttOptions ? {
-    model: config.sttOptions.model,
-    apiKey: config.sttOptions.apiKey,
-    baseUrl: config.sttOptions.baseUrl,
-  } : undefined,
   toolStatus: false,
 })
 
-// Create collaborator voice session (no tools allowed)
+// Collaborator: no custom prompt, built-in agent prompt only
 const collabSession = await createVoiceSession(collabClient, {
-  agent: "voice-build",
-  model: config.collabModel ?? config.model,
-  system: collabSystem,
+  system: collabSystemName,
   permission: [{ permission: "*", pattern: "*", action: "deny" as const }],
-  nativeAudioInput: config.nativeAudioInput,
-  nativeAudioOutput: config.nativeAudioOutput,
-  tts: config.ttsOptions ? {
-    model: config.ttsOptions.model,
-    apiKey: config.ttsOptions.apiKey,
-    baseUrl: config.ttsOptions.baseUrl,
-    voice: config.ttsOptions.voice ?? "shimmer",
-  } : { voice: "shimmer" },
-  stt: config.sttOptions ? {
-    model: config.sttOptions.model,
-    apiKey: config.sttOptions.apiKey,
-    baseUrl: config.sttOptions.baseUrl,
-  } : undefined,
   toolStatus: false,
 })
 
@@ -173,8 +134,6 @@ const sseMonitor = (async () => {
 })()
 
 // Accumulate audio chunks into complete utterances before forwarding.
-// The voice session's input loop expects complete WAV files per queue item.
-// We accumulate PCM until we have a meaningful amount of audio, then forward as WAV.
 async function routeAudio(
   source: typeof primarySession.output,
   dest: typeof collabSession.input,
@@ -204,7 +163,7 @@ async function routeAudio(
     // Also transcribe for logging
     let transcript = ""
     try {
-      transcript = await stt(wav, { apiKey: config.ttsOptions?.apiKey })
+      transcript = await stt(wav)
     } catch {
       transcript = "[audio]"
     }
@@ -214,28 +173,24 @@ async function routeAudio(
 
   // Use a timer to flush accumulated audio after a silence gap
   let flushTimer: ReturnType<typeof setTimeout> | null = null
-  const SILENCE_GAP_MS = 1500 // flush after 1.5s of no new audio
+  const SILENCE_GAP_MS = 1500
 
   for await (const pcm of source) {
     if (completed) break
     chunks.push(pcm)
     totalLen += pcm.length
 
-    // Reset the silence timer
     if (flushTimer) clearTimeout(flushTimer)
 
-    // If we have enough audio, flush immediately
     if (totalLen >= MIN_BYTES_TO_SEND) {
       await flushToDestination()
     } else {
-      // Set timer to flush after silence gap
       flushTimer = setTimeout(() => {
         flushToDestination().catch(() => {})
       }, SILENCE_GAP_MS)
     }
   }
 
-  // Flush remaining
   if (flushTimer) clearTimeout(flushTimer)
   await flushToDestination()
 }
@@ -244,35 +199,30 @@ async function routeAudio(
 const primaryToCollab = routeAudio(primarySession.output, collabSession.input, "primary")
 const collabToPrimary = routeAudio(collabSession.output, primarySession.input, "collaborator")
 
-// Send the initial instruction via text prompt, but DON'T mark completed when it returns.
-// The agent will likely ask the collaborator a question, and we need the voice routing
-// loop to handle the multi-turn conversation.
-console.log("Sending instruction to primary agent...")
-console.log(`Model: ${config.model.providerID}/${config.model.modelID}`)
+// Load pre-generated seed audio and push it to the starting agent
+console.log(`Loading seed audio from ${config.seedAudioPath} ...`)
+const seedWav = new Uint8Array(await Bun.file(config.seedAudioPath).arrayBuffer())
+console.log(`Seed audio: ${(seedWav.length / 1024).toFixed(0)} KB, start agent: ${config.startAgent}`)
 
-// Send the initial instruction as a text prompt. After this, the voice routing
-// handles multi-turn conversation automatically (primary speaks → collab hears →
-// collab responds → primary hears → primary continues).
-const promptDone = primaryClient.session.prompt({
-  sessionID: primarySession.sessionID,
-  agent: "voice-build",
-  parts: [{ type: "text", text: config.instruction }],
-  ...(config.model ? { model: config.model } : {}),
-  system: primarySystem,
-}).then((result) => {
-  console.log("Initial prompt completed", result?.error ? `with error: ${JSON.stringify(result.error)}` : "successfully")
-}).catch((e: any) => {
-  console.error("Initial prompt error:", e?.message ?? e)
-  if (!error) error = `Prompt error: ${e?.message ?? e}`
-  completed = true
-})
+const startInput = config.startAgent === "primary" ? primarySession.input : collabSession.input
+startInput.push(seedWav)
 
+// Log the seed as a voice message
+const seedRecipient = config.startAgent
+const seedSender = config.startAgent === "primary" ? "collaborator" : "primary"
+let seedTranscript = ""
+try {
+  seedTranscript = await stt(seedWav)
+} catch {
+  seedTranscript = "[seed audio]"
+}
 voiceMessages.push({
-  sender: "collaborator",
-  recipient: "primary",
-  transcript: config.instruction,
+  sender: seedSender,
+  recipient: seedRecipient,
+  transcript: seedTranscript,
   timestampMs: Date.now(),
 })
+console.log(`seed -> ${seedRecipient}: ${seedTranscript.slice(0, 200)}`)
 
 // Wait for completion or timeout
 const timeoutPromise = new Promise<void>((resolve) => {
@@ -286,8 +236,6 @@ const timeoutPromise = new Promise<void>((resolve) => {
   }, maxTimeout)
 })
 
-// Wait for TASK_COMPLETE detection or timeout.
-// The voice routing loop handles multi-turn conversation automatically.
 await Promise.race([
   sseMonitor,
   timeoutPromise,
@@ -305,7 +253,7 @@ primaryEventCtrl.abort()
 try {
   await Promise.race([
     Promise.all([primarySession.done, collabSession.done]),
-    Bun.sleep(5000), // don't hang on cleanup
+    Bun.sleep(5000),
   ])
 } catch {
   // Cleanup errors are fine

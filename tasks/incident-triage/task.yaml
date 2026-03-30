@@ -12,7 +12,7 @@ difficulty: "easy"
 category: "operations"
 tags: ["voice-interaction", "medium", "incident-response", "multi-step"]
 parser_name: "pytest"
-max_agent_timeout_sec: 360.0
+max_agent_timeout_sec: 600.0
 max_test_timeout_sec: 30.0
 collaborator_context: |-
   You are the ops lead with runbook knowledge. Based on the symptoms reported:

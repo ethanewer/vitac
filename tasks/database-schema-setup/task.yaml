@@ -6,7 +6,7 @@ difficulty: "medium"
 category: "database"
 tags: ["voice-interaction", "collaborator-knowledge", "database", "schema"]
 parser_name: "pytest"
-max_agent_timeout_sec: 360.0
+max_agent_timeout_sec: 600.0
 max_test_timeout_sec: 60.0
 collaborator_context: |-
   You are the database architect. Provide table definitions when asked:

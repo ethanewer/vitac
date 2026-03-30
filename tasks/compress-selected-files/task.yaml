@@ -8,7 +8,7 @@ difficulty: "easy"
 category: "system_admin"
 tags: ["voice-interaction", "medium", "compression"]
 parser_name: "pytest"
-max_agent_timeout_sec: 240.0
+max_agent_timeout_sec: 600.0
 max_test_timeout_sec: 30.0
 collaborator_context: |-
   You know the following:
