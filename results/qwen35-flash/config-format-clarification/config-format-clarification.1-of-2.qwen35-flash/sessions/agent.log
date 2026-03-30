@@ -1,18 +1,0 @@
-[?2004hroot@49497c4bc8c2:/app# mkdir -p /app/config && cat > /app/config/app_config.yaml << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@49497c4bc8c2:/app# cat > /app/config/app_config.yaml << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@49497c4bc8c2:/app# echo 'app_name: "widget-service"; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@49497c4bc8c2:/app# printf '%s\n' 'app_name: "widget-service"' 'port: 8080' 'database:' '  host: "db.internal.example.com"' '  port: 5432' '  name: "widgets__prod"' 'log_level: "info"' > /app/config/app_config.yaml; tmux wait -S done
-[?2004l[?2004hroot@49497c4bc8c2:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@49497c4bc8c2:/app# cat /app/config/app_config.yaml; tmux wait -S done
-[?2004lapp_name: "widget-service"
-port: 8080
-database:
-  host: "db.internal.example.com"
-  port: 5432
-  name: "widgets_prod"
-log_level: "info"
-[?2004hroot@49497c4bc8c2:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@49497c4bc8c2:/app# 

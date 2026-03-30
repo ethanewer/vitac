@@ -1,8 +1,0 @@
-[?2004hroot@8c00b731ec4c:/app# cat /app/data/users.csv | tail -n +2 | cut -d',' -f2 | sort -u > /app/output/usernames.txt; tmux wait -S done
-[?2004l[?2004hroot@8c00b731ec4c:/app# cat /app/output/usernames.txt; tmux wait -S done
-[?2004lalice
-bob
-charlie
-diana
-eve
-[?2004hroot@8c00b731ec4c:/app# 

@@ -1,2 +1,0 @@
-[?2004hroot@7017c21a88b3:/app# mkdir -p /app/output && grep "WARN" /app/logs/application.log > /app/output/filtered.log; tmux wait -S done
-[?2004l[?2004hroot@7017c21a88b3:/app# 

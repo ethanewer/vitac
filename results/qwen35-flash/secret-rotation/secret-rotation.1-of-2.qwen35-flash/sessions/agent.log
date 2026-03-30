@@ -1,25 +1,0 @@
-[?2004hroot@10fdc64e7e66:/app# grep -r 'SECRET' /app/config/ /app/services/ /app/env/ 2>/dev/null || echo 'No matches found'; tmux wait -S done
-[?2004l[35m[K/app/env/.env.production[m[K[36m[K:[m[KJWT_[01;31m[KSECRET[m[K=jwt-secret-old-value
-[?2004hroot@10fdc64e7e66:/app# grep -rn 'oldpass123\|sk-old-key-abc123\|jwt-secret-old-value' /app/config/ /app/services/ /app/env/ 2>/dev/null | tee /tmp/secrets_foundd.txt; tmux wait -S done
-[?2004l/app/config/api.conf:2:API_KEY=sk-old-key-abc123
-/app/config/database.yml:4:  password: oldpass123
-/app/services/auth/config.json:2:  "jwt_secret": "jwt-secret-old-value",
-/app/services/worker/env:2:DB_PASSWORD=oldpass123
-/app/env/.env.production:2:DB_PASSWORD=oldpass123
-/app/env/.env.production:3:API_KEY=sk-old-key-abc123
-/app/env/.env.production:4:JWT_SECRET=jwt-secret-old-value
-[?2004hroot@10fdc64e7e66:/app# sed -i 's/jwt-secret-old-value/hN4kQ8wR2vBj5mT/g' /app/env/.env.production /app/services/auth/config.json; tmux wait -S done
-[?2004l[?2004hroot@10fdc64e7e66:/app# sed -i 's/oldpass123/Kx9mP2qL7nW/g' /app/config/database.yml /app/services/worker/env /app/env/.env.production; tmux wait -S done
-[?2004l[?2004hroot@10fdc64e7e66:/app# sed -i 's/sk-old-key-abc123/sk-new-key-xyz789/g' /app/config/api.conf /app/env/.env.production; tmux wait -S done
-[?2004l[?2004hroot@10fdc64e7e66:/app# grep -rn 'oldpass123\|sk-old-key-abc123\|jwt-secret-old-value' /app/config/ /app/services/ /app/env/ 2>/dev/null || echo 'All old secretss replaced successfully!'; tmux wait -S done
-[?2004lAll old secrets replaced successfully!
-[?2004hroot@10fdc64e7e66:/app# echo '=== Verifying replacements ===' && grep -rn 'hN4kQ8wR2vBj5mT\|Kx9mP2qL7nW\|sk-new-key-xyz789' /app/config/ /app/services/ /app/env// 2>/dev/null; tmux wait -S done
-[?2004l=== Verifying replacements ===
-[35m[K/app/config/database.yml[m[K[36m[K:[m[K[32m[K4[m[K[36m[K:[m[K  password: [01;31m[KKx9mP2qL7nW[m[K
-[35m[K/app/config/api.conf[m[K[36m[K:[m[K[32m[K2[m[K[36m[K:[m[KAPI_KEY=[01;31m[Ksk-new-key-xyz789[m[K
-[35m[K/app/services/auth/config.json[m[K[36m[K:[m[K[32m[K2[m[K[36m[K:[m[K  "jwt_secret": "[01;31m[KhN4kQ8wR2vBj5mT[m[K",
-[35m[K/app/services/worker/env[m[K[36m[K:[m[K[32m[K2[m[K[36m[K:[m[KDB_PASSWORD=[01;31m[KKx9mP2qL7nW[m[K
-[35m[K/app/env/.env.production[m[K[36m[K:[m[K[32m[K2[m[K[36m[K:[m[KDB_PASSWORD=[01;31m[KKx9mP2qL7nW[m[K
-[35m[K/app/env/.env.production[m[K[36m[K:[m[K[32m[K3[m[K[36m[K:[m[KAPI_KEY=[01;31m[Ksk-new-key-xyz789[m[K
-[35m[K/app/env/.env.production[m[K[36m[K:[m[K[32m[K4[m[K[36m[K:[m[KJWT_SECRET=[01;31m[KhN4kQ8wR2vBj5mT[m[K
-[?2004hroot@10fdc64e7e66:/app# 

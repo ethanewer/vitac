@@ -1,49 +1,0 @@
-[?2004hroot@6c84ca51dc06:/app# ls -l /app/data/records.csv && head -n 5 /app/data/records.csv; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 100 Mar 28 19:30 /app/data/records.csv
-id,name,score
-3,Charlie,85
-1,Alice,92
-2,Bob,78
-1,Alice,92
-[?2004hroot@6c84ca51dc06:/app# mkdir -p /app/output; tmux wait -S done
-[?2004l[?2004hroot@6c84ca51dc06:/app# (head -n 1 /app/data/records.csv && tail -n +2 /app/data/records.csv | sort -t, -k1,1n -k2,2 -k3,3n -u) > /app/output/clean.csv; tmux waiit -S done
-[?2004l[?2004hroot@6c84ca51dc06:/app# ls -l /app/output/clean.csv && head -n 20 /app/output/clean.csv && tail -n 20 /app/output/clean.csv; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 67 Mar 28 20:17 /app/output/clean.csv
-id,name,score
-1,Alice,92
-2,Bob,78
-3,Charlie,85
-4,Diana,95
-5,Eve,88
-id,name,score
-1,Alice,92
-2,Bob,78
-3,Charlie,85
-4,Diana,95
-5,Eve,88
-[?2004hroot@6c84ca51dc06:/app# wc -l /app/data/records.csv /app/output/clean.csv && echo 'Duplicates in original (full-row match):' && tail -n +2 /app/data/records.csv  | sort -t, -k1,1n -k2,2 -k3,3n | uniq -c | awk '$1>1{print}'; tmux wait -S done
-[?2004l  9 /app/data/records.csv
-  6 /app/output/clean.csv
- 15 total
-Duplicates in original (full-row match):
-      2 1,Alice,92
-      2 2,Bob,78
-      2 3,Charlie,85
-[?2004hroot@6c84ca51dc06:/app# cat /app/data/records.csv; tmux wait -S done
-[?2004lid,name,score
-3,Charlie,85
-1,Alice,92
-2,Bob,78
-1,Alice,92
-4,Diana,95
-2,Bob,78
-5,Eve,88
-3,Charlie,85
-[?2004hroot@6c84ca51dc06:/app# cat /app/output/clean.csv; tmux wait -S done
-[?2004lid,name,score
-1,Alice,92
-2,Bob,78
-3,Charlie,85
-4,Diana,95
-5,Eve,88
-[?2004hroot@6c84ca51dc06:/app# 

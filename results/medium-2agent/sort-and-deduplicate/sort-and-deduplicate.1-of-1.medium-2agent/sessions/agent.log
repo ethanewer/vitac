@@ -1,24 +1,0 @@
-[?2004hroot@21a636b55b4c:/app# bash -lc 'mkdir -p /app/output && (head -n 1 /app/data/records.csv; tail -n +2 /app/data/records.csv | sort -t"," -k3,3nr -u) > /app/outpput/clean.csv'; tmux wait -S done
-[?2004l[?2004hroot@21a636b55b4c:/app# bash -lc 'ls -l /app/output/clean.csv && head -n 5 /app/output/clean.csv && tail -n 5 /app/output/clean.csv && wc -l /app/data/records.cssv /app/output/clean.csv'; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 67 Mar 28 19:42 /app/output/clean.csv
-id,name,score
-4,Diana,95
-1,Alice,92
-5,Eve,88
-3,Charlie,85
-4,Diana,95
-1,Alice,92
-5,Eve,88
-3,Charlie,85
-2,Bob,78
-  9 /app/data/records.csv
-  6 /app/output/clean.csv
- 15 total
-[?2004hroot@21a636b55b4c:/app# bash -lc 'cat /app/output/clean.csv'; tmux wait -S done
-[?2004lid,name,score
-4,Diana,95
-1,Alice,92
-5,Eve,88
-3,Charlie,85
-2,Bob,78
-[?2004hroot@21a636b55b4c:/app# 

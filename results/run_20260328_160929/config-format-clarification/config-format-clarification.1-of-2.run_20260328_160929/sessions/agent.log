@@ -1,24 +1,0 @@
-[?2004hroot@ee2bd12d06ec:/app# ls -la /app/config/ 2>/dev/null || echo 'directory does not exist'}; tmux wait -S done
-[?2004ltotal 8
-drwxr-xr-x 2 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
-[?2004hroot@ee2bd12d06ec:/app# cat > /app/config/app_config.yaml << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@ee2bd12d06ec:/app# cat /app/config/app_config.yaml; tmux wait -S done
-[?2004lcat: /app/config/app_config.yaml: No such file or directory
-[?2004hroot@ee2bd12d06ec:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ee2bd12d06ec:/app# printf '%s\n' 'app_name: "widget-service"' 'port: 8080' 'database:' '  host: "db.internal.example.com"' '  port: 5432' '  name: "widgets__prod"' 'log_level: "info"' > /app/config/app_config.yaml; tmux wait -S done
-[?2004l[?2004hroot@ee2bd12d06ec:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ee2bd12d06ec:/app# cat /app/config/app_config.yaml; tmux wait -S done
-[?2004lapp_name: "widget-service"
-port: 8080
-database:
-  host: "db.internal.example.com"
-  port: 5432
-  name: "widgets_prod"
-log_level: "info"
-[?2004hroot@ee2bd12d06ec:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ee2bd12d06ec:/app# ls -la /app/config/app_config.yaml; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 136 Mar 28 21:10 /app/config/app_config.yaml
-[?2004hroot@ee2bd12d06ec:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ee2bd12d06ec:/app# 

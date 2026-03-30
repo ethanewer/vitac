@@ -1,2 +1,0 @@
-[?2004hroot@ad3b403b18ec:/app# echo '10.0.1.50 api.internal.corp' >> /app/etc/hosts; tmux wait -S done
-[?2004l[?2004hroot@ad3b403b18ec:/app# 

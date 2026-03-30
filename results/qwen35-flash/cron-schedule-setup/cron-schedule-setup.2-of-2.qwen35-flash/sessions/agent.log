@@ -1,27 +1,0 @@
-[?2004hroot@e57bae696f3f:/app# cat > /app/config/crontab << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e57bae696f3f:/app# mkdir -p /app/config && echo '# Crontab file for scheduled tasks; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e57bae696f3f:/app# mkdir -p /app/config; tmux wait -S done
-[?2004l[?2004hroot@e57bae696f3f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e57bae696f3f:/app# printf '%s\n' '# Crontab file for scheduled tasks' '' '# Database backup: Daily at 2:30 AM' '30 2 * * * /usr/local/bin/backup-db.sh' '' ''# Log rotation: Every 6 hours' '0 */6 * * * /usr/local/bin/rotate-logs.sh' '' '# Health check: Every 5 minutes' '*/5 * * * * /usr/local/bin/health-check.sh' ''  '# Weekly report: Every Sunday at 8:00 AM' '0 8 * * 0 /usr/local/bin/weekly-report.sh' '' '# Monthly cleanup: On the 1st of each month at midnight' '0 0 1 * * //usr/local/bin/monthly-cleanup.sh' > /app/config/crontab; tmux wait -S done
-[?2004l[?2004hroot@e57bae696f3f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e57bae696f3f:/app# cat /app/config/crontab; tmux wait -S done
-[?2004l# Crontab file for scheduled tasks
-
-# Database backup: Daily at 2:30 AM
-30 2 * * * /usr/local/bin/backup-db.sh
-
-# Log rotation: Every 6 hours
-0 */6 * * * /usr/local/bin/rotate-logs.sh
-
-# Health check: Every 5 minutes
-*/5 * * * * /usr/local/bin/health-check.sh
-
-# Weekly report: Every Sunday at 8:00 AM
-0 8 * * 0 /usr/local/bin/weekly-report.sh
-
-# Monthly cleanup: On the 1st of each month at midnight
-0 0 1 * * /usr/local/bin/monthly-cleanup.sh
-[?2004hroot@e57bae696f3f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e57bae696f3f:/app# 

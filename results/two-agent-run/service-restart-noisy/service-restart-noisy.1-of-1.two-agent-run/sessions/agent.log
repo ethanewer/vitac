@@ -1,30 +1,0 @@
-[?2004hroot@53a08546b2b8:/app# python3 /app/svcctl.py --help; tmux wait -S done
-[?2004lusage: svcctl.py [-h] {restart,status,list} [service]
-
-Service control tool
-
-positional arguments:
-  {restart,status,list}
-  service               Service name
-
-options:
-  -h, --help            show this help message and exit
-[?2004hroot@53a08546b2b8:/app# python3 /app/svcctl.py list; tmux wait -S done
-[?2004lAvailable services:
-  - payment-gateway
-  - notification-service
-  - auth-service
-  - user-api
-[?2004hroot@53a08546b2b8:/app# python3 /app/svcctl.py restart payment-gateway; tmux wait -S done
-[?2004lRestarting payment-gateway...
-payment-gateway restarted successfully.
-[?2004hroot@53a08546b2b8:/app# python3 /app/svcctl.py restart notification-service; tmux wait -S done
-[?2004lRestarting notification-service...
-notification-service restarted successfully.
-[?2004hroot@53a08546b2b8:/app# python3 /app/svcctl.py restart auth-service; tmux wait -S done
-[?2004lRestarting auth-service...
-auth-service restarted successfully.
-[?2004hroot@53a08546b2b8:/app# python3 /app/svcctl.py restart user-api; tmux wait -S done
-[?2004lRestarting user-api...
-user-api restarted successfully.
-[?2004hroot@53a08546b2b8:/app# 

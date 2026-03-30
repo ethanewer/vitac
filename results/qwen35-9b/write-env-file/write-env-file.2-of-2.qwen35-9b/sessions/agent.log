@@ -1,7 +1,0 @@
-[?2004hroot@8440bab23bb9:/app# mkdir -p /app/config && echo -e 'APP_PORT=3000\nDB_HOST=postgres.local\nDB_NAME=myapp\nSECRET_KEY=supersecret123' > /app/config/.env; tmuux wait -S done
-[?2004l[?2004hroot@8440bab23bb9:/app# cat /app/config/.env; tmux wait -S done
-[?2004lAPP_PORT=3000
-DB_HOST=postgres.local
-DB_NAME=myapp
-SECRET_KEY=supersecret123
-[?2004hroot@8440bab23bb9:/app# 

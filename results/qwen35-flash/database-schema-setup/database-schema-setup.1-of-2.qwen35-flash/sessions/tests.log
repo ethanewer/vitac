@@ -1,36 +1,0 @@
-[?2004hroot@8fd60283a90e:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
-[?2004l[?2004hroot@8fd60283a90e:/app# bash /tests/run-tests.sh; tmux wait -S done
-[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
-[0m[1m===================================================================== test session starts ======================================================================[0m
-platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
-cachedir: .pytest_cache
-rootdir: /tests
-[1mcollecting ... [0m[1mcollected 9 items                                                                                                                                              [0m
-
-test_schema.py::test_database_exists [32mPASSED[0m[32m                                                                                                              [ 11%][0m
-test_schema.py::test_categories_table [32mPASSED[0m[32m                                                                                                             [ 22%][0m
-test_schema.py::test_users_table [32mPASSED[0m[32m                                                                                                                  [ 33%][0m
-test_schema.py::test_users_email_unique [32mPASSED[0m[32m                                                                                                           [ 44%][0m
-test_schema.py::test_products_table [32mPASSED[0m[32m                                                                                                               [ 55%][0m
-test_schema.py::test_orders_table [32mPASSED[0m[32m                                                                                                                 [ 66%][0m
-test_schema.py::test_products_fk [32mPASSED[0m[32m                                                                                                                  [ 77%][0m
-test_schema.py::test_orders_fks [31mFAILED[0m[31m                                                                                                                   [ 88%][0m
-test_schema.py::test_price_check_constraint [32mPASSED[0m[31m                                                                                                       [100%][0m
-
-=========================================================================== FAILURES ===========================================================================
-[31m[1m_______________________________________________________________________ test_orders_fks ________________________________________________________________________[0m
-
-    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_orders_fks[39;49;00m():[90m[39;49;00m
-        conn = _conn()[90m[39;49;00m
-        conn.execute([33m"[39;49;00m[33mPRAGMA foreign_keys = ON[39;49;00m[33m"[39;49;00m)[90m[39;49;00m
-        fks = conn.execute([33m"[39;49;00m[33mPRAGMA foreign_key_list(orders)[39;49;00m[33m"[39;49;00m).fetchall()[90m[39;49;00m
-        tables = [fk[[94m2[39;49;00m] [94mfor[39;49;00m fk [95min[39;49;00m fks][90m[39;49;00m
->       [94massert[39;49;00m [33m"[39;49;00m[33musers[39;49;00m[33m"[39;49;00m [95min[39;49;00m tables, [33mf[39;49;00m[33m"[39;49;00m[33morders should reference users[39;49;00m[33m"[39;49;00m[90m[39;49;00m
-[1m[31mE       AssertionError: orders should reference users[0m
-[1m[31mE       assert 'users' in [][0m
-
-[1m[31mtest_schema.py[0m:80: AssertionError
-[36m[1m=================================================================== short test summary info ====================================================================[0m
-[31mFAILED[0m test_schema.py::[1mtest_orders_fks[0m - AssertionError: orders should reference users
-[31m================================================================= [31m[1m1 failed[0m, [32m8 passed[0m[31m in 0.02s[0m[31m ==================================================================[0m
-[?2004hroot@8fd60283a90e:/app# 

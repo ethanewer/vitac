@@ -1,16 +1,0 @@
-[?2004hroot@d95710937259:/app# python3 /app/migrate.py --help; tmux wait -S done
-[?2004lusage: migrate.py [-h] --target TARGET [--dry-run]
-
-Database migration tool
-
-options:
-  -h, --help       show this help message and exit
-  --target TARGET  Target version (e.g., v4, v5)
-  --dry-run        Show what would be done
-[?2004hroot@d95710937259:/app# python3 /app/migrate.py --target v5 --dry-run; tmux wait -S done
-[?2004lDRY RUN: Would migrate to v5
-[?2004hroot@d95710937259:/app# python3 /app/migrate.py --target v5; tmux wait -S done
-[?2004lMigrating database to v5...
-Applying schema changes for v5...
-Migration to v5 completed successfully.
-[?2004hroot@d95710937259:/app# 

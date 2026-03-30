@@ -1,43 +1,0 @@
-[?2004hroot@5c459ebb86ad:/app# find /var/log -type f -name "*.log" -o -name "*.txt" | head -20; tmux wait -S done
-[?2004l/var/log/alternatives.log
-/var/log/bootstrap.log
-/var/log/dpkg.log
-/var/log/apt/history.log
-/var/log/apt/term.log
-[?2004hroot@5c459ebb86ad:/app# find /var/log -type f \( -name "*.log" -o -name "*.txt" \) -mtime +30 -ls 2>/dev/null | head -20; tmux wait -S done
-[?2004l   140336     60 -rw-r--r--   1 root     root        61237 Feb 17 02:06 /var/log/bootstrap.log
-[?2004hroot@5c459ebb86ad:/app# du -sh /var/log/*.log /var/log/apt/*.log 2>/dev/null | sort -hr; tmux wait -S done
-[?2004l252K	/var/log/dpkg.log
-60K	/var/log/bootstrap.log
-44K	/var/log/apt/term.log
-28K	/var/log/apt/history.log
-12K	/var/log/alternatives.log
-[?2004hroot@5c459ebb86ad:/app# ls -la /app/var/log/app/; tmux wait -S done
-[?2004ltotal 12
-drwxr-xr-x 3 root root 4096 Mar 28 18:49 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
--rw-r--r-- 1 root root    0 Mar 10 00:00 app-2026-03-10.log
--rw-r--r-- 1 root root    0 Mar 15 00:00 app-2026-03-15.log
--rw-r--r-- 1 root root    0 Mar 27 00:00 app-2026-03-27.log
-drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34maudit[0m
--rw-r--r-- 1 root root    0 Mar 12 00:00 error-2026-03-12.log
--rw-r--r-- 1 root root    0 Mar 26 00:00 error-2026-03-26.log
-[?2004hroot@5c459ebb86ad:/app# ls -la /app/var/log/app/audit/; tmux wait -S done
-[?2004ltotal 8
-drwxr-xr-x 2 root root 4096 Mar 28 18:49 [0m[01;34m.[0m
-drwxr-xr-x 3 root root 4096 Mar 28 18:49 [01;34m..[0m
--rw-r--r-- 1 root root    0 Mar  1 00:00 audit-2026-03-01.log
--rw-r--r-- 1 root root    0 Mar 15 00:00 audit-2026-03-15.log
-[?2004hroot@5c459ebb86ad:/app# find /app/var/log/app -mindepth 1 -maxdepth 1 -type f -mtime +7 -ls 2>/dev/null; tmux wait -S done
-[?2004l   412478      0 -rw-r--r--   1 root     root            0 Mar 10 00:00 /app/var/log/app/app-2026-03-10.log
-   412484      0 -rw-r--r--   1 root     root            0 Mar 12 00:00 /app/var/log/app/error-2026-03-12.log
-   412479      0 -rw-r--r--   1 root     root            0 Mar 15 00:00 /app/var/log/app/app-2026-03-15.log
-[?2004hroot@5c459ebb86ad:/app# rm -f /app/var/log/app/app-2026-03-10.log /app/var/log/app/app-2026-03-15.log /app/var/log/app/error-2026-03-12.log; tmux wait -S done
-[?2004l[?2004hroot@5c459ebb86ad:/app# ls -la /app/var/log/app/; tmux wait -S done
-[?2004ltotal 16
-drwxr-xr-x 1 root root 4096 Mar 28 21:12 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
--rw-r--r-- 1 root root    0 Mar 27 00:00 app-2026-03-27.log
-drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34maudit[0m
--rw-r--r-- 1 root root    0 Mar 26 00:00 error-2026-03-26.log
-[?2004hroot@5c459ebb86ad:/app# 

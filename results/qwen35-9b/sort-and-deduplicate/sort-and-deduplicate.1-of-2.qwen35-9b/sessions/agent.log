@@ -1,26 +1,0 @@
-[?2004hroot@254b8fd81059:/app# head -20 /app/data/records.csv; tmux wait -S done
-[?2004lid,name,score
-3,Charlie,85
-1,Alice,92
-2,Bob,78
-1,Alice,92
-4,Diana,95
-2,Bob,78
-5,Eve,88
-3,Charlie,85
-[?2004hroot@254b8fd81059:/app# wc -l /app/data/records.csv; tmux wait -S done
-[?2004l9 /app/data/records.csv
-[?2004hroot@254b8fd81059:/app# mkdir -p /app/output && head -5 /app/data/records.csv | sort -t, -k99999r | tail -1; tmux wait -S done
-[?2004lid,name,score
-[?2004hroot@254b8fd81059:/app# mkdir -p /app/output && (head -n 1 /app/data/records.csv, tail -n +2 /app/data/records.csv | sort -t, -k3 -rn | uniq) > /app/output/cleann.csv; tmux wait -S done
-[?2004lhead: cannot open '/app/data/records.csv,' for reading: No such file or directory
-head: cannot open 'tail' for reading: No such file or directory
-[?2004hroot@254b8fd81059:/app# mkdir -p /app/output && tail -n +2 /app/data/records.csv | sort -t, -k3 -rn | uniq | (head -n 1 /app/data/records.csv && cat) > /tmp/tempp_clean.csv && mv /tmp/temp_clean.csv /app/output/clean.csv; tmux wait -S done
-[?2004l[?2004hroot@254b8fd81059:/app# cat /app/output/clean.csv; tmux wait -S done
-[?2004lid,name,score
-4,Diana,95
-1,Alice,92
-5,Eve,88
-3,Charlie,85
-2,Bob,78
-[?2004hroot@254b8fd81059:/app# 

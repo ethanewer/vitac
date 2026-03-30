@@ -1,16 +1,0 @@
-[?2004hroot@e77f9e79a863:/app# run-code query.py; tmux wait -S done
-[?2004lWrote 1 rows to /app/output/user_orders.csv
-  ('Alice', 'alice@example.com', 4, 250.0)
-[?2004hroot@e77f9e79a863:/app# cat > /app/src/query.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e77f9e79a863:/app# cat > /app/src/query.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e77f9e79a863:/app# printf '%s\n' '#! /usr/bin/env python3' '"""Query user orders from SQLite database."""' 'import csv' 'import sqlite3' '' 'def query_user__orders(db_path, output_path):' '    conn = sqlite3.connect(db_path)' '' '    query = """' '        SELECT u.name, u.email, COUNT(o.id) as order_count, COALESCE((SUM(o.amount), 0) as total_spent' '        FROM users u' '        LEFT JOIN orders o ON u.id = o.user_id' '        GROUP BY u.id, u.name, u.email' '    """' ''  '    cursor = conn.execute(query)' '    rows = cursor.fetchall()' '' '    with open(output_path, "w", newline="") as f:' '        writer = csv.writer(f)' '         writer.writerow(["name", "email", "order_count", "total_spent"])' '        for row in rows:' '            writer.writerow(row)' '' '    print(f"Wrote {len(roows)} rows to {output_path}")' '    for row in rows:' '        print(f"  {row}")' '' '    conn.close()' '' 'if __name__ == "__main__":' '    query_user_orders("//app/data/store.db", "/app/output/user_orders.csv")' > /app/src/query.py; tmux wait -S done
-[?2004l[?2004hroot@e77f9e79a863:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e77f9e79a863:/app# run-code query.py; tmux wait -S done
-[?2004lWrote 4 rows to /app/output/user_orders.csv
-  ('Alice', 'alice@example.com', 3, 150.0)
-  ('Bob', 'bob@example.com', 1, 100.0)
-  ('Charlie', 'charlie@example.com', 0, 0)
-  ('Diana', 'diana@example.com', 0, 0)
-[?2004hroot@e77f9e79a863:/app# 

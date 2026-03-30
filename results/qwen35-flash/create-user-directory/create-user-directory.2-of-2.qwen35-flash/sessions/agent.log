@@ -1,2 +1,0 @@
-[?2004hroot@f4ff576e10c0:/app# mkdir -p /app/users/jdoe/{documents,downloads,projects}; tmux wait -S done
-[?2004l[?2004hroot@f4ff576e10c0:/app# 

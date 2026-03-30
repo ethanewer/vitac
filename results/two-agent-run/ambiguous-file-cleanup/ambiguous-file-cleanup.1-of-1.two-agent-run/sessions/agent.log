@@ -1,127 +1,0 @@
-[?2004hroot@6a5f303e0812:/app# df -h /var / 2>/dev/null | cat; tmux wait -S done
-[?2004lFilesystem      Size  Used Avail Use% Mounted on
-overlay         1.8T  132G  1.6T   8% /
-overlay         1.8T  132G  1.6T   8% /
-[?2004hroot@6a5f303e0812:/app# du -sh /var/log 2>/dev/null; sudo -n true 2>/dev/null || echo 'no-sudo'; tmux wait -S done
-[?2004l416K	/var/log
-no-sudo
-[?2004hroot@6a5f303e0812:/app# id; uname -a; (command -v journalctl >/dev/null && echo 'has-journalctl' || echo 'no-journalctl'); (command -v logrotate >/dev/null && eccho 'has-logrotate' || echo 'no-logrotate'); tmux wait -S done
-[?2004luid=0(root) gid=0(root) groups=0(root)
-Linux 6a5f303e0812 6.12.76-linuxkit #1 SMP Fri Mar  6 10:10:19 UTC 2026 aarch64 aarch64 aarch64 GNU/Linux
-no-journalctl
-no-logrotate
-[?2004hroot@6a5f303e0812:/app# du -h -d 2 /var 2>/dev/null | sort -hr | head; tmux wait -S done
-[?2004l11M	/var
-8.9M	/var/lib
-8.7M	/var/lib/dpkg
-1.6M	/var/cache/debconf
-1.6M	/var/cache
-416K	/var/log
-88K	/var/log/apt
-76K	/var/lib/systemd
-32K	/var/lib/apt
-28K	/var/lib/pam
-[?2004hroot@6a5f303e0812:/app# du -h -d 3 /app 2>/dev/null | sort -hr | head; tmux wait -S done
-[?2004l24K	/app
-20K	/app/var
-16K	/app/var/log
-8.0K	/app/var/log/app
-4.0K	/app/var/log/system
-[?2004hroot@6a5f303e0812:/app# find /var /tmp -type f \( -name '*.log' -o -name '*.log.*' -o -name '*.txt' -o -name '*.out' \) -size +1M 2>/dev/null | head; tmux wait --S done
-[?2004l[?2004hroot@6a5f303e0812:/app# du -h -d 1 / 2>/dev/null | sort -hr | head -n 20; tmux wait -S done
-[?2004l522M	/
-509M	/usr
-11M	/var
-1.7M	/etc
-24K	/app
-20K	/home
-16K	/run
-12K	/root
-8.0K	/tmp
-4.0K	/srv
-4.0K	/opt
-4.0K	/mnt
-4.0K	/media
-4.0K	/logs
-4.0K	/boot
-0	/sys
-0	/proc
-0	/dev
-[?2004hroot@6a5f303e0812:/app# du -sh /logs /var/log /tmp 2>/dev/null || true; find /var /logs /tmp -type f \( -name '*.log' -o -name '*.log.*' \) -size +50M 2>/dev/nulll | head; tmux wait -S done
-[?2004l4.0K	/logs
-416K	/var/log
-8.0K	/tmp
-[?2004hroot@6a5f303e0812:/app# du -h -d 2 /var/lib 2>/dev/null | sort -hr | head -n 30; tmux wait -S done
-[?2004l8.9M	/var/lib
-8.7M	/var/lib/dpkg
-8.0M	/var/lib/dpkg/info
-76K	/var/lib/systemd
-52K	/var/lib/dpkg/alternatives
-40K	/var/lib/systemd/deb-systemd-helper-enabled
-36K	/var/lib/dpkg/triggers
-32K	/var/lib/systemd/deb-systemd-user-helper-enabled
-32K	/var/lib/apt
-28K	/var/lib/pam
-8.0K	/var/lib/apt/mirrors
-4.0K	/var/lib/python
-4.0K	/var/lib/misc
-4.0K	/var/lib/dpkg/updates
-4.0K	/var/lib/dpkg/parts
-4.0K	/var/lib/apt/periodic
-4.0K	/var/lib/apt/lists
-[?2004hroot@6a5f303e0812:/app# ls -al /logs /var/log /app/var/log /app/var/log/* 2>/dev/null || true; tmux wait -S done
-[?2004l/app/var/log:
-total 16
-drwxr-xr-x 1 root root 4096 Mar 28 18:49 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
-drwxr-xr-x 3 root root 4096 Mar 28 18:49 [01;34mapp[0m
-drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34msystem[0m
-
-/app/var/log/app:
-total 12
-drwxr-xr-x 3 root root 4096 Mar 28 18:49 [01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
--rw-r--r-- 1 root root    0 Mar 10 00:00 app-2026-03-10.log
--rw-r--r-- 1 root root    0 Mar 15 00:00 app-2026-03-15.log
--rw-r--r-- 1 root root    0 Mar 27 00:00 app-2026-03-27.log
-drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34maudit[0m
--rw-r--r-- 1 root root    0 Mar 12 00:00 error-2026-03-12.log
--rw-r--r-- 1 root root    0 Mar 26 00:00 error-2026-03-26.log
-
-/app/var/log/system:
-total 8
-drwxr-xr-x 2 root root 4096 Mar 28 18:49 [01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 18:49 [01;34m..[0m
--rw-r--r-- 1 root root    0 Mar  1 00:00 syslog.log
-
-/logs:
-total 8
-drwxr-xr-x 3 root root   96 Mar 28 19:08 [01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 19:08 [01;34m..[0m
--rw-r--r-- 1 root root 3704 Mar 28 19:09 agent.log
-
-/var/log:
-total 336
-drwxr-xr-x 1 root root   4096 Feb 17 02:06 [01;34m.[0m
-drwxr-xr-x 1 root root   4096 Feb 17 02:12 [01;34m..[0m
--rw-r--r-- 1 root root   9576 Mar 28 18:49 alternatives.log
-drwxr-xr-x 1 root root   4096 Mar 28 18:48 [01;34mapt[0m
--rw-r--r-- 1 root root  61237 Feb 17 02:06 bootstrap.log
--rw-rw---- 1 root utmp      0 Feb 17 02:06 btmp
--rw-r--r-- 1 root root 256234 Mar 28 18:49 dpkg.log
--rw-r--r-- 1 root root      0 Feb 17 02:06 faillog
--rw-rw-r-- 1 root utmp      0 Feb 17 02:06 lastlog
--rw-rw-r-- 1 root utmp      0 Feb 17 02:06 wtmp
-[?2004hroot@6a5f303e0812:/app# find /var/log /logs /app/var/log -type f \( -name '*.log*' -o -name '*.out' -o -name '*.txt' \) -mtime +30 -printf '%s\t%TY-%Tm-%Td\t%p\nn' 2>/dev/null | sort -nr | head; tmux wait -S done
-[?2004l61237	2026-02-17	/var/log/bootstrap.log
-[?2004hroot@6a5f303e0812:/app# find /var /logs /app -type f \( -iname '*log*' -o -iname '*.log*' \) -size +10M -printf '%s\t%p\n' 2>/dev/null | sort -nr | head; tmux waait -S done
-[?2004l[?2004hroot@6a5f303e0812:/app# find /var /logs /app -type f \( -iname '*log*' -o -iname '*.log*' \) -mtime +30 -size +1M -printf '%s\t%TY-%Tm-%Td\t%p\n' 2>/dev/null | ssort -nr | head; tmux wait -S done
-[?2004l[?2004hroot@6a5f303e0812:/app# rm -f /var/log/bootstrap.log && echo 'deleted /var/log/bootstrap.log'; tmux wait -S done
-[?2004ldeleted /var/log/bootstrap.log
-[?2004hroot@6a5f303e0812:/app# du -sh /var/log /logs /app/var/log 2>/dev/null || true; df -h / 2>/dev/null | cat; tmux wait -S done
-[?2004l356K	/var/log
-8.0K	/logs
-16K	/app/var/log
-Filesystem      Size  Used Avail Use% Mounted on
-overlay         1.8T  132G  1.6T   8% /
-[?2004hroot@6a5f303e0812:/app# 

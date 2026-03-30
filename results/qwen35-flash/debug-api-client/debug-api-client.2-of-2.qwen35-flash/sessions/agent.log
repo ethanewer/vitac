@@ -1,63 +1,0 @@
-[?2004hroot@ab06dd19ea1b:/app# run-code api_client.py; tmux wait -S done
-[?2004lHTTP Error 401: {"error": "Unauthorized. Expected 'Bearer <token>' in Authorization header."}
-Fetched 0 records
-[?2004hroot@ab06dd19ea1b:/app# cat > fixed.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@ab06dd19ea1b:/app# echo '#!/usr/bin/env python3; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@ab06dd19ea1b:/app# printf '%s\n' '#!/usr/bin/env python3' '"""REST API client that fetches data from the mock server."""' 'import json' 'import urllib.requeest' '' 'API_URL = "http://localhost:5000/api/data"' 'API_TOKEN = "secret-api-key-12345"' '' 'def fetch_data():' '    req = urllib.request.Request(API_URL)' '     req.add_header("Authorization", f"Bearer {API_TOKEN}")' '' '    try:' '        with urllib.request.urlopen(req) as response:' '            data = json.loads(reesponse.read().decode())' '            items = data["results"]' '            return items' '    except urllib.error.HTTPError as e:' '        body = e.read().deccode()' '        print(f"HTTP Error {e.code}: {body}")' '        return []' '    except KeyError as e:' '        print(f"KeyError: {e} - Available keys: {list(daata.keys())}")' '        return []' '' 'if __name__ == "__main__":' '    results = fetch_data()' '    with open("/app/output/api_results.json", "w") as f:' '         json.dump(results, f, indent=2)' '    print(f"Fetched {len(results)} records")' > fixed.py; tmux wait -S done
-[?2004l[?2004hroot@ab06dd19ea1b:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ab06dd19ea1b:/app# cat fixed.py; tmux wait -S done
-[?2004l#!/usr/bin/env python3
-"""REST API client that fetches data from the mock server."""
-import json
-import urllib.request
-
-API_URL = "http://localhost:5000/api/data"
-API_TOKEN = "secret-api-key-12345"
-
-def fetch_data():
-    req = urllib.request.Request(API_URL)
-    req.add_header("Authorization", f"Bearer {API_TOKEN}")
-
-    try:
-        with urllib.request.urlopen(req) as response:
-            data = json.loads(response.read().decode())
-            items = data["results"]
-            return items
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        print(f"HTTP Error {e.code}: {body}")
-        return []
-    except KeyError as e:
-        print(f"KeyError: {e} - Available keys: {list(data.keys())}")
-        return []
-
-if __name__ == "__main__":
-    results = fetch_data()
-    with open("/app/output/api_results.json", "w") as f:
-        json.dump(results, f, indent=2)
-    print(f"Fetched {len(results)} records")
-[?2004hroot@ab06dd19ea1b:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ab06dd19ea1b:/app# cat fixed.py | apply-fix api_client.py; tmux wait -S done
-[?2004l[?2004hroot@ab06dd19ea1b:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ab06dd19ea1b:/app# run-code api_client.py; tmux wait -S done
-[?2004lFetched 3 records
-[?2004hroot@ab06dd19ea1b:/app# cat /app/output/api_results.json; tmux wait -S done
-[?2004l[
-  {
-    "id": 1,
-    "name": "Alpha",
-    "value": 100
-  },
-  {
-    "id": 2,
-    "name": "Beta",
-    "value": 200
-  },
-  {
-    "id": 3,
-    "name": "Gamma",
-    "value": 300
-  }
-][?2004hroot@ab06dd19ea1b:/app# 

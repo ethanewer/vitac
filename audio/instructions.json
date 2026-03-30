@@ -1,0 +1,82 @@
+{
+  "ambiguous-file-cleanup": {
+    "start_agent": "primary",
+    "text": "Hey, I need you to clean up old log files on this system because they're taking up too much space. The other person on this call is a sysadmin who manages this server and knows exactly which logs are safe to delete and which ones need to be kept. Make sure you check with them before removing anything, because some logs might be critical."
+  },
+  "compress-selected-files": {
+    "start_agent": "primary",
+    "text": "I need you to create a compressed archive from files in /app/data/ and save it to /app/output/archive.tar.gz. The other person on this call knows which specific files should be included in the archive, so ask them before you start. Not everything in that directory should go in."
+  },
+  "config-format-clarification": {
+    "start_agent": "primary",
+    "text": "I need you to generate an application configuration file and save it to /app/config/app_config. The file extension should match whatever format is used. The other person on this call is the tech lead who decides the configuration standards, so check with them about the format and what fields are required."
+  },
+  "cron-schedule-setup": {
+    "start_agent": "primary",
+    "text": "I need you to set up scheduled tasks by creating a crontab file at /app/config/crontab. The other person on this call is the operations lead and knows what jobs need to be scheduled, their timing, and the commands to run. Ask them for the details and write it in standard crontab format with the five time fields followed by the command."
+  },
+  "database-schema-setup": {
+    "start_agent": "primary",
+    "text": "I need you to create a SQLite database schema. Write the SQL to /app/schema.sql, then execute it with sqlite3 /app/data/app.db, reading from that schema file. The other person on this call is the database architect who knows the table definitions and constraints. Ask them what tables you need to create."
+  },
+  "db-migration-correction": {
+    "start_agent": "primary",
+    "text": "I need you to run a database migration script to upgrade the schema. The migration tool is at /app/migrate.py and you run it with the --target flag to specify the version. The other person on this call is the DBA, so ask them which target version to use before running the migration. Make sure you listen carefully in case they need to correct anything."
+  },
+  "debug-api-client": {
+    "start_agent": "primary",
+    "text": "I need you to run an API client script. Run it with run-code api_client.py. It should fetch data from the API server that's already running on localhost port 5000 and write results to /app/output/api_results.json. The source code is permission restricted so you can't read it directly. If it fails, the other person on this call is a code reviewer who has access to the source and can help you diagnose and fix the bugs. Apply fixes using cat fixed.py pipe to apply-fix api_client.py."
+  },
+  "debug-calculator": {
+    "start_agent": "primary",
+    "text": "I need you to run calculator tests with run-code calculator.py --test. Some tests will produce wrong results. You can't read the source code directly because it's permission restricted. The other person on this call is a code reviewer who has the source and can help you figure out the bugs. Apply fixes using cat fixed_code.py pipe to apply-fix calculator.py. The test results get written to /app/output/results.json."
+  },
+  "debug-config-generator": {
+    "start_agent": "primary",
+    "text": "I need you to generate an nginx config file by running run-code gen_config.py. The output should go to /app/output/nginx.conf. The source code is permission restricted so you can't read it. If the script fails or the output is wrong, the other person on this call is a code reviewer who has the source and can help diagnose the bugs. Apply fixes using cat fixed.py pipe to apply-fix gen_config.py."
+  },
+  "debug-database-query": {
+    "start_agent": "primary",
+    "text": "I need you to query user order data from a database. Run run-code query.py. The database is at /app/data/store.db and output goes to /app/output/user_orders.csv. The source code is permission restricted so you can't read it directly. The other person on this call is a code reviewer who has the source and can help you diagnose and fix any bugs. Apply fixes using cat fixed.py pipe to apply-fix query.py."
+  },
+  "debug-file-processor": {
+    "start_agent": "primary",
+    "text": "There's a batch file renaming script that renames files in /app/data/files/ to add a date prefix. Run it with run-code rename.py. The script has bugs so some files might end up in the wrong place. If the data gets corrupted, run restore-data to reset. You can't read the source code directly. The other person on this call is a code reviewer who has the source. Apply fixes using cat fixed.py pipe to apply-fix rename.py."
+  },
+  "debug-log-analyzer": {
+    "start_agent": "primary",
+    "text": "I need you to analyze a log file at /app/data/app.log by running run-code log_analyzer.py. The output goes to /app/output/report.json. The source code is permission restricted. If the results look wrong, the other person on this call is a code reviewer who has the source and can help diagnose the bugs. Apply fixes with cat fixed.py pipe to apply-fix log_analyzer.py."
+  },
+  "debug-web-scraper": {
+    "start_agent": "primary",
+    "text": "I need you to run a scraper with run-code scraper.py. It should extract product prices from /app/data/products.html and write them to /app/output/prices.json. The source code is permission restricted. The other person on this call is a code reviewer who has the source and can help you fix any bugs. Apply fixes using cat fixed.py pipe to apply-fix scraper.py."
+  },
+  "deploy-config-multi-env": {
+    "start_agent": "primary",
+    "text": "I need you to create deployment configuration files for three environments: dev, staging, and prod. Write them as JSON files at /app/deploy/dev.json, /app/deploy/staging.json, and /app/deploy/prod.json. Each config should include app name, environment, database settings, cache settings, feature flags, replicas, and log level. The other person on this call is the DevOps lead and knows the values for each environment, so ask them."
+  },
+  "git-branch-approval": {
+    "start_agent": "primary",
+    "text": "I need you to create a release branch and push it to the remote repository. The other person on this call is the engineering lead who knows the branch naming convention and which branch to base it off. Make sure you check with them for the details and get confirmation before pushing."
+  },
+  "guided-refactor": {
+    "start_agent": "primary",
+    "text": "The monolithic app at /app/src/app.py needs to be split into three separate modules. Run run-code app.py first to see how it works. You can't read the source code directly. You need to create three new files: /app/src/models.py for data classes, /app/src/utils.py for helper functions, and /app/src/main.py as the entry point. The other person on this call has the source code and can tell you what goes in each module. After refactoring, run sudo python3 /app/src/main.py to verify. Output goes to /app/output/report.json."
+  },
+  "incident-triage": {
+    "start_agent": "primary",
+    "text": "Several services are having issues. I need you to check the service logs in /app/logs/ to diagnose the problems. The log files are service-a.log, service-b.log, and service-c.log. After you figure out what's going on with each service, report your findings to the other person on this call. They're the ops lead and have runbook knowledge with the specific fixes for each type of issue."
+  },
+  "secret-rotation": {
+    "start_agent": "primary",
+    "text": "I need you to rotate the application secrets. Old secrets need to be replaced with new ones across all configuration files. Search /app/config/, /app/services/, and /app/env/ for files containing secrets. The other person on this call is the security engineer who has the new secret values, so ask them for the replacements. Make sure you replace all occurrences of each old secret across all files."
+  },
+  "service-restart-noisy": {
+    "start_agent": "primary",
+    "text": "I need you to restart some application services using the service manager at /app/svcctl.py. The command is python3 /app/svcctl.py restart followed by the service name. The other person on this call is the on-call engineer and knows which specific services need restarting. Ask them before you restart anything."
+  },
+  "sort-and-deduplicate": {
+    "start_agent": "primary",
+    "text": "I need you to process a data file at /app/data/records.csv. Sort it, remove duplicate entries, and save the result to /app/output/clean.csv. The other person on this call knows exactly how it should be processed, like what to sort by and how to handle duplicates, so check with them first."
+  }
+}

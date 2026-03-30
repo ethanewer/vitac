@@ -1,16 +1,0 @@
-[?2004hroot@c71d261b64aa:/app# find /app/docs -name "*.txt" -type f; tmux wait -S done
-[?2004l/app/docs/notes.txt
-/app/docs/readme.txt
-/app/docs/handbook.txt
-/app/docs/contact.txt
-[?2004hroot@c71d261b64aa:/app# sed -i 's/ACME Corp/Globex Inc/g' /app/docs/notes.txt /app/docs/readme.txt /app/docs/handbook.txt /app/docs/contact.txt; tmux wait -S donne
-[?2004l[?2004hroot@c71d261b64aa:/app# grep -l "Globex Inc" /app/docs/*.txt; tmux wait -S done
-[?2004l[35m[K/app/docs/contact.txt[m[K
-[35m[K/app/docs/handbook.txt[m[K
-[35m[K/app/docs/readme.txt[m[K
-[?2004hroot@c71d261b64aa:/app# grep -l "Globex Inc" /app/docs/*.txt && ! grep -q "ACME Corp" /app/docs/*.txt && echo "Replacement successful in all files"; tmux wait -SS done
-[?2004l[35m[K/app/docs/contact.txt[m[K
-[35m[K/app/docs/handbook.txt[m[K
-[35m[K/app/docs/readme.txt[m[K
-Replacement successful in all files
-[?2004hroot@c71d261b64aa:/app# 

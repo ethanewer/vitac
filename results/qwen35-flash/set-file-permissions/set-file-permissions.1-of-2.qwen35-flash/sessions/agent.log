@@ -1,2 +1,0 @@
-[?2004hroot@46483523a3f5:/app# chmod 750 /app/data/report.csv; tmux wait -S done
-[?2004l[?2004hroot@46483523a3f5:/app# 

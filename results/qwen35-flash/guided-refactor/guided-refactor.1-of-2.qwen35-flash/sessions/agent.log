@@ -1,172 +1,0 @@
-[?2004hroot@77e47428eeac:/app# cat > /app/src/models.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# cat > /app/src/models.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# echo 'from datetime import datetime' > /app/src/models.py && echo '' >> /app/src/models.py && echo 'class User:' >> /app/src/models.py &&& echo '    def __init__(self, name, email, role="member"):' >> /app/src/models.py && echo '        self.name = name' >> /app/src/models.py && echo '        selff.email = email' >> /app/src/models.py && echo '        self.role = role' >> /app/src/models.py && echo '        self.created_at = datetime.now().isoformat()' >>> /app/src/models.py && echo '' >> /app/src/models.py && echo '    def to_dict(self):' >> /app/src/models.py && echo '        return {"name": self.name, "email":: self.email, "role": self.role, "created_at": self.created_at}' >> /app/src/models.py && echo '' >> /app/src/models.py && echo 'class Product:' >> /app/src/modeels.py && echo '    def __init__(self, name, price, category):' >> /app/src/models.py && echo '        self.name = name' >> /app/src/models.py && echo '        sself.price = price' >> /app/src/models.py && echo '        self.category = category' >> /app/src/models.py && echo '' >> /app/src/models.py && echo '    def to_ddict(self):' >> /app/src/models.py && echo '        return {"name": self.name, "price": self.price, "category": self.category}' >> /app/src/models.py; tmux wait  -S done
-[?2004l[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# cat > /app/src/models.py << 'MODELS_EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# printf '%s\n' 'from datetime import datetime' '' 'class User:' '    def __init__(self, name, email, role="member"):' '        self.name == name' '        self.email = email' '        self.role = role' '        self.created_at = datetime.now().isoformat()' '' '    def to_dict(self):' '        returrn {' '            "name": self.name,' '            "email": self.email,' '            "role": self.role,' '            "created_at": self.created_at' '        }}' '' 'class Product:' '    def __init__(self, name, price, category):' '        self.name = name' '        self.price = price' '        self.category = categoryy' '' '    def to_dict(self):' '        return {' '            "name": self.name,' '            "price": self.price,' '            "category": self.category' '         }' > /app/src/models.py; tmux wait -S done
-[?2004l[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# sed -n 'p' /app/src/models.py; tmux wait -S done
-[?2004lfrom datetime import datetime
-
-class User:
-    def __init__(self, name, email, role="member"):
-        self.name = name
-        self.email = email
-        self.role = role
-        self.created_at = datetime.now().isoformat()
-
-    def to_dict(self):
-        return {
-            "name": self.name,
-            "email": self.email,
-            "role": self.role,
-            "created_at": self.created_at
-        }
-
-class Product:
-    def __init__(self, name, price, category):
-        self.name = name
-        self.price = price
-        self.category = category
-
-    def to_dict(self):
-        return {
-            "name": self.name,
-            "price": self.price,
-            "category": self.category
-        }
-[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# printf '%s\n' 'from models import User, Product' '' 'def format_currency(amount):' '    return f"${amount:,.2f}"' '' 'def validate_email((email):' '    return "@" in email and "." in email.split("@")[1]' '' 'def generate_report(users, products):' '    return {' '        "total_users": len(users),'' '        "total_products": len(products),' '        "total_value": sum(p.price for p in products),' '        "users": [u.to_dict() for u in users],' '        ""products": [p.to_dict() for p in products]' '    }' > /app/src/utils.py; tmux wait -S done
-[?2004l[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# printf '%s\n' 'import json' 'from models import User, Product' 'from utils import format_currency, generate_report' '' 'def main():' '     users = [' '        User("Alice", "alice@example.com", "admin"),' '        User("Bob", "bob@example.com"),' '        User("Charlie", "charlie@example.com"),' ''    ]' '    products = [' '        Product("Widget", 29.99, "tools"),' '        Product("Gadget", 49.99, "electronics"),' '        Product("Doohickey", 9.99, "mmisc"),' '    ]' '    report = generate_report(users, products)' '    report["formatted_total"] = format_currency(report["total_value"])' '    with open("/app/ouutput/report.json", "w") as f:' '        json.dump(report, f, indent=2)' '    print(f"Generated report: {len(users)} users, {len(products)} products")' '    prinnt(f"Total value: {format_currency(report["total_value"])}")' '' 'if __name__ == "__main__":' '    main()' > /app/src/main.py; tmux wait -S done
-[?2004l[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# cat /app/src/utils.py; tmux wait -S done
-[?2004lfrom models import User, Product
-
-def format_currency(amount):
-    return f"${amount:,.2f}"
-
-def validate_email(email):
-    return "@" in email and "." in email.split("@")[1]
-
-def generate_report(users, products):
-    return {
-        "total_users": len(users),
-        "total_products": len(products),
-        "total_value": sum(p.price for p in products),
-        "users": [u.to_dict() for u in users],
-        "products": [p.to_dict() for p in products]
-    }
-[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# cat /app/src/main.py; tmux wait -S done
-[?2004limport json
-from models import User, Product
-from utils import format_currency, generate_report
-
-def main():
-    users = [
-        User("Alice", "alice@example.com", "admin"),
-        User("Bob", "bob@example.com"),
-        User("Charlie", "charlie@example.com"),
-    ]
-    products = [
-        Product("Widget", 29.99, "tools"),
-        Product("Gadget", 49.99, "electronics"),
-        Product("Doohickey", 9.99, "misc"),
-    ]
-    report = generate_report(users, products)
-    report["formatted_total"] = format_currency(report["total_value"])
-    with open("/app/output/report.json", "w") as f:
-        json.dump(report, f, indent=2)
-    print(f"Generated report: {len(users)} users, {len(products)} products")
-    print(f"Total value: {format_currency(report["total_value"])}")
-
-if __name__ == "__main__":
-    main()
-[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# cat /app/src/main.py | sed 's/report/total_value]/total_value]"/g' > /tmp/main_fixed.py && mv /tmp/main_fixed.py /app/src/main.py; tmux wwait -S done
-[?2004lsed: -e expression #1, char 23: unknown option to `s'
-[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# cat > /app/src/main.py << 'MAINEOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# echo 'import json' > /app/src/main.py && echo 'from models import User, Product' >> /app/src/main.py && echo 'from utils import format_cuurrency, generate_report' >> /app/src/main.py && echo '' >> /app/src/main.py && echo 'def main():' >> /app/src/main.py && echo '    users = [' >> /app/src/main.ppy && echo '        User("Alice", "alice@example.com", "admin"),' >> /app/src/main.py && echo '        User("Bob", "bob@example.com"),' >> /app/src/main.py && eccho '        User("Charlie", "charlie@example.com"),' >> /app/src/main.py && echo '    ]' >> /app/src/main.py && echo '    products = [' >> /app/src/main.py && eecho '        Product("Widget", 29.99, "tools"),' >> /app/src/main.py && echo '        Product("Gadget", 49.99, "electronics"),' >> /app/src/main.py && echo '         Product("Doohickey", 9.99, "misc"),' >> /app/src/main.py && echo '    ]' >> /app/src/main.py && echo '    report = generate_report(users, products)' >> /appp/src/main.py && echo '    report["formatted_total"] = format_currency(report["total_value"])' >> /app/src/main.py && echo '    with open("/app/output/report.jsson", "w") as f:' >> /app/src/main.py && echo '        json.dump(report, f, indent=2)' >> /app/src/main.py && echo '    print(f"Generated report: {len(users)} ussers, {len(products)} products")' >> /app/src/main.py && echo '    tv = report["total_value"]' >> /app/src/main.py && echo '    print(f"Total value: {format_currrency(tv)}")' >> /app/src/main.py && echo '' >> /app/src/main.py && echo 'if __name__ == "__main__":' >> /app/src/main.py && echo '    main()' >> /app/src/main.ppy; tmux wait -S done
-[?2004l[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# cat /app/src/main.py; tmux wait -S done
-[?2004limport json
-from models import User, Product
-from utils import format_currency, generate_report
-
-def main():
-    users = [
-        User("Alice", "alice@example.com", "admin"),
-        User("Bob", "bob@example.com"),
-        User("Charlie", "charlie@example.com"),
-    ]
-    products = [
-        Product("Widget", 29.99, "tools"),
-        Product("Gadget", 49.99, "electronics"),
-        Product("Doohickey", 9.99, "misc"),
-    ]
-    report = generate_report(users, products)
-    report["formatted_total"] = format_currency(report["total_value"])
-    with open("/app/output/report.json", "w") as f:
-        json.dump(report, f, indent=2)
-    print(f"Generated report: {len(users)} users, {len(products)} products")
-    tv = report["total_value"]
-    print(f"Total value: {format_currency(tv)}")
-
-if __name__ == "__main__":
-    main()
-[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# sudo python3 /app/src/main.py; tmux wait -S done
-[?2004lGenerated report: 3 users, 3 products
-Total value: $89.97
-[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# cat /app/output/report.json; tmux wait -S done
-[?2004l{
-  "total_users": 3,
-  "total_products": 3,
-  "total_value": 89.97,
-  "users": [
-    {
-      "name": "Alice",
-      "email": "alice@example.com",
-      "role": "admin",
-      "created_at": "2026-03-28T21:29:09.753347"
-    },
-    {
-      "name": "Bob",
-      "email": "bob@example.com",
-      "role": "member",
-      "created_at": "2026-03-28T21:29:09.753361"
-    },
-    {
-      "name": "Charlie",
-      "email": "charlie@example.com",
-      "role": "member",
-      "created_at": "2026-03-28T21:29:09.753362"
-    }
-  ],
-  "products": [
-    {
-      "name": "Widget",
-      "price": 29.99,
-      "category": "tools"
-    },
-    {
-      "name": "Gadget",
-      "price": 49.99,
-      "category": "electronics"
-    },
-    {
-      "name": "Doohickey",
-      "price": 9.99,
-      "category": "misc"
-    }
-  ],
-  "formatted_total": "$89.97"
-}[?2004hroot@77e47428eeac:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@77e47428eeac:/app# 

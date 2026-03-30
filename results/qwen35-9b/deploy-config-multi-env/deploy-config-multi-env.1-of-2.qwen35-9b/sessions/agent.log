@@ -1,75 +1,0 @@
-[?2004hroot@9106ada12d76:/app# mkdir -p /app/deploy; tmux wait -S done
-[?2004l[?2004hroot@9106ada12d76:/app# cat > /app/deploy/dev.json << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@9106ada12d76:/app# cat > /app/deploy/dev.json << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@9106ada12d76:/app# printf '%s\n' '{' '  "app_name": "myservice",' '  "environment": "dev",' '  "database_settings": {' '    "host": "localhost",' '    "portt": 5432,' '    "name": "myservice_dev"' '  },' '  "cache_settings": {' '    "host": "localhost",' '    "port": 6379' '  },' '  "feature_flags": {' '    "dark_moode": true,' '    "beta_features": true,' '    "maintenance_mode": false' '  },' '  "replicas": 1,' '  "log_level": "debug"' '}' > /app/deploy/dev.json; tmux waiit -S done
-[?2004l[?2004hroot@9106ada12d76:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@9106ada12d76:/app# printf '%s\n' '{' '  "app_name": "myservice",' '  "environment": "staging",' '  "database_settings": {' '    "host": "staging-db.internall",' '    "port": 5432,' '    "name": "myservice_staging"' '  },' '  "cache_settings": {' '    "host": "staging-cache.internal",' '    "port": 6379' '  },' '  "ffeature_flags": {' '    "dark_mode": true,' '    "beta_features": true,' '    "maintenance_mode": false' '  },' '  "replicas": 2,' '  "log_level": "info"' '}' >  /app/deploy/staging.json; tmux wait -S done
-[?2004l[?2004hroot@9106ada12d76:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@9106ada12d76:/app# printf '%s\n' '{' '  "app_name": "myservice",' '  "environment": "production",' '  "database_settings": {' '    "host": "prod-db.internall",' '    "port": 5432,' '    "name": "myservice_prod",' '    "pool_size": 50' '  },' '  "cache_settings": {' '    "host": "prod-cache.internal",' '    "port": 66379' '  },' '  "feature_flags": {' '    "dark_mode": true,' '    "beta_features": false,' '    "maintenance_mode": false' '  },' '  "replicas": 5,' '  "log_leveel": "warn"' '}' > /app/deploy/prod.json; tmux wait -S done
-[?2004l[?2004hroot@9106ada12d76:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@9106ada12d76:/app# cat /app/deploy/dev.json /app/deploy/staging.json /app/deploy/prod.json; tmux wait -S done
-[?2004l{
-  "app_name": "myservice",
-  "environment": "dev",
-  "database_settings": {
-    "host": "localhost",
-    "port": 5432,
-    "name": "myservice_dev"
-  },
-  "cache_settings": {
-    "host": "localhost",
-    "port": 6379
-  },
-  "feature_flags": {
-    "dark_mode": true,
-    "beta_features": true,
-    "maintenance_mode": false
-  },
-  "replicas": 1,
-  "log_level": "debug"
-}
-{
-  "app_name": "myservice",
-  "environment": "staging",
-  "database_settings": {
-    "host": "staging-db.internal",
-    "port": 5432,
-    "name": "myservice_staging"
-  },
-  "cache_settings": {
-    "host": "staging-cache.internal",
-    "port": 6379
-  },
-  "feature_flags": {
-    "dark_mode": true,
-    "beta_features": true,
-    "maintenance_mode": false
-  },
-  "replicas": 2,
-  "log_level": "info"
-}
-{
-  "app_name": "myservice",
-  "environment": "production",
-  "database_settings": {
-    "host": "prod-db.internal",
-    "port": 5432,
-    "name": "myservice_prod",
-    "pool_size": 50
-  },
-  "cache_settings": {
-    "host": "prod-cache.internal",
-    "port": 6379
-  },
-  "feature_flags": {
-    "dark_mode": true,
-    "beta_features": false,
-    "maintenance_mode": false
-  },
-  "replicas": 5,
-  "log_level": "warn"
-}
-[?2004hroot@9106ada12d76:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@9106ada12d76:/app# 

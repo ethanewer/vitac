@@ -1,24 +1,0 @@
-[?2004hroot@feacad9361b3:/app# ls -la /app/data && ls -la /app/output || true; tmux wait -S done
-[?2004ltotal 32
-drwxr-xr-x 2 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 19:30 [01;34m..[0m
--rw-r--r-- 1 root root   15 Mar 28 19:30 [00;90mcache.tmp[0m
--rw-r--r-- 1 root root   13 Mar 28 19:30 debug.log
--rw-r--r-- 1 root root   30 Mar 28 19:30 orders.csv
--rw-r--r-- 1 root root   31 Mar 28 19:30 products.csv
--rw-r--r-- 1 root root   10 Mar 28 19:30 [00;90msession.tmp[0m
--rw-r--r-- 1 root root   26 Mar 28 19:30 users.csv
-total 8
-drwxr-xr-x 2 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 19:30 [01;34m..[0m
-[?2004hroot@feacad9361b3:/app# tar -czf /app/output/archive.tar.gz -C /app/data .; tmux wait -S done
-[?2004l[?2004hroot@feacad9361b3:/app# ls -la /app/output/archive.tar.gz && tar -tzf /app/output/archive.tar.gz | head; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 358 Mar 28 19:39 [0m[01;31m/app/output/archive.tar.gz[0m
-./
-./users.csv
-./orders.csv
-./session.tmp
-./products.csv
-./debug.log
-./cache.tmp
-[?2004hroot@feacad9361b3:/app# 

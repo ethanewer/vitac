@@ -1,2 +1,0 @@
-[?2004hroot@3137507ec727:/app# mkdir -p /app/output && head -1 /app/data/records.csv > /app/output/clean.csv && tail -n +2 /app/data/records.csv | sort -t, -k3 -rn | unniq >> /app/output/clean.csv; tmux wait -S done
-[?2004l[?2004hroot@3137507ec727:/app# 

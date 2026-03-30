@@ -1,24 +1,0 @@
-[?2004hroot@db0d065bb45c:/app# git remote -v; tmux wait -S done
-[?2004lfatal: not a git repository (or any of the parent directories): .git
-[?2004hroot@db0d065bb45c:/app# pwd && ls -la; tmux wait -S done
-[?2004l/app
-total 16
-drwxr-xr-x 1 root root 4096 Mar 28 19:04 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 21:24 [01;34m..[0m
-drwxr-xr-x 3 root root 4096 Mar 28 19:04 [01;34mproject[0m
-drwxr-xr-x 7 root root 4096 Mar 28 19:04 [01;34mremote.git[0m
-[?2004hroot@db0d065bb45c:/app# cd /app/project && git remote -v; tmux wait -S done
-[?2004lorigin	/app/remote.git (fetch)
-origin	/app/remote.git (push)
-[?2004hroot@db0d065bb45c:/app/project# git branch -a; tmux wait -S done
-[?2004l[?1h=* [32mdevelop[m[m
-  main[m[m
-  [31mremotes/origin/develop[m[m
-  [31mremotes/origin/main[m[m
-[K[?1l>[?2004hroot@db0d065bb45c:/app/project# git checkout develop && git checkout -b release/v2.3.1 && git push origin release/v2.3.1; tmux wait -S done
-[?2004lAlready on 'develop'
-Switched to a new branch 'release/v2.3.1'
-Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
-To /app/remote.git
- * [new branch]      release/v2.3.1 -> release/v2.3.1
-[?2004hroot@db0d065bb45c:/app/project# 

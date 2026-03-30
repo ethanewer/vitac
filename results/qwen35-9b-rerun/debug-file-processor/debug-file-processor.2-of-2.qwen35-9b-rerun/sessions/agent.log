@@ -1,135 +1,0 @@
-[?2004hroot@5c38b3dc900d:/app# cat /app/src/rename.py; tmux wait -S done
-[?2004l#!/usr/bin/env python3
-"""Batch rename files with date prefix."""
-import os
-import re
-
-def rename_files(directory):
-    renamed = []
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if not os.path.isfile(filepath):
-            continue
-
-        # Extract date from filename - BUG 2: too greedy, matches any digits
-        match = re.search(r'(\d+)', filename)
-        if match and len(match.group(1)) == 8:
-            date_str = match.group(1)
-            formatted_date = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
-
-            # Remove date from original name
-            base, ext = os.path.splitext(filename)
-            name_without_date = re.sub(r'_?\d{8}_?', '_', base).strip('_')
-            new_name = f"{formatted_date}_{name_without_date}{ext}"
-
-            # BUG 1: doesn't include directory in destination path
-            os.rename(filepath, new_name)
-            renamed.append((filename, new_name))
-            print(f"Renamed: {filename} -> {new_name}")
-
-    return renamed
-
-if __name__ == "__main__":
-    result = rename_files("/app/data/files/")
-    print(f"\nRenamed {len(result)} files")
-
-    # List directory after rename
-    print("\nFiles in /app/data/files/:")
-    for f in sorted(os.listdir("/app/data/files/")):
-        print(f"  {f}")
-[?2004hroot@5c38b3dc900d:/app# ls -la /app/data/files/; tmux wait -S done
-[?2004ltotal 24
-drwxr-xr-x 2 root root 4096 Mar 28 22:26 [0m[01;34m.[0m
-drwxr-xr-x 4 root root 4096 Mar 28 22:26 [01;34m..[0m
--rw-r--r-- 1 root root    9 Mar 28 22:26 data_20260320.csv
--rw-r--r-- 1 root root   12 Mar 28 22:26 log_20260328_backup.log
--rw-r--r-- 1 root root   14 Mar 28 22:26 notes.txt
--rw-r--r-- 1 root root   15 Mar 28 22:26 report_20260315_final.txt
-[?2004hroot@5c38b3dc900d:/app# cat > fixed.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# printf '%s' '#!/usr/bin/env python3; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# echo '#!/usr/bin/env python3; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# rm -f fixed.py && printf '%s\n' '#!/usr/bin/env python3' '"""Batch rename files with date prefix."""' 'import os' 'import re' '' 'def renname_files(directory):' '    renamed = []' '    for filename in os.listdir(directory):' '        filepath = os.path.join(directory, filename)' '        if not oss.path.isfile(filepath):' '            continue' '' '        match = re.search(r"(\\d{8})", filename)' '        if match:' '            date_str = match.group(1))' '            formatted_date = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"' '            base, ext = os.path.splitext(filename)' '            name_withouut_date = re.sub(r"(^|_)\\d{8}(?=_|$)", "_", base)' '            new_name = f"{formatted_date}_{name_without_date}{ext}"' '            new_path = os.path.join(diirectory, new_name)' '            if os.path.exists(new_path):' '                continue' '            os.rename(filepath, new_path)' '            renamed.appennd((filename, new_name))' '            print(f"Renamed: {filename} -> {new_name}")' '    return renamed' '' 'if __name__ == "__main__":' '    result = rename_filles("/app/data/files/")' '    print(f"\\nRenamed {len(result)} files")' '    for f in sorted(os.listdir("/app/data/files/")):' '        print(f"  {f}")' > fixed..py; tmux wait -S done
-[?2004l[?2004hroot@5c38b3dc900d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# cat fixed.py; tmux wait -S done
-[?2004l#!/usr/bin/env python3
-"""Batch rename files with date prefix."""
-import os
-import re
-
-def rename_files(directory):
-    renamed = []
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if not os.path.isfile(filepath):
-            continue
-
-        match = re.search(r"(\\d{8})", filename)
-        if match:
-            date_str = match.group(1)
-            formatted_date = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
-            base, ext = os.path.splitext(filename)
-            name_without_date = re.sub(r"(^|_)\\d{8}(?=_|$)", "_", base)
-            new_name = f"{formatted_date}_{name_without_date}{ext}"
-            new_path = os.path.join(directory, new_name)
-            if os.path.exists(new_path):
-                continue
-            os.rename(filepath, new_path)
-            renamed.append((filename, new_name))
-            print(f"Renamed: {filename} -> {new_name}")
-    return renamed
-
-if __name__ == "__main__":
-    result = rename_files("/app/data/files/")
-    print(f"\\nRenamed {len(result)} files")
-    for f in sorted(os.listdir("/app/data/files/")):
-        print(f"  {f}")
-[?2004hroot@5c38b3dc900d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# python3 -c "code = '''#!/usr/bin/env python3\n\"\"\"Batch rename files with date prefix.\"\"\"\nimport os\nimport re\n\n\ndef rename_filees(directory):\n    renamed = []\n    for filename in os.listdir(directory):\n        filepath = os.path.join(directory, filename)\n        if not os.path.isfilee(filepath):\n            continue\n\n        match = re.search(r\"(\\\\d{8})\", filename)\n        if match:\\n            date_str = match.group(1)\n             formatted_date = f\"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}\"\n            base, ext = os.path.splitext(filename)\n            name_without_date = re.ssub(r\"(^|_)\\\\d{8}(?=\\\\_|\\\$)\", \"_\", base)\n            new_name = f\"{formatted_date}_{name_without_date}{ext}\"\n            new_path = os.path.join(diirectory, new_name)\n            if os.path.exists(new_path):\n                continue\n            os.rename(filepath, new_path)\n            renamed.append((ffilename, new_name))\n            print(f\"Renamed: {filename} -> {new_name}\")\n    return renamed\n\nif __name__ == \"__main__\":\n    result = rename_files(\""/app/data/files/\")\n    print(f\"\\\\nRenamed {len(result)} files\")\n    for f in sorted(os.listdir(\"/app/data/files/\")):\n        print(f\"  {f}\")\n'''\nwwith open('fixed.py', 'w') as f: f.write(code)"; tmux wait -S done
-[?2004l-bash: !/usr/bin/env: event not found
-[?2004hroot@5c38b3dc900d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# mkdir -p /tmp && cd /tmp && echo '/usr/bin/env python3"""Batch rename files with date prefix."""_ENV; tmux wait -S done' > /tmp/test.sh &&& bash -c 'cat > /tmp/fixed.py << "ENDSCRIPT"; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# tee fixed.py > /dev/null << 'ENDSCRIPT'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# cat fixed.py; tmux wait -S done
-[?2004l#!/usr/bin/env python3
-"""Batch rename files with date prefix."""
-import os
-import re
-
-def rename_files(directory):
-    renamed = []
-    for filename in os.listdir(directory):
-        filepath = os.path.join(directory, filename)
-        if not os.path.isfile(filepath):
-            continue
-
-        match = re.search(r"(\\d{8})", filename)
-        if match:
-            date_str = match.group(1)
-            formatted_date = f"{date_str[:4]}-{date_str[4:6]}-{date_str[6:8]}"
-            base, ext = os.path.splitext(filename)
-            name_without_date = re.sub(r"(^|_)\\d{8}(?=_|$)", "_", base)
-            new_name = f"{formatted_date}_{name_without_date}{ext}"
-            new_path = os.path.join(directory, new_name)
-            if os.path.exists(new_path):
-                continue
-            os.rename(filepath, new_path)
-            renamed.append((filename, new_name))
-            print(f"Renamed: {filename} -> {new_name}")
-    return renamed
-
-if __name__ == "__main__":
-    result = rename_files("/app/data/files/")
-    print(f"\\nRenamed {len(result)} files")
-    for f in sorted(os.listdir("/app/data/files/")):
-        print(f"  {f}")
-[?2004hroot@5c38b3dc900d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# rm -f fixed.py; echo '#!/usr/bin/env python3; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# python3 << 'PYEND'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@5c38b3dc900d:/app# 

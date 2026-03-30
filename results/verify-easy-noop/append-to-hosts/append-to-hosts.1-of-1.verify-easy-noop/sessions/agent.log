@@ -1,18 +1,0 @@
-[?2004hroot@fa3afa198dc7:/app# ls -l /app/etc/hosts && sed -n '1,120p' /app/etc/hosts; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 34 Mar 28 19:19 /app/etc/hosts
-127.0.0.1 localhost
-::1 localhost
-[?2004hroot@fa3afa198dc7:/app# sed -n '1,120p' /etc/hosts; tmux wait -S done
-[?2004l127.0.0.1	localhost
-::1	localhost ip6-localhost ip6-loopback
-fe00::	ip6-localnet
-ff00::	ip6-mcastprefix
-ff02::1	ip6-allnodes
-ff02::2	ip6-allrouters
-172.18.0.2	fa3afa198dc7
-[?2004hroot@fa3afa198dc7:/app# grep -q '172.18.0.2' /app/etc/hosts || echo '172.18.0.2 fa3afa198dc7' >> /app/etc/hosts; tmux wait -S done
-[?2004l[?2004hroot@fa3afa198dc7:/app# cat /app/etc/hosts; tmux wait -S done
-[?2004l127.0.0.1 localhost
-::1 localhost
-172.18.0.2 fa3afa198dc7
-[?2004hroot@fa3afa198dc7:/app# 

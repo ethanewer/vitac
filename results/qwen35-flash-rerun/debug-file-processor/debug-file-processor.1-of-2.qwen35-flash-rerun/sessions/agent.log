@@ -1,137 +1,0 @@
-[?2004hroot@182efe36783d:/app# ls -la /app/data/files/; tmux wait -S done
-[?2004ltotal 24
-drwxr-xr-x 2 root root 4096 Mar 28 22:26 [0m[01;34m.[0m
-drwxr-xr-x 4 root root 4096 Mar 28 22:26 [01;34m..[0m
--rw-r--r-- 1 root root    9 Mar 28 22:26 data_20260320.csv
--rw-r--r-- 1 root root   12 Mar 28 22:26 log_20260328_backup.log
--rw-r--r-- 1 root root   14 Mar 28 22:26 notes.txt
--rw-r--r-- 1 root root   15 Mar 28 22:26 report_20260315_final.txt
-[?2004hroot@182efe36783d:/app# run-code rename.py; tmux wait -S done
-[?2004lRenamed: report_20260315_final.txt -> 2026-03-15_report_final.txt
-Renamed: log_20260328_backup.log -> 2026-03-28_log_backup.log
-Renamed: data_20260320.csv -> 2026-03-20_data.csv
-
-Renamed 3 files
-
-Files in /app/data/files/:
-  notes.txt
-[?2004hroot@182efe36783d:/app# ls -la /app/data/files/; tmux wait -S done
-[?2004ltotal 20
-drwxr-xr-x 1 root root 4096 Mar 28 22:27 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 22:26 [01;34m..[0m
--rw-r--r-- 1 root root   14 Mar 28 22:26 notes.txt
-[?2004hroot@182efe36783d:/app# ls -la /app/data/files/; tmux wait -S done
-[?2004ltotal 20
-drwxr-xr-x 1 root root 4096 Mar 28 22:27 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 22:26 [01;34m..[0m
--rw-r--r-- 1 root root   14 Mar 28 22:26 notes.txt
-[?2004hroot@182efe36783d:/app# restore-data; tmux wait -S done
-[?2004lData files restored.
-[?2004hroot@182efe36783d:/app# ls -la /app/data/files/; tmux wait -S done
-[?2004ltotal 32
-drwxr-xr-x 1 root root 4096 Mar 28 22:27 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 22:26 [01;34m..[0m
--rw-r--r-- 1 root root    9 Mar 28 22:27 data_20260320.csv
--rw-r--r-- 1 root root   12 Mar 28 22:27 log_20260328_backup.log
--rw-r--r-- 1 root root   14 Mar 28 22:27 notes.txt
--rw-r--r-- 1 root root   15 Mar 28 22:27 report_20260315_final.txt
-[?2004hroot@182efe36783d:/app# ls -la /app/ | head -20; tmux wait -S done
-[?2004ltotal 40
-drwxr-xr-x 1 root root 4096 Mar 28 22:27 .
-drwxr-xr-x 1 root root 4096 Mar 28 22:27 ..
--rw-r--r-- 1 root root   15 Mar 28 22:26 2026-03-15_report_final.txt
--rw-r--r-- 1 root root    9 Mar 28 22:26 2026-03-20_data.csv
--rw-r--r-- 1 root root   12 Mar 28 22:26 2026-03-28_log_backup.log
-drwxr-xr-x 1 root root 4096 Mar 28 22:26 data
-drwxrwxrwx 2 root root 4096 Mar 28 22:26 output
-drwxr-xr-x 1 root root 4096 Mar 28 22:09 src
-[?2004hroot@182efe36783d:/app# cat << 'EOF' > /tmp/fixed.py; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# rm -f /app/2026-* 2>/dev/null; echo "Cleaned up misplaced files"; tmux wait -S done
-[?2004lCleaned up misplaced files
-[?2004hroot@182efe36783d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# printf '%s\n' "import os" "import re" "" "directory = '/app/data/files/'" "for filename in os.listdir(directory):" "    filepath = os.patth.join(directory, filename)" "    if not os.path.isfile(filepath):" "        continue" "    match = re.search(r'(\\d{8})', filename)" "    if match:" "        ddate = match.group(1)" "        date_formatted = f"""{date[0:4]}-{date[4:6]}-{date[6:8]}"""" "        base_name = re.sub(r'_?\\d{8}_?', '', filename)" "        eext = re.search(r'\\.(\\w+)$', base_name)" "        new_name = f"""{date_formatted}_{base_name}"""" "        if ext:" "            new_name = new_name + "." + exxt.group(1)" "        os.rename(filepath, os.path.join(directory, new_name))" > /tmp/fixed.py && cat /tmp/fixed.py; tmux wait -S done
-[?2004limport os
-import re
-
-directory = '/app/data/files/'
-for filename in os.listdir(directory):
-    filepath = os.path.join(directory, filename)
-    if not os.path.isfile(filepath):
-        continue
-    match = re.search(r'(\d{8})', filename)
-    if match:
-        date = match.group(1)
-        date_formatted = f{date[0:4]}-{date[4:6]}-{date[6:8]}
-        base_name = re.sub(r'_?\d{8}_?', '', filename)
-        ext = re.search(r'\.(\w+)$', base_name)
-        new_name = f{date_formatted}_{base_name}
-        if ext:
-            new_name = new_name + . + ext.group(1)
-        os.rename(filepath, os.path.join(directory, new_name))
-[?2004hroot@182efe36783d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# echo "import os; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# rm -f /tmp/fixed.py && echo 'import os' > /tmp/fixed.py && echo 'import re' >> /tmp/fixed.py && echo '' >> /tmp/fixed.py && echo "directoory = '/app/data/files/'" >> /tmp/fixed.py && echo 'for filename in os.listdir(directory):' >> /tmp/fixed.py && echo '    filepath = os.path.join(directory, fileename)' >> /tmp/fixed.py && echo '    if not os.path.isfile(filepath):' >> /tmp/fixed.py && echo '        continue' >> /tmp/fixed.py && echo '    match = re.searrch(r\'(\\\\d{8})\', filename)' >> /tmp/fixed.py && echo '    if match:' >> /tmp/fixed.py && echo '        date = match.group(1)' >> /tmp/fixed.py && echo '         date_formatted = f\"{date[0:4]}-{date[4:6]}-{date[6:8]}\"' >> /tmp/fixed.py && echo '        base_name = re.sub(r\'_?\\\\d{8}_?\', \"\", filename)' >> /tmp/ffixed.py && echo '        ext = re.search(r\'(\\\\w+)$\', base_name)' >> /tmp/fixed.py && echo '        new_name = f\"{date_formatted}_{base_name}\"' >> /tmp/fixxed.py && echo '        if ext:' >> /tmp/fixed.py && echo '            new_name = new_name + \".\" + ext.group(1)' >> /tmp/fixed.py && echo '        os.rename(fiilepath, os.path.join(directory, new_name))' >> /tmp/fixed.py && cat /tmp/fixed.py; tmux wait -S done
-[?2004l-bash: syntax error near unexpected token `('
-[?2004hroot@182efe36783d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# cd /tmp && cat > fixed.py << 'ENDOFFILE'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# cat > /tmp/fixed.py << 'ENDOFFILE'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# cd /tmp && cat > fixed.py << 'ENDOFFILE'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# cd /tmp && echo 'import os' > fixed.py && echo 'import re' >> fixed.py && echo '' >> fixed.py && echo "directory = '/app/data/files/'" >>> fixed.py && echo 'for filename in os.listdir(directory):' >> fixed.py && echo '    filepath = os.path.join(directory, filename)' >> fixed.py && echo '    if noot os.path.isfile(filepath):' >> fixed.py && echo '        continue' >> fixed.py && echo '    match = re.search(r"(\\d{8})", filename)' >> fixed.py && echo '     if match:' >> fixed.py && echo '        date = match.group(1)' >> fixed.py && echo '        date_formatted = f"{date[0:4]}-{date[4:6]}-{date[6:8]}"' >> fixed.pyy && echo '        base_name = re.sub(r"_?\\d{8}_?", "", filename)' >> fixed.py && echo '        ext = re.search(r"(\\w+)$", base_name)' >> fixed.py && echo '         new_name = f"{date_formatted}_{base_name}"' >> fixed.py && echo '        if ext:' >> fixed.py && echo '            new_name = new_name + "." + ext.group(1))' >> fixed.py && echo '        os.rename(filepath, os.path.join(directory, new_name))' >> fixed.py && cat fixed.py; tmux wait -S done
-[?2004limport os
-import re
-
-directory = '/app/data/files/'
-for filename in os.listdir(directory):
-    filepath = os.path.join(directory, filename)
-    if not os.path.isfile(filepath):
-        continue
-    match = re.search(r"(\\d{8})", filename)
-    if match:
-        date = match.group(1)
-        date_formatted = f"{date[0:4]}-{date[4:6]}-{date[6:8]}"
-        base_name = re.sub(r"_?\\d{8}_?", "", filename)
-        ext = re.search(r"(\\w+)$", base_name)
-        new_name = f"{date_formatted}_{base_name}"
-        if ext:
-            new_name = new_name + "." + ext.group(1)
-        os.rename(filepath, os.path.join(directory, new_name))
-[?2004hroot@182efe36783d:/tmp# ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/tmp# cat /tmp/fixed.py | apply-fix rename.py; tmux wait -S done
-[?2004l[?2004hroot@182efe36783d:/tmp# ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/tmp# restore-data; tmux wait -S done
-[?2004lData files restored.
-[?2004hroot@182efe36783d:/tmp# ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/tmp# run-code rename.py; tmux wait -S done
-[?2004l[?2004hroot@182efe36783d:/tmp# ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/tmp# cd /app && run-code rename.py; tmux wait -S done
-[?2004l[?2004hroot@182efe36783d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# ls -la /app/data/files/; tmux wait -S done
-[?2004ltotal 32
-drwxr-xr-x 1 root root 4096 Mar 28 22:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 22:26 [01;34m..[0m
--rw-r--r-- 1 root root    9 Mar 28 22:30 data_20260320.csv
--rw-r--r-- 1 root root   12 Mar 28 22:30 log_20260328_backup.log
--rw-r--r-- 1 root root   14 Mar 28 22:30 notes.txt
--rw-r--r-- 1 root root   15 Mar 28 22:30 report_20260315_final.txt
-[?2004hroot@182efe36783d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# ls -la /app/data/files/ && ls -la /app/2026-* 2>/dev/null || echo "No 2026 files in /app/"; tmux wait -S done
-[?2004ltotal 32
-drwxr-xr-x 1 root root 4096 Mar 28 22:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 22:26 [01;34m..[0m
--rw-r--r-- 1 root root    9 Mar 28 22:30 data_20260320.csv
--rw-r--r-- 1 root root   12 Mar 28 22:30 log_20260328_backup.log
--rw-r--r-- 1 root root   14 Mar 28 22:30 notes.txt
--rw-r--r-- 1 root root   15 Mar 28 22:30 report_20260315_final.txt
-No 2026 files in /app/
-[?2004hroot@182efe36783d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# cd /app && rm -f fixed.py && cat > fixed.py << 'ENDOFFILE'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# cd /app && cat > fixed.py << 'ENDOFFILE'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@182efe36783d:/app# cat > /app/fixed.py << 'ENDOFFILE'; tmux wait -S done
-[?2004l[?2004h> 

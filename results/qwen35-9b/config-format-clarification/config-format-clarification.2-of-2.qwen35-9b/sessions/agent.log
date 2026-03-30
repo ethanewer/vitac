@@ -1,24 +1,0 @@
-[?2004hroot@7d37cc25b774:/app# mkdir -p /app/config; tmux wait -S done
-[?2004l[?2004hroot@7d37cc25b774:/app# cat > /app/config/app_config.yaml << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@7d37cc25b774:/app# cat << 'EOF' > /app/config/app_config.yaml; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@7d37cc25b774:/app# cat > /app/config/app_config.yaml << 'ENDCONFIG'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@7d37cc25b774:/app# cat > /app/config/app_config.yaml << 'ENDCONFIG'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@7d37cc25b774:/app# printf '%s\n' 'app:' '  name: "MyApplication"' '  version: "1.0.0"' '  debug: false' '' 'database:' '  host: "localhost"' '  port: 5432'  '  name: "mydb"' '' 'logging:' '  level: "INFO"' '  file: "/var/log/app.log"' > /app/config/app_config.yaml; tmux wait -S done
-[?2004l[?2004hroot@7d37cc25b774:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@7d37cc25b774:/app# cat > /app/config/app_config.yaml << 'YAML_EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@7d37cc25b774:/app# echo 'app_name: "widget-service"' > /app/config/app_config.yaml && echo 'port: 8080' >> /app/config/app_config.yaml && echo 'database.hosst: "db.internal.example.com"' >> /app/config/app_config.yaml && echo 'database.port: 5432' >> /app/config/app_config.yaml && echo 'database.name: "widgets_prod""' >> /app/config/app_config.yaml && echo 'log_level: "info"' >> /app/config/app_config.yaml; tmux wait -S done
-[?2004l[?2004hroot@7d37cc25b774:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@7d37cc25b774:/app# cat /app/config/app_config.yaml; tmux wait -S done
-[?2004lapp_name: "widget-service"
-port: 8080
-database.host: "db.internal.example.com"
-database.port: 5432
-database.name: "widgets_prod"
-log_level: "info"
-[?2004hroot@7d37cc25b774:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@7d37cc25b774:/app# 

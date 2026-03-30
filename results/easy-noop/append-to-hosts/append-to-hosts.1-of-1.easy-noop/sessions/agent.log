@@ -1,15 +1,0 @@
-[?2004hroot@5998c3f95063:/app# ls -l /app/etc/hosts && echo '---' && cat /app/etc/hosts; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 34 Mar 28 19:19 /app/etc/hosts
----
-127.0.0.1 localhost
-::1 localhost
-[?2004hroot@5998c3f95063:/app# grep -R "hosts" -n /app 2>/dev/null | head; tmux wait -S done
-[?2004l[?2004hroot@5998c3f95063:/app# hostname && hostname -i && ip route get 1.1.1.1 2>/dev/null | awk '{for(i=1;i<=NF;i++) if($i=="src") print $(i+1)}' | head -n1; tmux waitt -S done
-[?2004l5998c3f95063
-172.20.0.2
-[?2004hroot@5998c3f95063:/app# grep -n "5998c3f95063" /app/etc/hosts || (echo "172.20.0.2 5998c3f95063" >> /app/etc/hosts) && echo '---' && cat /app/etc/hosts; tmux waiit -S done
-[?2004l---
-127.0.0.1 localhost
-::1 localhost
-172.20.0.2 5998c3f95063
-[?2004hroot@5998c3f95063:/app# 

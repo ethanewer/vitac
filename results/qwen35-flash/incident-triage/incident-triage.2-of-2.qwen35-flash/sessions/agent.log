@@ -1,17 +1,0 @@
-[?2004hroot@acd49097f510:/app# cat /app/logs/service-a.log; tmux wait -S done
-[?2004l[2026-03-28 09:00:01] ERROR: Connection refused on port 5432
-[2026-03-28 09:00:02] ERROR: Failed to connect to database
-[2026-03-28 09:00:03] WARN: Retrying connection...
-[2026-03-28 09:00:04] ERROR: Connection refused on port 5432
-[?2004hroot@acd49097f510:/app# cat /app/logs/service-b.log; tmux wait -S done
-[?2004l[2026-03-28 09:00:01] WARN: Disk space critically low: /app/cache/ using 95%
-[2026-03-28 09:00:02] ERROR: Cannot write to cache
-[2026-03-28 09:00:03] INFO: Cache write failed, falling back to memory
-[?2004hroot@acd49097f510:/app# cat /app/logs/service-c.log; tmux wait -S done
-[?2004l[2026-03-28 09:00:01] ERROR: SSL certificate expired: /app/certs/active/server.pem
-[2026-03-28 09:00:02] ERROR: TLS handshake failed
-[2026-03-28 09:00:03] WARN: Connections being rejected
-[?2004hroot@acd49097f510:/app# sed -i 's/port=5432/port=5433/' /app/config/db.conf; tmux wait -S done
-[?2004l[?2004hroot@acd49097f510:/app# find /app/cache/ -name "*.tmp" -mtime +0 -delete; tmux wait -S done
-[?2004l[?2004hroot@acd49097f510:/app# cp /app/certs/renewed/server.pem /app/certs/active/server.pem; tmux wait -S done
-[?2004l[?2004hroot@acd49097f510:/app# 

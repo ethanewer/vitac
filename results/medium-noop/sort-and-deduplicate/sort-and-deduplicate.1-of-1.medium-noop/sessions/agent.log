@@ -1,26 +1,0 @@
-[?2004hroot@962ea29c9cfb:/app# ls -l /app/data/records.csv && head -n 5 /app/data/records.csv; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 100 Mar 28 19:30 /app/data/records.csv
-id,name,score
-3,Charlie,85
-1,Alice,92
-2,Bob,78
-1,Alice,92
-[?2004hroot@962ea29c9cfb:/app# mkdir -p /app/output && (head -n 1 /app/data/records.csv; tail -n +2 /app/data/records.csv | sort -t',' -k1,1n -k2,2 -k3,3n | uniq) > /appp/output/clean.csv; tmux wait -S done
-[?2004l[?2004hroot@962ea29c9cfb:/app# ls -l /app/output/clean.csv && head -n 10 /app/output/clean.csv; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 67 Mar 28 19:39 /app/output/clean.csv
-id,name,score
-1,Alice,92
-2,Bob,78
-3,Charlie,85
-4,Diana,95
-5,Eve,88
-[?2004hroot@962ea29c9cfb:/app# wc -l /app/data/records.csv /app/output/clean.csv && tail -n 5 /app/output/clean.csv; tmux wait -S done
-[?2004l  9 /app/data/records.csv
-  6 /app/output/clean.csv
- 15 total
-1,Alice,92
-2,Bob,78
-3,Charlie,85
-4,Diana,95
-5,Eve,88
-[?2004hroot@962ea29c9cfb:/app# 

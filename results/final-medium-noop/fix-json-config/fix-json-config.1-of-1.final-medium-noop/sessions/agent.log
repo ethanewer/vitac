@@ -1,815 +1,0 @@
-[?2004hroot@ba8df569050f:/app# ls -l /app/config && sed -n '1,200p' /app/config/settings.json; tmux wait -S done
-[?2004ltotal 4
--rw-r--r-- 1 root root 169 Mar 28 19:30 settings.json
-{
-  "app_name": "myservice",
-  "port": 3000,
-  "debug": true,
-  "log_level": "info",
-  "database": {
-    "host": "localhost",
-    "port": 5432,
-    "name": "mydb"
-  }
-}
-[?2004hroot@ba8df569050f:/app# find /app -maxdepth 4 -type f -name '*.js' -o -name '*.ts' -o -name '*.py' -o -name '*.java' -o -name '*.go' -o -name '*.rb' | head; tmuxx wait -S done
-[?2004l[?2004hroot@ba8df569050f:/app# ls -la /app && find /app -maxdepth 3 -type f | head -n 50; tmux wait -S done
-[?2004ltotal 12
-drwxr-xr-x 1 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 20:16 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 19:30 [01;34mconfig[0m
-/app/config/settings.json
-[?2004hroot@ba8df569050f:/app# grep -R "settings.json" -n /app 2>/dev/null || true; grep -R "app_name" -n /app 2>/dev/null || true; grep -R "log_level" -n /app 2>/dev/nnull || true; tmux wait -S done
-[?2004l[35m[K/app/config/settings.json[m[K[36m[K:[m[K[32m[K2[m[K[36m[K:[m[K  "[01;31m[Kapp_name[m[K": "myservice",
-[35m[K/app/config/settings.json[m[K[36m[K:[m[K[32m[K5[m[K[36m[K:[m[K  "[01;31m[Klog_level[m[K": "info",
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 4 -type f -name 'settings.json' 2>/dev/null | head -n 20; tmux wait -S done
-[?2004l/app/config/settings.json
-[?2004hroot@ba8df569050f:/app# grep -R "myservice" -n / 2>/dev/null | head -n 20; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# ls -la / && ls -la /app && printenv | head -n 200; tmux wait -S done
-[?2004ltotal 60
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [0m[01;34m.[0m
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [01;34m..[0m
--rwxr-xr-x   1 root root    0 Mar 28 20:16 [01;32m.dockerenv[0m
-drwxr-xr-x   1 root root 4096 Mar 28 19:30 [01;34mapp[0m
-lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mbin[0m -> [01;34musr/bin[0m
-drwxr-xr-x   2 root root 4096 Apr 22  2024 [01;34mboot[0m
-drwxr-xr-x   5 root root  340 Mar 28 20:16 [01;34mdev[0m
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [01;34metc[0m
-drwxr-xr-x   3 root root 4096 Feb 17 02:12 [01;34mhome[0m
-lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mlib[0m -> [01;34musr/lib[0m
-drwxr-xr-x   3 root root   96 Mar 28 20:16 [01;34mlogs[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmedia[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmnt[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mopt[0m
-dr-xr-xr-x 254 root root    0 Mar 28 20:16 [01;34mproc[0m
-drwx------   2 root root 4096 Feb 17 02:12 [01;34mroot[0m
-drwxr-xr-x   4 root root 4096 Feb 17 02:12 [01;34mrun[0m
-lrwxrwxrwx   1 root root    8 Apr 22  2024 [01;36msbin[0m -> [01;34musr/sbin[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34msrv[0m
-dr-xr-xr-x  11 root root    0 Mar 28 20:06 [01;34msys[0m
-drwxrwxrwt   1 root root 4096 Mar 28 20:16 [30;42mtmp[0m
-drwxr-xr-x   1 root root 4096 Feb 17 02:06 [01;34musr[0m
-drwxr-xr-x   1 root root 4096 Feb 17 02:12 [01;34mvar[0m
-total 12
-drwxr-xr-x 1 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 20:16 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 19:30 [01;34mconfig[0m
-SHELL=/bin/bash
-TERM_PROGRAM_VERSION=3.4
-TMUX=/tmp/tmux-0/default,21,0
-HOSTNAME=ba8df569050f
-PWD=/app
-HOME=/root
-LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
-TEST_DIR=/tests
-TERM=tmux-256color
-TMUX_PANE=%0
-SHLVL=1
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-TERM_PROGRAM=tmux
-_=/usr/bin/printenv
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# ls -ლა /tests && find /tests -maxdepth 3 -type f | head -n 100; tmux wait -S done
-[?2004lls: invalid option -- '�'
-Try 'ls --help' for more information.
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# ls -la /tests && find /tests -maxdepth 3 -type f | head -n 200; tmux wait -S done
-[?2004lls: cannot access '/tests': No such file or directory
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# timeout 10s grep -R "log_level" -n / 2>/dev/null | head -n 20 || true; tmux wait -S done
-[?2004lTerminated
-[?2004hroot@ba8df569050f:/app# grep -R "\"database\"" -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# grep -R "5432\|mydb\|localhost\"\s*\," -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# grep -R "\"port\"[[:space:]]*:[[:space:]]*3000" -n /etc /var /app 2>/dev/null | head -n 20 || true; grep -R "\"debug\"[[:space:]]*:[[:spaace:]]*true" -n /etc /var /app 2>/dev/null | head -n 20 || true; grep -R "\"log_level\"[[:space:]]*:[[:space:]]*\"info\"" -n /etc /var /app 2>/dev/null | head -nn 20 || true; tmux wait -S done
-[?2004l/app/config/settings.json:3:  "port": 3000,
-/app/config/settings.json:4:  "debug": true,
-/app/config/settings.json:5:  "log_level": "info",
-[?2004hroot@ba8df569050f:/app# grep -R "mydb\|localhost\"\s*,\s*\"port\"\s*:\s*5432\|\"debug\"\s*:\s*true\|\"log_level\"\s*:\s*\"info\|\"app_name\"" -n / 2>/dev/null |  head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 5 -type f \( -iname '*compose*.yml' -o -iname 'docker-compose*.yml' -o -iname '*dockerfile*' -o -iname '*readme*' -o -inname '*.env*' \) 2>/dev/null | head -n 50; tmux wait -S done
-[?2004l/etc/terminfo/README
-/etc/alternatives/README
-/etc/sysctl.d/README.sysctl
-/etc/fonts/conf.d/README
-[?2004hroot@ba8df569050f:/app# timeout 10s grep -R "5432" -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004lTerminated
-[?2004hroot@ba8df569050f:/app# grep -R "mydb\|5432\|myservice\|database" -n /etc /var /root /app 2>/dev/null | head -n 100 || true; tmux wait -S done
-[?2004l/etc/alternatives/fakeroot:80:         stderr "database file \`$1' does not exist."
-/etc/systemd/system/timers.target.wants/dpkg-db-backup.timer:2:Description=Daily dpkg database backup timer
-/etc/debconf.conf:3:# except the first sets up a database for debconf to use. For details, see
-/etc/debconf.conf:6:# So first things first. This first stanza gives the names of two databases.
-/etc/debconf.conf:8:# Debconf will use this database to store the data you enter into it,
-/etc/debconf.conf:11:# Debconf will use this database to store static template data.
-/etc/debconf.conf:30:# Set up the configdb database. By default, it consists of a stack of two
-/etc/debconf.conf:31:# databases, one to hold passwords and one for everything else.
-/etc/debconf.conf:36:# Set up the templatedb database, which is a single flat text file
-/etc/debconf.conf:44:# people's needs, but debconf's database drivers can be used to do much
-/etc/debconf.conf:46:# data from another host, which is mounted over nfs or perhaps the database
-/etc/debconf.conf:47:# is accessed via LDAP. You don't want to write to the remote debconf database,
-/etc/debconf.conf:48:# just read from it, so you still need a local database for local changes.
-/etc/debconf.conf:50:# A remote NFS mounted database, read-only. It is optional; if debconf
-/etc/debconf.conf:58:# A remote LDAP database. It is also read-only. The password is really
-/etc/debconf.conf:59:# only necessary if the database is not accessible anonymously.
-/etc/debconf.conf:72:# A stack consisting of two databases. Values will be read from
-/etc/debconf.conf:73:# the first database in the stack to contain a value. In this example,
-/etc/debconf.conf:74:# writes always go to the first database.
-/etc/debconf.conf:80:# to make it use the combination of the databases.
-/etc/services:68:z3950		210/tcp		wais		# NISO Z39.50 database
-/etc/services:229:postgresql	5432/tcp	postgres	# PostgreSQL Database
-/etc/services:255:afs3-prserver	7002/udp			# users & groups database
-/etc/services:256:afs3-vlserver	7003/udp			# volume location database
-/etc/services:310:moira-db	775/tcp		moira_db	# Moira database
-/etc/rpc:19:database_svc	100016
-/etc/ssl/openssl.cnf:85:database	= $dir/index.txt	# database index file.
-/var/log/bootstrap.log:105:(Reading database ... 0 files and directories currently installed.)
-/var/log/bootstrap.log:127:(Reading database ... 41 files and directories currently installed.)
-/var/log/bootstrap.log:206:(Reading database ... 155 files and directories currently installed.)
-/var/log/bootstrap.log:229:(Reading database ... 434 files and directories currently installed.)
-/var/log/bootstrap.log:243:(Reading database ... 726 files and directories currently installed.)
-/var/log/bootstrap.log:252:(Reading database ... 1457 files and directories currently installed.)
-/var/log/bootstrap.log:257:(Reading database ... 1478 files and directories currently installed.)
-/var/log/bootstrap.log:825:(Reading database ... 3958 files and directories currently installed.)
-/var/log/apt/term.log:4:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
-/var/log/apt/term.log:20:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4709 files and directories currently installed.)
-/var/log/apt/term.log:56:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5715 files and directories currently installed.)
-/var/log/apt/term.log:79:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7803 files and directories currently installed.)
-/var/lib/dpkg/status:127: These are the canonical master copies of the user database files
-/var/lib/dpkg/status:129: group IDs. The update-passwd tool is provided to keep the system databases
-/var/lib/dpkg/status:1767:  * getent: get entries from administrative databases
-/var/lib/dpkg/status:2051: database library.
-/var/lib/dpkg/status:2053:Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
-/var/lib/dpkg/status:2145:  - Dpkg::Compression: simple database of available compression methods
-/var/lib/dpkg/status:2517:Description: GNU dbm database routines (legacy support runtime version) 
-/var/lib/dpkg/status:2518: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status:2545:Description: GNU dbm database routines (runtime version) 
-/var/lib/dpkg/status:2546: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status:3135: functions for retrieving message strings from databases constructed
-/var/lib/dpkg/status:4031: SQLite is a C library that implements an SQL database engine.
-/var/lib/dpkg/status:4032: Programs that link with the SQLite library can have SQL database
-/var/lib/dpkg/status:4798: database and individual terminfo entries, as well as some programs for
-/var/lib/dpkg/status:4930: development. Some of these modules include Web frameworks, database
-/var/lib/dpkg/info/procps.md5sums:97:72016be93cf5a89e5432a1cbe511ded0  usr/share/man/ro/man1/pgrep.1.gz
-/var/lib/dpkg/info/procps.postinst:55:		if [ -e /etc/psdatabase ] 
-/var/lib/dpkg/info/procps.postinst:57:			rm -f /etc/psdatabase
-/var/lib/dpkg/info/libc6:arm64.symbols:522: __nss_database_get@GLIBC_PRIVATE 0 1
-/var/lib/dpkg/info/libc6:arm64.symbols:523: __nss_database_lookup@GLIBC_2.17 2.17
-/var/lib/dpkg/info/openssl.md5sums:105:2f5432e68b007c62273e18a6f37b004f  usr/share/man/man7/EVP_KDF-X942-ASN1.7ssl.gz
-/var/lib/dpkg/info/ca-certificates.postrm:19:# Clear the debconf database as early as possible and signal debconf that
-/var/lib/dpkg/info/python3-pip.md5sums:239:b0e9b8f4b12eceed8eb02e3259c0c1d6  usr/lib/python3/dist-packages/pip/_vendor/distlib/database.py
-/var/lib/dpkg/info/python3-pip.md5sums:267:80df840e0ac823fa34bcfa543296ba35  usr/lib/python3/dist-packages/pip/_vendor/packaging/_manylinux.py
-/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:806:88c638ffac1963f516cb5432d7c779dc  usr/include/linux/usbip.h
-/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:177:49390352789420b5390ed32c1a15432b  usr/include/python3.12/objimpl.h
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1131: sqlite3_column_database_name16@Base 3.5.9
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1132: sqlite3_column_database_name@Base 3.5.9
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1167: sqlite3_database_file_object@Base 3.32.0
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1193: sqlite3_filename_database@Base 3.31.1
-/var/lib/dpkg/info/libc6-dev:arm64.md5sums:455:be97a4e9c6717819543245e5cc1a3770  usr/include/thread_db.h
-/var/lib/dpkg/info/keyboxd.md5sums:4:3ef574e79cb4dbbd4b8c1b8955432824  usr/share/doc/keyboxd/README.Debian
-/var/lib/dpkg/info/perl-modules-5.38.md5sums:501:8c16ffbf815b69126815c54326f5a4dd  usr/share/perl/5.38.2/Unicode/Collate/Locale/ar.pl
-/var/lib/dpkg/info/libpython3.12-stdlib:arm64.md5sums:184:e68ff8eae35a594754328c2b8a0648e7  usr/lib/python3.12/numbers.py
-/var/lib/dpkg/info/python3-pip.list:270:/usr/lib/python3/dist-packages/pip/_vendor/distlib/database.py
-/var/lib/dpkg/info/dpkg-dev.md5sums:300:32fa8abe9c54321380617b73d48ce9f5  usr/share/man/sv/man5/deb-postinst.5.gz
-/var/lib/dpkg/status-old:127: These are the canonical master copies of the user database files
-/var/lib/dpkg/status-old:129: group IDs. The update-passwd tool is provided to keep the system databases
-/var/lib/dpkg/status-old:1768:  * getent: get entries from administrative databases
-/var/lib/dpkg/status-old:2053: database library.
-/var/lib/dpkg/status-old:2055:Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
-/var/lib/dpkg/status-old:2147:  - Dpkg::Compression: simple database of available compression methods
-/var/lib/dpkg/status-old:2519:Description: GNU dbm database routines (legacy support runtime version) 
-/var/lib/dpkg/status-old:2520: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status-old:2547:Description: GNU dbm database routines (runtime version) 
-/var/lib/dpkg/status-old:2548: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status-old:3137: functions for retrieving message strings from databases constructed
-/var/lib/dpkg/status-old:4033: SQLite is a C library that implements an SQL database engine.
-/var/lib/dpkg/status-old:4034: Programs that link with the SQLite library can have SQL database
-/var/lib/dpkg/status-old:4800: database and individual terminfo entries, as well as some programs for
-/var/lib/dpkg/status-old:4932: development. Some of these modules include Web frameworks, database
-/app/config/settings.json:2:  "app_name": "myservice",
-/app/config/settings.json:6:  "database": {
-/app/config/settings.json:8:    "port": 5432,
-/app/config/settings.json:9:    "name": "mydb"
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 3 -type f \( -iname 'entrypoint*' -o -iname 'start*' -o -iname '*app*' -o -iname '*.sh' \) 2>/dev/null | head -n 50; tmuux wait -S done
-[?2004l/usr/bin/aarch64-linux-gnu-gp-collect-app
-/usr/sbin/start-stop-daemon
-/usr/sbin/applygnupgdefaults
-/etc/profile.d/01-locale-fix.sh
-[?2004hroot@ba8df569050f:/app# ps aux | head -n 50; tmux wait -S done
-[?2004lUSER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0   2384  1540 ?        Ss   20:16   0:00 sh -c sleep infinity
-root         7  0.0  0.0   2272  1176 ?        S    20:16   0:00 sleep infinity
-root        21  0.0  0.0   9980  4604 ?        Ss   20:16   0:00 tmux new-session -x 160 -y 40 -d -s agent ; set-option -t agent history-limit 50000 ; pipe-pane -t agent cat > /logs/agent.log
-root        22  0.0  0.0   4300  3616 pts/0    Ss   20:16   0:00 -bash
-root        24  0.0  0.0   2384  1536 ?        S    20:16   0:00 sh -c cat > /logs/agent.log
-root        27  0.0  0.0   2416  1196 ?        S    20:16   0:00 cat
-root       478  0.0  0.0   7632  3628 pts/0    R+   20:20   0:00 ps aux
-root       479  0.0  0.0   2284  1232 pts/0    S+   20:20   0:00 head -n 50
-[?2004hroot@ba8df569050f:/app# ls -la /logs && (tail -n 200 /logs/agent.log 2>/dev/null || true); tmux wait -S done
-[?2004ltotal 24
-drwxr-xr-x 3 root root    96 Mar 28 20:16 [0m[01;34m.[0m
-drwxr-xr-x 1 root root  4096 Mar 28 20:16 [01;34m..[0m
--rw-r--r-- 1 root root 20143 Mar 28 20:20 agent.log
-}
-[?2004hroot@ba8df569050f:/app# find /app -maxdepth 4 -type f -name '*.js' -o -name '*.ts' -o -name '*.py' -o -name '*.java' -o -name '*.go' -o -name '*.rb' | head; tmuxx wait -S done
-[?2004l[?2004hroot@ba8df569050f:/app# ls -la /app && find /app -maxdepth 3 -type f | head -n 50; tmux wait -S done
-[?2004ltotal 12
-drwxr-xr-x 1 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 20:16 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 19:30 [01;34mconfig[0m
-/app/config/settings.json
-[?2004hroot@ba8df569050f:/app# grep -R "settings.json" -n /app 2>/dev/null || true; grep -R "app_name" -n /app 2>/dev/null || true; grep -R "log_level" -n /app 2>/dev/nnull || true; tmux wait -S done
-[?2004l[35m[K/app/config/settings.json[m[K[36m[K:[m[K[32m[K2[m[K[36m[K:[m[K  "[01;31m[Kapp_name[m[K": "myservice",
-[35m[K/app/config/settings.json[m[K[36m[K:[m[K[32m[K5[m[K[36m[K:[m[K  "[01;31m[Klog_level[m[K": "info",
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 4 -type f -name 'settings.json' 2>/dev/null | head -n 20; tmux wait -S done
-[?2004l/app/config/settings.json
-[?2004hroot@ba8df569050f:/app# grep -R "myservice" -n / 2>/dev/null | head -n 20; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# ls -la / && ls -la /app && printenv | head -n 200; tmux wait -S done
-[?2004ltotal 60
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [0m[01;34m.[0m
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [01;34m..[0m
--rwxr-xr-x   1 root root    0 Mar 28 20:16 [01;32m.dockerenv[0m
-drwxr-xr-x   1 root root 4096 Mar 28 19:30 [01;34mapp[0m
-lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mbin[0m -> [01;34musr/bin[0m
-drwxr-xr-x   2 root root 4096 Apr 22  2024 [01;34mboot[0m
-drwxr-xr-x   5 root root  340 Mar 28 20:16 [01;34mdev[0m
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [01;34metc[0m
-drwxr-xr-x   3 root root 4096 Feb 17 02:12 [01;34mhome[0m
-lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mlib[0m -> [01;34musr/lib[0m
-drwxr-xr-x   3 root root   96 Mar 28 20:16 [01;34mlogs[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmedia[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmnt[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mopt[0m
-dr-xr-xr-x 254 root root    0 Mar 28 20:16 [01;34mproc[0m
-drwx------   2 root root 4096 Feb 17 02:12 [01;34mroot[0m
-drwxr-xr-x   4 root root 4096 Feb 17 02:12 [01;34mrun[0m
-lrwxrwxrwx   1 root root    8 Apr 22  2024 [01;36msbin[0m -> [01;34musr/sbin[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34msrv[0m
-dr-xr-xr-x  11 root root    0 Mar 28 20:06 [01;34msys[0m
-drwxrwxrwt   1 root root 4096 Mar 28 20:16 [30;42mtmp[0m
-drwxr-xr-x   1 root root 4096 Feb 17 02:06 [01;34musr[0m
-drwxr-xr-x   1 root root 4096 Feb 17 02:12 [01;34mvar[0m
-total 12
-drwxr-xr-x 1 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 20:16 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 19:30 [01;34mconfig[0m
-SHELL=/bin/bash
-TERM_PROGRAM_VERSION=3.4
-TMUX=/tmp/tmux-0/default,21,0
-HOSTNAME=ba8df569050f
-PWD=/app
-HOME=/root
-LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
-TEST_DIR=/tests
-TERM=tmux-256color
-TMUX_PANE=%0
-SHLVL=1
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-TERM_PROGRAM=tmux
-_=/usr/bin/printenv
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# ls -ლა /tests && find /tests -maxdepth 3 -type f | head -n 100; tmux wait -S done
-[?2004lls: invalid option -- '�'
-Try 'ls --help' for more information.
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# ls -la /tests && find /tests -maxdepth 3 -type f | head -n 200; tmux wait -S done
-[?2004lls: cannot access '/tests': No such file or directory
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# timeout 10s grep -R "log_level" -n / 2>/dev/null | head -n 20 || true; tmux wait -S done
-[?2004lTerminated
-[?2004hroot@ba8df569050f:/app# grep -R "\"database\"" -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# grep -R "5432\|mydb\|localhost\"\s*\," -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# grep -R "\"port\"[[:space:]]*:[[:space:]]*3000" -n /etc /var /app 2>/dev/null | head -n 20 || true; grep -R "\"debug\"[[:space:]]*:[[:spaace:]]*true" -n /etc /var /app 2>/dev/null | head -n 20 || true; grep -R "\"log_level\"[[:space:]]*:[[:space:]]*\"info\"" -n /etc /var /app 2>/dev/null | head -nn 20 || true; tmux wait -S done
-[?2004l/app/config/settings.json:3:  "port": 3000,
-/app/config/settings.json:4:  "debug": true,
-/app/config/settings.json:5:  "log_level": "info",
-[?2004hroot@ba8df569050f:/app# grep -R "mydb\|localhost\"\s*,\s*\"port\"\s*:\s*5432\|\"debug\"\s*:\s*true\|\"log_level\"\s*:\s*\"info\|\"app_name\"" -n / 2>/dev/null |  head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 5 -type f \( -iname '*compose*.yml' -o -iname 'docker-compose*.yml' -o -iname '*dockerfile*' -o -iname '*readme*' -o -inname '*.env*' \) 2>/dev/null | head -n 50; tmux wait -S done
-[?2004l/etc/terminfo/README
-/etc/alternatives/README
-/etc/sysctl.d/README.sysctl
-/etc/fonts/conf.d/README
-[?2004hroot@ba8df569050f:/app# timeout 10s grep -R "5432" -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004lTerminated
-[?2004hroot@ba8df569050f:/app# grep -R "mydb\|5432\|myservice\|database" -n /etc /var /root /app 2>/dev/null | head -n 100 || true; tmux wait -S done
-[?2004l/etc/alternatives/fakeroot:80:         stderr "database file \`$1' does not exist."
-/etc/systemd/system/timers.target.wants/dpkg-db-backup.timer:2:Description=Daily dpkg database backup timer
-/etc/debconf.conf:3:# except the first sets up a database for debconf to use. For details, see
-/etc/debconf.conf:6:# So first things first. This first stanza gives the names of two databases.
-/etc/debconf.conf:8:# Debconf will use this database to store the data you enter into it,
-/etc/debconf.conf:11:# Debconf will use this database to store static template data.
-/etc/debconf.conf:30:# Set up the configdb database. By default, it consists of a stack of two
-/etc/debconf.conf:31:# databases, one to hold passwords and one for everything else.
-/etc/debconf.conf:36:# Set up the templatedb database, which is a single flat text file
-/etc/debconf.conf:44:# people's needs, but debconf's database drivers can be used to do much
-/etc/debconf.conf:46:# data from another host, which is mounted over nfs or perhaps the database
-/etc/debconf.conf:47:# is accessed via LDAP. You don't want to write to the remote debconf database,
-/etc/debconf.conf:48:# just read from it, so you still need a local database for local changes.
-/etc/debconf.conf:50:# A remote NFS mounted database, read-only. It is optional; if debconf
-/etc/debconf.conf:58:# A remote LDAP database. It is also read-only. The password is really
-/etc/debconf.conf:59:# only necessary if the database is not accessible anonymously.
-/etc/debconf.conf:72:# A stack consisting of two databases. Values will be read from
-/etc/debconf.conf:73:# the first database in the stack to contain a value. In this example,
-/etc/debconf.conf:74:# writes always go to the first database.
-/etc/debconf.conf:80:# to make it use the combination of the databases.
-/etc/services:68:z3950		210/tcp		wais		# NISO Z39.50 database
-/etc/services:229:postgresql	5432/tcp	postgres	# PostgreSQL Database
-/etc/services:255:afs3-prserver	7002/udp			# users & groups database
-/etc/services:256:afs3-vlserver	7003/udp			# volume location database
-/etc/services:310:moira-db	775/tcp		moira_db	# Moira database
-/etc/rpc:19:database_svc	100016
-/etc/ssl/openssl.cnf:85:database	= $dir/index.txt	# database index file.
-/var/log/bootstrap.log:105:(Reading database ... 0 files and directories currently installed.)
-/var/log/bootstrap.log:127:(Reading database ... 41 files and directories currently installed.)
-/var/log/bootstrap.log:206:(Reading database ... 155 files and directories currently installed.)
-/var/log/bootstrap.log:229:(Reading database ... 434 files and directories currently installed.)
-/var/log/bootstrap.log:243:(Reading database ... 726 files and directories currently installed.)
-/var/log/bootstrap.log:252:(Reading database ... 1457 files and directories currently installed.)
-/var/log/bootstrap.log:257:(Reading database ... 1478 files and directories currently installed.)
-/var/log/bootstrap.log:825:(Reading database ... 3958 files and directories currently installed.)
-/var/log/apt/term.log:4:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
-/var/log/apt/term.log:20:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4709 files and directories currently installed.)
-/var/log/apt/term.log:56:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5715 files and directories currently installed.)
-/var/log/apt/term.log:79:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7803 files and directories currently installed.)
-/var/lib/dpkg/status:127: These are the canonical master copies of the user database files
-/var/lib/dpkg/status:129: group IDs. The update-passwd tool is provided to keep the system databases
-/var/lib/dpkg/status:1767:  * getent: get entries from administrative databases
-/var/lib/dpkg/status:2051: database library.
-/var/lib/dpkg/status:2053:Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
-/var/lib/dpkg/status:2145:  - Dpkg::Compression: simple database of available compression methods
-/var/lib/dpkg/status:2517:Description: GNU dbm database routines (legacy support runtime version) 
-/var/lib/dpkg/status:2518: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status:2545:Description: GNU dbm database routines (runtime version) 
-/var/lib/dpkg/status:2546: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status:3135: functions for retrieving message strings from databases constructed
-/var/lib/dpkg/status:4031: SQLite is a C library that implements an SQL database engine.
-/var/lib/dpkg/status:4032: Programs that link with the SQLite library can have SQL database
-/var/lib/dpkg/status:4798: database and individual terminfo entries, as well as some programs for
-/var/lib/dpkg/status:4930: development. Some of these modules include Web frameworks, database
-/var/lib/dpkg/info/procps.md5sums:97:72016be93cf5a89e5432a1cbe511ded0  usr/share/man/ro/man1/pgrep.1.gz
-/var/lib/dpkg/info/procps.postinst:55:		if [ -e /etc/psdatabase ] 
-/var/lib/dpkg/info/procps.postinst:57:			rm -f /etc/psdatabase
-/var/lib/dpkg/info/libc6:arm64.symbols:522: __nss_database_get@GLIBC_PRIVATE 0 1
-/var/lib/dpkg/info/libc6:arm64.symbols:523: __nss_database_lookup@GLIBC_2.17 2.17
-/var/lib/dpkg/info/openssl.md5sums:105:2f5432e68b007c62273e18a6f37b004f  usr/share/man/man7/EVP_KDF-X942-ASN1.7ssl.gz
-/var/lib/dpkg/info/ca-certificates.postrm:19:# Clear the debconf database as early as possible and signal debconf that
-/var/lib/dpkg/info/python3-pip.md5sums:239:b0e9b8f4b12eceed8eb02e3259c0c1d6  usr/lib/python3/dist-packages/pip/_vendor/distlib/database.py
-/var/lib/dpkg/info/python3-pip.md5sums:267:80df840e0ac823fa34bcfa543296ba35  usr/lib/python3/dist-packages/pip/_vendor/packaging/_manylinux.py
-/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:806:88c638ffac1963f516cb5432d7c779dc  usr/include/linux/usbip.h
-/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:177:49390352789420b5390ed32c1a15432b  usr/include/python3.12/objimpl.h
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1131: sqlite3_column_database_name16@Base 3.5.9
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1132: sqlite3_column_database_name@Base 3.5.9
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1167: sqlite3_database_file_object@Base 3.32.0
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1193: sqlite3_filename_database@Base 3.31.1
-/var/lib/dpkg/info/libc6-dev:arm64.md5sums:455:be97a4e9c6717819543245e5cc1a3770  usr/include/thread_db.h
-/var/lib/dpkg/info/keyboxd.md5sums:4:3ef574e79cb4dbbd4b8c1b8955432824  usr/share/doc/keyboxd/README.Debian
-/var/lib/dpkg/info/perl-modules-5.38.md5sums:501:8c16ffbf815b69126815c54326f5a4dd  usr/share/perl/5.38.2/Unicode/Collate/Locale/ar.pl
-/var/lib/dpkg/info/libpython3.12-stdlib:arm64.md5sums:184:e68ff8eae35a594754328c2b8a0648e7  usr/lib/python3.12/numbers.py
-/var/lib/dpkg/info/python3-pip.list:270:/usr/lib/python3/dist-packages/pip/_vendor/distlib/database.py
-/var/lib/dpkg/info/dpkg-dev.md5sums:300:32fa8abe9c54321380617b73d48ce9f5  usr/share/man/sv/man5/deb-postinst.5.gz
-/var/lib/dpkg/status-old:127: These are the canonical master copies of the user database files
-/var/lib/dpkg/status-old:129: group IDs. The update-passwd tool is provided to keep the system databases
-/var/lib/dpkg/status-old:1768:  * getent: get entries from administrative databases
-/var/lib/dpkg/status-old:2053: database library.
-/var/lib/dpkg/status-old:2055:Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
-/var/lib/dpkg/status-old:2147:  - Dpkg::Compression: simple database of available compression methods
-/var/lib/dpkg/status-old:2519:Description: GNU dbm database routines (legacy support runtime version) 
-/var/lib/dpkg/status-old:2520: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status-old:2547:Description: GNU dbm database routines (runtime version) 
-/var/lib/dpkg/status-old:2548: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status-old:3137: functions for retrieving message strings from databases constructed
-/var/lib/dpkg/status-old:4033: SQLite is a C library that implements an SQL database engine.
-/var/lib/dpkg/status-old:4034: Programs that link with the SQLite library can have SQL database
-/var/lib/dpkg/status-old:4800: database and individual terminfo entries, as well as some programs for
-/var/lib/dpkg/status-old:4932: development. Some of these modules include Web frameworks, database
-/app/config/settings.json:2:  "app_name": "myservice",
-/app/config/settings.json:6:  "database": {
-/app/config/settings.json:8:    "port": 5432,
-/app/config/settings.json:9:    "name": "mydb"
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 3 -type f \( -iname 'entrypoint*' -o -iname 'start*' -o -iname '*app*' -o -iname '*.sh' \) 2>/dev/null | head -n 50; tmuux wait -S done
-[?2004l/usr/bin/aarch64-linux-gnu-gp-collect-app
-/usr/sbin/start-stop-daemon
-/usr/sbin/applygnupgdefaults
-/etc/profile.d/01-locale-fix.sh
-[?2004hroot@ba8df569050f:/app# ps aux | head -n 50; tmux wait -S done
-[?2004lUSER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0   2384  1540 ?        Ss   20:16   0:00 sh -c sleep infinity
-root         7  0.0  0.0   2272  1176 ?        S    20:16   0:00 sleep infinity
-root        21  0.0  0.0   9980  4604 ?        Ss   20:16   0:00 tmux new-session -x 160 -y 40 -d -s agent ; set-option -t agent history-limit 50000 ; pipe-pane -t agent cat > /logs/agent.log
-root        22  0.0  0.0   4300  3616 pts/0    Ss   20:16   0:00 -bash
-root        24  0.0  0.0   2384  1536 ?        S    20:16   0:00 sh -c cat > /logs/agent.log
-root        27  0.0  0.0   2416  1196 ?        S    20:16   0:00 cat
-root       478  0.0  0.0   7632  3628 pts/0    R+   20:20   0:00 ps aux
-root       479  0.0  0.0   2284  1232 pts/0    S+   20:20   0:00 head -n 50
-[?2004hroot@ba8df569050f:/app# ls -la /logs && (tail -n 200 /logs/agent.log 2>/dev/null || true); tmux wait -S done
-[?2004ltotal 24
-drwxr-xr-x 3 root root    96 Mar 28 20:16 [0m[01;34m.[0m
-drwxr-xr-x 1 root root  4096 Mar 28 20:16 [01;34m..[0m
--rw-r--r-- 1 root root 20143 Mar 28 20:20 agent.log
-[?2004hroot@ba8df569050f:/app# tail -n 200 /logs/agent.log 2>/dev/null || true; tmux wait -S done
-[?2004l[?2004l[?2004hroot@ba8df569050f:/app# ls -la /app && find /app -maxdepth 3 -type f | head -n 50; tmux wait -S done
-[?2004ltotal 12
-drwxr-xr-x 1 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 20:16 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 19:30 [01;34mconfig[0m
-/app/config/settings.json
-[?2004hroot@ba8df569050f:/app# grep -R "settings.json" -n /app 2>/dev/null || true; grep -R "app_name" -n /app 2>/dev/null || true; grep -R "log_level" -n /app 2>/dev/nnull || true; tmux wait -S done
-[?2004l[35m[K/app/config/settings.json[m[K[36m[K:[m[K[32m[K2[m[K[36m[K:[m[K  "[01;31m[Kapp_name[m[K": "myservice",
-[35m[K/app/config/settings.json[m[K[36m[K:[m[K[32m[K5[m[K[36m[K:[m[K  "[01;31m[Klog_level[m[K": "info",
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 4 -type f -name 'settings.json' 2>/dev/null | head -n 20; tmux wait -S done
-[?2004l/app/config/settings.json
-[?2004hroot@ba8df569050f:/app# grep -R "myservice" -n / 2>/dev/null | head -n 20; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# ls -la / && ls -la /app && printenv | head -n 200; tmux wait -S done
-[?2004ltotal 60
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [0m[01;34m.[0m
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [01;34m..[0m
--rwxr-xr-x   1 root root    0 Mar 28 20:16 [01;32m.dockerenv[0m
-drwxr-xr-x   1 root root 4096 Mar 28 19:30 [01;34mapp[0m
-lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mbin[0m -> [01;34musr/bin[0m
-drwxr-xr-x   2 root root 4096 Apr 22  2024 [01;34mboot[0m
-drwxr-xr-x   5 root root  340 Mar 28 20:16 [01;34mdev[0m
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [01;34metc[0m
-drwxr-xr-x   3 root root 4096 Feb 17 02:12 [01;34mhome[0m
-lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mlib[0m -> [01;34musr/lib[0m
-drwxr-xr-x   3 root root   96 Mar 28 20:16 [01;34mlogs[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmedia[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmnt[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mopt[0m
-dr-xr-xr-x 254 root root    0 Mar 28 20:16 [01;34mproc[0m
-drwx------   2 root root 4096 Feb 17 02:12 [01;34mroot[0m
-drwxr-xr-x   4 root root 4096 Feb 17 02:12 [01;34mrun[0m
-lrwxrwxrwx   1 root root    8 Apr 22  2024 [01;36msbin[0m -> [01;34musr/sbin[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34msrv[0m
-dr-xr-xr-x  11 root root    0 Mar 28 20:06 [01;34msys[0m
-drwxrwxrwt   1 root root 4096 Mar 28 20:16 [30;42mtmp[0m
-drwxr-xr-x   1 root root 4096 Feb 17 02:06 [01;34musr[0m
-drwxr-xr-x   1 root root 4096 Feb 17 02:12 [01;34mvar[0m
-total 12
-drwxr-xr-x 1 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 20:16 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 19:30 [01;34mconfig[0m
-SHELL=/bin/bash
-TERM_PROGRAM_VERSION=3.4
-TMUX=/tmp/tmux-0/default,21,0
-HOSTNAME=ba8df569050f
-PWD=/app
-HOME=/root
-LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
-TEST_DIR=/tests
-TERM=tmux-256color
-TMUX_PANE=%0
-SHLVL=1
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-TERM_PROGRAM=tmux
-_=/usr/bin/printenv
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# ls -ლა /tests && find /tests -maxdepth 3 -type f | head -n 100; tmux wait -S done
-[?2004lls: invalid option -- '�'
-Try 'ls --help' for more information.
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# ls -la /tests && find /tests -maxdepth 3 -type f | head -n 200; tmux wait -S done
-[?2004lls: cannot access '/tests': No such file or directory
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# timeout 10s grep -R "log_level" -n / 2>/dev/null | head -n 20 || true; tmux wait -S done
-[?2004lTerminated
-[?2004hroot@ba8df569050f:/app# grep -R "\"database\"" -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# grep -R "5432\|mydb\|localhost\"\s*\," -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# grep -R "\"port\"[[:space:]]*:[[:space:]]*3000" -n /etc /var /app 2>/dev/null | head -n 20 || true; grep -R "\"debug\"[[:space:]]*:[[:spaace:]]*true" -n /etc /var /app 2>/dev/null | head -n 20 || true; grep -R "\"log_level\"[[:space:]]*:[[:space:]]*\"info\"" -n /etc /var /app 2>/dev/null | head -nn 20 || true; tmux wait -S done
-[?2004l/app/config/settings.json:3:  "port": 3000,
-/app/config/settings.json:4:  "debug": true,
-/app/config/settings.json:5:  "log_level": "info",
-[?2004hroot@ba8df569050f:/app# grep -R "mydb\|localhost\"\s*,\s*\"port\"\s*:\s*5432\|\"debug\"\s*:\s*true\|\"log_level\"\s*:\s*\"info\|\"app_name\"" -n / 2>/dev/null |  head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 5 -type f \( -iname '*compose*.yml' -o -iname 'docker-compose*.yml' -o -iname '*dockerfile*' -o -iname '*readme*' -o -inname '*.env*' \) 2>/dev/null | head -n 50; tmux wait -S done
-[?2004l/etc/terminfo/README
-/etc/alternatives/README
-/etc/sysctl.d/README.sysctl
-/etc/fonts/conf.d/README
-[?2004hroot@ba8df569050f:/app# timeout 10s grep -R "5432" -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004lTerminated
-[?2004hroot@ba8df569050f:/app# grep -R "mydb\|5432\|myservice\|database" -n /etc /var /root /app 2>/dev/null | head -n 100 || true; tmux wait -S done
-[?2004l/etc/alternatives/fakeroot:80:         stderr "database file \`$1' does not exist."
-/etc/systemd/system/timers.target.wants/dpkg-db-backup.timer:2:Description=Daily dpkg database backup timer
-/etc/debconf.conf:3:# except the first sets up a database for debconf to use. For details, see
-/etc/debconf.conf:6:# So first things first. This first stanza gives the names of two databases.
-/etc/debconf.conf:8:# Debconf will use this database to store the data you enter into it,
-/etc/debconf.conf:11:# Debconf will use this database to store static template data.
-/etc/debconf.conf:30:# Set up the configdb database. By default, it consists of a stack of two
-/etc/debconf.conf:31:# databases, one to hold passwords and one for everything else.
-/etc/debconf.conf:36:# Set up the templatedb database, which is a single flat text file
-/etc/debconf.conf:44:# people's needs, but debconf's database drivers can be used to do much
-/etc/debconf.conf:46:# data from another host, which is mounted over nfs or perhaps the database
-/etc/debconf.conf:47:# is accessed via LDAP. You don't want to write to the remote debconf database,
-/etc/debconf.conf:48:# just read from it, so you still need a local database for local changes.
-/etc/debconf.conf:50:# A remote NFS mounted database, read-only. It is optional; if debconf
-/etc/debconf.conf:58:# A remote LDAP database. It is also read-only. The password is really
-/etc/debconf.conf:59:# only necessary if the database is not accessible anonymously.
-/etc/debconf.conf:72:# A stack consisting of two databases. Values will be read from
-/etc/debconf.conf:73:# the first database in the stack to contain a value. In this example,
-/etc/debconf.conf:74:# writes always go to the first database.
-/etc/debconf.conf:80:# to make it use the combination of the databases.
-/etc/services:68:z3950		210/tcp		wais		# NISO Z39.50 database
-/etc/services:229:postgresql	5432/tcp	postgres	# PostgreSQL Database
-/etc/services:255:afs3-prserver	7002/udp			# users & groups database
-/etc/services:256:afs3-vlserver	7003/udp			# volume location database
-/etc/services:310:moira-db	775/tcp		moira_db	# Moira database
-/etc/rpc:19:database_svc	100016
-/etc/ssl/openssl.cnf:85:database	= $dir/index.txt	# database index file.
-/var/log/bootstrap.log:105:(Reading database ... 0 files and directories currently installed.)
-/var/log/bootstrap.log:127:(Reading database ... 41 files and directories currently installed.)
-/var/log/bootstrap.log:206:(Reading database ... 155 files and directories currently installed.)
-/var/log/bootstrap.log:229:(Reading database ... 434 files and directories currently installed.)
-/var/log/bootstrap.log:243:(Reading database ... 726 files and directories currently installed.)
-/var/log/bootstrap.log:252:(Reading database ... 1457 files and directories currently installed.)
-/var/log/bootstrap.log:257:(Reading database ... 1478 files and directories currently installed.)
-/var/log/bootstrap.log:825:(Reading database ... 3958 files and directories currently installed.)
-/var/log/apt/term.log:4:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
-/var/log/apt/term.log:20:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4709 files and directories currently installed.)
-/var/log/apt/term.log:56:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5715 files and directories currently installed.)
-/var/log/apt/term.log:79:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7803 files and directories currently installed.)
-/var/lib/dpkg/status:127: These are the canonical master copies of the user database files
-/var/lib/dpkg/status:129: group IDs. The update-passwd tool is provided to keep the system databases
-/var/lib/dpkg/status:1767:  * getent: get entries from administrative databases
-/var/lib/dpkg/status:2051: database library.
-/var/lib/dpkg/status:2053:Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
-/var/lib/dpkg/status:2145:  - Dpkg::Compression: simple database of available compression methods
-/var/lib/dpkg/status:2517:Description: GNU dbm database routines (legacy support runtime version) 
-/var/lib/dpkg/status:2518: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status:2545:Description: GNU dbm database routines (runtime version) 
-/var/lib/dpkg/status:2546: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status:3135: functions for retrieving message strings from databases constructed
-/var/lib/dpkg/status:4031: SQLite is a C library that implements an SQL database engine.
-/var/lib/dpkg/status:4032: Programs that link with the SQLite library can have SQL database
-/var/lib/dpkg/status:4798: database and individual terminfo entries, as well as some programs for
-/var/lib/dpkg/status:4930: development. Some of these modules include Web frameworks, database
-/var/lib/dpkg/info/procps.md5sums:97:72016be93cf5a89e5432a1cbe511ded0  usr/share/man/ro/man1/pgrep.1.gz
-/var/lib/dpkg/info/procps.postinst:55:		if [ -e /etc/psdatabase ] 
-/var/lib/dpkg/info/procps.postinst:57:			rm -f /etc/psdatabase
-/var/lib/dpkg/info/libc6:arm64.symbols:522: __nss_database_get@GLIBC_PRIVATE 0 1
-/var/lib/dpkg/info/libc6:arm64.symbols:523: __nss_database_lookup@GLIBC_2.17 2.17
-/var/lib/dpkg/info/openssl.md5sums:105:2f5432e68b007c62273e18a6f37b004f  usr/share/man/man7/EVP_KDF-X942-ASN1.7ssl.gz
-/var/lib/dpkg/info/ca-certificates.postrm:19:# Clear the debconf database as early as possible and signal debconf that
-/var/lib/dpkg/info/python3-pip.md5sums:239:b0e9b8f4b12eceed8eb02e3259c0c1d6  usr/lib/python3/dist-packages/pip/_vendor/distlib/database.py
-/var/lib/dpkg/info/python3-pip.md5sums:267:80df840e0ac823fa34bcfa543296ba35  usr/lib/python3/dist-packages/pip/_vendor/packaging/_manylinux.py
-/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:806:88c638ffac1963f516cb5432d7c779dc  usr/include/linux/usbip.h
-/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:177:49390352789420b5390ed32c1a15432b  usr/include/python3.12/objimpl.h
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1131: sqlite3_column_database_name16@Base 3.5.9
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1132: sqlite3_column_database_name@Base 3.5.9
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1167: sqlite3_database_file_object@Base 3.32.0
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1193: sqlite3_filename_database@Base 3.31.1
-/var/lib/dpkg/info/libc6-dev:arm64.md5sums:455:be97a4e9c6717819543245e5cc1a3770  usr/include/thread_db.h
-/var/lib/dpkg/info/keyboxd.md5sums:4:3ef574e79cb4dbbd4b8c1b8955432824  usr/share/doc/keyboxd/README.Debian
-/var/lib/dpkg/info/perl-modules-5.38.md5sums:501:8c16ffbf815b69126815c54326f5a4dd  usr/share/perl/5.38.2/Unicode/Collate/Locale/ar.pl
-/var/lib/dpkg/info/libpython3.12-stdlib:arm64.md5sums:184:e68ff8eae35a594754328c2b8a0648e7  usr/lib/python3.12/numbers.py
-/var/lib/dpkg/info/python3-pip.list:270:/usr/lib/python3/dist-packages/pip/_vendor/distlib/database.py
-/var/lib/dpkg/info/dpkg-dev.md5sums:300:32fa8abe9c54321380617b73d48ce9f5  usr/share/man/sv/man5/deb-postinst.5.gz
-/var/lib/dpkg/status-old:127: These are the canonical master copies of the user database files
-/var/lib/dpkg/status-old:129: group IDs. The update-passwd tool is provided to keep the system databases
-/var/lib/dpkg/status-old:1768:  * getent: get entries from administrative databases
-/var/lib/dpkg/status-old:2053: database library.
-/var/lib/dpkg/status-old:2055:Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
-/var/lib/dpkg/status-old:2147:  - Dpkg::Compression: simple database of available compression methods
-/var/lib/dpkg/status-old:2519:Description: GNU dbm database routines (legacy support runtime version) 
-/var/lib/dpkg/status-old:2520: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status-old:2547:Description: GNU dbm database routines (runtime version) 
-/var/lib/dpkg/status-old:2548: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status-old:3137: functions for retrieving message strings from databases constructed
-/var/lib/dpkg/status-old:4033: SQLite is a C library that implements an SQL database engine.
-/var/lib/dpkg/status-old:4034: Programs that link with the SQLite library can have SQL database
-/var/lib/dpkg/status-old:4800: database and individual terminfo entries, as well as some programs for
-/var/lib/dpkg/status-old:4932: development. Some of these modules include Web frameworks, database
-/app/config/settings.json:2:  "app_name": "myservice",
-/app/config/settings.json:6:  "database": {
-/app/config/settings.json:8:    "port": 5432,
-/app/config/settings.json:9:    "name": "mydb"
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 3 -type f \( -iname 'entrypoint*' -o -iname 'start*' -o -iname '*app*' -o -iname '*.sh' \) 2>/dev/null | head -n 50; tmuux wait -S done
-[?2004l/usr/bin/aarch64-linux-gnu-gp-collect-app
-/usr/sbin/start-stop-daemon
-/usr/sbin/applygnupgdefaults
-/etc/profile.d/01-locale-fix.sh
-[?2004hroot@ba8df569050f:/app# ps aux | head -n 50; tmux wait -S done
-[?2004lUSER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0   2384  1540 ?        Ss   20:16   0:00 sh -c sleep infinity
-root         7  0.0  0.0   2272  1176 ?        S    20:16   0:00 sleep infinity
-root        21  0.0  0.0   9980  4604 ?        Ss   20:16   0:00 tmux new-session -x 160 -y 40 -d -s agent ; set-option -t agent history-limit 50000 ; pipe-pane -t agent cat > /logs/agent.log
-root        22  0.0  0.0   4300  3616 pts/0    Ss   20:16   0:00 -bash
-root        24  0.0  0.0   2384  1536 ?        S    20:16   0:00 sh -c cat > /logs/agent.log
-root        27  0.0  0.0   2416  1196 ?        S    20:16   0:00 cat
-root       478  0.0  0.0   7632  3628 pts/0    R+   20:20   0:00 ps aux
-root       479  0.0  0.0   2284  1232 pts/0    S+   20:20   0:00 head -n 50
-[?2004hroot@ba8df569050f:/app# ls -la /logs && (tail -n 200 /logs/agent.log 2>/dev/null || true); tmux wait -S done
-[?2004ltotal 24
-drwxr-xr-x 3 root root    96 Mar 28 20:16 [0m[01;34m.[0m
-drwxr-xr-x 1 root root  4096 Mar 28 20:16 [01;34m..[0m
--rw-r--r-- 1 root root 20143 Mar 28 20:20 agent.log
-[?2004hroot@ba8df569050f:/app# tail -n 200 /logs/agent.log 2>/dev/null || true; tmux wait -S done
-[?2004l[?2004hroot@ba8df569050f:/app# sed -n '1,200p' /logs/agent.log 2>/dev/null || true; tmux wait -S done
-[?2004l[?2004hroot@ba8df569050f:/app# ls -l /app/config && sed -n '1,200p' /app/config/settings.json; tmux wait -S done
-[?2004ltotal 4
--rw-r--r-- 1 root root 169 Mar 28 19:30 settings.json
-{
-  "app_name": "myservice",
-  "port": 3000,
-  "debug": true,
-  "log_level": "info",
-  "database": {
-    "host": "localhost",
-    "port": 5432,
-    "name": "mydb"
-  }
-}
-[?2004hroot@ba8df569050f:/app# find /app -maxdepth 4 -type f -name '*.js' -o -name '*.ts' -o -name '*.py' -o -name '*.java' -o -name '*.go' -o -name '*.rb' | head; tmuxx wait -S done
-[?2004l[?2004hroot@ba8df569050f:/app# ls -la /app && find /app -maxdepth 3 -type f | head -n 50; tmux wait -S done
-[?2004ltotal 12
-drwxr-xr-x 1 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 20:16 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 19:30 [01;34mconfig[0m
-/app/config/settings.json
-[?2004hroot@ba8df569050f:/app# grep -R "settings.json" -n /app 2>/dev/null || true; grep -R "app_name" -n /app 2>/dev/null || true; grep -R "log_level" -n /app 2>/dev/nnull || true; tmux wait -S done
-[?2004l[35m[K/app/config/settings.json[m[K[36m[K:[m[K[32m[K2[m[K[36m[K:[m[K  "[01;31m[Kapp_name[m[K": "myservice",
-[35m[K/app/config/settings.json[m[K[36m[K:[m[K[32m[K5[m[K[36m[K:[m[K  "[01;31m[Klog_level[m[K": "info",
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 4 -type f -name 'settings.json' 2>/dev/null | head -n 20; tmux wait -S done
-[?2004l/app/config/settings.json
-[?2004hroot@ba8df569050f:/app# grep -R "myservice" -n / 2>/dev/null | head -n 20; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# ls -la / && ls -la /app && printenv | head -n 200; tmux wait -S done
-[?2004ltotal 60
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [0m[01;34m.[0m
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [01;34m..[0m
--rwxr-xr-x   1 root root    0 Mar 28 20:16 [01;32m.dockerenv[0m
-drwxr-xr-x   1 root root 4096 Mar 28 19:30 [01;34mapp[0m
-lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mbin[0m -> [01;34musr/bin[0m
-drwxr-xr-x   2 root root 4096 Apr 22  2024 [01;34mboot[0m
-drwxr-xr-x   5 root root  340 Mar 28 20:16 [01;34mdev[0m
-drwxr-xr-x   1 root root 4096 Mar 28 20:16 [01;34metc[0m
-drwxr-xr-x   3 root root 4096 Feb 17 02:12 [01;34mhome[0m
-lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mlib[0m -> [01;34musr/lib[0m
-drwxr-xr-x   3 root root   96 Mar 28 20:16 [01;34mlogs[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmedia[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmnt[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mopt[0m
-dr-xr-xr-x 254 root root    0 Mar 28 20:16 [01;34mproc[0m
-drwx------   2 root root 4096 Feb 17 02:12 [01;34mroot[0m
-drwxr-xr-x   4 root root 4096 Feb 17 02:12 [01;34mrun[0m
-lrwxrwxrwx   1 root root    8 Apr 22  2024 [01;36msbin[0m -> [01;34musr/sbin[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34msrv[0m
-dr-xr-xr-x  11 root root    0 Mar 28 20:06 [01;34msys[0m
-drwxrwxrwt   1 root root 4096 Mar 28 20:16 [30;42mtmp[0m
-drwxr-xr-x   1 root root 4096 Feb 17 02:06 [01;34musr[0m
-drwxr-xr-x   1 root root 4096 Feb 17 02:12 [01;34mvar[0m
-total 12
-drwxr-xr-x 1 root root 4096 Mar 28 19:30 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 20:16 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 19:30 [01;34mconfig[0m
-SHELL=/bin/bash
-TERM_PROGRAM_VERSION=3.4
-TMUX=/tmp/tmux-0/default,21,0
-HOSTNAME=ba8df569050f
-PWD=/app
-HOME=/root
-LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
-TEST_DIR=/tests
-TERM=tmux-256color
-TMUX_PANE=%0
-SHLVL=1
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-TERM_PROGRAM=tmux
-_=/usr/bin/printenv
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# ls -ლა /tests && find /tests -maxdepth 3 -type f | head -n 100; tmux wait -S done
-[?2004lls: invalid option -- '�'
-Try 'ls --help' for more information.
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# ls -la /tests && find /tests -maxdepth 3 -type f | head -n 200; tmux wait -S done
-[?2004lls: cannot access '/tests': No such file or directory
-[?2004hroot@ba8df569050f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@ba8df569050f:/app# timeout 10s grep -R "log_level" -n / 2>/dev/null | head -n 20 || true; tmux wait -S done
-[?2004lTerminated
-[?2004hroot@ba8df569050f:/app# grep -R "\"database\"" -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# grep -R "5432\|mydb\|localhost\"\s*\," -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# grep -R "\"port\"[[:space:]]*:[[:space:]]*3000" -n /etc /var /app 2>/dev/null | head -n 20 || true; grep -R "\"debug\"[[:space:]]*:[[:spaace:]]*true" -n /etc /var /app 2>/dev/null | head -n 20 || true; grep -R "\"log_level\"[[:space:]]*:[[:space:]]*\"info\"" -n /etc /var /app 2>/dev/null | head -nn 20 || true; tmux wait -S done
-[?2004l/app/config/settings.json:3:  "port": 3000,
-/app/config/settings.json:4:  "debug": true,
-/app/config/settings.json:5:  "log_level": "info",
-[?2004hroot@ba8df569050f:/app# grep -R "mydb\|localhost\"\s*,\s*\"port\"\s*:\s*5432\|\"debug\"\s*:\s*true\|\"log_level\"\s*:\s*\"info\|\"app_name\"" -n / 2>/dev/null |  head -n 50 || true; tmux wait -S done
-[?2004l^C
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 5 -type f \( -iname '*compose*.yml' -o -iname 'docker-compose*.yml' -o -iname '*dockerfile*' -o -iname '*readme*' -o -inname '*.env*' \) 2>/dev/null | head -n 50; tmux wait -S done
-[?2004l/etc/terminfo/README
-/etc/alternatives/README
-/etc/sysctl.d/README.sysctl
-/etc/fonts/conf.d/README
-[?2004hroot@ba8df569050f:/app# timeout 10s grep -R "5432" -n / 2>/dev/null | head -n 50 || true; tmux wait -S done
-[?2004lTerminated
-[?2004hroot@ba8df569050f:/app# grep -R "mydb\|5432\|myservice\|database" -n /etc /var /root /app 2>/dev/null | head -n 100 || true; tmux wait -S done
-[?2004l/etc/alternatives/fakeroot:80:         stderr "database file \`$1' does not exist."
-/etc/systemd/system/timers.target.wants/dpkg-db-backup.timer:2:Description=Daily dpkg database backup timer
-/etc/debconf.conf:3:# except the first sets up a database for debconf to use. For details, see
-/etc/debconf.conf:6:# So first things first. This first stanza gives the names of two databases.
-/etc/debconf.conf:8:# Debconf will use this database to store the data you enter into it,
-/etc/debconf.conf:11:# Debconf will use this database to store static template data.
-/etc/debconf.conf:30:# Set up the configdb database. By default, it consists of a stack of two
-/etc/debconf.conf:31:# databases, one to hold passwords and one for everything else.
-/etc/debconf.conf:36:# Set up the templatedb database, which is a single flat text file
-/etc/debconf.conf:44:# people's needs, but debconf's database drivers can be used to do much
-/etc/debconf.conf:46:# data from another host, which is mounted over nfs or perhaps the database
-/etc/debconf.conf:47:# is accessed via LDAP. You don't want to write to the remote debconf database,
-/etc/debconf.conf:48:# just read from it, so you still need a local database for local changes.
-/etc/debconf.conf:50:# A remote NFS mounted database, read-only. It is optional; if debconf
-/etc/debconf.conf:58:# A remote LDAP database. It is also read-only. The password is really
-/etc/debconf.conf:59:# only necessary if the database is not accessible anonymously.
-/etc/debconf.conf:72:# A stack consisting of two databases. Values will be read from
-/etc/debconf.conf:73:# the first database in the stack to contain a value. In this example,
-/etc/debconf.conf:74:# writes always go to the first database.
-/etc/debconf.conf:80:# to make it use the combination of the databases.
-/etc/services:68:z3950		210/tcp		wais		# NISO Z39.50 database
-/etc/services:229:postgresql	5432/tcp	postgres	# PostgreSQL Database
-/etc/services:255:afs3-prserver	7002/udp			# users & groups database
-/etc/services:256:afs3-vlserver	7003/udp			# volume location database
-/etc/services:310:moira-db	775/tcp		moira_db	# Moira database
-/etc/rpc:19:database_svc	100016
-/etc/ssl/openssl.cnf:85:database	= $dir/index.txt	# database index file.
-/var/log/bootstrap.log:105:(Reading database ... 0 files and directories currently installed.)
-/var/log/bootstrap.log:127:(Reading database ... 41 files and directories currently installed.)
-/var/log/bootstrap.log:206:(Reading database ... 155 files and directories currently installed.)
-/var/log/bootstrap.log:229:(Reading database ... 434 files and directories currently installed.)
-/var/log/bootstrap.log:243:(Reading database ... 726 files and directories currently installed.)
-/var/log/bootstrap.log:252:(Reading database ... 1457 files and directories currently installed.)
-/var/log/bootstrap.log:257:(Reading database ... 1478 files and directories currently installed.)
-/var/log/bootstrap.log:825:(Reading database ... 3958 files and directories currently installed.)
-/var/log/apt/term.log:4:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4376 files and directories currently installed.)
-/var/log/apt/term.log:20:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 4709 files and directories currently installed.)
-/var/log/apt/term.log:56:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 5715 files and directories currently installed.)
-/var/log/apt/term.log:79:(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 7803 files and directories currently installed.)
-/var/lib/dpkg/status:127: These are the canonical master copies of the user database files
-/var/lib/dpkg/status:129: group IDs. The update-passwd tool is provided to keep the system databases
-/var/lib/dpkg/status:1767:  * getent: get entries from administrative databases
-/var/lib/dpkg/status:2051: database library.
-/var/lib/dpkg/status:2053:Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
-/var/lib/dpkg/status:2145:  - Dpkg::Compression: simple database of available compression methods
-/var/lib/dpkg/status:2517:Description: GNU dbm database routines (legacy support runtime version) 
-/var/lib/dpkg/status:2518: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status:2545:Description: GNU dbm database routines (runtime version) 
-/var/lib/dpkg/status:2546: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status:3135: functions for retrieving message strings from databases constructed
-/var/lib/dpkg/status:4031: SQLite is a C library that implements an SQL database engine.
-/var/lib/dpkg/status:4032: Programs that link with the SQLite library can have SQL database
-/var/lib/dpkg/status:4798: database and individual terminfo entries, as well as some programs for
-/var/lib/dpkg/status:4930: development. Some of these modules include Web frameworks, database
-/var/lib/dpkg/info/procps.md5sums:97:72016be93cf5a89e5432a1cbe511ded0  usr/share/man/ro/man1/pgrep.1.gz
-/var/lib/dpkg/info/procps.postinst:55:		if [ -e /etc/psdatabase ] 
-/var/lib/dpkg/info/procps.postinst:57:			rm -f /etc/psdatabase
-/var/lib/dpkg/info/libc6:arm64.symbols:522: __nss_database_get@GLIBC_PRIVATE 0 1
-/var/lib/dpkg/info/libc6:arm64.symbols:523: __nss_database_lookup@GLIBC_2.17 2.17
-/var/lib/dpkg/info/openssl.md5sums:105:2f5432e68b007c62273e18a6f37b004f  usr/share/man/man7/EVP_KDF-X942-ASN1.7ssl.gz
-/var/lib/dpkg/info/ca-certificates.postrm:19:# Clear the debconf database as early as possible and signal debconf that
-/var/lib/dpkg/info/python3-pip.md5sums:239:b0e9b8f4b12eceed8eb02e3259c0c1d6  usr/lib/python3/dist-packages/pip/_vendor/distlib/database.py
-/var/lib/dpkg/info/python3-pip.md5sums:267:80df840e0ac823fa34bcfa543296ba35  usr/lib/python3/dist-packages/pip/_vendor/packaging/_manylinux.py
-/var/lib/dpkg/info/linux-libc-dev:arm64.md5sums:806:88c638ffac1963f516cb5432d7c779dc  usr/include/linux/usbip.h
-/var/lib/dpkg/info/libpython3.12-dev:arm64.md5sums:177:49390352789420b5390ed32c1a15432b  usr/include/python3.12/objimpl.h
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1131: sqlite3_column_database_name16@Base 3.5.9
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1132: sqlite3_column_database_name@Base 3.5.9
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1167: sqlite3_database_file_object@Base 3.32.0
-/var/lib/dpkg/info/libsqlite3-0:arm64.symbols:1193: sqlite3_filename_database@Base 3.31.1
-/var/lib/dpkg/info/libc6-dev:arm64.md5sums:455:be97a4e9c6717819543245e5cc1a3770  usr/include/thread_db.h
-/var/lib/dpkg/info/keyboxd.md5sums:4:3ef574e79cb4dbbd4b8c1b8955432824  usr/share/doc/keyboxd/README.Debian
-/var/lib/dpkg/info/perl-modules-5.38.md5sums:501:8c16ffbf815b69126815c54326f5a4dd  usr/share/perl/5.38.2/Unicode/Collate/Locale/ar.pl
-/var/lib/dpkg/info/libpython3.12-stdlib:arm64.md5sums:184:e68ff8eae35a594754328c2b8a0648e7  usr/lib/python3.12/numbers.py
-/var/lib/dpkg/info/python3-pip.list:270:/usr/lib/python3/dist-packages/pip/_vendor/distlib/database.py
-/var/lib/dpkg/info/dpkg-dev.md5sums:300:32fa8abe9c54321380617b73d48ce9f5  usr/share/man/sv/man5/deb-postinst.5.gz
-/var/lib/dpkg/status-old:127: These are the canonical master copies of the user database files
-/var/lib/dpkg/status-old:129: group IDs. The update-passwd tool is provided to keep the system databases
-/var/lib/dpkg/status-old:1768:  * getent: get entries from administrative databases
-/var/lib/dpkg/status-old:2053: database library.
-/var/lib/dpkg/status-old:2055:Homepage: http://www.oracle.com/technetwork/database/database-technologies/berkeleydb/overview/index.html
-/var/lib/dpkg/status-old:2147:  - Dpkg::Compression: simple database of available compression methods
-/var/lib/dpkg/status-old:2519:Description: GNU dbm database routines (legacy support runtime version) 
-/var/lib/dpkg/status-old:2520: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status-old:2547:Description: GNU dbm database routines (runtime version) 
-/var/lib/dpkg/status-old:2548: GNU dbm ('gdbm') is a library of database functions that use extendible
-/var/lib/dpkg/status-old:3137: functions for retrieving message strings from databases constructed
-/var/lib/dpkg/status-old:4033: SQLite is a C library that implements an SQL database engine.
-/var/lib/dpkg/status-old:4034: Programs that link with the SQLite library can have SQL database
-/var/lib/dpkg/status-old:4800: database and individual terminfo entries, as well as some programs for
-/var/lib/dpkg/status-old:4932: development. Some of these modules include Web frameworks, database
-/app/config/settings.json:2:  "app_name": "myservice",
-/app/config/settings.json:6:  "database": {
-/app/config/settings.json:8:    "port": 5432,
-/app/config/settings.json:9:    "name": "mydb"
-[?2004hroot@ba8df569050f:/app# find / -maxdepth 3 -type f \( -iname 'entrypoint*' -o -iname 'start*' -o -iname '*app*' -o -iname '*.sh' \) 2>/dev/null | head -n 50; tmuux wait -S done
-[?2004l/usr/bin/aarch64-linux-gnu-gp-collect-app
-/usr/sbin/start-stop-daemon
-/usr/sbin/applygnupgdefaults
-/etc/profile.d/01-locale-fix.sh
-[?2004hroot@ba8df569050f:/app# ps aux | head -n 50; tmux wait -S done
-[?2004lUSER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-[?2004hroot@ba8df569050f:/app# 

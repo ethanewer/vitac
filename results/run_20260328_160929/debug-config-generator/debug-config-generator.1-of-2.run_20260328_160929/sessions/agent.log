@@ -1,11 +1,0 @@
-[?2004hroot@fff216d71de4:/app# run-code gen_config.py; tmux wait -S done
-[?2004lTraceback (most recent call last):
-  File "/app/src/gen_config.py", line 20, in <module>
-    config = generate_config(
-             ^^^^^^^^^^^^^^^^
-  File "/app/src/gen_config.py", line 10, in generate_config
-    proxy_pass http://{upstream_host}:{port}
-                                       ^^^^
-NameError: name 'port' is not defined
-[?2004hroot@fff216d71de4:/app# cat > fixed.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> 

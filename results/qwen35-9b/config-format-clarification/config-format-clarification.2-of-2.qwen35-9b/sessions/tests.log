@@ -1,34 +1,0 @@
-[?2004hroot@7d37cc25b774:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
-[?2004l[?2004hroot@7d37cc25b774:/app# bash /tests/run-tests.sh; tmux wait -S done
-[?2004l[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv[0m[33m
-[0m[1m===================================================================== test session starts ======================================================================[0m
-platform linux -- Python 3.12.3, pytest-9.0.2, pluggy-1.6.0 -- /usr/bin/python3
-cachedir: .pytest_cache
-rootdir: /tests
-[1mcollecting ... [0m[1mcollected 6 items                                                                                                                                              [0m
-
-test_config.py::test_config_file_exists [32mPASSED[0m[32m                                                                                                           [ 16%][0m
-test_config.py::test_config_is_valid_yaml [32mPASSED[0m[32m                                                                                                         [ 33%][0m
-test_config.py::test_app_name [32mPASSED[0m[32m                                                                                                                     [ 50%][0m
-test_config.py::test_port [32mPASSED[0m[32m                                                                                                                         [ 66%][0m
-test_config.py::test_database_config [31mFAILED[0m[31m                                                                                                              [ 83%][0m
-test_config.py::test_log_level [32mPASSED[0m[31m                                                                                                                    [100%][0m
-
-=========================================================================== FAILURES ===========================================================================
-[31m[1m_____________________________________________________________________ test_database_config _____________________________________________________________________[0m
-
-    [0m[94mdef[39;49;00m[90m [39;49;00m[92mtest_database_config[39;49;00m():[90m[39;49;00m
-    [90m    [39;49;00m[33m"""Config should have correct database settings."""[39;49;00m[90m[39;49;00m
-        [94mwith[39;49;00m [96mopen[39;49;00m([33m"[39;49;00m[33m/app/config/app_config.yaml[39;49;00m[33m"[39;49;00m) [94mas[39;49;00m f:[90m[39;49;00m
-            config = yaml.safe_load(f)[90m[39;49;00m
-        db = config.get([33m"[39;49;00m[33mdatabase[39;49;00m[33m"[39;49;00m, {})[90m[39;49;00m
->       [94massert[39;49;00m db.get([33m"[39;49;00m[33mhost[39;49;00m[33m"[39;49;00m) == [33m"[39;49;00m[33mdb.internal.example.com[39;49;00m[33m"[39;49;00m[90m[39;49;00m
-[1m[31mE       AssertionError: assert None == 'db.internal.example.com'[0m
-[1m[31mE        +  where None = <built-in method get of dict object at 0xffff8bb9d880>('host')[0m
-[1m[31mE        +    where <built-in method get of dict object at 0xffff8bb9d880> = {}.get[0m
-
-[1m[31mtest_config.py[0m:38: AssertionError
-[36m[1m=================================================================== short test summary info ====================================================================[0m
-[31mFAILED[0m test_config.py::[1mtest_database_config[0m - AssertionError: assert None == 'db.internal.example.com'
-[31m================================================================= [31m[1m1 failed[0m, [32m5 passed[0m[31m in 0.02s[0m[31m ==================================================================[0m
-[?2004hroot@7d37cc25b774:/app# 

@@ -1,27 +1,0 @@
-[?2004hroot@b23d3538c6e8:/app# find /var/log -type f -name "*.log" -mtime +30 -ls; tmux wait -S done
-[?2004l   140336     60 -rw-r--r--   1 root     root        61237 Feb 17 02:06 /var/log/bootstrap.log
-[?2004hroot@b23d3538c6e8:/app# find /var/log -type f -ls | sort -k6 -n -r; tmux wait -S done
-[?2004l   412466    252 -rw-r--r--   1 root     root       256234 Mar 28 18:49 /var/log/dpkg.log
-   412465     44 -rw-r-----   1 root     adm         43292 Mar 28 18:49 /var/log/apt/term.log
-   412464     28 -rw-r--r--   1 root     root        26299 Mar 28 18:49 /var/log/apt/history.log
-   412463     12 -rw-r--r--   1 root     root        11472 Mar 28 18:48 /var/log/apt/eipp.log.xz
-   412461     12 -rw-r--r--   1 root     root         9576 Mar 28 18:49 /var/log/alternatives.log
-   140341      0 -rw-rw-r--   1 root     utmp            0 Feb 17 02:06 /var/log/wtmp
-   140340      0 -rw-rw-r--   1 root     utmp            0 Feb 17 02:06 /var/log/lastlog
-   140339      0 -rw-r--r--   1 root     root            0 Feb 17 02:06 /var/log/faillog
-   140337      0 -rw-rw----   1 root     utmp            0 Feb 17 02:06 /var/log/btmp
-   140336     60 -rw-r--r--   1 root     root        61237 Feb 17 02:06 /var/log/bootstrap.log
-[?2004hroot@b23d3538c6e8:/app# rm /var/log/bootstrap.log && echo "Deleted old bootstrap.log"; tmux wait -S done
-[?2004lDeleted old bootstrap.log
-[?2004hroot@b23d3538c6e8:/app# du -sh /var/log && echo "=== Log files ===" && ls -lh /var/log/; tmux wait -S done
-[?2004l356K	/var/log
-=== Log files ===
-total 268K
--rw-r--r-- 1 root root 9.4K Mar 28 18:49 alternatives.log
-drwxr-xr-x 1 root root 4.0K Mar 28 18:48 [0m[01;34mapt[0m
--rw-rw---- 1 root utmp    0 Feb 17 02:06 btmp
--rw-r--r-- 1 root root 251K Mar 28 18:49 dpkg.log
--rw-r--r-- 1 root root    0 Feb 17 02:06 faillog
--rw-rw-r-- 1 root utmp    0 Feb 17 02:06 lastlog
--rw-rw-r-- 1 root utmp    0 Feb 17 02:06 wtmp
-[?2004hroot@b23d3538c6e8:/app# 

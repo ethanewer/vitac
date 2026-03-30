@@ -1,16 +1,0 @@
-[?2004hroot@f5da64df240f:/app# ls -l /app/config/.env || true; tmux wait -S done
-[?2004lls: cannot access '/app/config/.env': No such file or directory
-[?2004hroot@f5da64df240f:/app# ls -ld /app/config || true; tmux wait -S done
-[?2004ldrwxr-xr-x 2 root root 4096 Mar 28 19:19 [0m[01;34m/app/config[0m
-[?2004hroot@f5da64df240f:/app# printf 'APP_PORT=3000; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@f5da64df240f:/app# bash -lc "printf 'APP_PORT=3000\nDB_HOST=postgres.local\nDB_NAME=myapp\nSECRET_KEY=supersecret123\n' > /app/config/.env"; tmux wait -S doone
-[?2004l[?2004hroot@f5da64df240f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@f5da64df240f:/app# ls -l /app/config/.env && cat /app/config/.env; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 77 Mar 28 19:29 /app/config/.env
-APP_PORT=3000
-DB_HOST=postgres.local
-DB_NAME=myapp
-SECRET_KEY=supersecret123
-[?2004hroot@f5da64df240f:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@f5da64df240f:/app# 

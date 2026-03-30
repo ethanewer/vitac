@@ -5,8 +5,17 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+.ruff_cache/
+.pytest_cache/
 
-# Results (large, ephemeral)
+# Environment / secrets
+.env
+.env.*
+*.pem
+*.key
+*.secret
+
+# Benchmark results (large, ephemeral)
 results/
 
 # OpenCode binary (136MB, must be built locally)
@@ -26,5 +35,3 @@ tasks-test*/
 
 # OS
 .DS_Store
-
-results*

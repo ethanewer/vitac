@@ -1,107 +1,0 @@
-[?2004hroot@c0b43bc5f022:/app# mkdir -p /app/data; tmux wait -S done
-[?2004l[?2004hroot@c0b43bc5f022:/app# cat > /app/schema.sql << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# cat > /app/schema.sql << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# printf '%s\n' 'CREATE TABLE IF NOT EXISTS categories (' '    id INTEGER PRIMARY KEY,' '    name TEXT NOT NULL,' '    parent_id INTEGER,'  '    FOREIGN KEY (parent_id) REFERENCES categories(id)' ');' '' 'CREATE TABLE IF NOT EXISTS users (' '    id INTEGER PRIMARY KEY,' '    email TEXT NOT NULL UNIQQUE,' '    name TEXT NOT NULL,' '    created_at TEXT NOT NULL DEFAULT datetime("now")' ');' '' 'CREATE TABLE IF NOT EXISTS products (' '    id INTEGER PRIMARY KEEY,' '    name TEXT NOT NULL,' '    price REAL NOT NULL CHECK (price > 0),' '    category_id INTEGER NOT NULL,' '    FOREIGN KEY (category_id) REFERENCES categorries(id)' ');' '' 'CREATE TABLE IF NOT EXISTS orders (' '    id INTEGER PRIMARY KEY,' '    user_id INTEGER NOT NULL,' '    product_id INTEGER NOT NULL,' '    quaantity INTEGER NOT NULL CHECK (quantity > 0),' '    ordered_at TEXT NOT NULL DEFAULT datetime("now"),' '    FOREIGN KEY (user_id) REFERENCES users(id),' '    FORREIGN KEY (product_id) REFERENCES products(id)' ');' > /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# cat /app/schema.sql; tmux wait -S done
-[?2004lCREATE TABLE IF NOT EXISTS categories (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    parent_id INTEGER,
-    FOREIGN KEY (parent_id) REFERENCES categories(id)
-);
-
-CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY,
-    email TEXT NOT NULL UNIQUE,
-    name TEXT NOT NULL,
-    created_at TEXT NOT NULL DEFAULT datetime("now")
-);
-
-CREATE TABLE IF NOT EXISTS products (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    price REAL NOT NULL CHECK (price > 0),
-    category_id INTEGER NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES categories(id)
-);
-
-CREATE TABLE IF NOT EXISTS orders (
-    id INTEGER PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
-    quantity INTEGER NOT NULL CHECK (quantity > 0),
-    ordered_at TEXT NOT NULL DEFAULT datetime("now"),
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (product_id) REFERENCES products(id)
-);
-[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# sqlite3 /app/data/app.db < /app/schema.sql; tmux wait -S done
-[?2004lParse error near line 8: near "(": syntax error
-  ULL,     created_at TEXT NOT NULL DEFAULT datetime("now") );
-                                      error here ---^
-Parse error near line 23: near "(": syntax error
-   0),     ordered_at TEXT NOT NULL DEFAULT datetime("now"),     FOREIGN KEY (us
-                                      error here ---^
-[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# cat > /app/schema.sql << 'ENDOFFILE'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# rm -f /app/data/app.db /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# echo "CREATE TABLE IF NOT EXISTS categories (; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# sed -i "s/datetime(\"now\")/datetime('now')/g" /app/schema.sql; tmux wait -S done
-[?2004lsed: can't read /app/schema.sql: No such file or directory
-[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# touch /app/schema.sql && sed -i 's/datetime("now")/datetime('\''now'\''\)/g' /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# echo "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name TEXT NOT NULL, parent_id INTEGER, FOREIGN KEY (parent_id) REFERRENCES categories(id));" > /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# echo "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT NOT NULL UNIQUE, name TEXT NOT NULL, created_at TEXT NOT NULL  DEFAULT datetime('now'));" >> /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# echo "CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, name TEXT NOT NULL, price REAL NOT NULL CHECK (price > 0), category_idd INTEGER NOT NULL, FOREIGN KEY (category_id) REFERENCES categories(id));" >> /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# echo "CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, quantity INTEGER  NOT NULL CHECK (quantity > 0), ordered_at TEXT NOT NULL DEFAULT datetime('now'), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (product_id) REFERENCESS products(id));" >> /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# cat /app/schema.sql; tmux wait -S done
-[?2004lCREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name TEXT NOT NULL, parent_id INTEGER, FOREIGN KEY (parent_id) REFERENCES categories(id));
-CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT NOT NULL UNIQUE, name TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT datetime('now'));
-CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, name TEXT NOT NULL, price REAL NOT NULL CHECK (price > 0), category_id INTEGER NOT NULL, FOREIGN KEY (category_id) REFERENCES categories(id));
-CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, quantity INTEGER NOT NULL CHECK (quantity > 0), ordered_at TEXT NOT NULL DEFAULT datetime('now'), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (product_id) REFERENCES products(id));
-[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# sqlite3 /app/data/app.db < /app/schema.sql; tmux wait -S done
-[?2004lParse error near line 2: near "(": syntax error
-  OT NULL, created_at TEXT NOT NULL DEFAULT datetime('now'));
-                                      error here ---^
-Parse error near line 4: near "(": syntax error
-  ty > 0), ordered_at TEXT NOT NULL DEFAULT datetime('now'), FOREIGN KEY (user_i
-                                      error here ---^
-[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# rm -f /app/schema.sql && echo "CREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name TEXT NOT NULL, parent_id INTEGER, FOREEIGN KEY (parent_id) REFERENCES categories(id));" > /app/schema.sql && echo "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT NOT NULL UNIQUEE, name TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT strftime('%Y-%m-%d %H:%M:%S','now'));" >> /app/schema.sql && echo "CREATE TABLE IF NOT EXISTS products (iid INTEGER PRIMARY KEY, name TEXT NOT NULL, price REAL NOT NULL CHECK (price > 0), category_id INTEGER NOT NULL, FOREIGN KEY (category_id) REFERENCES categories((id));" >> /app/schema.sql && echo "CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, quantity INNTEGER NOT NULL CHECK (quantity > 0), ordered_at TEXT NOT NULL DEFAULT strftime('%Y-%m-%d %H:%M:%S','now'), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KKEY (product_id) REFERENCES products(id));" >> /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# cat /app/schema.sql; tmux wait -S done
-[?2004lCREATE TABLE IF NOT EXISTS categories (id INTEGER PRIMARY KEY, name TEXT NOT NULL, parent_id INTEGER, FOREIGN KEY (parent_id) REFERENCES categories(id));
-CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY, email TEXT NOT NULL UNIQUE, name TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT strftime('%Y-%m-%d %H:%M:%S','now'));
-CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY, name TEXT NOT NULL, price REAL NOT NULL CHECK (price > 0), category_id INTEGER NOT NULL, FOREIGN KEY (category_id) REFERENCES categories(id));
-CREATE TABLE IF NOT EXISTS orders (id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, quantity INTEGER NOT NULL CHECK (quantity > 0), ordered_at TEXT NOT NULL DEFAULT strftime('%Y-%m-%d %H:%M:%S','now'), FOREIGN KEY (user_id) REFERENCES users(id), FOREIGN KEY (product_id) REFERENCES products(id));
-[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# sqlite3 /app/data/app.db < /app/schema.sql; tmux wait -S done
-[?2004lParse error near line 2: near "(": syntax error
-  OT NULL, created_at TEXT NOT NULL DEFAULT strftime('%Y-%m-%d %H:%M:%S','now'))
-                                      error here ---^
-Parse error near line 4: near "(": syntax error
-  ty > 0), ordered_at TEXT NOT NULL DEFAULT strftime('%Y-%m-%d %H:%M:%S','now'),
-                                      error here ---^
-[?2004hroot@c0b43bc5f022:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c0b43bc5f022:/app# sqlite3 /app/data/app.db -cmd ".read /app/schema.sql"; tmux wait -S done
-[?2004lParse error near line 2: near "(": syntax error
-  OT NULL, created_at TEXT NOT NULL DEFAULT strftime('%Y-%m-%d %H:%M:%S','now'))
-                                      error here ---^
-Parse error near line 4: near "(": syntax error
-  ty > 0), ordered_at TEXT NOT NULL DEFAULT strftime('%Y-%m-%d %H:%M:%S','now'),
-                                      error here ---^
-SQLite version 3.45.1 2024-01-30 16:01:20
-Enter ".help" for usage hints.
-[?2004hsqlite> 

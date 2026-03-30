@@ -1,26 +1,0 @@
-[?2004hroot@c8c489ef6ac9:/app# mkdir -p /app/deploy; tmux wait -S done
-[?2004l[?2004hroot@c8c489ef6ac9:/app# cat > /app/deploy/dev.json << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@c8c489ef6ac9:/app# echo '{; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@c8c489ef6ac9:/app# echo '{"app_name":"myservice","environment":"dev","database":{"host":"localhost","port":5432,"name":"myservice_dev","pool_size":5,"usernaame":"placeholder","password":"placeholder"},"cache":{"host":"localhost","port":6379,"ttl":3600},"feature_flags":{"dark_mode":true,"beta_features":true},"replicaas":1,"log_level":"debug"}' > /app/deploy/dev.json; tmux wait -S done
-[?2004l[?2004hroot@c8c489ef6ac9:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c8c489ef6ac9:/app# cat /app/deploy/dev.json; tmux wait -S done
-[?2004l{"app_name":"myservice","environment":"dev","database":{"host":"localhost","port":5432,"name":"myservice_dev","pool_size":5,"username":"placeholder","password":"placeholder"},"cache":{"host":"localhost","port":6379,"ttl":3600},"feature_flags":{"dark_mode":true,"beta_features":true},"replicas":1,"log_level":"debug"}
-[?2004hroot@c8c489ef6ac9:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c8c489ef6ac9:/app# echo '{"app_name":"myservice","environment":"staging","database":{"host":"staging-db.internal","port":5432,"name":"myservice_staging","poool_size":10,"username":"placeholder","password":"placeholder"},"cache":{"host":"staging-cache.internal","port":6379,"ttl":3600},"feature_flags":{"dark_mode":truue,"beta_features":true},"replicas":2,"log_level":"info"}' > /app/deploy/staging.json; tmux wait -S done
-[?2004l[?2004hroot@c8c489ef6ac9:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c8c489ef6ac9:/app# echo '{"app_name":"myservice","environment":"prod","database":{"host":"prod-db.internal","port":5432,"name":"myservice_prod","pool_size"::50,"username":"placeholder","password":"placeholder"},"cache":{"host":"prod-cache.internal","port":6379,"ttl":3600},"feature_flags":{"dark_mode":true,"beta_feattures":false},"replicas":5,"log_level":"warn"}' > /app/deploy/prod.json; tmux wait -S done
-[?2004l[?2004hroot@c8c489ef6ac9:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c8c489ef6ac9:/app# cat /app/deploy/prod.json; tmux wait -S done
-[?2004l{"app_name":"myservice","environment":"prod","database":{"host":"prod-db.internal","port":5432,"name":"myservice_prod","pool_size":50,"username":"placeholder","password":"placeholder"},"cache":{"host":"prod-cache.internal","port":6379,"ttl":3600},"feature_flags":{"dark_mode":true,"beta_features":false},"replicas":5,"log_level":"warn"}
-[?2004hroot@c8c489ef6ac9:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c8c489ef6ac9:/app# ls -la /app/deploy/; tmux wait -S done
-[?2004ltotal 24
-drwxr-xr-x 1 root root 4096 Mar 28 21:23 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 21:21 [01;34m..[0m
--rw-r--r-- 1 root root  317 Mar 28 21:22 dev.json
--rw-r--r-- 1 root root  337 Mar 28 21:23 prod.json
--rw-r--r-- 1 root root  348 Mar 28 21:23 staging.json
-[?2004hroot@c8c489ef6ac9:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@c8c489ef6ac9:/app# 

@@ -1,81 +1,0 @@
-[?2004hroot@da64b088858d:/app# mkdir -p /app/data; tmux wait -S done
-[?2004l[?2004hroot@da64b088858d:/app# cat > /app/schema.sql << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# cat > /app/schema.sql << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# cat > /app/schema.sql << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# printf '%s\n' 'CREATE TABLE categories (' '  id INTEGER PRIMARY KEY,' '  name TEXT NOT NULL,' '  parent_id INTEGER REFERENCES categories((id)' ');' '' 'CREATE TABLE users (' '  id INTEGER PRIMARY KEY,' '  email TEXT NOT NULL UNIQUE,' '  name TEXT NOT NULL,' '  created_at TEXT NOT NULL DEFAULT dateetime('now')' ');' '' 'CREATE TABLE products (' '  id INTEGER PRIMARY KEY,' '  name TEXT NOT NULL,' '  price REAL NOT NULL CHECK (price > 0),' '  category_id INTTEGER NOT NULL REFERENCES categories(id)' ');' '' 'CREATE TABLE orders (' '  id INTEGER PRIMARY KEY,' '  user_id INTEGER NOT NULL REFERENCES users(id),' '  produuct_id INTEGER NOT NULL REFERENCES products(id),' '  quantity INTEGER NOT NULL,' '  ordered_at TEXT NOT NULL DEFAULT datetime('now')' ');' > /app/schema.sql; tmuux wait -S done
-[?2004l[?2004hroot@da64b088858d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# sqlite3 /app/data/app.db < /app/schema.sql; tmux wait -S done
-[?2004lParse error near line 7: near "(": syntax error
-   NULL,   created_at TEXT NOT NULL DEFAULT datetime(now) );
-                                      error here ---^
-Parse error near line 21: near "(": syntax error
-   NULL,   ordered_at TEXT NOT NULL DEFAULT datetime(now) );
-                                      error here ---^
-[?2004hroot@da64b088858d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# cat /app/schema.sql; tmux wait -S done
-[?2004lCREATE TABLE categories (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  parent_id INTEGER REFERENCES categories(id)
-);
-
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
-  email TEXT NOT NULL UNIQUE,
-  name TEXT NOT NULL,
-  created_at TEXT NOT NULL DEFAULT datetime(now)
-);
-
-CREATE TABLE products (
-  id INTEGER PRIMARY KEY,
-  name TEXT NOT NULL,
-  price REAL NOT NULL CHECK (price > 0),
-  category_id INTEGER NOT NULL REFERENCES categories(id)
-);
-
-CREATE TABLE orders (
-  id INTEGER PRIMARY KEY,
-  user_id INTEGER NOT NULL REFERENCES users(id),
-  product_id INTEGER NOT NULL REFERENCES products(id),
-  quantity INTEGER NOT NULL,
-  ordered_at TEXT NOT NULL DEFAULT datetime(now)
-);
-[?2004hroot@da64b088858d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# sqlite3 /app/data/app.db << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# cat > /tmp/schema.sql << 'ENDSQL'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# cat > /tmp/schema.sql << 'ENDSQL'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# echo "CREATE TABLE categories (id INTEGER PRIMARY KEY, name TEXT NOT NULL, parent_id INTEGER REFERENCES categories(id)); CREATE TABLE useers (id INTEGER PRIMARY KEY, email TEXT NOT NULL UNIQUE, name TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT datetime('now')); CREATE TABLE products (id INTEGERR PRIMARY KEY, name TEXT NOT NULL, price REAL NOT NULL CHECK (price > 0), category_id INTEGER NOT NULL REFERENCES categories(id)); CREATE TABLE orders (id INTEGEER PRIMARY KEY, user_id INTEGER NOT NULL REFERENCES users(id), product_id INTEGER NOT NULL REFERENCES products(id), quantity INTEGER NOT NULL, ordered_at TEXT NOOT NULL DEFAULT datetime('now'));" | sqlite3 /app/data/app.db; tmux wait -S done
-[?2004lParse error near line 1: table categories already exists
-  CREATE TABLE categories (id INTEGER PRIMARY KEY, name TEXT NOT NULL, parent_id
-               ^--- error here
-[?2004hroot@da64b088858d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# sqlite3 /app/data/app.db << 'ENDSQL'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# rm /app/data/app.db && sqlite3 /app/data/app.db << 'ENDSQL'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# sqlite3 /app/data/app.db << 'ENDSQL'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# printf '%s\n' 'CREATE TABLE categories (id INTEGER PRIMARY KEY, name TEXT NOT NULL, parent_id INTEGER);' > /app/schema.sql && printf '%s\\n' 'CREATE TABLE users (id INTEGER PRIMARY KEY, email TEXT NOT NULL UNIQUE, name TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT '"'"'datetime('now')'"'"');' >>> /app/schema.sql && printf '%s\n' 'CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT NOT NULL, price REAL NOT NULL CHECK (price > 0), category_id INTEGERR NOT NULL);' >> /app/schema.sql && printf '%s\n' 'CREATE TABLE orders (id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, quantity IINTEGER NOT NULL);' >> /app/schema.sql && sqlite3 /app/data/app.db</app/schema.sql; tmux wait -S done
-[?2004lParse error near line 1: table categories already exists
-  CREATE TABLE categories (id INTEGER PRIMARY KEY, name TEXT NOT NULL, parent_id
-               ^--- error here
-Parse error near line 3: table products already exists
-  CREATE TABLE products (id INTEGER PRIMARY KEY, name TEXT NOT NULL, price REAL 
-               ^--- error here
-[?2004hroot@da64b088858d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# rm /app/data/app.db 2>/dev/null; printf '%s\n' "CREATE TABLE categories (id INTEGER PRIMARY KEY, name TEXT NOT NULL, parent_id INTEGER);  CREATE TABLE users (id INTEGER PRIMARY KEY, email TEXT NOT NULL UNIQUE, name TEXT NOT NULL, created_at TEXT NOT NULL DEFAULT '2024-01-01'); CREATE TABLE productts (id INTEGER PRIMARY KEY, name TEXT NOT NULL, price REAL NOT NULL CHECK (price > 0), category_id INTEGER NOT NULL); CREATE TABLE orders (id INTEGER PRIMARY KEYY, user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, quantity INTEGER NOT NULL);" > /app/schema.sql && sqlite3 /app/data/app.db < /app/schema.sql; tmux waitt -S done
-[?2004l[?2004hroot@da64b088858d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# sqlite3 /app/data/app.db "SELECT name FROM sqlite_master WHERE type='table';"; tmux wait -S done
-[?2004lcategories
-users
-products
-orders
-[?2004hroot@da64b088858d:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@da64b088858d:/app# 

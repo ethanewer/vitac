@@ -1,9 +1,0 @@
-[?2004hroot@e818e745e62e:/app# python3 /app/svcctl.py restart web; tmux wait -S done
-[?2004lError: unknown service 'web'
-[?2004hroot@e818e745e62e:/app# python3 /app/svcctl.py restart payment-gateway; tmux wait -S done
-[?2004lRestarting payment-gateway...
-payment-gateway restarted successfully.
-[?2004hroot@e818e745e62e:/app# python3 /app/svcctl.py restart notification-service; tmux wait -S done
-[?2004lRestarting notification-service...
-notification-service restarted successfully.
-[?2004hroot@e818e745e62e:/app# 

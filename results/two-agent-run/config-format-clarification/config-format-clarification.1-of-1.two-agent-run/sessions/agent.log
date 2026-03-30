@@ -1,104 +1,0 @@
-[?2004hroot@a5b63bb0b73a:/app# ls -la /app/config || true; tmux wait -S done
-[?2004ltotal 8
-drwxr-xr-x 2 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
-[?2004hroot@a5b63bb0b73a:/app# ls -la /app && find /app -maxdepth 3 -type f | head; tmux wait -S done
-[?2004ltotal 12
-drwxr-xr-x 1 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 19:08 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 18:46 [01;34mconfig[0m
-[?2004hroot@a5b63bb0b73a:/app# find /app -maxdepth 4 -type f -name '*app_config*' -o -name '*config*' | head -n 50; tmux wait -S done
-[?2004l/app/config
-[?2004hroot@a5b63bb0b73a:/app# find / -maxdepth 4 -type f -iname '*config*' 2>/dev/null | head -n 50; tmux wait -S done
-[?2004l/var/cache/debconf/config.dat
-/var/cache/debconf/config.dat-old
-/usr/include/python3.12/pyconfig.h
-/usr/include/python3.12/pymacconfig.h
-/usr/include/linux/rkisp1-config.h
-/usr/include/linux/tipc_config.h
-/usr/include/linux/virtio_config.h
-/usr/include/aarch64-linux-gnu/expat_config.h
-/usr/bin/apt-config
-/usr/bin/aarch64-linux-gnu-python3.12-config
-/usr/lib/aarch64-linux-gnu/libfontconfig.so.1.12.1
-/usr/lib/python3.12/configparser.py
-/usr/lib/python3.12/_sysconfigdata__aarch64-linux-gnu.py
-/usr/lib/python3.12/sysconfig.py
-/usr/sbin/ldconfig.real
-/usr/sbin/ldconfig
-/usr/sbin/iconvconfig
-/usr/sbin/dpkg-preconfigure
-/usr/sbin/dpkg-reconfigure
-/usr/sbin/shadowconfig
-/etc/gnutls/config
-/etc/python3/debian_config
-/proc/config.gz
-[?2004hroot@a5b63bb0b73a:/app# find /app -maxdepth 5 -type f -print; tmux wait -S done
-[?2004l[?2004hroot@a5b63bb0b73a:/app# ls -la /app; ls -la /; ps aux | head; tmux wait -S done
-[?2004ltotal 12
-drwxr-xr-x 1 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 19:08 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 18:46 [01;34mconfig[0m
-total 60
-drwxr-xr-x   1 root root 4096 Mar 28 19:08 [0m[01;34m.[0m
-drwxr-xr-x   1 root root 4096 Mar 28 19:08 [01;34m..[0m
--rwxr-xr-x   1 root root    0 Mar 28 19:08 [01;32m.dockerenv[0m
-drwxr-xr-x   1 root root 4096 Mar 28 18:46 [01;34mapp[0m
-lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mbin[0m -> [01;34musr/bin[0m
-drwxr-xr-x   2 root root 4096 Apr 22  2024 [01;34mboot[0m
-drwxr-xr-x   5 root root  340 Mar 28 19:08 [01;34mdev[0m
-drwxr-xr-x   1 root root 4096 Mar 28 19:08 [01;34metc[0m
-drwxr-xr-x   3 root root 4096 Feb 17 02:12 [01;34mhome[0m
-lrwxrwxrwx   1 root root    7 Apr 22  2024 [01;36mlib[0m -> [01;34musr/lib[0m
-drwxr-xr-x   3 root root   96 Mar 28 19:08 [01;34mlogs[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmedia[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mmnt[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34mopt[0m
-dr-xr-xr-x 252 root root    0 Mar 28 19:08 [01;34mproc[0m
-drwx------   2 root root 4096 Feb 17 02:12 [01;34mroot[0m
-drwxr-xr-x   4 root root 4096 Feb 17 02:12 [01;34mrun[0m
-lrwxrwxrwx   1 root root    8 Apr 22  2024 [01;36msbin[0m -> [01;34musr/sbin[0m
-drwxr-xr-x   2 root root 4096 Feb 17 02:06 [01;34msrv[0m
-dr-xr-xr-x  11 root root    0 Mar 28 18:47 [01;34msys[0m
-drwxrwxrwt   1 root root 4096 Mar 28 19:08 [30;42mtmp[0m
-drwxr-xr-x   1 root root 4096 Feb 17 02:06 [01;34musr[0m
-drwxr-xr-x   1 root root 4096 Feb 17 02:12 [01;34mvar[0m
-USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
-root         1  0.0  0.0   2384  1568 ?        Ss   19:08   0:00 sh -c sleep infinity
-root         7  0.0  0.0   2272  1220 ?        S    19:08   0:00 sleep infinity
-root        21  0.0  0.0   9480  4116 ?        Ss   19:08   0:00 tmux new-session -x 160 -y 40 -d -s agent ; set-option -t agent history-limit 50000 ; pipe-pane -t agent cat > /logs/agent.log
-root        22  0.0  0.0   4300  3664 pts/0    Ss   19:08   0:00 -bash
-root        25  0.0  0.0   2384  1580 ?        S    19:08   0:00 sh -c cat > /logs/agent.log
-root        27  0.0  0.0   2416  1236 ?        S    19:08   0:00 cat
-root       147  0.0  0.0   7632  3656 pts/0    R+   19:08   0:00 ps aux
-root       148  0.0  0.0   2284  1176 pts/0    S+   19:08   0:00 head
-[?2004hroot@a5b63bb0b73a:/app# ls -la /logs && find /logs -maxdepth 2 -type f | xargs -I{} sh -c 'echo --- {}; head -n 20 {}' 2>/dev/null | head -n 200; tmux wait -S doone
-[?2004ltotal 12
-drwxr-xr-x 3 root root   96 Mar 28 19:08 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 19:08 [01;34m..[0m
--rw-r--r-- 1 root root 4419 Mar 28 19:08 agent.log
---- /logs/agent.log
-[?2004hroot@a5b63bb0b73a:/app# ls -la /app/config || true; tmux wait -S done
-[?2004ltotal 8
-drwxr-xr-x 2 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
-[?2004hroot@a5b63bb0b73a:/app# ls -la /app && find /app -maxdepth 3 -type f | head; tmux wait -S done
-[?2004ltotal 12
-drwxr-xr-x 1 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 19:08 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 18:46 [01;34mconfig[0m
-[?2004hroot@a5b63bb0b73a:/app# find /app -maxdepth 4 -type f -name '*app_config*' -o -name '*config*' | head -n 50; tmux wait -S done
-[?2004l/app/config
-[?2004hroot@a5b63bb0b73a:/app# find / -maxdepth 4 -type f -iname '*config*' 2>/dev/null | head -n 50; tmux wait -S done
-[?2004l/var/cache/debconf/config.dat
-/var/cache/debconf/config.dat-old
-/usr/include/python3.12/pyconfig.h
-/usr/include/python3.12/pymacconfig.h
-/usr/include/linux/rkisp1-config.h
-/usr/include/linux/tipc_config.h
-/usr/include/linux/virtio_config.h
-/usr/include/aarch64-linux-gnu/expat_config.h
-[?2004hroot@a5b63bb0b73a:/app# find /app -maxdepth 10 -print | head -n 200; tmux wait -S done
-[?2004l/app
-/app/config
-[?2004hroot@a5b63bb0b73a:/app# 

@@ -1,14 +1,0 @@
-[?2004hroot@936a7636ec9b:/app# git remote -v; tmux wait -S done
-[?2004lfatal: not a git repository (or any of the parent directories): .git
-[?2004hroot@936a7636ec9b:/app# find / -name ".git" -type d 2>/dev/null | head -10; tmux wait -S done
-[?2004l/app/project/.git
-[?2004hroot@936a7636ec9b:/app# cd /app/project && git remote -v; tmux wait -S done
-[?2004lorigin	/app/remote.git (fetch)
-origin	/app/remote.git (push)
-[?2004hroot@936a7636ec9b:/app/project# cd /app/project && git checkout develop && git checkout -b release/v2.3.1 && git push origin release/v2.3.1; tmux wait -S done
-[?2004lAlready on 'develop'
-Switched to a new branch 'release/v2.3.1'
-Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
-To /app/remote.git
- * [new branch]      release/v2.3.1 -> release/v2.3.1
-[?2004hroot@936a7636ec9b:/app/project# 

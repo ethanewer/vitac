@@ -1,2 +1,0 @@
-[?2004hroot@ee2bd12d06ec:/app# pkill -f 'inotifywait\|fswatch\|entr' 2>/dev/null; chmod -R 555 /tests 2>/dev/null; true; tmux wait -S done
-[?2004l[?2004hroot@ee2bd12d06ec:/app# 

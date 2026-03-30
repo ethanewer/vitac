@@ -1,2 +1,0 @@
-[?2004hroot@cfcf0cf87fd1:/app# echo 'Dear Alice, Welcome to the team!' > /app/output/greeting.txt; tmux wait -S done
-[?2004l[?2004hroot@cfcf0cf87fd1:/app# 

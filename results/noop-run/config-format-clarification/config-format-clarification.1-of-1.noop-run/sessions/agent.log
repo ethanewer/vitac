@@ -1,14 +1,0 @@
-[?2004hroot@15c271f0d251:/app# ls -la /app/config || true; tmux wait -S done
-[?2004ltotal 8
-drwxr-xr-x 2 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 18:46 [01;34m..[0m
-[?2004hroot@15c271f0d251:/app# find /app -maxdepth 4 -type f \( -iname '*config*' -o -iname '*.json' -o -iname '*.yaml' -o -iname '*.yml' -o -iname '*.ini' -o -iname '**.toml' -o -iname '*.env' \) 2>/dev/null | sed -e 's/^/FOUND: /'; tmux wait -S done
-[?2004l[?2004hroot@15c271f0d251:/app# grep -R "app_config" -n /app 2>/dev/null | head; tmux wait -S done
-[?2004l[?2004hroot@15c271f0d251:/app# ls -la /app && find /app -maxdepth 3 -type f -print 2>/dev/null | sed -e 's/^/FILE: /'; tmux wait -S done
-[?2004ltotal 12
-drwxr-xr-x 1 root root 4096 Mar 28 18:46 [0m[01;34m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 19:02 [01;34m..[0m
-drwxr-xr-x 2 root root 4096 Mar 28 18:46 [01;34mconfig[0m
-[?2004hroot@15c271f0d251:/app# grep -R "\/app\/config" -n /app 2>/dev/null | head -n 50; grep -R "config\/app_config" -n /app 2>/dev/null | head -n 50; grep -R "app_connfig" -n / 2>/dev/null | head -n 50; tmux wait -S done
-[?2004lgrep -R "app_config" -n / 2>/dev/null | head -n 50; grep -R "config" -n /app 2>/dev/null | head -n 50; find / -maxdepth 4 -type f \( -iname '*config*' -o -iname '*.yaml' -o -iname '*.yml' -o -iname '*.json' -o -iname '*.toml' -o -iname '*.ini' -o -iname '*.env' \) 2>/dev/null | head -n 50; tmux wait -S done
-ls -la /; ls -la /workspace 2>/dev/null || true; ls -la /root 2>/dev/null || true; find / -maxdepth 4 -type f -iname '*app*config*' 2>/dev/null | head -n 50; find / -maxdepth 5 -type f -iname 'app_config*' 2>/dev/null | head -n 50; tmux wait -S done

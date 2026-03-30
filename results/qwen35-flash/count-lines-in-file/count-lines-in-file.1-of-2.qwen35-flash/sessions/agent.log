@@ -1,4 +1,0 @@
-[?2004hroot@e304978a6f0c:/app# wc -l < /app/data/input.txt > /app/output/count.txt; tmux wait -S done
-[?2004l[?2004hroot@e304978a6f0c:/app# cat /app/output/count.txt; tmux wait -S done
-[?2004l7
-[?2004hroot@e304978a6f0c:/app# 

@@ -1,13 +1,0 @@
-[?2004hroot@34e332503689:/app# find /app/docs -type f -name '*.txt' -exec perl -pi -e 's/ACME Corp/Globex Inc/g' {} +; tmux wait -S done
-[?2004l[?2004hroot@34e332503689:/app# grep -R "ACME Corp" -n /app/docs --include='*.txt' || true; tmux wait -S done
-[?2004l[?2004hroot@34e332503689:/app# grep -R "ACME Corp" -n /app/docs --include='*.txt' || true; tmux wait -S done
-[?2004l[?2004hroot@34e332503689:/app# grep -R "Globex Inc" -n /app/docs --include='*.txt' | head; tmux wait -S done
-[?2004l/app/docs/readme.txt:1:Welcome to Globex Inc. Globex Inc is the best.
-/app/docs/handbook.txt:1:Globex Inc Employee Handbook v2.0
-/app/docs/contact.txt:1:Contact Globex Inc at info@acme.com
-[?2004hroot@34e332503689:/app# grep -R "ACME Corp" -n /app/docs --include='*.txt' || true; tmux wait -S done
-[?2004l[?2004hroot@34e332503689:/app# grep -R "ACME Corp" -n /app/docs --include='*.txt' || true; tmux wait -S done
-[?2004l[?2004hroot@34e332503689:/app# grep -R "ACME Corp" -n /app/docs --include='*.txt' || true; tmux wait -S done
-[?2004l[?2004hroot@34e332503689:/app# grep -R "ACME Corp" -n /app/docs --include='*.txt' || true | wc -l; tmux wait -S done
-[?2004l0
-[?2004hroot@34e332503689:/app# 

@@ -1,13 +1,0 @@
-[?2004hroot@dd76555b4199:/app# head -n 1 /app/data/records.csv > /app/output/clean.csv && tail -n +2 /app/data/records.csv | sort -t',' -k3 -rn | uniq >> /app/output/cllean.csv; tmux wait -S done
-[?2004l[?2004hroot@dd76555b4199:/app# wc -l /app/data/records.csv /app/output/clean.csv; tmux wait -S done
-[?2004l  9 /app/data/records.csv
-  6 /app/output/clean.csv
- 15 total
-[?2004hroot@dd76555b4199:/app# head -n 6 /app/output/clean.csv; tmux wait -S done
-[?2004lid,name,score
-4,Diana,95
-1,Alice,92
-5,Eve,88
-3,Charlie,85
-2,Bob,78
-[?2004hroot@dd76555b4199:/app# 

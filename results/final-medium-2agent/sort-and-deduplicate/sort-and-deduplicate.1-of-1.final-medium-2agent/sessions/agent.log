@@ -1,14 +1,0 @@
-[?2004hroot@bff5804496f1:/app# ls -l /app/data/records.csv /app/output || true; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root  100 Mar 28 19:30 /app/data/records.csv
-
-/app/output:
-total 0
-[?2004hroot@bff5804496f1:/app# mkdir -p /app/output && { head -n 1 /app/data/records.csv; tail -n +2 /app/data/records.csv | sort -t',' -k3,3nr | uniq; } > /app/output//clean.csv; tmux wait -S done
-[?2004l[?2004hroot@bff5804496f1:/app# ls -l /app/output && (head -n 3 /app/output/clean.csv 2>/dev/null || echo 'clean.csv missing'); (wc -l /app/output/clean.csv 2>/dev/null  || echo 'clean.csv missing wc'); tmux wait -S done
-[?2004ltotal 4
--rw-r--r-- 1 root root 67 Mar 28 20:21 clean.csv
-id,name,score
-4,Diana,95
-1,Alice,92
-6 /app/output/clean.csv
-[?2004hroot@bff5804496f1:/app# 

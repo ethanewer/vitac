@@ -1,2 +1,0 @@
-[?2004hroot@30ef0d0292a3:/app# find /app/docs/ -name '*.txt' -type f -exec sed -i 's/ACME Corp/Globex Inc/g' {} +; tmux wait -S done
-[?2004l[?2004hroot@30ef0d0292a3:/app# 

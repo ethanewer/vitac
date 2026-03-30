@@ -1,10 +1,0 @@
-[?2004hroot@a6ac0119f3b0:/app# mkdir -p /app/output && find /app/data -type f -name '*.csv' > /tmp/csv_list.txt && tar -czf /app/output/archive.tar.gz --files-from /tmpp/csv_list.txt; tmux wait -S done
-[?2004ltar: Removing leading `/' from member names
-tar: Removing leading `/' from hard link targets
-[?2004hroot@a6ac0119f3b0:/app# ls -l /app/output/archive.tar.gz && tar -tzf /app/output/archive.tar.gz | head; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 242 Mar 28 19:41 [0m[01;31m/app/output/archive.tar.gz[0m
-app/data/users.csv
-app/data/orders.csv
-app/data/products.csv
-[?2004hroot@a6ac0119f3b0:/app# tar -tzf /app/output/archive.tar.gz | grep -E '\.(tmp|log)$' || true; tmux wait -S done
-[?2004l[?2004hroot@a6ac0119f3b0:/app# 

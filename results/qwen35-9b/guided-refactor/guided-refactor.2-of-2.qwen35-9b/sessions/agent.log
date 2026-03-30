@@ -1,165 +1,0 @@
-[?2004hroot@e1f7ac1022f4:/app# run-code app.py; tmux wait -S done
-[?2004lGenerated report: 3 users, 3 products
-Total value: $89.97
-[?2004hroot@e1f7ac1022f4:/app# sudo cat /app/src/app.py 2>/dev/null || id -u; tmux wait -S done
-[?2004l#!/usr/bin/env python3
-"""Monolithic application - needs refactoring into modules."""
-import json
-from datetime import datetime
-
-# --- Models ---
-class User:
-    def __init__(self, name, email, role="member"):
-        self.name = name
-        self.email = email
-        self.role = role
-        self.created_at = datetime.now().isoformat()
-
-    def to_dict(self):
-        return {
-            "name": self.name,
-            "email": self.email,
-            "role": self.role,
-            "created_at": self.created_at
-        }
-
-class Product:
-    def __init__(self, name, price, category):
-        self.name = name
-        self.price = price
-        self.category = category
-
-    def to_dict(self):
-        return {
-            "name": self.name,
-            "price": self.price,
-            "category": self.category
-        }
-
-# --- Utils ---
-def format_currency(amount):
-    return f"${amount:,.2f}"
-
-def validate_email(email):
-    return "@" in email and "." in email.split("@")[1]
-
-def generate_report(users, products):
-    report = {
-        "total_users": len(users),
-        "total_products": len(products),
-        "total_value": sum(p.price for p in products),
-        "users": [u.to_dict() for u in users],
-        "products": [p.to_dict() for p in products]
-    }
-    return report
-
-# --- Main ---
-def main():
-    users = [
-        User("Alice", "alice@example.com", "admin"),
-        User("Bob", "bob@example.com"),
-        User("Charlie", "charlie@example.com"),
-    ]
-
-    products = [
-        Product("Widget", 29.99, "tools"),
-        Product("Gadget", 49.99, "electronics"),
-        Product("Doohickey", 9.99, "misc"),
-    ]
-
-    report = generate_report(users, products)
-    report["formatted_total"] = format_currency(report["total_value"])
-
-    with open("/app/output/report.json", "w") as f:
-        json.dump(report, f, indent=2)
-
-    print(f"Generated report: {len(users)} users, {len(products)} products")
-    print(f"Total value: {format_currency(report['total_value'])}")
-
-if __name__ == "__main__":
-    main()
-[?2004hroot@e1f7ac1022f4:/app# cat > /app/src/models.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# cat > /app/src/models.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# cat > /app/src/models.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# printf '%s' 'from datetime import datetime; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# python3 -c "; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# echo 'from datetime import datetime' > /app/src/models.py && echo '' >> /app/src/models.py && echo 'class User:' >> /app/src/models.py &&& echo '    def __init__(self, name, email, role="member"):' >> /app/src/models.py && echo '        self.name = name' >> /app/src/models.py && echo '        selff.email = email' >> /app/src/models.py && echo '        self.role = role' >> /app/src/models.py && echo '        self.created_at = datetime.now().isoformat()' >>> /app/src/models.py && echo '' >> /app/src/models.py && echo '    def to_dict(self):' >> /app/src/models.py && echo '        return {"name": self.name, "email":: self.email, "role": self.role, "created_at": self.created_at}' >> /app/src/models.py && echo '' >> /app/src/models.py && echo 'class Product:' >> /app/src/modeels.py && echo '    def __init__(self, name, price, category):' >> /app/src/models.py && echo '        self.name = name' >> /app/src/models.py && echo '        sself.price = price' >> /app/src/models.py && echo '        self.category = category' >> /app/src/models.py && echo '' >> /app/src/models.py && echo '    def to_ddict(self):' >> /app/src/models.py && echo '        return {"name": self.name, "price": self.price, "category": self.category}' >> /app/src/models.py; tmux wait  -S done
-[?2004l[?2004hroot@e1f7ac1022f4:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# sudo cat /app/src/models.py; tmux wait -S done
-[?2004lfrom datetime import datetime
-
-class User:
-    def __init__(self, name, email, role="member"):
-        self.name = name
-        self.email = email
-        self.role = role
-        self.created_at = datetime.now().isoformat()
-
-    def to_dict(self):
-        return {"name": self.name, "email": self.email, "role": self.role, "created_at": self.created_at}
-
-class Product:
-    def __init__(self, name, price, category):
-        self.name = name
-        self.price = price
-        self.category = category
-
-    def to_dict(self):
-        return {"name": self.name, "price": self.price, "category": self.category}
-[?2004hroot@e1f7ac1022f4:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# echo 'import json' > /app/src/utils.py && echo '' >> /app/src/utils.py && echo 'def format_currency(amount):' >> /app/src/utils.py && echho '    return f"${{amount:,.2f}}"' >> /app/src/utils.py && echo '' >> /app/src/utils.py && echo 'def validate_email(email):' >> /app/src/utils.py && echo '    rreturn "@" in email and "." in email.split("@")[1]' >> /app/src/utils.py && echo '' >> /app/src/utils.py && echo 'def generate_report(users, products):' >> /app//src/utils.py && echo '    return {' >> /app/src/utils.py && echo '        "total_users": len(users),' >> /app/src/utils.py && echo '        "total_products": leen(products),' >> /app/src/utils.py && echo '        "total_value": sum(p.price for p in products),' >> /app/src/utils.py && echo '        "users": [u.to_dict()  for u in users],' >> /app/src/utils.py && echo '        "products": [p.to_dict() for p in products]' >> /app/src/utils.py && echo '    }' >> /app/src/utils.py;  tmux wait -S done
-[?2004l[?2004hroot@e1f7ac1022f4:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# sudo cat /app/src/utils.py; tmux wait -S done
-[?2004limport json
-
-def format_currency(amount):
-    return f"${{amount:,.2f}}"
-
-def validate_email(email):
-    return "@" in email and "." in email.split("@")[1]
-
-def generate_report(users, products):
-    return {
-        "total_users": len(users),
-        "total_products": len(products),
-        "total_value": sum(p.price for p in products),
-        "users": [u.to_dict() for u in users],
-        "products": [p.to_dict() for p in products]
-    }
-[?2004hroot@e1f7ac1022f4:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# mkdir -p /app/output; tmux wait -S done
-[?2004l[?2004hroot@e1f7ac1022f4:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# python3 -c "; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# python3 /app/src/main.py; tmux wait -S done
-[?2004lpython3: can't open file '/app/src/main.py': [Errno 2] No such file or directory
-[?2004hroot@e1f7ac1022f4:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app# cd /app/src && pwd && ls -la; tmux wait -S done
-[?2004l/app/src
-total 24
-drwxrwxrwx 1 root root 4096 Mar 28 21:51 [0m[34;42m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 21:24 [01;34m..[0m
--rw------- 1 root root 2039 Mar 28 20:52 app.py
--rw-r--r-- 1 root root  610 Mar 28 21:51 models.py
--rw-r--r-- 1 root root  444 Mar 28 21:51 utils.py
-[?2004hroot@e1f7ac1022f4:/app/src# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app/src# PYTHONPATH=/app/src python3 -c "; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app/src# cd /app/src && cat > main.py << 'ENDOFFILE'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app/src# ls -la /app/src/; tmux wait -S done
-[?2004ltotal 24
-drwxrwxrwx 1 root root 4096 Mar 28 21:51 [0m[34;42m.[0m
-drwxr-xr-x 1 root root 4096 Mar 28 21:24 [01;34m..[0m
--rw------- 1 root root 2039 Mar 28 20:52 app.py
--rw-r--r-- 1 root root  610 Mar 28 21:51 models.py
--rw-r--r-- 1 root root  444 Mar 28 21:51 utils.py
-[?2004hroot@e1f7ac1022f4:/app/src# ^C[?2004l[?2004h[?2004l
-[?2004hroot@e1f7ac1022f4:/app/src# printf '%s\n' 'import json' 'from models import User, Product' 'from utils import format_currency, generate_report' '' 'def main():'  '    users = [' "        User('"'"'Alice'"'"', '"'"'alice@example.com'"'"', '"'"'admin'"'"')" ',' "        User('"'"'Bob'"'"', '"'"'bob@example.com'"'"')" ',' ""        User('"'"'Charlie'"'"', '"'"'charlie@example.com'"'"')," "    ]" '' '    products = [' "        Product('"'"'Widget'"'"', 29.99, '"'"'tools'"'"')" ',' ""        Product('"'"'Gadget'"'"', 49.99, '"'"'electronics'"'"')" ',' "        Product('"'"'Doohickey'"'"', 9.99, '"'"'misc'"'"')," "    ]" '' '    report = geneerate_report(users, products)' '    report['"'"'formatted_total'"'"'] = format_currency(report['"'"'total_value'"'"'])' '' '    with open('/app/output/report.jsoon', '"'"'w'"'"') as f:' '        json.dump(report, f, indent=2)' '' '    print(f"Generated report: {len(users)} users, {len(products)} products")' '    print(f""Total value: {format_currency(report['"'"'total_value'"'"'])}")' '' 'if __name__ == '"'"'__main__'"'"':'' '    main()' > /app/src/main.py; tmux wait -S done
-[?2004l-bash: syntax error near unexpected token `('
-[?2004hroot@e1f7ac1022f4:/app/src# 

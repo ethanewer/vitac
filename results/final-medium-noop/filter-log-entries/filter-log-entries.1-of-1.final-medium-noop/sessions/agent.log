@@ -1,7 +1,0 @@
-[?2004hroot@1e5ca067de9a:/app# mkdir -p /app/output && grep -iE "error|exception" /app/logs/application.log > /app/output/filtered.log; tmux wait -S done
-[?2004l[?2004hroot@1e5ca067de9a:/app# wc -l /app/output/filtered.log && head -n 5 /app/output/filtered.log; tmux wait -S done
-[?2004l3 /app/output/filtered.log
-2026-03-28 10:00:03 ERROR Failed to connect to database: timeout
-2026-03-28 10:00:05 ERROR Connection refused by host db.local:5432
-2026-03-28 10:00:09 ERROR Invalid configuration key: max_retries
-[?2004hroot@1e5ca067de9a:/app# 

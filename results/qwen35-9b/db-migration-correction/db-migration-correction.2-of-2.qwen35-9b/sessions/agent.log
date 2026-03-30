@@ -1,5 +1,0 @@
-[?2004hroot@34bca8cb04e1:/app# python3 /app/migrate.py --target=v5; tmux wait -S done
-[?2004lMigrating database to v5...
-Applying schema changes for v5...
-Migration to v5 completed successfully.
-[?2004hroot@34bca8cb04e1:/app# 

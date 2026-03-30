@@ -1,11 +1,0 @@
-[?2004hroot@59c1aa97668c:/app# find /app/data -maxdepth 1 -type f \( -name "*.csv" \) ! -name "*.tmp" ! -name "*.log" -print; tmux wait -S done
-[?2004l/app/data/users.csv
-/app/data/orders.csv
-/app/data/products.csv
-[?2004hroot@59c1aa97668c:/app# tar -czvf /app/output/archive.tar.gz -C /app data/users.csv data/orders.csv data/products.csv; tmux wait -S done
-[?2004ldata/users.csv
-data/orders.csv
-data/products.csv
-[?2004hroot@59c1aa97668c:/app# ls -l /app/output/archive.tar.gz; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 242 Mar 28 21:33 [0m[01;31m/app/output/archive.tar.gz[0m
-[?2004hroot@59c1aa97668c:/app# 

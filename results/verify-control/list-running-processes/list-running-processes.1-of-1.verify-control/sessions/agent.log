@@ -1,27 +1,0 @@
-[?2004hroot@c2fbf8e7bee1:/app# ls -l /app/data/users.csv /app/output || true; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root  110 Mar 28 19:37 /app/data/users.csv
-
-/app/output:
-total 0
-[?2004hroot@c2fbf8e7bee1:/app# ls -l /app/output/usernames.txt || true; tmux wait -S done
-[?2004lls: cannot access '/app/output/usernames.txt': No such file or directory
-[?2004hroot@c2fbf8e7bee1:/app# sed -n '1,10p' /app/data/users.csv; tmux wait -S done
-[?2004lid,username,role
-1,alice,admin
-2,bob,user
-3,charlie,user
-4,alice,admin
-5,diana,editor
-6,bob,user
-7,eve,viewer
-[?2004hroot@c2fbf8e7bee1:/app# awk -F',' 'NR>1{print $2}' /app/data/users.csv | sort -u > /app/output/usernames.txt; tmux wait -S done
-[?2004l[?2004hroot@c2fbf8e7bee1:/app# ls -l /app/output && echo '---' && cat /app/output/usernames.txt; tmux wait -S done
-[?2004ltotal 4
--rw-r--r-- 1 root root 28 Mar 28 20:05 usernames.txt
----
-alice
-bob
-charlie
-diana
-eve
-[?2004hroot@c2fbf8e7bee1:/app# 

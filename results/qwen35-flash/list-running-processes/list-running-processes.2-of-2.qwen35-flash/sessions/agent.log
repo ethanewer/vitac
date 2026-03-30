@@ -1,10 +1,0 @@
-[?2004hroot@16ad303d9bf8:/app# tail -n +2 /app/data/users.csv | cut -d',' -f2 | sort -u > /app/output/usernames.txt; tmux wait -S done
-[?2004l[?2004hroot@16ad303d9bf8:/app# head /app/output/usernames.txt && echo '---' && wc -l /app/output/usernames.txt; tmux wait -S done
-[?2004lalice
-bob
-charlie
-diana
-eve
----
-5 /app/output/usernames.txt
-[?2004hroot@16ad303d9bf8:/app# 

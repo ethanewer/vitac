@@ -1,41 +1,0 @@
-[?2004hroot@3b110dc7617c:/app# find /var/log -type f -name "*.log" -exec du -h {} + 2>/dev/null | sort -hr | head -20; tmux wait -S done
-[?2004l252K	/var/log/dpkg.log
-60K	/var/log/bootstrap.log
-44K	/var/log/apt/term.log
-28K	/var/log/apt/history.log
-12K	/var/log/alternatives.log
-[?2004hroot@3b110dc7617c:/app# du -sh /var/log/* 2>/dev/null | sort -hr; tmux wait -S done
-[?2004l252K	/var/log/dpkg.log
-88K	/var/log/apt
-60K	/var/log/bootstrap.log
-12K	/var/log/alternatives.log
-0	/var/log/wtmp
-0	/var/log/lastlog
-0	/var/log/faillog
-0	/var/log/btmp
-[?2004hroot@3b110dc7617c:/app# find /var/log -type f \( -name "*.log.*" -o -name "*.gz" -o -name "*.old" \) -exec ls -lh {} \; 2>/dev/null; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 12K Mar 28 18:48 /var/log/apt/eipp.log.xz
-[?2004hroot@3b110dc7617c:/app# find /var/log -type f -mmin +30 2>/dev/null | head -20; tmux wait -S done
-[?2004l/var/log/alternatives.log
-/var/log/bootstrap.log
-/var/log/wtmp
-/var/log/btmp
-/var/log/dpkg.log
-/var/log/lastlog
-/var/log/faillog
-/var/log/apt/eipp.log.xz
-/var/log/apt/history.log
-/var/log/apt/term.log
-[?2004hroot@3b110dc7617c:/app# > /var/log/dpkg.log; tmux wait -S done
-[?2004l[?2004hroot@3b110dc7617c:/app# > /var/log/apt/term.log && > /var/log/apt/history.log; tmux wait -S done
-[?2004l[?2004hroot@3b110dc7617c:/app# > /var/log/alternatives.log; tmux wait -S done
-[?2004l[?2004hroot@3b110dc7617c:/app# du -sh /var/log/*; tmux wait -S done
-[?2004l0	/var/log/alternatives.log
-20K	/var/log/apt
-60K	/var/log/bootstrap.log
-0	/var/log/btmp
-0	/var/log/dpkg.log
-0	/var/log/faillog
-0	/var/log/lastlog
-0	/var/log/wtmp
-[?2004hroot@3b110dc7617c:/app# 

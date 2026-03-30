@@ -1,13 +1,0 @@
-[?2004hroot@457622d98f88:/app# cat /app/config/settings.json; tmux wait -S done
-[?2004l{
-  "app_name": "myservice",
-  "port": 3000,
-  "debug": true,
-  "log_level": "info",
-  "database": {
-    "host": "localhost",
-    "port": 5432,
-    "name": "mydb"
-  }
-}
-[?2004hroot@457622d98f88:/app# 

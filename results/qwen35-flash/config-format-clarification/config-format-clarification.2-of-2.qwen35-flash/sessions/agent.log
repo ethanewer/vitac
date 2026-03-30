@@ -1,21 +1,0 @@
-[?2004hroot@65d6a5b6ed50:/app# mkdir -p /app/config && cat > /app/config/app_config.yaml << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@65d6a5b6ed50:/app# cat /app/config/app_config.yaml; tmux wait -S done
-[?2004lcat: /app/config/app_config.yaml: No such file or directory
-[?2004hroot@65d6a5b6ed50:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@65d6a5b6ed50:/app# cat > /app/config/app_config.yaml << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@65d6a5b6ed50:/app# mkdir -p /app/config; tmux wait -S done
-[?2004l[?2004hroot@65d6a5b6ed50:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@65d6a5b6ed50:/app# echo 'app_name: "widget-service"' > /app/config/app_config.yaml && echo 'port: 8080' >> /app/config/app_config.yaml && echo 'database:' >>> /app/config/app_config.yaml && echo '  host: "db.internal.example.com"' >> /app/config/app_config.yaml && echo '  port: 5432' >> /app/config/app_config.yaml &&& echo '  name: "widgets_prod"' >> /app/config/app_config.yaml && echo 'log_level: "info"' >> /app/config/app_config.yaml; tmux wait -S done
-[?2004l[?2004hroot@65d6a5b6ed50:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@65d6a5b6ed50:/app# cat /app/config/app_config.yaml; tmux wait -S done
-[?2004lapp_name: "widget-service"
-port: 8080
-database:
-  host: "db.internal.example.com"
-  port: 5432
-  name: "widgets_prod"
-log_level: "info"
-[?2004hroot@65d6a5b6ed50:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@65d6a5b6ed50:/app# 

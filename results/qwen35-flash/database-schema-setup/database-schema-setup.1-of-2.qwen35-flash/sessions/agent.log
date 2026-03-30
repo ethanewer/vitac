@@ -1,129 +1,0 @@
-[?2004hroot@8fd60283a90e:/app# mkdir -p /app/data; tmux wait -S done
-[?2004l[?2004hroot@8fd60283a90e:/app# cat > /app/schema.sql << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# cat > /app/schema.sql << 'ENDOFSQL'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# printf 'CREATE TABLE categories (\n    id INTEGER PRIMARY KEY,\n    name TEXT NOT NULL,\n    parent_id INTEGER,\n    FOREIGN KEY (parent__id) REFERENCES categories(id)\n);\n\nCREATE TABLE users (\n    id INTEGER PRIMARY KEY,\n    email TEXT NOT NULL UNIQUE,\n    name TEXT NOT NULL,\n    created_att TEXT NOT NULL DEFAULT datetime(\x27now\x27)\n);\n\nCREATE TABLE products (\n    id INTEGER PRIMARY KEY,\n    name TEXT NOT NULL,\n    price REAL NOT NULL CHECKK (price > 0),\n    category_id INTEGER NOT NULL,\n    FOREIGN KEY (category_id) REFERENCES categories(id)\n);\n\nCREATE TABLE orders (\n    id INTEGER PRIMARY KKEY,\n    user_id INTEGER NOT NULL,\n    product_id INTEGER NOT NULL,\n    quantity INTEGER NOT NULL CHECK (quantity > 0),\n    ordered_at TEXT NOT NULL DEFAULT  datetime(\x27now\x27),\n    FOREIGN KEY (user_id) REFERENCES users(id),\n    FOREIGN KEY (product_id) REFERENCES products(id)\n);\n' > /app/schema.sql; tmux waiit -S done
-[?2004l[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# sqlite3 /app/data/app.db < /app/schema.sql; tmux wait -S done
-[?2004lParse error near line 8: near "(": syntax error
-  ULL,     created_at TEXT NOT NULL DEFAULT datetime('now') );
-                                      error here ---^
-Parse error near line 23: near "(": syntax error
-   0),     ordered_at TEXT NOT NULL DEFAULT datetime('now'),     FOREIGN KEY (us
-                                      error here ---^
-[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# cat /app/schema.sql; tmux wait -S done
-[?2004lCREATE TABLE categories (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    parent_id INTEGER,
-    FOREIGN KEY (parent_id) REFERENCES categories(id)
-);
-
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY,
-    email TEXT NOT NULL UNIQUE,
-    name TEXT NOT NULL,
-    created_at TEXT NOT NULL DEFAULT datetime('now')
-);
-
-CREATE TABLE products (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    price REAL NOT NULL CHECK (price > 0),
-    category_id INTEGER NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES categories(id)
-);
-
-CREATE TABLE orders (
-    id INTEGER PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
-    quantity INTEGER NOT NULL CHECK (quantity > 0),
-    ordered_at TEXT NOT NULL DEFAULT datetime('now'),
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (product_id) REFERENCES products(id)
-);
-[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# rm -f /app/data/app.db && printf '%s\n' "CREATE TABLE categories (" "    id INTEGER PRIMARY KEY," "    name TEXT NOT NULL," "    parent_iid INTEGER," "    FOREIGN KEY (parent_id) REFERENCES categories(id)" ");" "" "CREATE TABLE users (" "    id INTEGER PRIMARY KEY," "    email TEXT NOT NULL UNIQUEE," "    name TEXT NOT NULL," "    created_at TEXT NOT NULL" ");" "" "CREATE TABLE products (" "    id INTEGER PRIMARY KEY," "    name TEXT NOT NULL," "    pricee REAL NOT NULL CHECK (price > 0)," "    category_id INTEGER NOT NULL," "    FOREIGN KEY (category_id) REFERENCES categories(id)" ");" "" "CREATE TABLE orders ("" "    id INTEGER PRIMARY KEY," "    user_id INTEGER NOT NULL," "    product_id INTEGER NOT NULL," "    quantity INTEGER NOT NULL CHECK (quantity > 0)," "    orddered_at TEXT NOT NULL" ");" > /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# cat /app/schema.sql; tmux wait -S done
-[?2004lCREATE TABLE categories (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    parent_id INTEGER,
-    FOREIGN KEY (parent_id) REFERENCES categories(id)
-);
-
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY,
-    email TEXT NOT NULL UNIQUE,
-    name TEXT NOT NULL,
-    created_at TEXT NOT NULL
-);
-
-CREATE TABLE products (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    price REAL NOT NULL CHECK (price > 0),
-    category_id INTEGER NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES categories(id)
-);
-
-CREATE TABLE orders (
-    id INTEGER PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
-    quantity INTEGER NOT NULL CHECK (quantity > 0),
-    ordered_at TEXT NOT NULL
-);
-[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# sqlite3 /app/data/app.db < /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# sqlite3 /app/data/app.db "ALTER TABLE users ADD COLUMN created_at_default TEXT DEFAULT 'now';"; tmux wait -S done
-[?2004l[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# printf '%s\n' "-- SQLite database schema" "-- Note: created_at and ordered_at defaults must be set manually in application code" "-- as ddatetime('now') syntax is not supported in this SQLite version" "CREATE TABLE categories (" "    id INTEGER PRIMARY KEY," "    name TEXT NOT NULL," "    parent_iid INTEGER," "    FOREIGN KEY (parent_id) REFERENCES categories(id)" ");" "" "CREATE TABLE users (" "    id INTEGER PRIMARY KEY," "    email TEXT NOT NULL UNIQUEE," "    name TEXT NOT NULL," "    created_at TEXT NOT NULL" ");" "" "CREATE TABLE products (" "    id INTEGER PRIMARY KEY," "    name TEXT NOT NULL," "    pricee REAL NOT NULL CHECK (price > 0)," "    category_id INTEGER NOT NULL," "    FOREIGN KEY (category_id) REFERENCES categories(id)" ");" "" "CREATE TABLE orders ("" "    id INTEGER PRIMARY KEY," "    user_id INTEGER NOT NULL," "    product_id INTEGER NOT NULL," "    quantity INTEGER NOT NULL CHECK (quantity > 0)," "    orddered_at TEXT NOT NULL" ");" > /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# cat > /app/schema.sql << 'SCHEMA'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# cat /app/schema.sql; tmux wait -S done
-[?2004l-- SQLite database schema
--- Note: created_at and ordered_at defaults must be set manually in application code
--- as datetime('now') syntax is not supported in this SQLite version
-CREATE TABLE categories (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    parent_id INTEGER,
-    FOREIGN KEY (parent_id) REFERENCES categories(id)
-);
-
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY,
-    email TEXT NOT NULL UNIQUE,
-    name TEXT NOT NULL,
-    created_at TEXT NOT NULL
-);
-
-CREATE TABLE products (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    price REAL NOT NULL CHECK (price > 0),
-    category_id INTEGER NOT NULL,
-    FOREIGN KEY (category_id) REFERENCES categories(id)
-);
-
-CREATE TABLE orders (
-    id INTEGER PRIMARY KEY,
-    user_id INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
-    quantity INTEGER NOT NULL CHECK (quantity > 0),
-    ordered_at TEXT NOT NULL
-);
-[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# rm -f /app/data/app.db && sqlite3 /app/data/app.db < /app/schema.sql; tmux wait -S done
-[?2004l[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# sqlite3 /app/data/app.db ".tables"; tmux wait -S done
-[?2004lcategories  orders      products    users     
-[?2004hroot@8fd60283a90e:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@8fd60283a90e:/app# 

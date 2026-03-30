@@ -1,9 +1,0 @@
-[?2004hroot@5dc2e56dbf8e:/app# sh -c "mkdir -p /app/config && printf 'APP_PORT=3000\nDB_HOST=postgres.local\nDB_NAME=myapp\nSECRET_KEY=supersecret123\n' > /app/config/..env"; tmux wait -S done
-[?2004l[?2004hroot@5dc2e56dbf8e:/app# sh -c "ls -l /app/config/.env && echo '---' && cat /app/config/.env"; tmux wait -S done
-[?2004l-rw-r--r-- 1 root root 77 Mar 28 20:07 /app/config/.env
----
-APP_PORT=3000
-DB_HOST=postgres.local
-DB_NAME=myapp
-SECRET_KEY=supersecret123
-[?2004hroot@5dc2e56dbf8e:/app# 

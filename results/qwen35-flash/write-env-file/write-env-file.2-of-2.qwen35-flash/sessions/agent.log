@@ -1,16 +1,0 @@
-[?2004hroot@91543bb5dbb2:/app# mkdir -p /app/config && cat > /app/config/.env <<EOF; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@91543bb5dbb2:/app# cat /app/config/.env; tmux wait -S done
-[?2004lcat: /app/config/.env: No such file or directory
-[?2004hroot@91543bb5dbb2:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@91543bb5dbb2:/app# mkdir -p /app/config; tmux wait -S done
-[?2004l[?2004hroot@91543bb5dbb2:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@91543bb5dbb2:/app# echo -e 'APP_PORT=3000\nDB_HOST=postgres.local\nDB_NAME=myapp\nSECRET_KEY=supersecret123' > /app/config/.env; tmux wait -S done
-[?2004l[?2004hroot@91543bb5dbb2:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@91543bb5dbb2:/app# cat /app/config/.env; tmux wait -S done
-[?2004lAPP_PORT=3000
-DB_HOST=postgres.local
-DB_NAME=myapp
-SECRET_KEY=supersecret123
-[?2004hroot@91543bb5dbb2:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@91543bb5dbb2:/app# 

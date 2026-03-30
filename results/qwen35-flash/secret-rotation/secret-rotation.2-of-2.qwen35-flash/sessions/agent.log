@@ -1,19 +1,0 @@
-[?2004hroot@28fc1a5ee6ec:/app# grep -r "secret" /app/config/ /app/services/ /app/env/ 2>/dev/null | head -50; tmux wait -S done
-[?2004l/app/services/auth/config.json:  "jwt_secret": "jwt-secret-old-value",
-/app/env/.env.production:JWT_SECRET=jwt-secret-old-value
-[?2004hroot@28fc1a5ee6ec:/app# sed -i 's/jwt-secret-old-value/hN4kQ8wR2vBj5mT/g' /app/services/auth/config.json /app/env/.env.production; tmux wait -S done
-[?2004l[?2004hroot@28fc1a5ee6ec:/app# grep -r "secret" /app/config/ /app/services/ /app/env/ 2>/dev/null; tmux wait -S done
-[?2004l[35m[K/app/services/auth/config.json[m[K[36m[K:[m[K  "jwt_[01;31m[Ksecret[m[K": "hN4kQ8wR2vBj5mT",
-[?2004hroot@28fc1a5ee6ec:/app# cat /app/env/.env.production; tmux wait -S done
-[?2004lAPP_ENV=production
-DB_PASSWORD=oldpass123
-API_KEY=sk-old-key-abc123
-JWT_SECRET=hN4kQ8wR2vBj5mT
-LOG_LEVEL=warn
-[?2004hroot@28fc1a5ee6ec:/app# cat /app/services/auth/config.json; tmux wait -S done
-[?2004l{
-  "jwt_secret": "hN4kQ8wR2vBj5mT",
-  "token_expiry": 3600,
-  "issuer": "myapp"
-}
-[?2004hroot@28fc1a5ee6ec:/app# 

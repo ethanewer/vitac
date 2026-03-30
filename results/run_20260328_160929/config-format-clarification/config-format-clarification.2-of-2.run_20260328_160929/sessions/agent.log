@@ -1,4 +1,0 @@
-[?2004hroot@8baf9a46f587:/app# mkdir -p /app/config && echo '{"app_name": "my_app", "version": "1.0.0", "environment": "production", "debug": false}' > /app/config/app__config.json; tmux wait -S done
-[?2004l[?2004hroot@8baf9a46f587:/app# cat /app/config/app_config.json; tmux wait -S done
-[?2004l{"app_name": "my_app", "version": "1.0.0", "environment": "production", "debug": false}
-[?2004hroot@8baf9a46f587:/app# 

@@ -1,46 +1,0 @@
-[?2004hroot@dee4a8a23e87:/app# run-code gen_config.py; tmux wait -S done
-[?2004lTraceback (most recent call last):
-  File "/app/src/gen_config.py", line 20, in <module>
-    config = generate_config(
-             ^^^^^^^^^^^^^^^^
-  File "/app/src/gen_config.py", line 10, in generate_config
-    proxy_pass http://{upstream_host}:{port}
-                                       ^^^^
-NameError: name 'port' is not defined
-[?2004hroot@dee4a8a23e87:/app# cat fixed.py | apply-fix gen_config.py; tmux wait -S done
-[?2004lcat: fixed.py: No such file or directory
-[?2004hroot@dee4a8a23e87:/app# cat > /tmp/fixed.py << 'EOF'; tmux wait -S done
-[?2004l[?2004h> ^C[?2004l[?2004h[?2004l
-[?2004hroot@dee4a8a23e87:/app# printf '%s\n' '#!/usr/bin/env python3' '"""Generate nginx configuration from parameters."""' '' 'def generate_config(domain, listen_port,, upstream_host, upstream_port):' '    config = f"""server {{' '    listen {listen_port};' '    server_name {domain};' '' '    location / {{' '        proxy_passs http://{upstream_host}:{upstream_port};' '        proxy_set_header Host $host;' '        proxy_set_header X-Real-IP $remote_addr;' '        proxy_set_header X--Forwarded-For $proxy_add_x_forwarded_for;' '    }}' '}}' '"""' '    return config' '' 'if __name__ == "__main__":' '    config = generate_config(' '        domaain="app.example.com",' '        listen_port=80,' '        upstream_host="backend",' '        upstream_port=3000' '    )' '' '    with open("/app/output/nginx.coonf", "w") as f:' '        f.write(config)' '' '    print("Generated nginx config:")' '    print(config)' > /tmp/fixed.py; tmux wait -S done
-[?2004l[?2004hroot@dee4a8a23e87:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@dee4a8a23e87:/app# cat /tmp/fixed.py | apply-fix gen_config.py; tmux wait -S done
-[?2004l[?2004hroot@dee4a8a23e87:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@dee4a8a23e87:/app# run-code gen_config.py; tmux wait -S done
-[?2004lGenerated nginx config:
-server {
-    listen 80;
-    server_name app.example.com;
-
-    location / {
-        proxy_pass http://backend:3000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
-}
-
-[?2004hroot@dee4a8a23e87:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@dee4a8a23e87:/app# cat /app/output/nginx.conf; tmux wait -S done
-[?2004lserver {
-    listen 80;
-    server_name app.example.com;
-
-    location / {
-        proxy_pass http://backend:3000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
-}
-[?2004hroot@dee4a8a23e87:/app# ^C[?2004l[?2004h[?2004l
-[?2004hroot@dee4a8a23e87:/app# 
