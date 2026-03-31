@@ -17,6 +17,7 @@ build/
 
 # Benchmark results (large, ephemeral)
 results/
+old-results/
 
 # OpenCode binary (136MB, must be built locally)
 ts-runner/bin/

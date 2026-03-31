@@ -200,11 +200,17 @@ class Harness:
             # Create agent session
             agent_session = terminal.create_session("agent")
 
-            # Pass task metadata to opencode agents
-            if hasattr(self._primary, "collaborator_context"):
-                self._primary.collaborator_context = task.collaborator_context
-            if hasattr(self._primary, "task_id"):
-                self._primary.task_id = task.task_id
+            # Pass task metadata to opencode agents.
+            # NOTE: perform_task runs in its own thread (see _run_agent_with_collaborator),
+            # so we use a shallow copy to avoid concurrent threads stomping on each other's
+            # task_id / collaborator_context on the shared self._primary instance.
+            import copy
+
+            primary_copy = copy.copy(self._primary)
+            if hasattr(primary_copy, "collaborator_context"):
+                primary_copy.collaborator_context = task.collaborator_context
+            if hasattr(primary_copy, "task_id"):
+                primary_copy.task_id = task.task_id
 
             # Initialize voice queue with instruction
             initial_audio = text_to_audio(task.instruction)
@@ -227,6 +233,7 @@ class Harness:
                 # The agent runs synchronously with the voice queue
                 agent_result = self._run_agent_with_collaborator(
                     task=task,
+                    primary=primary_copy,
                     agent_session=agent_session,
                     voice_queue=voice_queue,
                     logging_dir=agent_logs_dir,
@@ -338,6 +345,7 @@ class Harness:
     def _run_agent_with_collaborator(
         self,
         task: TaskDef,
+        primary: PrimaryAgent,
         agent_session,
         voice_queue: VoiceQueue,
         logging_dir: Path,
@@ -352,7 +360,7 @@ class Harness:
 
         def agent_thread():
             try:
-                result_holder[0] = self._primary.perform_task(
+                result_holder[0] = primary.perform_task(
                     instruction=task.instruction,
                     session=agent_session,
                     voice_queue=voice_queue,

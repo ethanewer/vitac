@@ -38,6 +38,9 @@ def run(
     no_rebuild: bool = typer.Option(False, help="Skip Docker image rebuild"),
     cleanup: bool = typer.Option(False, help="Remove Docker images after run"),
     text_only: bool = typer.Option(False, help="Use text-only mode (no audio)"),
+    batch_turns: bool = typer.Option(
+        False, help="Buffer entire turns before routing audio (reduces fragmentation)"
+    ),
 ) -> None:
     """Run the benchmark with a built-in voice system."""
     from datetime import datetime
@@ -65,7 +68,9 @@ def run(
 
     task_ids = [task_id] if task_id else None
 
-    primary_agent = VoiceSystemPrimaryAgent(system=system, collab_system=collab_system)
+    primary_agent = VoiceSystemPrimaryAgent(
+        system=system, collab_system=collab_system, batch_turns=batch_turns
+    )
     collaborator_agent = VoiceSystemCollaboratorAgent()
 
     dataset = Dataset(path=Path(tasks), task_ids=task_ids)

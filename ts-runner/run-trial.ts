@@ -12,6 +12,7 @@
  * Usage: bun run ts-runner/run-trial.ts <config.json> <output.json>
  */
 
+import { mkdir } from "node:fs/promises"
 import { createOpencodeClient } from "@opencode-ai/sdk/v2/client"
 import { createVoiceSession, pcmToWav, stt } from "@opencode-ai/sdk/v2/voice"
 import type { VoiceSystemName } from "@opencode-ai/sdk/v2/voice"
@@ -26,6 +27,11 @@ if (!configPath || !outputPath) {
 }
 
 const config: TrialConfig = JSON.parse(await Bun.file(configPath).text())
+
+// Create directory for saving audio WAV files alongside the result JSON
+const audioDir = outputPath.replace(/\.json$/, "_audio")
+await mkdir(audioDir, { recursive: true })
+let audioCounter = 0
 
 const maxTimeout = config.maxTimeoutMs ?? 540_000
 const voiceMessages: VoiceMessageLog[] = []
@@ -61,9 +67,12 @@ await Promise.all([
 const systemName = config.system as VoiceSystemName
 const collabSystemName = (config.collabSystem ?? config.system) as VoiceSystemName
 
+const batchTurns = config.batchTurns ?? false
+
 console.log("Creating voice sessions...")
 console.log(`System: ${systemName}`)
 console.log(`Collaborator system: ${collabSystemName}`)
+console.log(`Batch turns: ${batchTurns}`)
 
 // Primary prompt: guides the agent to use tools and collaborate via voice
 const primaryPrompt = [
@@ -94,6 +103,7 @@ const primarySession = await createVoiceSession(primaryClient, {
   prompt: primaryPrompt,
   permission: "dangerous",
   toolStatus: false,
+  batchTurns,
   // Disable the interactive question tool — in voice mode the agent should
   // ask questions by speaking, not through an interactive prompt.
   tools: { question: false },
@@ -105,6 +115,7 @@ const collabSession = await createVoiceSession(collabClient, {
   prompt: collabPrompt,
   permission: [{ permission: "*", pattern: "*", action: "deny" as const }],
   toolStatus: false,
+  batchTurns,
 })
 
 console.log(`Primary session: ${primarySession.sessionID}`)
@@ -146,6 +157,7 @@ const collabEventMonitor = (async () => {
       if (evt.properties?.sessionID === collabSession.sessionID) {
         if (evt.type === "session.status") {
           console.log(`[collab-event] ${evt.type}: ${evt.properties.status?.type}`)
+          if (evt.properties.status?.type === "idle") signalIdle("collaborator")
         } else if (evt.type === "message.part.delta" && evt.properties.field === "text") {
           // don't log every delta, too noisy
         } else {
@@ -207,10 +219,11 @@ const sseMonitor = (async () => {
         }
       }
 
-      // Reset text buffer on idle (new turn)
+      // Reset text buffer on idle (new turn) and signal turn boundary
       if (evt.type === "session.status" && evt.properties.sessionID === primarySession.sessionID) {
         if (evt.properties.status?.type === "idle") {
           textBuffer = ""
+          signalIdle("primary")
         }
       }
     }
@@ -218,6 +231,16 @@ const sseMonitor = (async () => {
     // Stream ended or aborted
   }
 })()
+
+// Turn-boundary signaling for batchTurns mode.
+// SSE monitors set these flags when the source agent goes idle.
+let primaryIdleFired = false
+let collabIdleFired = false
+
+function signalIdle(agent: "primary" | "collaborator") {
+  if (agent === "primary") primaryIdleFired = true
+  else collabIdleFired = true
+}
 
 // Accumulate audio chunks into complete utterances before forwarding.
 async function routeAudio(
@@ -246,6 +269,11 @@ async function routeAudio(
     const wav = pcmToWav(merged, { sampleRate: 24000, channels: 1, bitDepth: 16 })
     dest.push(wav)
 
+    // Save audio to disk
+    const idx = String(audioCounter++).padStart(3, "0")
+    const audioFilename = `${idx}_${sender}_to_${recipient}.wav`
+    await Bun.write(`${audioDir}/${audioFilename}`, wav)
+
     // Also transcribe for logging
     let transcript = ""
     try {
@@ -253,32 +281,67 @@ async function routeAudio(
     } catch {
       transcript = "[audio]"
     }
-    voiceMessages.push({ sender, recipient, transcript, timestampMs: Date.now() })
+    voiceMessages.push({ sender, recipient, transcript, timestampMs: Date.now(), audioFilename })
     console.log(`${sender} -> ${recipient}: ${transcript.slice(0, 200)}`)
   }
 
-  // Use a timer to flush accumulated audio after a silence gap
-  let flushTimer: ReturnType<typeof setTimeout> | null = null
-  const SILENCE_GAP_MS = 1500
+  if (batchTurns) {
+    // Turn-boundary mode: accumulate all PCM and flush once the TTS stream
+    // for a turn finishes.  The idle event fires when the LLM turn ends,
+    // but the SDK's batched TTS hasn't finished streaming yet (it starts on
+    // idle).  So we wait for idle AND a silence gap: once idle has fired and
+    // no new PCM arrives for 2 seconds, we know TTS is done.
+    let flushTimer: ReturnType<typeof setTimeout> | null = null
+    const POST_IDLE_FLUSH_MS = 2000
 
-  for await (const pcm of source) {
-    if (completed) break
-    chunks.push(pcm)
-    totalLen += pcm.length
+    for await (const pcm of source) {
+      if (completed) break
+      chunks.push(pcm)
+      totalLen += pcm.length
+
+      // Clear any pending flush timer — new audio arrived
+      if (flushTimer) clearTimeout(flushTimer)
+
+      // Check if idle has been signaled for this sender
+      const idle = sender === "primary" ? primaryIdleFired : collabIdleFired
+      if (idle && totalLen > 0) {
+        // Idle already fired; TTS is streaming. Set a timer to flush once
+        // chunks stop arriving (TTS stream finished).
+        flushTimer = setTimeout(() => {
+          // Reset the idle flag for the next turn
+          if (sender === "primary") primaryIdleFired = false
+          else collabIdleFired = false
+          flushToDestination().catch(() => {})
+        }, POST_IDLE_FLUSH_MS)
+      }
+    }
 
     if (flushTimer) clearTimeout(flushTimer)
+    await flushToDestination()
+  } else {
+    // Streaming mode (original): flush on silence gap or size threshold.
+    let flushTimer: ReturnType<typeof setTimeout> | null = null
+    const SILENCE_GAP_MS = 1500
 
-    if (totalLen >= MIN_BYTES_TO_SEND) {
-      await flushToDestination()
-    } else {
-      flushTimer = setTimeout(() => {
-        flushToDestination().catch(() => {})
-      }, SILENCE_GAP_MS)
+    for await (const pcm of source) {
+      if (completed) break
+      chunks.push(pcm)
+      totalLen += pcm.length
+
+      if (flushTimer) clearTimeout(flushTimer)
+
+      if (totalLen >= MIN_BYTES_TO_SEND) {
+        await flushToDestination()
+      } else {
+        flushTimer = setTimeout(() => {
+          flushToDestination().catch(() => {})
+        }, SILENCE_GAP_MS)
+      }
     }
-  }
 
-  if (flushTimer) clearTimeout(flushTimer)
-  await flushToDestination()
+    if (flushTimer) clearTimeout(flushTimer)
+    await flushToDestination()
+  }
 }
 
 // Route audio between sessions
@@ -296,6 +359,9 @@ startInput.push(seedWav)
 // Log the seed as a voice message
 const seedRecipient = config.startAgent
 const seedSender = config.startAgent === "primary" ? "collaborator" : "primary"
+const seedAudioFilename = `${String(audioCounter++).padStart(3, "0")}_seed_to_${seedRecipient}.wav`
+await Bun.write(`${audioDir}/${seedAudioFilename}`, seedWav)
+
 let seedTranscript = ""
 try {
   seedTranscript = await stt(seedWav)
@@ -307,6 +373,7 @@ voiceMessages.push({
   recipient: seedRecipient,
   transcript: seedTranscript,
   timestampMs: Date.now(),
+  audioFilename: seedAudioFilename,
 })
 console.log(`seed -> ${seedRecipient}: ${seedTranscript.slice(0, 200)}`)
 

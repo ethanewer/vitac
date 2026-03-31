@@ -16,6 +16,11 @@ export interface TrialConfig {
   collabPrompt?: string
   /** Original text instruction for the task (helps correct STT errors). */
   taskInstruction?: string
+  /**
+   * When true, buffer entire assistant turns and route audio at turn boundaries
+   * instead of sentence-by-sentence. Produces one audio message per turn.
+   */
+  batchTurns?: boolean
 }
 
 export interface VoiceMessageLog {
@@ -23,6 +28,8 @@ export interface VoiceMessageLog {
   recipient: "primary" | "collaborator"
   transcript: string
   timestampMs: number
+  /** Filename of the saved WAV audio (relative to the audio/ directory next to the result JSON). */
+  audioFilename?: string
 }
 
 /** A text segment emitted by the SDK's transcript queue. */

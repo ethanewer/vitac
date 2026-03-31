@@ -13,6 +13,7 @@ from __future__ import annotations
 import json
 import logging
 import os
+import shutil
 import subprocess
 import tempfile
 import time
@@ -134,7 +135,12 @@ class VoiceSystemPrimaryAgent(PrimaryAgent):
     to createVoiceSession() in the TS runner.
     """
 
-    def __init__(self, system: str, collab_system: str | None = None):
+    def __init__(
+        self,
+        system: str,
+        collab_system: str | None = None,
+        batch_turns: bool = False,
+    ):
         if system not in BUILT_IN_SYSTEMS:
             raise ValueError(
                 f"Unknown built-in system: {system!r}. "
@@ -142,6 +148,7 @@ class VoiceSystemPrimaryAgent(PrimaryAgent):
             )
         self._system = system
         self._collab_system = collab_system or system
+        self._batch_turns = batch_turns
 
         # Load instruction metadata (start_agent per task)
         if INSTRUCTIONS_PATH.exists():
@@ -249,6 +256,7 @@ class VoiceSystemPrimaryAgent(PrimaryAgent):
                 "startAgent": start_agent,
                 "collabPrompt": self.collaborator_context,
                 "taskInstruction": instruction,
+                "batchTurns": self._batch_turns,
             }
 
             config_file = tempfile.NamedTemporaryFile(
@@ -320,6 +328,18 @@ class VoiceSystemPrimaryAgent(PrimaryAgent):
                         json.dump(ts_result, f, indent=2)
                     logger.info(f"TS runner result saved to {ts_result_path}")
 
+                    # Copy saved audio WAV files from temp location to logging_dir
+                    temp_audio_dir = Path(output_file.name.replace(".json", "_audio"))
+                    if temp_audio_dir.is_dir():
+                        dest_audio_dir = logging_dir / "ts-runner-result_audio"
+                        if dest_audio_dir.exists():
+                            shutil.rmtree(dest_audio_dir)
+                        shutil.copytree(temp_audio_dir, dest_audio_dir)
+                        logger.info(
+                            f"Audio files copied to {dest_audio_dir} "
+                            f"({len(list(dest_audio_dir.glob('*.wav')))} files)"
+                        )
+
                 for msg_data in ts_result.get("voiceMessages", []):
                     sender = msg_data.get("sender", "primary")
                     recipient = "collaborator" if sender == "primary" else "primary"
@@ -347,6 +367,10 @@ class VoiceSystemPrimaryAgent(PrimaryAgent):
                     os.unlink(output_file.name)
                 except FileNotFoundError:
                     pass
+                # Clean up temp audio directory
+                temp_audio_dir = Path(output_file.name.replace(".json", "_audio"))
+                if temp_audio_dir.is_dir():
+                    shutil.rmtree(temp_audio_dir, ignore_errors=True)
 
         finally:
             self._stop_collaborator_container()
