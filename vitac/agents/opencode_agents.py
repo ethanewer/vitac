@@ -52,8 +52,7 @@ BUILT_IN_SYSTEMS = [
     "gpt-audio-voice",
     "gemini-flash-voice",
     "gemini-pro-voice",
-    "minimax-m2.5-voice",
-    "minimax-m2.5-free-voice",
+    "minimax-m2-voice",
 ]
 
 
@@ -248,6 +247,8 @@ class VoiceSystemPrimaryAgent(PrimaryAgent):
                 "collabSystem": self._collab_system,
                 "seedAudioPath": seed_audio_path,
                 "startAgent": start_agent,
+                "collabPrompt": self.collaborator_context,
+                "taskInstruction": instruction,
             }
 
             config_file = tempfile.NamedTemporaryFile(
@@ -290,6 +291,13 @@ class VoiceSystemPrimaryAgent(PrimaryAgent):
                 if result.stderr:
                     logger.warning(f"TS Runner stderr:\n{result.stderr[-1000:]}")
 
+                # Save TS runner console output for debugging
+                if logging_dir:
+                    if result.stdout:
+                        (logging_dir / "ts-runner-stdout.log").write_text(result.stdout)
+                    if result.stderr:
+                        (logging_dir / "ts-runner-stderr.log").write_text(result.stderr)
+
                 try:
                     with open(output_file.name) as f:
                         ts_result = json.load(f)
@@ -301,8 +309,16 @@ class VoiceSystemPrimaryAgent(PrimaryAgent):
                         "totalInputTokens": 0,
                         "totalOutputTokens": 0,
                         "voiceMessages": [],
+                        "textSegments": [],
                         "terminalCommands": [],
                     }
+
+                # Persist the full TS runner result for debugging
+                if logging_dir:
+                    ts_result_path = logging_dir / "ts-runner-result.json"
+                    with open(ts_result_path, "w") as f:
+                        json.dump(ts_result, f, indent=2)
+                    logger.info(f"TS runner result saved to {ts_result_path}")
 
                 for msg_data in ts_result.get("voiceMessages", []):
                     sender = msg_data.get("sender", "primary")

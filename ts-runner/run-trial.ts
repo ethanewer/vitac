@@ -15,7 +15,7 @@
 import { createOpencodeClient } from "@opencode-ai/sdk/v2/client"
 import { createVoiceSession, pcmToWav, stt } from "@opencode-ai/sdk/v2/voice"
 import type { VoiceSystemName } from "@opencode-ai/sdk/v2/voice"
-import type { TrialConfig, TrialResult, VoiceMessageLog } from "./types.js"
+import type { TrialConfig, TrialResult, TextSegment, VoiceMessageLog } from "./types.js"
 
 const configPath = Bun.argv[2]
 const outputPath = Bun.argv[3]
@@ -29,9 +29,11 @@ const config: TrialConfig = JSON.parse(await Bun.file(configPath).text())
 
 const maxTimeout = config.maxTimeoutMs ?? 540_000
 const voiceMessages: VoiceMessageLog[] = []
+const textSegments: TextSegment[] = []
 const terminalCommands: string[] = []
 let totalInputTokens = 0
 let totalOutputTokens = 0
+let completedToolCalls = 0 // Track all completed tool calls (bash, read, write, edit, etc.)
 
 // Connect to both OpenCode servers
 const primaryClient = createOpencodeClient({ baseUrl: config.primaryUrl })
@@ -63,9 +65,28 @@ console.log("Creating voice sessions...")
 console.log(`System: ${systemName}`)
 console.log(`Collaborator system: ${collabSystemName}`)
 
-// Minimal additive prompt for the primary — only adds the completion signal
-// convention.  Everything else comes from the agent's built-in system prompt.
-const primaryPrompt = `When the task is fully done and you have verified the result, include the exact phrase "TASK_COMPLETE" in your response.`
+// Primary prompt: guides the agent to use tools and collaborate via voice
+const primaryPrompt = [
+  `You are on a voice call with a collaborator who has domain knowledge about the task.`,
+  `Listen to what they say and use your tools (bash, edit, write, etc.) to complete the task.`,
+  `When you need information from the collaborator, ask them directly by speaking.`,
+  `Focus on executing commands and making progress — do not just think out loud.`,
+  `When the task is fully done and you have verified the result, include the exact phrase "TASK_COMPLETE" in your response.`,
+  config.taskInstruction
+    ? `\nThe following is the exact text of the task instruction (use this for precise file paths and details that may be garbled in voice):\n${config.taskInstruction}`
+    : "",
+  config.primaryPrompt ?? "",
+].filter(Boolean).join("\n")
+
+// Collaborator prompt: provides domain knowledge so it can answer questions
+const collabPrompt = config.collabPrompt
+  ? [
+      `You are a collaborator on a voice call with an engineer who is completing a task.`,
+      `You have the following domain knowledge that the engineer needs:\n${config.collabPrompt}`,
+      `When the engineer asks you questions, answer them directly and concisely using this knowledge.`,
+      `You do NOT have access to tools — your role is purely advisory.`,
+    ].join("\n")
+  : undefined
 
 // Create voice sessions — agents keep their built-in system prompts intact
 const primarySession = await createVoiceSession(primaryClient, {
@@ -73,11 +94,15 @@ const primarySession = await createVoiceSession(primaryClient, {
   prompt: primaryPrompt,
   permission: "dangerous",
   toolStatus: false,
+  // Disable the interactive question tool — in voice mode the agent should
+  // ask questions by speaking, not through an interactive prompt.
+  tools: { question: false },
 })
 
-// Collaborator: no custom prompt, built-in agent prompt only
+// Collaborator: domain knowledge prompt + all tools denied (advisory role only)
 const collabSession = await createVoiceSession(collabClient, {
   system: collabSystemName,
+  prompt: collabPrompt,
   permission: [{ permission: "*", pattern: "*", action: "deny" as const }],
   toolStatus: false,
 })
@@ -89,9 +114,49 @@ console.log(`Collaborator session: ${collabSession.sessionID}`)
 let completed = false
 let error: string | undefined
 
+// Collect text transcripts from both sessions' transcript queues
+async function collectTranscripts(
+  transcriptQueue: typeof primarySession.transcript,
+  speaker: "primary" | "collaborator",
+) {
+  for await (const text of transcriptQueue) {
+    if (completed) break
+    textSegments.push({ speaker, text, timestampMs: Date.now() })
+    console.log(`[transcript] ${speaker}: ${text.slice(0, 200)}`)
+  }
+}
+
+const primaryTranscriptLoop = collectTranscripts(primarySession.transcript, "primary")
+const collabTranscriptLoop = collectTranscripts(collabSession.transcript, "collaborator")
+
 // Monitor primary SSE events for completion detection and terminal commands
 const primaryEventCtrl = new AbortController()
 const primaryEvents = await primaryClient.event.subscribe({}, { signal: primaryEventCtrl.signal })
+
+// Also monitor collaborator events for debugging
+const collabEventCtrl = new AbortController()
+const collabEvents = await collabClient.event.subscribe({}, { signal: collabEventCtrl.signal })
+
+const collabEventMonitor = (async () => {
+  try {
+    for await (const event of collabEvents.stream) {
+      if (completed) break
+      const evt = event as any
+      // Log all collaborator events for debugging
+      if (evt.properties?.sessionID === collabSession.sessionID) {
+        if (evt.type === "session.status") {
+          console.log(`[collab-event] ${evt.type}: ${evt.properties.status?.type}`)
+        } else if (evt.type === "message.part.delta" && evt.properties.field === "text") {
+          // don't log every delta, too noisy
+        } else {
+          console.log(`[collab-event] ${evt.type}`)
+        }
+      }
+    }
+  } catch {
+    // Stream ended or aborted
+  }
+})()
 
 const sseMonitor = (async () => {
   let textBuffer = ""
@@ -100,24 +165,45 @@ const sseMonitor = (async () => {
       if (completed) break
       const evt = event as any
 
+      // Log all primary session events for debugging
+      if (evt.properties?.sessionID === primarySession.sessionID) {
+        if (evt.type === "session.status") {
+          console.log(`[primary-event] ${evt.type}: ${evt.properties.status?.type}`)
+        } else if (evt.type === "session.error") {
+          console.log(`[primary-event] ${evt.type}: ${JSON.stringify(evt.properties)}`)
+        } else if (evt.type === "message.part.delta" && evt.properties.field === "text") {
+          // don't log every text delta, too noisy
+        } else if (evt.type === "message.part.delta") {
+          console.log(`[primary-event] ${evt.type} field=${evt.properties.field}`)
+        } else {
+          console.log(`[primary-event] ${evt.type}`)
+        }
+      }
+
       // Track text output for completion detection
       if (evt.type === "message.part.delta" && evt.properties.sessionID === primarySession.sessionID) {
         if (evt.properties.field === "text") {
           textBuffer += evt.properties.delta
-          if (textBuffer.includes("TASK_COMPLETE")) {
-            console.log("Detected TASK_COMPLETE")
+          if (textBuffer.includes("TASK_COMPLETE") && completedToolCalls > 0) {
+            console.log("Detected TASK_COMPLETE (after " + completedToolCalls + " tool calls, " + terminalCommands.length + " bash commands)")
             completed = true
             break
           }
         }
       }
 
-      // Track terminal commands
+      // Track terminal commands and all tool completions
       if (evt.type === "message.part.updated" && evt.properties.sessionID === primarySession.sessionID) {
         const part = evt.properties.part
-        if (part?.type === "tool" && part?.tool === "bash" && part?.state?.status === "completed") {
-          const input = part.state?.input?.command
-          if (input) terminalCommands.push(input)
+        if (part?.type === "tool") {
+          console.log(`[primary-tool] ${part.tool} status=${part.state?.status}`)
+          if (part?.state?.status === "completed") {
+            completedToolCalls++
+            if (part?.tool === "bash") {
+              const input = part.state?.input?.command
+              if (input) terminalCommands.push(input)
+            }
+          }
         }
       }
 
@@ -249,6 +335,7 @@ console.log("Closing sessions...")
 primarySession.close()
 collabSession.close()
 primaryEventCtrl.abort()
+collabEventCtrl.abort()
 
 try {
   await Promise.race([
@@ -259,20 +346,53 @@ try {
   // Cleanup errors are fine
 }
 
-// Try to get token usage from session messages
+// Try to get token usage and dump session messages for debugging
 try {
   const msgs = await primaryClient.session.message({ sessionID: primarySession.sessionID })
   if (msgs.data) {
+    console.log(`\n=== Primary session messages (${(msgs.data as any[]).length}) ===`)
     for (const msg of msgs.data as any[]) {
+      const role = msg?.role ?? "unknown"
+      const parts = msg?.parts ?? []
+      const partSummary = parts.map((p: any) => {
+        if (p.type === "text") return `text(${(p.text ?? "").slice(0, 100)}...)`
+        if (p.type === "tool") return `tool(${p.tool}:${p.state?.status ?? "?"})`
+        if (p.type === "file") return `file(${p.mime})`
+        return p.type
+      }).join(", ")
+      console.log(`  [${role}] ${partSummary}`)
       const tokens = msg?.info?.tokens
       if (tokens) {
         totalInputTokens += tokens.input ?? 0
         totalOutputTokens += tokens.output ?? 0
       }
     }
+    console.log(`=== End messages ===\n`)
   }
 } catch (e) {
   console.log("Token counting failed:", (e as any)?.message ?? e)
+}
+
+// Also dump collaborator session messages
+try {
+  const msgs = await collabClient.session.message({ sessionID: collabSession.sessionID })
+  if (msgs.data) {
+    console.log(`\n=== Collaborator session messages (${(msgs.data as any[]).length}) ===`)
+    for (const msg of msgs.data as any[]) {
+      const role = msg?.role ?? "unknown"
+      const parts = msg?.parts ?? []
+      const partSummary = parts.map((p: any) => {
+        if (p.type === "text") return `text(${(p.text ?? "").slice(0, 100)}...)`
+        if (p.type === "tool") return `tool(${p.tool}:${p.state?.status ?? "?"})`
+        if (p.type === "file") return `file(${p.mime})`
+        return p.type
+      }).join(", ")
+      console.log(`  [${role}] ${partSummary}`)
+    }
+    console.log(`=== End messages ===\n`)
+  }
+} catch (e) {
+  console.log("Collaborator message dump failed:", (e as any)?.message ?? e)
 }
 
 // Write result
@@ -281,6 +401,7 @@ const result: TrialResult = {
   totalInputTokens,
   totalOutputTokens,
   voiceMessages,
+  textSegments,
   terminalCommands,
   error,
 }

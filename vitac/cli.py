@@ -19,7 +19,7 @@ console = Console()
 @app.command()
 def run(
     system: str = typer.Option(
-        ..., help="Built-in voice system name (e.g. minimax-m2.5-voice)"
+        ..., help="Built-in voice system name (e.g. minimax-m2-voice)"
     ),
     collab_system: Optional[str] = typer.Option(
         None, help="Built-in voice system for the collaborator (defaults to --system)"
