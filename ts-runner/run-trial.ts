@@ -81,9 +81,7 @@ const primaryPrompt = [
   `When you need information from the collaborator, ask them directly by speaking.`,
   `Focus on executing commands and making progress — do not just think out loud.`,
   `When the task is fully done and you have verified the result, include the exact phrase "TASK_COMPLETE" in your response.`,
-  config.taskInstruction
-    ? `\nThe following is the exact text of the task instruction (use this for precise file paths and details that may be garbled in voice):\n${config.taskInstruction}`
-    : "",
+  "",
   config.primaryPrompt ?? "",
 ].filter(Boolean).join("\n")
 
