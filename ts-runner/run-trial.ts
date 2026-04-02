@@ -238,8 +238,16 @@ let primaryIdleFired = false
 let collabIdleFired = false
 
 function signalIdle(agent: "primary" | "collaborator") {
-  if (agent === "primary") primaryIdleFired = true
-  else collabIdleFired = true
+  if (agent === "primary") {
+    primaryIdleFired = true
+    // Push a zero-length sentinel to wake routeAudio's for-await loop so it
+    // can check the idle flag even when no more TTS audio will arrive (the
+    // speak-tool-driven TTS produces audio before idle, not after).
+    primarySession.output.push(new Uint8Array(0))
+  } else {
+    collabIdleFired = true
+    collabSession.output.push(new Uint8Array(0))
+  }
 }
 
 // Accumulate audio chunks into complete utterances before forwarding.
@@ -296,17 +304,23 @@ async function routeAudio(
 
     for await (const pcm of source) {
       if (completed) break
-      chunks.push(pcm)
-      totalLen += pcm.length
 
-      // Clear any pending flush timer — new audio arrived
+      // Zero-length sentinels (pushed by signalIdle) wake us up but carry
+      // no audio — skip accumulation but still check the idle flag below.
+      if (pcm.length > 0) {
+        chunks.push(pcm)
+        totalLen += pcm.length
+      }
+
+      // Clear any pending flush timer — new audio or sentinel arrived
       if (flushTimer) clearTimeout(flushTimer)
 
       // Check if idle has been signaled for this sender
       const idle = sender === "primary" ? primaryIdleFired : collabIdleFired
       if (idle && totalLen > 0) {
-        // Idle already fired; TTS is streaming. Set a timer to flush once
-        // chunks stop arriving (TTS stream finished).
+        // Idle already fired; set a timer to flush once chunks stop arriving
+        // (TTS stream finished).  With speak-tool TTS the audio may have
+        // arrived before idle, so the sentinel waking us here is enough.
         flushTimer = setTimeout(() => {
           // Reset the idle flag for the next turn
           if (sender === "primary") primaryIdleFired = false

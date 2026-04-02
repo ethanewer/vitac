@@ -22,6 +22,9 @@ old-results/
 # OpenCode binary (136MB, must be built locally)
 ts-runner/bin/
 
+# OpenCode audio repo (cloned from GitHub for SDK + binary build)
+opencode-audio/
+
 # Bun
 ts-runner/node_modules/
 ts-runner/bun.lock

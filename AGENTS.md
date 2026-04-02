@@ -7,7 +7,7 @@ Benchmarks voice-based multi-agent collaboration on software engineering tasks. 
 - Python >= 3.12, [uv](https://docs.astral.sh/uv/)
 - Docker (running)
 - [Bun](https://bun.sh/) (runs the TypeScript voice trial runner)
-- OpenCode binary at `ts-runner/bin/opencode-linux-arm64` (build from `../../opencode-audio`)
+- OpenCode binary at `ts-runner/bin/opencode-linux-arm64` (run `scripts/update-opencode.sh` to clone and build from GitHub)
 
 ### Environment variables (must be set before running)
 
@@ -65,7 +65,7 @@ gemini-pro-voice            openrouter/google/gemini-3.1-pro-preview-customtools
 minimax-m2-voice            openrouter/minimax/minimax-m2.7
 ```
 
-System definitions live in the SDK: `../../opencode-audio/packages/sdk/js/src/v2/voice.ts` (the `voiceSystems` map). The Python list that must stay in sync is `BUILT_IN_SYSTEMS` in `vitac/agents/opencode_agents.py`.
+System definitions live in the SDK: `opencode-audio/packages/sdk/js/src/v2/voice.ts` (the `voiceSystems` map). The Python list that must stay in sync is `BUILT_IN_SYSTEMS` in `vitac/agents/opencode_agents.py`.
 
 ## Project structure
 
@@ -147,7 +147,7 @@ The `tests/` directory at the repo root is a stub (`__init__.py` only). Task-lev
 
 ## Adding a new voice system
 
-1. Add the entry to `voiceSystems` in `../../opencode-audio/packages/sdk/js/src/v2/voice.ts`
+1. Add the entry to `voiceSystems` in `opencode-audio/packages/sdk/js/src/v2/voice.ts`
 2. Add the matching name to `BUILT_IN_SYSTEMS` in `vitac/agents/opencode_agents.py`
 3. These two lists must match exactly
 
