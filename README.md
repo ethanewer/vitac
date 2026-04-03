@@ -37,8 +37,24 @@ Optional: `GOOGLE_API_KEY`, `OPENCODE_API_KEY`.
 
 ## Setup
 
+### Cloning the repo
+
+The [OpenCodeAudio](https://github.com/ethanewer/opencode-audio) SDK is included as a **git submodule** (tracking the `dev` branch). Make sure to clone it along with the main repo:
+
 ```sh
-# Build the OpenCode binary (one-time)
+git clone --recurse-submodules <repo-url>
+```
+
+If you already cloned without `--recurse-submodules`, initialise the submodule manually:
+
+```sh
+git submodule update --init
+```
+
+### Building and generating assets
+
+```sh
+# Build the OpenCode binary from the submodule (one-time)
 scripts/update-opencode.sh
 
 # Generate seed audio WAV files (one-time, requires OPENAI_API_KEY)
@@ -46,6 +62,13 @@ uv run python -m vitac.generate_audio
 
 # Verify install
 uv run vitac list-systems
+```
+
+To pull the latest OpenCodeAudio changes and rebuild the binary later:
+
+```sh
+scripts/update-opencode.sh          # defaults to the dev branch
+scripts/update-opencode.sh <branch> # or specify a branch
 ```
 
 ## Running the benchmark
@@ -116,6 +139,10 @@ ts-runner/                      TypeScript (Bun) voice trial runner
   run-trial.ts                  Voice sessions, audio routing, TASK_COMPLETE detection
   types.ts                      TrialConfig, TrialResult interfaces
 
+opencode-audio/                 OpenCodeAudio SDK (git submodule, dev branch)
+  packages/sdk/js/src/v2/       Voice system definitions + client used by ts-runner
+  packages/opencode/            OpenCode server (built into ts-runner/bin/)
+
 tasks/                          20 benchmark tasks
   <task-id>/
     task.yaml                   Task definition (instruction, difficulty, etc.)
@@ -134,7 +161,7 @@ audio/                          Seed audio files
   <task-id>.wav                 Pre-generated TTS audio
 
 scripts/
-  update-opencode.sh            Clone/build OpenCode binary
+  update-opencode.sh            Update submodule + build OpenCode binary
 
 results/                        Benchmark output (gitignored)
 ```
