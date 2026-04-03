@@ -77,9 +77,12 @@ console.log(`Batch turns: ${batchTurns}`)
 // Primary prompt: guides the agent to use tools and collaborate via voice
 const primaryPrompt = [
   `You are on a voice call with a collaborator who has domain knowledge about the task.`,
-  `Listen to what they say and use your tools (bash, edit, write, etc.) to complete the task.`,
-  `When you need information from the collaborator, ask them directly by speaking.`,
-  `Focus on executing commands and making progress — do not just think out loud.`,
+  `The collaborator can ONLY speak — they have NO access to tools, files, or terminals. They cannot write files, run commands, or make changes. Only you can do that.`,
+  `Listen carefully to what they say, then use YOUR tools (bash, edit, write, etc.) to implement their guidance.`,
+  `When they describe code changes, write the code yourself based on their verbal description. Do not ask them to write files — they cannot.`,
+  `When you need information, ask concise, specific questions. Do not repeat the same question.`,
+  `Focus on executing commands and making progress.`,
+  `Do not give progress updates while working. Speak only when you need to ask the collaborator a question or when you are reporting your final result.`,
   `When the task is fully done and you have verified the result, include the exact phrase "TASK_COMPLETE" in your response.`,
   "",
   config.primaryPrompt ?? "",
@@ -91,7 +94,9 @@ const collabPrompt = config.collabPrompt
       `You are a collaborator on a voice call with an engineer who is completing a task.`,
       `You have the following domain knowledge that the engineer needs:\n${config.collabPrompt}`,
       `When the engineer asks you questions, answer them directly and concisely using this knowledge.`,
-      `You do NOT have access to tools — your role is purely advisory.`,
+      `You do NOT have access to tools — your role is purely advisory. You cannot write files, run commands, or make any changes.`,
+      `When describing code changes, be specific: state the function name, what the current line says, and what it should be changed to. Describe code changes verbally — do not try to dictate entire files.`,
+      `Keep your answers short. One or two sentences per response when possible.`,
     ].join("\n")
   : undefined
 

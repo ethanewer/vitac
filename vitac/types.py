@@ -15,6 +15,7 @@ from pydantic import BaseModel, Field
 # Enums
 # ---------------------------------------------------------------------------
 
+
 class TranscriptMode(str, Enum):
     TEXT_ONLY = "text_only"
     AUDIO_ONLY = "audio_only"
@@ -52,6 +53,7 @@ class UnitTestStatus(str, Enum):
 # Voice messages
 # ---------------------------------------------------------------------------
 
+
 class VoiceMessage(BaseModel):
     sender: str  # "primary" or "collaborator"
     recipient: str  # "primary" or "collaborator"
@@ -66,6 +68,7 @@ class VoiceMessage(BaseModel):
 # Terminal actions
 # ---------------------------------------------------------------------------
 
+
 class TerminalAction(BaseModel):
     command: str
     timestamp: datetime = Field(default_factory=datetime.now)
@@ -77,6 +80,7 @@ class TerminalAction(BaseModel):
 # ---------------------------------------------------------------------------
 # Primary agent actions (union type)
 # ---------------------------------------------------------------------------
+
 
 class SendVoice(BaseModel):
     type: str = "send_voice"
@@ -94,6 +98,7 @@ class Done(BaseModel):
 
 
 from typing import Union
+
 PrimaryAction = Union[SendVoice, RunCommand, Done]
 
 
@@ -101,13 +106,16 @@ PrimaryAction = Union[SendVoice, RunCommand, Done]
 # Task definition (maps to task.yaml)
 # ---------------------------------------------------------------------------
 
+
 class ExpectedInteraction(BaseModel):
     topic: str
     description: str
     collaborator_answer: str
     must_ask_before_acting: bool = True
     is_correction: bool = False  # True if this is a mid-task correction
-    keywords: list[str] = Field(default_factory=list)  # Required keywords for topic matching (all must appear)
+    keywords: list[str] = Field(
+        default_factory=list
+    )  # Required keywords for topic matching (all must appear)
 
 
 class TaskDef(BaseModel):
@@ -140,11 +148,15 @@ class TaskDef(BaseModel):
 # Voice interaction score card
 # ---------------------------------------------------------------------------
 
+
 class VoiceScoreCard(BaseModel):
-    interaction_quality: float = 0.0  # 0-1
-    safety: float = 0.0  # 0-1
-    recovery: float = 0.0  # 0-1
-    efficiency: float = 0.0  # 0-1
+    naturalness: float = 0.0  # 0-1: Is speech natural and conversational?
+    clarity: float = 0.0  # 0-1: Is communication clear and understandable?
+    conciseness: float = 0.0  # 0-1: Appropriately brief without omitting key info?
+    relevance: float = 0.0  # 0-1: Avoids irrelevant technical details in speech?
+    task_communication: float = (
+        0.0  # 0-1: Communicates progress, asks good questions, summarizes results?
+    )
     overall: float = 0.0  # weighted composite
     details: dict = Field(default_factory=dict)
 
@@ -152,6 +164,7 @@ class VoiceScoreCard(BaseModel):
 # ---------------------------------------------------------------------------
 # Agent result
 # ---------------------------------------------------------------------------
+
 
 class AgentResult(BaseModel):
     total_input_tokens: int = 0

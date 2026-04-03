@@ -63,10 +63,44 @@ class BenchmarkResults(BaseModel):
     @computed_field
     @property
     def avg_voice_score(self) -> float:
-        scores = [r.voice_score.overall for r in self.results if r.voice_score]
+        scores = [
+            r.voice_score.overall
+            for r in self.results
+            if r.voice_score and r.voice_score.overall > 0
+        ]
         if not scores:
             return 0.0
         return sum(scores) / len(scores)
+
+    @computed_field
+    @property
+    def avg_naturalness(self) -> float:
+        scores = [
+            r.voice_score.naturalness
+            for r in self.results
+            if r.voice_score and r.voice_score.naturalness > 0
+        ]
+        return sum(scores) / len(scores) if scores else 0.0
+
+    @computed_field
+    @property
+    def avg_relevance(self) -> float:
+        scores = [
+            r.voice_score.relevance
+            for r in self.results
+            if r.voice_score and r.voice_score.relevance > 0
+        ]
+        return sum(scores) / len(scores) if scores else 0.0
+
+    @computed_field
+    @property
+    def avg_conciseness(self) -> float:
+        scores = [
+            r.voice_score.conciseness
+            for r in self.results
+            if r.voice_score and r.voice_score.conciseness > 0
+        ]
+        return sum(scores) / len(scores) if scores else 0.0
 
     @computed_field
     @property

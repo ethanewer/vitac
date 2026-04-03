@@ -314,7 +314,9 @@ class Harness:
         )
 
         # Score voice interaction
-        voice_score = evaluate_voice_interaction(task=task, voice_queue=voice_queue)
+        voice_score = evaluate_voice_interaction(
+            task=task, voice_queue=voice_queue, agent_logs_dir=agent_logs_dir
+        )
 
         trial_result = TrialResults(
             trial_name=trial_name,

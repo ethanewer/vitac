@@ -39,7 +39,7 @@ def run(
     cleanup: bool = typer.Option(False, help="Remove Docker images after run"),
     text_only: bool = typer.Option(False, help="Use text-only mode (no audio)"),
     batch_turns: bool = typer.Option(
-        False, help="Buffer entire turns before routing audio (reduces fragmentation)"
+        True, help="Buffer entire turns before routing audio (reduces fragmentation)"
     ),
 ) -> None:
     """Run the benchmark with a built-in voice system."""
@@ -113,6 +113,15 @@ def run(
     console.print(
         f"[bold green]Resolved:[/bold green] {results.n_resolved}/{len(results.results)}"
     )
+    if results.avg_voice_score > 0:
+        console.print(
+            f"[bold cyan]Avg Voice Score:[/bold cyan] {results.avg_voice_score:.2f}"
+        )
+        console.print(
+            f"  Naturalness: {results.avg_naturalness:.2f}  "
+            f"Relevance: {results.avg_relevance:.2f}  "
+            f"Conciseness: {results.avg_conciseness:.2f}"
+        )
     console.print(f"\nResults written to: {Path(output) / run_id}")
 
 
@@ -212,17 +221,29 @@ def show_results(
     console.print(
         f"[bold]Resolved:[/bold] {bench_results.n_resolved}/{len(bench_results.results)}"
     )
+    if bench_results.avg_voice_score > 0:
+        console.print(
+            f"[bold]Avg Voice Score:[/bold] {bench_results.avg_voice_score:.2f}"
+        )
+        console.print(
+            f"  Naturalness: {bench_results.avg_naturalness:.2f}  "
+            f"Relevance: {bench_results.avg_relevance:.2f}  "
+            f"Conciseness: {bench_results.avg_conciseness:.2f}"
+        )
 
     table = Table(title="Trial Results")
     table.add_column("Task", style="cyan")
     table.add_column("Resolved")
+    table.add_column("Voice", justify="right")
     table.add_column("Failure Mode")
 
     for r in bench_results.results:
         resolved_str = "[green]YES[/green]" if r.is_resolved else "[red]NO[/red]"
+        voice_str = f"{r.voice_score.overall:.2f}" if r.voice_score.overall > 0 else "-"
         table.add_row(
             r.task_id,
             resolved_str,
+            voice_str,
             r.failure_mode.value,
         )
 
