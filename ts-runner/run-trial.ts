@@ -82,7 +82,7 @@ const primaryPrompt = [
   `When they describe code changes, write the code yourself based on their verbal description. Do not ask them to write files — they cannot.`,
   `When you need information, ask concise, specific questions. Do not repeat the same question.`,
   `Focus on executing commands and making progress.`,
-  `Do not give progress updates while working. Speak only when you need to ask the collaborator a question or when you are reporting your final result.`,
+  `Do not give progress updates while working. You must always report your final result by speaking it aloud before finishing.`,
   `When the task is fully done and you have verified the result, include the exact phrase "TASK_COMPLETE" in your response.`,
   "",
   config.primaryPrompt ?? "",
