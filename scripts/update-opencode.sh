@@ -1,26 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Update the OpenCode audio SDK and binary from GitHub.
+# Update the OpenCode audio SDK and binary from the git submodule.
 # Usage: scripts/update-opencode.sh [branch]
-#   branch  Git branch to pull (default: dev)
+#   branch  Git branch to update to (default: dev)
 
 REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 OC_DIR="$REPO_DIR/opencode-audio"
 BRANCH="${1:-dev}"
-REMOTE="git@github.com:ethanewer/opencode-audio.git"
 
-echo "==> Updating opencode-audio (branch: $BRANCH)"
+echo "==> Updating opencode-audio submodule (branch: $BRANCH)"
 
-if [ -d "$OC_DIR/.git" ]; then
-  echo "Pulling latest changes..."
-  git -C "$OC_DIR" fetch origin
-  git -C "$OC_DIR" checkout "$BRANCH"
-  git -C "$OC_DIR" reset --hard "origin/$BRANCH"
-else
-  echo "Cloning $REMOTE ..."
-  git clone --branch "$BRANCH" --single-branch "$REMOTE" "$OC_DIR"
-fi
+# Initialise the submodule if it hasn't been cloned yet
+git -C "$REPO_DIR" submodule update --init opencode-audio
+
+# Fetch and reset to latest on the requested branch
+git -C "$OC_DIR" fetch origin
+git -C "$OC_DIR" checkout "$BRANCH"
+git -C "$OC_DIR" reset --hard "origin/$BRANCH"
 
 echo "==> Installing dependencies"
 bun install --cwd "$OC_DIR"

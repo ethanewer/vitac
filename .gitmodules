@@ -1,0 +1,4 @@
+[submodule "opencode-audio"]
+	path = opencode-audio
+	url = git@github.com:ethanewer/opencode-audio.git
+	branch = dev
