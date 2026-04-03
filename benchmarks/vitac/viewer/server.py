@@ -5,7 +5,7 @@ Scans the results/ directory and serves JSON APIs for the frontend SPA.
 Also serves audio WAV files and static frontend assets.
 
 Usage:
-    cd viewer && uv run uvicorn server:app --reload --port 8080
+    cd benchmarks/vitac/viewer && uv run uvicorn server:app --reload --port 8080
 """
 
 from __future__ import annotations
@@ -26,9 +26,10 @@ from fastapi.staticfiles import StaticFiles
 # ---------------------------------------------------------------------------
 
 VIEWER_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = VIEWER_DIR.parent
-RESULTS_DIR = PROJECT_ROOT / "results"
-TASKS_DIR = PROJECT_ROOT / "tasks"
+BENCHMARK_ROOT = VIEWER_DIR.parent  # benchmarks/vitac/
+REPO_ROOT = BENCHMARK_ROOT.parent.parent  # repo root
+RESULTS_DIR = REPO_ROOT / "results"
+TASKS_DIR = BENCHMARK_ROOT / "tasks"
 
 # ---------------------------------------------------------------------------
 # App

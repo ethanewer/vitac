@@ -7,6 +7,7 @@ dist/
 build/
 .ruff_cache/
 .pytest_cache/
+.venv/
 
 # Environment / secrets
 .env
@@ -20,15 +21,18 @@ results/
 old-results/
 
 # OpenCode binary (136MB, must be built locally)
-ts-runner/bin/
+benchmarks/*/ts-runner/bin/
 
 # Bun
-ts-runner/node_modules/
-ts-runner/bun.lock
+benchmarks/*/ts-runner/node_modules/
+benchmarks/*/ts-runner/bun.lock
 
 # Task subsets (symlinks for testing)
-tasks-easy/
-tasks-test*/
+benchmarks/*/tasks-easy/
+benchmarks/*/tasks-test*/
+
+# OpenCode
+.opencode/
 
 # IDE
 .vscode/

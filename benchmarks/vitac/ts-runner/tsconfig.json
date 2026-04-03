@@ -4,7 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "paths": {
-      "@opencode-ai/sdk/*": ["../opencode-audio/packages/sdk/js/src/*"]
+      "@opencode-ai/sdk/*": ["../../../opencode-audio/packages/sdk/js/src/*"]
     },
     "baseUrl": "."
   }

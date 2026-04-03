@@ -9,6 +9,12 @@ import typer
 from rich.console import Console
 from rich.table import Table
 
+_PKG_DIR = Path(__file__).resolve().parent  # vitac/
+_BENCHMARK_ROOT = _PKG_DIR.parent  # benchmarks/vitac/
+_REPO_ROOT = _BENCHMARK_ROOT.parent.parent  # repo root
+_DEFAULT_TASKS = str(_BENCHMARK_ROOT / "tasks")
+_DEFAULT_OUTPUT = str(_REPO_ROOT / "results")
+
 app = typer.Typer(
     name="vitac",
     help="Voice-Interactive Terminal Agent Collaboration Benchmark",
@@ -24,8 +30,8 @@ def run(
     collab_system: Optional[str] = typer.Option(
         None, help="Built-in voice system for the collaborator (defaults to --system)"
     ),
-    tasks: str = typer.Option("tasks/", help="Path to tasks directory"),
-    output: str = typer.Option("results/", help="Output directory"),
+    tasks: str = typer.Option(_DEFAULT_TASKS, help="Path to tasks directory"),
+    output: str = typer.Option(_DEFAULT_OUTPUT, help="Output directory"),
     run_id: Optional[str] = typer.Option(
         None, help="Run ID (auto-generated if not set)"
     ),
@@ -139,7 +145,7 @@ def list_systems() -> None:
 
 @app.command(name="list-tasks")
 def list_tasks(
-    tasks: str = typer.Option("tasks/", help="Path to tasks directory"),
+    tasks: str = typer.Option(_DEFAULT_TASKS, help="Path to tasks directory"),
 ) -> None:
     """List all available tasks."""
     from vitac.dataset.dataset import Dataset
@@ -168,7 +174,7 @@ def list_tasks(
 
 @app.command(name="validate-tasks")
 def validate_tasks(
-    tasks: str = typer.Option("tasks/", help="Path to tasks directory"),
+    tasks: str = typer.Option(_DEFAULT_TASKS, help="Path to tasks directory"),
 ) -> None:
     """Validate all task directories."""
     from vitac.dataset.dataset import validate_task_dir

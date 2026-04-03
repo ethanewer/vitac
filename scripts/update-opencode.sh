@@ -31,11 +31,11 @@ if [ ! -f "$BINARY" ]; then
   exit 1
 fi
 
-echo "==> Copying linux-arm64 binary to ts-runner/bin/"
-mkdir -p "$REPO_DIR/ts-runner/bin"
-cp "$BINARY" "$REPO_DIR/ts-runner/bin/opencode-linux-arm64"
-chmod +x "$REPO_DIR/ts-runner/bin/opencode-linux-arm64"
+echo "==> Copying linux-arm64 binary to benchmarks/vitac/ts-runner/bin/"
+mkdir -p "$REPO_DIR/benchmarks/vitac/ts-runner/bin"
+cp "$BINARY" "$REPO_DIR/benchmarks/vitac/ts-runner/bin/opencode-linux-arm64"
+chmod +x "$REPO_DIR/benchmarks/vitac/ts-runner/bin/opencode-linux-arm64"
 
 echo "==> Done. Binary:"
-ls -lh "$REPO_DIR/ts-runner/bin/opencode-linux-arm64"
+ls -lh "$REPO_DIR/benchmarks/vitac/ts-runner/bin/opencode-linux-arm64"
 echo "SDK source at: $OC_DIR/packages/sdk/js/src/v2/"
