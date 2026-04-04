@@ -7,6 +7,7 @@ A suite of benchmarks for evaluating voice-based AI agent interactions, built to
 | Benchmark | Description |
 |-----------|-------------|
 | [VITAC](benchmarks/vitac/) | Voice-Interactive Terminal Agent Collaboration — two AI agents collaborate over synthesized voice to solve SWE tasks inside Docker containers |
+| [Terminal Bench](benchmarks/terminal-bench/) | Runs terminal-bench@2.0 tasks via Harbor CLI, comparing the Terminus 2 agent against the OpenCode Audio agent (text-only mode) |
 
 ## Shared infrastructure
 

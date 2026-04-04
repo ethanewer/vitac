@@ -36,6 +36,22 @@ mkdir -p "$REPO_DIR/benchmarks/vitac/ts-runner/bin"
 cp "$BINARY" "$REPO_DIR/benchmarks/vitac/ts-runner/bin/opencode-linux-arm64"
 chmod +x "$REPO_DIR/benchmarks/vitac/ts-runner/bin/opencode-linux-arm64"
 
-echo "==> Done. Binary:"
+echo "==> Copying linux-arm64 binary to benchmarks/terminal-bench/bin/"
+mkdir -p "$REPO_DIR/benchmarks/terminal-bench/bin"
+cp "$BINARY" "$REPO_DIR/benchmarks/terminal-bench/bin/opencode-linux-arm64"
+chmod +x "$REPO_DIR/benchmarks/terminal-bench/bin/opencode-linux-arm64"
+
+# Copy x64 binary if the build produced one
+BINARY_X64="$OC_DIR/packages/opencode/dist/opencode-linux-x64/bin/opencode"
+if [ -f "$BINARY_X64" ]; then
+  echo "==> Copying linux-x64 binary to benchmarks/terminal-bench/bin/"
+  cp "$BINARY_X64" "$REPO_DIR/benchmarks/terminal-bench/bin/opencode-linux-x64"
+  chmod +x "$REPO_DIR/benchmarks/terminal-bench/bin/opencode-linux-x64"
+else
+  echo "WARNING: x64 binary not found at $BINARY_X64 (skipping)"
+fi
+
+echo "==> Done. Binaries:"
 ls -lh "$REPO_DIR/benchmarks/vitac/ts-runner/bin/opencode-linux-arm64"
+ls -lh "$REPO_DIR/benchmarks/terminal-bench/bin/"
 echo "SDK source at: $OC_DIR/packages/sdk/js/src/v2/"

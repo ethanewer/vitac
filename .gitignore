@@ -22,6 +22,10 @@ old-results/
 
 # OpenCode binary (136MB, must be built locally)
 benchmarks/*/ts-runner/bin/
+benchmarks/terminal-bench/bin/
+
+# Terminal-bench jobs (ephemeral)
+benchmarks/terminal-bench/jobs/
 
 # Bun
 benchmarks/*/ts-runner/node_modules/
