@@ -4,11 +4,22 @@ set -euo pipefail
 # =============================================================================
 # Configuration — edit these variables
 # =============================================================================
-N_ATTEMPTS=1                              # Number of attempts per task
-N_CONCURRENT=1                            # Number of concurrent trials
+N_ATTEMPTS=5                              # Number of attempts per task
+N_CONCURRENT=12                           # Number of concurrent trials
 MODEL="openrouter/minimax/minimax-m2.7"   # Model identifier
 TASKS=(                                   # Task names to run (empty array = all tasks)
-  fix-git
+  chess-best-move
+  circuit-fibsqrt
+  compile-compcert
+  extract-elf
+  git-leak-recovery
+  multi-source-data-merger
+  path-tracing
+  rstan-to-pystan
+  sanitize-git-repo
+  sparql-university
+  sqlite-db-truncate
+  torch-tensor-parallelism
 )
 # =============================================================================
 
@@ -18,11 +29,33 @@ TIMESTAMP="$(date -u +"%Y-%m-%d__%H-%M-%S")"
 JOBS_DIR="${SCRIPT_DIR}/jobs"
 RESULTS_DIR="${REPO_ROOT}/results"
 
-# Check for --lpt flag
+# Parse flags
 USE_LPT=false
-for arg in "$@"; do
-  [[ "$arg" == "--lpt" ]] && USE_LPT=true
+AGENT_MODE=""
+ARGS=("$@")
+for ((i=0; i<${#ARGS[@]}; i++)); do
+  case "${ARGS[i]}" in
+    --lpt)       USE_LPT=true ;;
+    --agent=*)   AGENT_MODE="${ARGS[i]#--agent=}" ;;
+    --agent)     AGENT_MODE="${ARGS[i+1]:-}"; ((i++)) || true ;;
+  esac
 done
+
+# Export OPENCODE_AGENT so opencode_agent.py picks it up
+if [[ -n "${AGENT_MODE}" ]]; then
+  export OPENCODE_AGENT="${AGENT_MODE}"
+fi
+
+# For build-only mode, disable the default plan handoff
+if [[ "${AGENT_MODE}" == "build" ]]; then
+  export OPENCODE_EXPERIMENTAL_PLAN_MODE=0
+fi
+
+# Auto-approve all permissions in headless mode.
+# Without this, opencode run auto-rejects permission.asked events,
+# which blocks Read/Write/Edit on paths outside the project root
+# (e.g., /data/ in Docker containers).
+export OPENCODE_PERMISSION='{"*":"allow"}'
 
 # ---------------------------------------------------------------------------
 # Resolve harbor command (or harbor_lpt.py wrapper for LPT scheduling)
@@ -84,6 +117,17 @@ main() {
     CMD+=(--ae "ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}")
   fi
 
+  # Forward OpenCode agent configuration env vars
+  if [[ -n "${OPENCODE_AGENT:-}" ]]; then
+    CMD+=(--ae "OPENCODE_AGENT=${OPENCODE_AGENT}")
+  fi
+  if [[ -n "${OPENCODE_EXPERIMENTAL_PLAN_MODE:-}" ]]; then
+    CMD+=(--ae "OPENCODE_EXPERIMENTAL_PLAN_MODE=${OPENCODE_EXPERIMENTAL_PLAN_MODE}")
+  fi
+  if [[ -n "${OPENCODE_PERMISSION:-}" ]]; then
+    CMD+=(--ae "OPENCODE_PERMISSION=${OPENCODE_PERMISSION}")
+  fi
+
   # Task filters
   for task in "${TASKS[@]}"; do
     CMD+=(-i "${task}")
@@ -94,6 +138,7 @@ main() {
   echo "    Attempts:    ${N_ATTEMPTS}"
   echo "    Concurrency: ${N_CONCURRENT}"
   echo "    Tasks:       ${TASKS[*]:-ALL}"
+  echo "    Agent mode:  ${AGENT_MODE:-default (plan-build-eval)}"
   echo "    LPT:         ${USE_LPT}"
   echo ""
 
@@ -103,7 +148,9 @@ main() {
   # Copy results to top-level results/
   LATEST_JOB="$(ls -td "${JOBS_DIR}"/*/ 2>/dev/null | head -1)"
   if [[ -n "${LATEST_JOB}" ]]; then
-    DEST="${RESULTS_DIR}/terminal-bench-opencode-${TIMESTAMP}"
+    SUFFIX="opencode"
+    [[ -n "${AGENT_MODE}" ]] && SUFFIX="opencode-${AGENT_MODE}"
+    DEST="${RESULTS_DIR}/terminal-bench-${SUFFIX}-${TIMESTAMP}"
     mkdir -p "${DEST}"
     cp -r "${LATEST_JOB}"/* "${DEST}"/
     echo ""

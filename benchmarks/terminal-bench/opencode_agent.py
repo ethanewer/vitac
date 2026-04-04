@@ -45,6 +45,8 @@ _FORWARD_ENV_KEYS = (
     "OPENROUTER_API_KEY",
     "OPENAI_API_KEY",
     "ANTHROPIC_API_KEY",
+    "OPENCODE_EXPERIMENTAL_PLAN_MODE",
+    "OPENCODE_PERMISSION",
 )
 
 
@@ -278,12 +280,32 @@ class OpenCodeAudioAgent(HarborBaseAgent):  # type: ignore[misc]
             self, "_remote_binary", f"{_REMOTE_BIN_DIR}/opencode-linux-arm64"
         )
         model_flag = f"--model {shlex.quote(self.model)}" if self.model else ""
-        # Tee stdout to a log file; capture stderr separately for debug logs
+
+        # Support --agent flag via OPENCODE_AGENT env var (e.g. "build", "plan")
+        agent_mode = os.environ.get("OPENCODE_AGENT", "")
+        agent_flag = f"--agent {shlex.quote(agent_mode)}" if agent_mode else ""
+
+        # Log file paths inside the container
         log_file = "/tmp/opencode-output.log"
         debug_log = "/tmp/opencode-debug.log"
+
+        # Use --format json for structured event logging (plans, tool calls,
+        # eval results). Use --print-logs to capture server-side debug info
+        # on stderr.  Write JSON events to the log file and pipe a copy to
+        # stdout so the exec result still contains a summary.
         command = (
-            f"{binary} run {model_flag} {shlex.quote(instruction)} "
-            f"2>{debug_log} | tee {log_file}"
+            f"{binary} run --format json --print-logs "
+            f"{agent_flag} {model_flag} {shlex.quote(instruction)} "
+            f">{log_file} 2>{debug_log}; "
+            # Preserve the exit code from opencode run
+            f"OC_EXIT=$?; "
+            # Append debug log to the output log for single-artifact collection
+            f"echo '' >> {log_file}; "
+            f"echo '=== STDERR/DEBUG LOG ===' >> {log_file}; "
+            f"cat {debug_log} >> {log_file} 2>/dev/null; "
+            # Print a brief summary to stdout for the exec result metadata
+            f'echo "opencode exited with code $OC_EXIT"; '
+            f"exit $OC_EXIT"
         )
 
         # No timeout here — let Harbor's own agent timeout manage cancellation.
