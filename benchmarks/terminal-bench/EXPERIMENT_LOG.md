@@ -155,5 +155,36 @@ Each entry records: timestamp, git SHA, description, benchmark command, benchmar
 - **Breakthrough**: torch-tensor-parallelism 0→2/5 (first consistent success on this task). sqlite-db-truncate achieves perfect 5/5.
 - **Remaining gap to Terminus 2**: 6 points. Biggest gaps: rstan-to-pystan (0 vs 4), sparql-university (0 vs 5), chess-best-move (0 vs 3), and individual hard tasks (circuit, compcert, path at 0 vs 2 each).
 
+## Entry 10: Full efficient subset — lean tools (remove TodoWrite/Task/WebFetch)
+- **Timestamp**: 2026-04-06T14:41
+- **Changes**: Added OPENCODE_LEAN_TOOLS flag to remove TodoWrite (~1360 word description), Task (~550 words), WebFetch, EvalRebuttal, and Question tools from build agent in headless mode. Goal: reduce context waste from unused tools.
+- **Tasks**: All 12 tasks (5 attempts each = 60 trials)
+- **Results**: 16/60 (0.267) — **regression from R9**
+- **Job dir**: jobs/2026-04-06__14-41-43
+- **Analysis**: Removing tools hurt performance despite saving ~2000 words of context. torch-tensor-parallelism dropped from 2/5 to 0/5, extract-elf from 4/5 to 2/5. The model may use tool presence as behavioral anchors even when not calling them. Tool descriptions contain examples/patterns that inform the model's problem-solving approach.
+- **Decision**: Revert lean tools. Tool presence matters more than description size.
+
+## Entry 11: Full efficient subset — condensed tool descriptions
+- **Timestamp**: 2026-04-06T16:01
+- **Changes**: Kept all tools but condensed TodoWrite description from ~1360 to ~50 words and Task from ~550 to ~70 words. Tools available but with minimal descriptions.
+- **Tasks**: All 12 tasks (5 attempts each = 60 trials)
+- **Results**: 17/60 (0.283) — regression from R9
+- **Job dir**: jobs/2026-04-06__16-01-16
+- **Analysis**: Condensing descriptions also hurt. torch-tensor-parallelism 0/5 (was 2/5 in R9), extract-elf 3/5 (was 4/5). The original verbose descriptions provide useful behavioral examples that improve the model's task-solving approach, even for unrelated tools.
+- **Decision**: Revert to R9 configuration (minimal system prompt + original tool descriptions). R9 at 21/60 remains our best.
+
+### Summary of all runs
+
+| Run | Description                          | Score  | vs Baseline | vs Terminus 2 |
+|:----|:-------------------------------------|:------:|:-----------:|:-------------:|
+| R3  | Build-only + persistent shell        | 19/60  | -1          | -8            |
+| R4  | + temperature 0.7                    | 18/60  | -2          | -9            |
+| R5  | Plan-build-eval pipeline             | 20/60  | 0           | -7            |
+| R7  | PBE + improved eval                  | 20/60  | 0           | -7            |
+| R8  | Anthropic prompt + KIRA CoT fields   | 19/60  | -1          | -8            |
+| **R9**  | **Minimal KIRA-inspired prompt** | **21/60** | **+1**   | **-6**        |
+| R10 | + lean tools (remove unused)         | 16/60  | -4          | -11           |
+| R11 | + condensed tool descriptions        | 17/60  | -3          | -10           |
+
 ---
 
