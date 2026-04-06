@@ -116,5 +116,44 @@ Each entry records: timestamp, git SHA, description, benchmark command, benchmar
 - **Key regressions vs PBE v1**: sparql-university 4→3/5 (-1, streamlined plan slightly less thorough), rstan-to-pystan 1→0/5 (-1, variance).
 - **Remaining gap to Terminus 2**: 7 points. Tasks at 0/5 (chess, circuit, compcert, path, sanitize, torch, rstan) need fundamentally different approaches.
 
+## Entry 8: Full efficient subset — anthropic prompt + KIRA CoT fields
+- **Timestamp**: 2026-04-06T12:09
+- **Git SHA (submodule)**: 4bf697453 (uncommitted: anthropic prompt as default, KIRA analysis/plan fields on bash tool)
+- **Changes**: (1) Changed system.ts fallback to use PROMPT_ANTHROPIC instead of PROMPT_DEFAULT. (2) Added required `analysis` and `plan` string parameters to bash tool schema (KIRA-style forced chain-of-thought).
+- **Tasks**: All 12 tasks (5 attempts each = 60 trials)
+- **Results**: 19/60 (0.317) — no improvement over R3
+- **Job dir**: jobs/2026-04-06__12-09-47
+- **Analysis**: Anthropic prompt's TodoWrite emphasis wastes tokens on task management. KIRA CoT fields add token overhead without benefit for minimax-m2.7. sanitize-git-repo improved 0→2/5, torch-tensor-parallelism 0→1/5, but sparql-university regressed 3→0/5 and extract-elf 4→2/5.
+- **Decision**: Revert both changes. Try minimal prompt approach instead.
+
+## Entry 9: Full efficient subset — minimal KIRA-inspired prompt (**new best**)
+- **Timestamp**: 2026-04-06T13:13
+- **Git SHA (submodule)**: 4bf697453 (uncommitted: minimal prompt, lean bash tool description)
+- **Changes**: (1) Radically stripped default.txt to ~250 words (from ~800+), inspired by KIRA's ~100 word prompt. Focus on task completion, verification, and practical Linux/container tips. Removed all git/PR/commit guidance, verbose examples, and style instructions. (2) Stripped bash.txt tool description to essentials, removed file-operation warnings, git protocol, and PR instructions.
+- **Tasks**: All 12 tasks (5 attempts each = 60 trials)
+- **Results**: 21/60 (0.350) — **new best**, beats baseline 20/60 (0.333)
+- **Job dir**: jobs/2026-04-06__13-13-50
+- **Per-task comparison**:
+
+| Task                       | Baseline | Build-only (R3) | R8 (anthro+KIRA) | R9 (minimal) | Terminus 2 |
+|:---------------------------|:--------:|:---------------:|:-----------------:|:------------:|:----------:|
+| chess-best-move            |   2/5    |      2/5        |       0/5         |    0/5       |    3/5     |
+| circuit-fibsqrt            |   2/5    |      0/5        |       0/5         |    0/5       |    2/5     |
+| compile-compcert           |   2/5    |      0/5        |       0/5         |    0/5       |    2/5     |
+| extract-elf                |   2/5    |      3/5        |       2/5         |   **4/5**    |    2/5     |
+| git-leak-recovery          |   2/5    |      5/5        |       5/5         |    5/5       |    1/5     |
+| multi-source-data-merger   |   3/5    |      5/5        |       5/5         |    5/5       |    1/5     |
+| path-tracing               |   2/5    |      0/5        |       0/5         |    0/5       |    2/5     |
+| rstan-to-pystan            |   0/5    |      1/5        |       0/5         |    0/5       |    4/5     |
+| sanitize-git-repo          |   3/5    |      0/5        |       2/5         |    0/5       |    1/5     |
+| sparql-university          |   1/5    |      0/5        |       0/5         |    0/5       |    5/5     |
+| sqlite-db-truncate         |   2/5    |      4/5        |       4/5         |  **5/5**     |    1/5     |
+| torch-tensor-parallelism   |   0/5    |      0/5        |       1/5         |  **2/5**     |    3/5     |
+| **Total**                  | **20/60**| **19/60**       | **19/60**         | **21/60**    | **27/60**  |
+
+- **Key insight**: Shorter prompts = more effective context for minimax-m2.7. The minimal prompt freed up context window for actual task reasoning.
+- **Breakthrough**: torch-tensor-parallelism 0→2/5 (first consistent success on this task). sqlite-db-truncate achieves perfect 5/5.
+- **Remaining gap to Terminus 2**: 6 points. Biggest gaps: rstan-to-pystan (0 vs 4), sparql-university (0 vs 5), chess-best-move (0 vs 3), and individual hard tasks (circuit, compcert, path at 0 vs 2 each).
+
 ---
 
