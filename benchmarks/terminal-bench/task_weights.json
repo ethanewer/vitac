@@ -1,0 +1,5 @@
+{
+  "compile-compcert": 2,
+  "torch-tensor-parallelism": 2,
+  "circuit-fibsqrt": 2
+}

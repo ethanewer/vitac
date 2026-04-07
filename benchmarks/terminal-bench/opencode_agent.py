@@ -47,6 +47,8 @@ _FORWARD_ENV_KEYS = (
     "ANTHROPIC_API_KEY",
     "OPENCODE_EXPERIMENTAL_PLAN_MODE",
     "OPENCODE_PERMISSION",
+    "OPENCODE_CONFIG_CONTENT",
+    "OPENCODE_DISABLE_PROJECT_CONFIG",
 )
 
 
@@ -214,9 +216,19 @@ class OpenCodeAudioAgent(HarborBaseAgent):  # type: ignore[misc]
         else:
             await _maybe_await(uploader(str(_BIN_DIR), _REMOTE_BIN_DIR))
 
-        # Detect architecture, chmod, and create a wrapper script on PATH
+        # Install tmux (needed by the execute_commands tool), detect
+        # architecture, chmod, and create a wrapper script on PATH
         setup_cmd = (
             "set -e; "
+            "if ! command -v tmux >/dev/null 2>&1; then "
+            "  if command -v apt-get >/dev/null 2>&1; then "
+            "    apt-get update -qq && apt-get install -y -qq tmux >/dev/null 2>&1; "
+            "  elif command -v apk >/dev/null 2>&1; then "
+            "    apk add --no-cache tmux >/dev/null 2>&1; "
+            "  elif command -v yum >/dev/null 2>&1; then "
+            "    yum install -y tmux >/dev/null 2>&1; "
+            "  fi; "
+            "fi; "
             "ARCH=$(uname -m); "
             'case "$ARCH" in '
             "aarch64|arm64) BIN=opencode-linux-arm64 ;; "
@@ -224,17 +236,15 @@ class OpenCodeAudioAgent(HarborBaseAgent):  # type: ignore[misc]
             '*) echo "Unsupported arch: $ARCH" >&2; exit 1 ;; '
             "esac; "
             f"chmod +x {_REMOTE_BIN_DIR}/$BIN; "
-            # Create symlink and also a wrapper in /usr/bin as fallback
             f"ln -sf {_REMOTE_BIN_DIR}/$BIN {_REMOTE_OPENCODE}; "
             f"ln -sf {_REMOTE_BIN_DIR}/$BIN /usr/bin/opencode; "
-            # Verify the binary is accessible
             f"ls -la {_REMOTE_BIN_DIR}/$BIN; "
             f"{_REMOTE_BIN_DIR}/$BIN version || echo 'opencode installed (version check skipped)'"
         )
         result = await _env_exec(
             environment=environment,
             command=setup_cmd,
-            timeout_sec=30,
+            timeout_sec=120,
         )
         _raise_on_failure(result, "OpenCode binary setup")
 

@@ -5,21 +5,9 @@ set -euo pipefail
 # Configuration — edit these variables
 # =============================================================================
 N_ATTEMPTS=5                              # Number of attempts per task
-N_CONCURRENT=12                           # Number of concurrent trials
+N_CONCURRENT=16                           # Number of concurrent trials
 MODEL="openrouter/minimax/minimax-m2.7"   # Model identifier
 TASKS=(                                   # Task names to run (empty array = all tasks)
-  chess-best-move
-  circuit-fibsqrt
-  compile-compcert
-  extract-elf
-  git-leak-recovery
-  multi-source-data-merger
-  path-tracing
-  rstan-to-pystan
-  sanitize-git-repo
-  sparql-university
-  sqlite-db-truncate
-  torch-tensor-parallelism
 )
 # =============================================================================
 
@@ -29,13 +17,14 @@ TIMESTAMP="$(date -u +"%Y-%m-%d__%H-%M-%S")"
 JOBS_DIR="${SCRIPT_DIR}/jobs"
 RESULTS_DIR="${REPO_ROOT}/results"
 
-# Parse flags
-USE_LPT=false
+# Parse flags (--lpt is on by default; pass --no-lpt to disable)
+USE_LPT=true
 AGENT_MODE=""
 ARGS=("$@")
 for ((i=0; i<${#ARGS[@]}; i++)); do
   case "${ARGS[i]}" in
     --lpt)       USE_LPT=true ;;
+    --no-lpt)    USE_LPT=false ;;
     --agent=*)   AGENT_MODE="${ARGS[i]#--agent=}" ;;
     --agent)     AGENT_MODE="${ARGS[i+1]:-}"; ((i++)) || true ;;
   esac
@@ -56,6 +45,26 @@ fi
 # which blocks Read/Write/Edit on paths outside the project root
 # (e.g., /data/ in Docker containers).
 export OPENCODE_PERMISSION='{"*":"allow"}'
+
+# Isolate from local config — only API keys should come from outside the repo.
+export OPENCODE_DISABLE_PROJECT_CONFIG=1
+
+# Explicit opencode config for benchmark runs. This is the sole source of
+# non-API-key configuration inside the Docker containers.
+OPENCODE_CONFIG_CONTENT_JSON=$(cat <<'ENDJSON'
+{
+  "system": {
+    "minimax-m2.7": {
+      "label": "MiniMax M2.7",
+      "model": "openrouter/minimax/minimax-m2.7",
+      "vision": "openrouter/qwen/qwen3.5-397b-a17b",
+      "agents": ["build", "plan", "auto"]
+    }
+  }
+}
+ENDJSON
+)
+export OPENCODE_CONFIG_CONTENT="${OPENCODE_CONFIG_CONTENT_JSON}"
 
 # ---------------------------------------------------------------------------
 # Resolve harbor command (or harbor_lpt.py wrapper for LPT scheduling)
@@ -127,6 +136,10 @@ main() {
   if [[ -n "${OPENCODE_PERMISSION:-}" ]]; then
     CMD+=(--ae "OPENCODE_PERMISSION=${OPENCODE_PERMISSION}")
   fi
+  if [[ -n "${OPENCODE_CONFIG_CONTENT:-}" ]]; then
+    CMD+=(--ae "OPENCODE_CONFIG_CONTENT=${OPENCODE_CONFIG_CONTENT}")
+  fi
+  CMD+=(--ae "OPENCODE_DISABLE_PROJECT_CONFIG=1")
 
   # Task filters
   for task in "${TASKS[@]}"; do

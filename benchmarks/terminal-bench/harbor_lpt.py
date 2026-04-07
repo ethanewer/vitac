@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""harbor-lpt: Harbor CLI wrapper with LPT scheduling and Docker image prefetching.
+"""harbor-lpt: Harbor CLI wrapper with LPT scheduling, prefetching, and OOM-aware concurrency.
 
-Two optimizations over the standard Harbor CLI:
+Three optimizations over the standard Harbor CLI:
 
 1. LPT (Longest Processing Time first) scheduling — sorts trial configs by
    descending expected task runtime so the longest tasks start first. This
@@ -14,16 +14,24 @@ Two optimizations over the standard Harbor CLI:
    that crash high-concurrency runs and avoids Docker API rate limits by checking
    the local cache first.
 
+3. Weighted OOM-aware concurrency — replaces Harbor's flat semaphore with a
+   weighted semaphore. Memory-heavy tasks consume multiple concurrency slots,
+   preventing host-level OOM when many containers run simultaneously. Tasks that
+   OOM at runtime are automatically retried with an escalated weight.
+
 Usage: python3 harbor_lpt.py run [harbor flags...]
        (accepts all standard harbor CLI flags)
 """
 
+import asyncio
 import json
+import shutil
 import subprocess
 import sys
 from pathlib import Path
 
 import harbor.job as _harbor_job
+import harbor.trial.queue as _harbor_queue
 
 # ---------------------------------------------------------------------------
 # 1. LPT Scheduling
@@ -145,7 +153,115 @@ async def _prefetch_and_run(self):
 _harbor_job.Job.run = _prefetch_and_run
 
 # ---------------------------------------------------------------------------
-# 3. Run the normal Harbor CLI
+# 3. Weighted OOM-Aware Concurrency
+# ---------------------------------------------------------------------------
+
+_WEIGHTS_PATH = Path(__file__).parent / "task_weights.json"
+_static_weights: dict[str, int] = (
+    json.loads(_WEIGHTS_PATH.read_text()) if _WEIGHTS_PATH.exists() else {}
+)
+
+_dynamic_weights: dict[str, int] = {}
+
+_MAX_OOM_RETRIES = 2
+_MAX_WEIGHT_FRACTION = 0.5  # single task can use at most half the capacity
+
+
+class WeightedSemaphore:
+    """Semaphore that atomically acquires N slots, avoiding partial-allocation deadlocks."""
+
+    def __init__(self, capacity: int):
+        self._capacity = capacity
+        self._used = 0
+        self._cond = asyncio.Condition()
+
+    async def acquire(self, weight: int = 1) -> None:
+        async with self._cond:
+            while self._used + weight > self._capacity:
+                await self._cond.wait()
+            self._used += weight
+
+    async def release(self, weight: int = 1) -> None:
+        async with self._cond:
+            self._used -= weight
+            self._cond.notify_all()
+
+
+def _task_name_from_config(trial_config) -> str:
+    return trial_config.task.get_task_id().get_name().split("/")[-1]
+
+
+def _get_weight(task_name: str) -> int:
+    return max(
+        _static_weights.get(task_name, 1),
+        _dynamic_weights.get(task_name, 1),
+    )
+
+
+def _is_oom(result) -> bool:
+    """Detect OOM from a TrialResult (Docker exit 137 = SIGKILL from cgroup OOM).
+
+    Only checks the first line of the exception message to avoid false positives
+    from stdout/stderr content that happens to contain '137'.
+    """
+    info = getattr(result, "exception_info", None)
+    if info is None:
+        return False
+    msg = getattr(info, "exception_message", "")
+    first_line = msg.split("\n", 1)[0]
+    return "137" in first_line
+
+
+_original_queue_init = _harbor_queue.TrialQueue.__init__
+
+
+def _weighted_queue_init(self, n_concurrent, **kwargs):
+    _original_queue_init(self, n_concurrent, **kwargs)
+    self._wsem = WeightedSemaphore(n_concurrent)
+    self._wsem_capacity = n_concurrent
+
+
+_harbor_queue.TrialQueue.__init__ = _weighted_queue_init
+
+
+async def _weighted_run_trial(self, trial_config):
+    """Run a trial using weighted semaphore slots; retry with higher weight on OOM."""
+    task_name = _task_name_from_config(trial_config)
+    max_weight = min(
+        max(2, int(self._wsem_capacity * _MAX_WEIGHT_FRACTION)),
+        self._wsem_capacity,
+    )
+
+    for oom_attempt in range(_MAX_OOM_RETRIES + 1):
+        weight = min(_get_weight(task_name), max_weight)
+        await self._wsem.acquire(weight)
+        try:
+            result = await self._execute_trial_with_retries(trial_config)
+        finally:
+            await self._wsem.release(weight)
+
+        if _is_oom(result) and oom_attempt < _MAX_OOM_RETRIES:
+            new_weight = min(_get_weight(task_name) + 1, max_weight)
+            _dynamic_weights[task_name] = new_weight
+            print(
+                f"[harbor-lpt] OOM detected for {task_name}, "
+                f"retrying with weight {new_weight}/{self._wsem_capacity} "
+                f"(attempt {oom_attempt + 2}/{_MAX_OOM_RETRIES + 1})",
+                file=sys.stderr,
+            )
+            trial_dir = trial_config.trials_dir / trial_config.trial_name
+            shutil.rmtree(trial_dir, ignore_errors=True)
+            continue
+
+        return result
+
+    return result  # exhausted retries, return last result
+
+
+_harbor_queue.TrialQueue._run_trial = _weighted_run_trial
+
+# ---------------------------------------------------------------------------
+# 4. Run the normal Harbor CLI
 # ---------------------------------------------------------------------------
 
 from harbor.cli.main import app  # noqa: E402
