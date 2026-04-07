@@ -41,6 +41,7 @@ benchmarks/*/tasks-test*/
 # IDE
 .vscode/
 .idea/
+.cursor*
 
 # OS
 .DS_Store
