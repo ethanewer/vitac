@@ -5,7 +5,7 @@ set -euo pipefail
 # Configuration — edit these variables
 # =============================================================================
 N_ATTEMPTS=5                              # Number of attempts per task
-N_CONCURRENT=10                           # Number of concurrent trials
+N_CONCURRENT=24                           # Number of concurrent trials
 MODEL="openrouter/minimax/minimax-m2.7"   # Model identifier
 TASKS=(                                   # Task names to run (empty array = all tasks)
   chess-best-move
