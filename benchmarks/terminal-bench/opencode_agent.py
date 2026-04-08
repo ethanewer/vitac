@@ -327,6 +327,13 @@ class OpenCodeAudioAgent(HarborBaseAgent):  # type: ignore[misc]
         )
 
         exit_code, stdout, stderr = _extract(result)
+
+        # Detect process-level OOM: the opencode binary can be killed by the
+        # cgroup OOM killer inside the container while the shell survives,
+        # resulting in exit_code=0 but "Killed" in the output.
+        if exit_code == 0 and "Killed" in (stdout + stderr):
+            exit_code = 137
+
         _set_result(
             context,
             success=exit_code == 0,

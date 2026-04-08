@@ -163,7 +163,7 @@ _static_weights: dict[str, int] = (
 
 _dynamic_weights: dict[str, int] = {}
 
-_MAX_OOM_RETRIES = 2
+_MAX_OOM_RETRIES = 1
 _MAX_WEIGHT_FRACTION = 0.5  # single task can use at most half the capacity
 
 
@@ -199,17 +199,31 @@ def _get_weight(task_name: str) -> int:
 
 
 def _is_oom(result) -> bool:
-    """Detect OOM from a TrialResult (Docker exit 137 = SIGKILL from cgroup OOM).
+    """Detect OOM from a TrialResult.
 
-    Only checks the first line of the exception message to avoid false positives
-    from stdout/stderr content that happens to contain '137'.
+    Checks two patterns:
+    1. Container-level OOM: Docker exit 137 in exception_info
+    2. Process-level OOM: agent reports exit_code=137 after opencode binary
+       was killed by the cgroup OOM killer inside the container
     """
+    # Check container-level OOM via exception_info
     info = getattr(result, "exception_info", None)
-    if info is None:
-        return False
-    msg = getattr(info, "exception_message", "")
-    first_line = msg.split("\n", 1)[0]
-    return "137" in first_line
+    if info is not None:
+        msg = getattr(info, "exception_message", "")
+        first_line = msg.split("\n", 1)[0]
+        if "137" in first_line:
+            return True
+
+    # Check process-level OOM via agent result metadata
+    agent_result = getattr(result, "agent_result", None)
+    if agent_result is not None:
+        metadata = getattr(agent_result, "metadata", None) or {}
+        if isinstance(metadata, dict):
+            oc_result = metadata.get("opencode_audio_result", {})
+            if isinstance(oc_result, dict) and oc_result.get("exit_code") == 137:
+                return True
+
+    return False
 
 
 _original_queue_init = _harbor_queue.TrialQueue.__init__

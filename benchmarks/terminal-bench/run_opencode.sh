@@ -5,9 +5,21 @@ set -euo pipefail
 # Configuration — edit these variables
 # =============================================================================
 N_ATTEMPTS=5                              # Number of attempts per task
-N_CONCURRENT=16                           # Number of concurrent trials
+N_CONCURRENT=10                           # Number of concurrent trials
 MODEL="openrouter/minimax/minimax-m2.7"   # Model identifier
 TASKS=(                                   # Task names to run (empty array = all tasks)
+  chess-best-move
+  circuit-fibsqrt
+  compile-compcert
+  extract-elf
+  git-leak-recovery
+  multi-source-data-merger
+  path-tracing
+  rstan-to-pystan
+  sanitize-git-repo
+  sparql-university
+  sqlite-db-truncate
+  torch-tensor-parallelism
 )
 # =============================================================================
 
@@ -142,9 +154,11 @@ main() {
   CMD+=(--ae "OPENCODE_DISABLE_PROJECT_CONFIG=1")
 
   # Task filters
-  for task in "${TASKS[@]}"; do
-    CMD+=(-i "${task}")
-  done
+  if [[ ${#TASKS[@]} -gt 0 ]]; then
+    for task in "${TASKS[@]}"; do
+      CMD+=(-i "${task}")
+    done
+  fi
 
   echo "==> Running OpenCode Audio agent on terminal-bench@2.0"
   echo "    Model:       ${MODEL}"
