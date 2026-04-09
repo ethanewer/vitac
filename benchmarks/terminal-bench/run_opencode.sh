@@ -47,11 +47,6 @@ if [[ -n "${AGENT_MODE}" ]]; then
   export OPENCODE_AGENT="${AGENT_MODE}"
 fi
 
-# For build-only mode, disable the default plan handoff
-if [[ "${AGENT_MODE}" == "build" ]]; then
-  export OPENCODE_EXPERIMENTAL_PLAN_MODE=0
-fi
-
 # Auto-approve all permissions in headless mode.
 # Without this, opencode run auto-rejects permission.asked events,
 # which blocks Read/Write/Edit on paths outside the project root
@@ -117,7 +112,7 @@ main() {
     run
     -d "terminal-bench@2.0"
     --env docker
-    --no-force-build
+    --force-build
     --no-delete
     --jobs-dir "${JOBS_DIR}"
     -k "${N_ATTEMPTS}"
@@ -141,9 +136,6 @@ main() {
   # Forward OpenCode agent configuration env vars
   if [[ -n "${OPENCODE_AGENT:-}" ]]; then
     CMD+=(--ae "OPENCODE_AGENT=${OPENCODE_AGENT}")
-  fi
-  if [[ -n "${OPENCODE_EXPERIMENTAL_PLAN_MODE:-}" ]]; then
-    CMD+=(--ae "OPENCODE_EXPERIMENTAL_PLAN_MODE=${OPENCODE_EXPERIMENTAL_PLAN_MODE}")
   fi
   if [[ -n "${OPENCODE_PERMISSION:-}" ]]; then
     CMD+=(--ae "OPENCODE_PERMISSION=${OPENCODE_PERMISSION}")
