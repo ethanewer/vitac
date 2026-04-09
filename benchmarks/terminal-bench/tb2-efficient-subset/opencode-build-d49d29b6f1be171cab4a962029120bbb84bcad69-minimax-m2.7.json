@@ -1,0 +1,108 @@
+{
+  "id": "9cdf6701-8308-45b7-97e6-3e227ec684b3",
+  "started_at": "2026-04-09T11:49:39.764847",
+  "finished_at": "2026-04-09T14:17:21.935868",
+  "n_total_trials": 60,
+  "stats": {
+    "n_trials": 60,
+    "n_errors": 15,
+    "evals": {
+      "opencode-audio__terminal-bench": {
+        "n_trials": 60,
+        "n_errors": 15,
+        "metrics": [
+          {
+            "mean": 0.5
+          }
+        ],
+        "reward_stats": {
+          "reward": {
+            "0.0": [
+              "circuit-fibsqrt__iomUXbn",
+              "circuit-fibsqrt__bQQQquS",
+              "circuit-fibsqrt__JUya93N",
+              "circuit-fibsqrt__sW8Wknd",
+              "circuit-fibsqrt__FkeLDd5",
+              "compile-compcert__fNqCcNS",
+              "compile-compcert__6HqWWFb",
+              "compile-compcert__zcw9mqs",
+              "compile-compcert__Vwd5ACt",
+              "path-tracing__82jq4sM",
+              "path-tracing__tFVNQnj",
+              "path-tracing__LYG2R8B",
+              "path-tracing__CemhHJi",
+              "path-tracing__yXzsgAc",
+              "torch-tensor-parallelism__dteQU4m",
+              "torch-tensor-parallelism__KXy7GsR",
+              "torch-tensor-parallelism__TAT7GWX",
+              "torch-tensor-parallelism__GFTzMMr",
+              "rstan-to-pystan__CrehNZf",
+              "rstan-to-pystan__aNtjGB4",
+              "rstan-to-pystan__SMMVCja",
+              "multi-source-data-merger__V3PquPN",
+              "sparql-university__WXpiefZ",
+              "sparql-university__MPuPHgw",
+              "sqlite-db-truncate__ih7xysK",
+              "sqlite-db-truncate__YMeekxG",
+              "chess-best-move__xR6Dde9",
+              "extract-elf__zuVK6CM",
+              "extract-elf__z3q5oo6",
+              "sanitize-git-repo__j4J4CoS"
+            ],
+            "1.0": [
+              "compile-compcert__3jBbVHj",
+              "git-leak-recovery__26MyDnq",
+              "git-leak-recovery__jGdg38Z",
+              "git-leak-recovery__9rMeJdp",
+              "git-leak-recovery__edduvQJ",
+              "git-leak-recovery__qfRNB2Y",
+              "torch-tensor-parallelism__WPejvKg",
+              "rstan-to-pystan__D3wgTYS",
+              "rstan-to-pystan__RN26RgM",
+              "multi-source-data-merger__tL7Qyq8",
+              "multi-source-data-merger__nxakc3w",
+              "multi-source-data-merger__RsyPdUC",
+              "multi-source-data-merger__XK94weM",
+              "sparql-university__j4wW2N7",
+              "sparql-university__i8ehoyR",
+              "sparql-university__PcNVLwR",
+              "sqlite-db-truncate__hu4mJMa",
+              "sqlite-db-truncate__7ThBd58",
+              "sqlite-db-truncate__wdGv9gi",
+              "chess-best-move__eY84ZCQ",
+              "chess-best-move__zrSm29i",
+              "chess-best-move__FVaFiYb",
+              "chess-best-move__nZXigDV",
+              "extract-elf__Cf3ZLyy",
+              "extract-elf__s7MXafw",
+              "extract-elf__bFaLK6Q",
+              "sanitize-git-repo__fgmgdAJ",
+              "sanitize-git-repo__yTwqyY2",
+              "sanitize-git-repo__nCmnfno",
+              "sanitize-git-repo__5HCHEU2"
+            ]
+          }
+        },
+        "exception_stats": {
+          "AgentTimeoutError": [
+            "circuit-fibsqrt__iomUXbn",
+            "circuit-fibsqrt__bQQQquS",
+            "circuit-fibsqrt__JUya93N",
+            "circuit-fibsqrt__sW8Wknd",
+            "circuit-fibsqrt__FkeLDd5",
+            "compile-compcert__zcw9mqs",
+            "compile-compcert__Vwd5ACt",
+            "path-tracing__82jq4sM",
+            "path-tracing__tFVNQnj",
+            "path-tracing__yXzsgAc",
+            "rstan-to-pystan__CrehNZf",
+            "rstan-to-pystan__aNtjGB4",
+            "rstan-to-pystan__RN26RgM",
+            "rstan-to-pystan__SMMVCja",
+            "multi-source-data-merger__V3PquPN"
+          ]
+        }
+      }
+    }
+  }
+}
