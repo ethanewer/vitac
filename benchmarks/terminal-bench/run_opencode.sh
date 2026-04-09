@@ -107,14 +107,12 @@ resolve_harbor() {
 main() {
   resolve_harbor
 
-  # --force-build: required on ARM Macs so Docker builds native arm64 images
-  # instead of using the upstream amd64 images (which segfault under qemu).
   CMD=(
     "${HARBOR_CMD[@]}"
     run
     -d "terminal-bench@2.0"
     --env docker
-    --force-build
+    --no-force-build
     --no-delete
     --jobs-dir "${JOBS_DIR}"
     -k "${N_ATTEMPTS}"
