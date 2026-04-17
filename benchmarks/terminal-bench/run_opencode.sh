@@ -47,11 +47,18 @@ if [[ -n "${AGENT_MODE}" ]]; then
   export OPENCODE_AGENT="${AGENT_MODE}"
 fi
 
-# Auto-approve all permissions in headless mode.
-# Without this, opencode run auto-rejects permission.asked events,
-# which blocks Read/Write/Edit on paths outside the project root
-# (e.g., /data/ in Docker containers).
-export OPENCODE_PERMISSION='{"*":"allow"}'
+# Use OPENCODE_PERMISSION to enable or disable individual tools.
+# File-system access (read/edit/external_directory) is already handled by
+# the --dangerous flag in opencode_agent.py, so this is only for toggling
+# tool availability.
+#
+# For terminal-bench we disable webfetch and websearch — tasks run in
+# isolated Docker containers with no meaningful use for web tools, and
+# leaving them enabled can tempt the agent into unnecessary calls.
+# Callers may override via OPENCODE_PERMISSION in the calling environment.
+if [[ -z "${OPENCODE_PERMISSION:-}" ]]; then
+  export OPENCODE_PERMISSION='{"webfetch":"deny","websearch":"deny"}'
+fi
 
 # Isolate from local config — only API keys should come from outside the repo.
 export OPENCODE_DISABLE_PROJECT_CONFIG=1

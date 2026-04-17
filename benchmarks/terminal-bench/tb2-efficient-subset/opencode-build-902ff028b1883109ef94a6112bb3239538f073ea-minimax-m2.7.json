@@ -1,0 +1,119 @@
+{
+    "id": "d6afa63c-d000-4ea1-a81a-e7231a420b5d",
+    "started_at": "2026-04-17T03:55:35.531994",
+    "finished_at": "2026-04-17T05:59:02.278269",
+    "n_total_trials": 60,
+    "stats": {
+        "n_trials": 60,
+        "n_errors": 21,
+        "evals": {
+            "opencode-audio__terminal-bench": {
+                "n_trials": 60,
+                "n_errors": 21,
+                "metrics": [
+                    {
+                        "mean": 0.38333333333333336
+                    }
+                ],
+                "pass_at_k": {
+                    "2": 0.47500000000000003,
+                    "4": 0.5499999999999999,
+                    "5": 0.5833333333333334
+                },
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "circuit-fibsqrt__EW44iWv",
+                            "circuit-fibsqrt__pF6AJC5",
+                            "circuit-fibsqrt__hMBRbSc",
+                            "circuit-fibsqrt__Ziy5qhN",
+                            "circuit-fibsqrt__vJLdraX",
+                            "compile-compcert__67iNvUF",
+                            "compile-compcert__guyWSUY",
+                            "compile-compcert__Fp38xCv",
+                            "compile-compcert__gHJXztk",
+                            "compile-compcert__s7M2LzW",
+                            "path-tracing__7y4ff5C",
+                            "path-tracing__zWrsZm4",
+                            "path-tracing__iFSRU94",
+                            "path-tracing__zvdRvLM",
+                            "path-tracing__axnwYBm",
+                            "torch-tensor-parallelism__3gxZHCk",
+                            "torch-tensor-parallelism__J9NbqTC",
+                            "torch-tensor-parallelism__PkWLKkS",
+                            "torch-tensor-parallelism__xzgDoTu",
+                            "torch-tensor-parallelism__2gaCj7F",
+                            "rstan-to-pystan__KLbqqh2",
+                            "rstan-to-pystan__TgGPRQh",
+                            "rstan-to-pystan__4zrA5zV",
+                            "rstan-to-pystan__J5STzTB",
+                            "rstan-to-pystan__b5ksZ36",
+                            "sparql-university__7S6dMGZ",
+                            "sqlite-db-truncate__wQJR3Fx",
+                            "chess-best-move__Ya8R7Wj",
+                            "chess-best-move__i53fXuB",
+                            "extract-elf__u5JnnRw",
+                            "extract-elf__AgFA2gG",
+                            "extract-elf__zLXhpAg",
+                            "extract-elf__AietrJq",
+                            "sanitize-git-repo__eR82dnX",
+                            "sanitize-git-repo__qP7RkEY",
+                            "sanitize-git-repo__2WUd4VG",
+                            "sanitize-git-repo__pD5ssvA"
+                        ],
+                        "1.0": [
+                            "git-leak-recovery__EUNPN2M",
+                            "git-leak-recovery__6EuacP9",
+                            "git-leak-recovery__ZPkKXdq",
+                            "git-leak-recovery__WGnVVgW",
+                            "git-leak-recovery__uJbwb7b",
+                            "multi-source-data-merger__oxckSyh",
+                            "multi-source-data-merger__j9RK8Pa",
+                            "multi-source-data-merger__rNYZc62",
+                            "multi-source-data-merger__Whanxd8",
+                            "multi-source-data-merger__itGryLo",
+                            "sparql-university__3tNaFAN",
+                            "sparql-university__FYR6Rh5",
+                            "sparql-university__PRWvLYc",
+                            "sparql-university__aPKmKZD",
+                            "sqlite-db-truncate__G8VJcGk",
+                            "sqlite-db-truncate__GdadnBg",
+                            "sqlite-db-truncate__nju5mcY",
+                            "sqlite-db-truncate__h5eH4DH",
+                            "chess-best-move__DLg5geq",
+                            "chess-best-move__eRvM3zq",
+                            "chess-best-move__dw2TcZZ",
+                            "extract-elf__8945BRF",
+                            "sanitize-git-repo__kPZqAWr"
+                        ]
+                    }
+                },
+                "exception_stats": {
+                    "AgentTimeoutError": [
+                        "circuit-fibsqrt__EW44iWv",
+                        "circuit-fibsqrt__pF6AJC5",
+                        "circuit-fibsqrt__hMBRbSc",
+                        "circuit-fibsqrt__Ziy5qhN",
+                        "circuit-fibsqrt__vJLdraX",
+                        "compile-compcert__67iNvUF",
+                        "compile-compcert__guyWSUY",
+                        "compile-compcert__Fp38xCv",
+                        "compile-compcert__gHJXztk",
+                        "compile-compcert__s7M2LzW",
+                        "path-tracing__7y4ff5C",
+                        "path-tracing__zWrsZm4",
+                        "path-tracing__iFSRU94",
+                        "path-tracing__axnwYBm",
+                        "rstan-to-pystan__KLbqqh2",
+                        "rstan-to-pystan__TgGPRQh",
+                        "rstan-to-pystan__J5STzTB",
+                        "rstan-to-pystan__b5ksZ36",
+                        "chess-best-move__Ya8R7Wj",
+                        "chess-best-move__i53fXuB",
+                        "extract-elf__AgFA2gG"
+                    ]
+                }
+            }
+        }
+    }
+}

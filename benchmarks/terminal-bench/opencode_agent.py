@@ -300,10 +300,14 @@ class OpenCodeAudioAgent(HarborBaseAgent):  # type: ignore[misc]
 
         # Use --format json for structured event logging (plans, tool calls,
         # eval results). Use --print-logs to capture server-side debug info
-        # on stderr.  Write JSON events to the log file and pipe a copy to
-        # stdout so the exec result still contains a summary.
+        # on stderr.  Use --dangerous to allow read/edit/external_directory
+        # access without prompting (benchmark tasks often touch /data/ etc).
+        # --dangerous only expands file-system permissions; it does not alter
+        # the tool set exposed to the agent.  Write JSON events to the log
+        # file and pipe a copy to stdout so the exec result still contains a
+        # summary.
         command = (
-            f"{binary} run --format json --print-logs "
+            f"{binary} run --format json --print-logs --dangerous "
             f"{agent_flag} {model_flag} {shlex.quote(instruction)} "
             f">{log_file} 2>{debug_log}; "
             # Preserve the exit code from opencode run
